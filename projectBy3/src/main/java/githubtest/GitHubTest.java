@@ -1,6 +1,6 @@
 package githubtest;
 
-public class gitHubTest {
+public class GitHubTest {
 	public static void main(String[] args) {
 		System.out.println("hello");
 		System.out.println("hi2");
