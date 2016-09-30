@@ -27,8 +27,8 @@ public class serviceTest {
 	//@Test
 	public void loginServiceTest(){
 		//유저 로그인 테스트
-		User user = service.loginUser("bny64", "1234");
-		assertThat(user.getNickname(), is("sunday"));
+		User user = service.loginUser("hong", "1234");
+		assertThat(user.getNickname(), is("hhh"));
 		logger.trace("user : {}", user);
 	}
 	
@@ -42,7 +42,7 @@ public class serviceTest {
 	//@Test
 	public void loginFailTestByPass(){
 		//유저 비밀번호 오류 테스트
-		User user = service.loginUser("bny64", "2344");
+		User user = service.loginUser("lee", "2344");
 		logger.trace("user : {}", user);
 	}
 

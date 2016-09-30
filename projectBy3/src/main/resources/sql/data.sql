@@ -8,7 +8,6 @@ VALUES(USER_NO_SEQ.NEXTVAL,'ba','1234','nam','namy','010-7898-8888','kkk@naver.c
 
 insert into USER_LOCATION VALUES(user_location_no_seq.NEXTVAL,sysdate,36.815129,127.11389389,2);
 insert into USER_LOCATION VALUES(user_location_no_seq.NEXTVAL,sysdate,36.855139,127.21389389,3);
-insert into USER_LOCATION VALUES(user_location_no_seq.NEXTVAL,sysdate,36.115129,127.91389389,4);
 
 
 insert into category VALUES(category_no_seq.NEXTVAL,'computer');
