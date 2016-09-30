@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+	<select id="selectUser" resultMap="usersBase" parameterType="String">
+		select user_no, user_id, password, nickname, user_name, tel, email, birthdate
+		from users
+		where user_id=#{userId}
+	</select>
+	<resultMap type="users" id="usersBase">
+		<id column="user_no" property="userNo"/>
+		<result column="user_id" property="userId"/>
+		<result column="password" property="password"/>
+		<result column="nickname" property="nickname"/>
+		<result column="user_name" property="userName"/>
+		<result column="tel" property="tel"/>
+		<result column="email" property="email"/>
+		<result column="birthdate" property="birthdate"/>
+	</resultMap>
+
+</mapper>
