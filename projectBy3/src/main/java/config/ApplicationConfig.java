@@ -13,10 +13,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @PropertySource("classpath:/config/dbconfig.properties")
 @Configuration
+
 public class ApplicationConfig {
 	static Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 	
