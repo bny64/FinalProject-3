@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 			}
 
 		}
-		return result;
+		return 0;
 
 	}
 
