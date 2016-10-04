@@ -8,12 +8,15 @@
 		<title>회원가입</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="<%= request.getContextPath() %>/css/main.css" type="text/css" rel="stylesheet">
 		<style>
 			#main{
 				width: 400px;
 				margin: 0 auto;
 				height: 600px;
+			}
+			body {
+				background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
 			}
 		</style>
 	</head>
@@ -49,7 +52,7 @@
 			</div>
 	</body>
 	<script src="http://code.jquery.com/jquery.js"></script>
-	<script src="assets/js/validation/dist/jquery.validate.js"></script>
+	<script src="<%=request.getContextPath() %>/js/validation/dist/jquery.validate.js"></script>
 	<script>
 		$("#join").validate({
 			rules:{
@@ -57,10 +60,6 @@
 				email: {
 				      required: true,
 				      email: true
-				},
-				tel : {
-					required : true,
-					tel : true
 				}
 			},
 			messages:{
@@ -68,10 +67,6 @@
 				email: {
 				      required: "이메일을 입력해 주세요.",
 				      email: "이메일 형식이 안맞습니다. (ex: name@domain.com)"
-				},
-				tel : {
-				      required: "전화번호를 입력해 주세요.",
-				      email: "전화번호 형식이 안맞습니다. (ex: name@domain.com)"
 				}
 			}
 		});
