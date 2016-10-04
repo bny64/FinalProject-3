@@ -15,10 +15,26 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 //mvc-config.xml을 대체
 public class MvcConfig extends WebMvcConfigurerAdapter{
 
-	@Override
+	/*@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/img/**")
 		.addResourceLocations("/WEB-INF/images/")
+		.setCachePeriod(60 * 60 * 24 * 365);
+		
+		registry.addResourceHandler("/css/**")
+		.addResourceLocations("/WEB-INF/assets/css/");
+		
+		registry.addResourceHandler("/fonts/**")
+		.addResourceLocations("/WEB-INF/assets/fonts/");
+		
+		registry.addResourceHandler("/js/**")
+		.addResourceLocations("/WEB-INF/assets/js/");
+	}*/
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/img/**")
+		.addResourceLocations("/WEB-INF/assets/images/")
 		.setCachePeriod(60 * 60 * 24 * 365);
 		
 		registry.addResourceHandler("/css/**")
