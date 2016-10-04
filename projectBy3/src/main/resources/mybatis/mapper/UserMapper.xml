@@ -8,7 +8,15 @@
 		from users
 		where user_id=#{userId}
 	</select>
-	<resultMap type="users" id="usersBase">
+	<select id="selectAllUser" resultMap="usersBase">
+		select *
+		from users
+	</select>
+	<insert id="insertUser" parameterType="user">
+		insert into users(user_no, user_id, password, nickname, user_name, tel, email, birthdate)
+		values(user_no_seq.nextval, #{userId}, #{password},#{nickname},#{userName},#{tel},#{email},#{birthdate})
+	</insert>
+	<resultMap type="user" id="usersBase">
 		<id column="user_no" property="userNo"/>
 		<result column="user_id" property="userId"/>
 		<result column="password" property="password"/>

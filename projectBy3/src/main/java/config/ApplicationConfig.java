@@ -16,10 +16,12 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @PropertySource({"classpath:/config/dbconfig.properties"})
 @ComponentScan(basePackages={"dao","service"})
 @Configuration
+@EnableTransactionManagement
 public class ApplicationConfig {
 	static Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 	
