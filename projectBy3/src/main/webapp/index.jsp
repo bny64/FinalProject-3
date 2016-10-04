@@ -4,6 +4,7 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 	<head>
@@ -16,7 +17,6 @@
 				float:left;
 				width:50%;
 				display:block;
-				margin: 0 auto;
 			}
 			#loginView{
 				float:right;
@@ -43,19 +43,23 @@
 							<span class="avatar"><img src="<%= request.getContextPath() %>/img/avatar.jpg"></span>
 							<h2>로고</h2>
 						</div>
-						<div id="loginView">
-							<fieldset>
-								<legend>로그인</legend>
-								<input type="text" name="id" placeholder="아이디">
+						<div id="loginView">							
+							<c:url value="/login" var="log"/>
+							<form method="post" action="${log }">
+								<fieldset>
+									<legend>로그인</legend>
+									<input type="text" name="id" placeholder="아이디">								
+									<br>
+									<input type="text" name="password" placeholder="패스워드">									
+									<br>
+								</fieldset>
 								<br>
-								<input type="text" name="password" placeholder="패스워드">
-								<br>
-							</fieldset>
-							<br>
-							<button>로그인</button>
-							<button>회원가입</button>
-							<button>아이디 찾기</button>
-							<button>비밀번호 찾기</button>
+								<button>로그인</button>
+								<button>회원가입</button>
+								<button>아이디 찾기</button>
+								<button>비밀번호 찾기</button>
+							</form>
+							
 						</div>
 					</section>
 				<!-- Footer -->
