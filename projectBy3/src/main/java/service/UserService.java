@@ -8,4 +8,6 @@ public interface UserService {
 	public User loginUser(String id, String password);
 	public List<User> AllUser();
 	public int insertUser(User user);
+	public String searchId(String id);
+	public String searchPw(String id,String name,String email);
 }

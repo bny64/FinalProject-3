@@ -2,6 +2,7 @@ package dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -49,5 +50,22 @@ public class UserDaoImpl implements UserDao {
 		logger.trace("UserDaoImpl - insertUser 동작");
 		String stmt = NAME_SPACE + "insertUser";
 		return template.update(stmt, user);
+	}
+
+	@Override
+	public User searchId(String id) {
+		// 사용자의 아이디를 찾기위한 메서드(이름으로 id 찾기)
+		logger.trace("UserDaoImpl - searchId 동작");
+		String stmt = NAME_SPACE + "searchId";
+		return template.selectOne(stmt,id);
+	}
+
+	@Override
+	public User searchPw(Map<String,Object> info) {
+
+		// 사용자의 비밀번호를 찾기위한 메서드(이름으로 id 찾기)
+		logger.trace("UserDaoImpl - searchPw 동작");
+		String stmt = NAME_SPACE + "searchPw";
+		return template.selectOne(stmt,info);
 	}
 }

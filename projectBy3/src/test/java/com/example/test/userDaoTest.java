@@ -6,7 +6,9 @@ import static org.junit.Assert.assertThat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,5 +64,41 @@ public class userDaoTest {
 			int result = uDao.insertUser(user);
 			logger.trace("result : {}", result);
 	}
+	
+	
+	@Test
+	public void searchId() {
+		// searchId 테스트
+		User users = uDao.searchId("hong1");
+		logger.trace("users : {}", users);
+	}
+	
+	@Test
+	public void searchPw() {	
+		// searchPw 테스트
+		Map<String,Object> info = new HashMap<>();
+		info.put("id", "hong");
+		info.put("name", "kildong");
+		info.put("email", "eungoo1241@naver.com");	
+		
+		
+		User users = uDao.searchPw(info);
+		logger.trace("Pw users : {}", users);
+		
+	}
+	@Test
+	public void searchPwFail() {	
+		// searchPw 테스트
+		Map<String,Object> info = new HashMap<>();
+		info.put("id", "ho");
+		info.put("name", "kildong");
+		info.put("email", "eungoo1241@naver.com");	
+		
+		
+		User users = uDao.searchPw(info);
+		logger.trace("Pw users : {}", users);
+		
+	}
+	
 
 }

@@ -105,4 +105,27 @@ public class serviceTest {
 			logger.trace("result : {}", result);
 	}
 	
+	
+	@Test(expected=IdFailException.class)
+	public void searchId() {
+		// searchId 테스트
+		String str = service.searchId("hong1");
+		logger.trace("searchId - hong: {}", str);
+	}
+	
+	@Test
+	public void searchPw() {	
+		// searchPw 테스트
+		String str = service.searchPw("hong","kildong","eungoo1241@naver.com");
+		logger.trace("searchPw - hong : {}", str);
+	}
+	
+	@Test
+	public void searchPwFail() {	
+		// searchPw 테스트
+		String str = service.searchPw("hon","kildong","eungoo1241@naver.com");
+		logger.trace("searchPw - hong : {}", str);
+	}
+	
+	
 }

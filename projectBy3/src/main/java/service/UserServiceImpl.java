@@ -1,6 +1,8 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import dto.User;
 import exception.IdDuplicatedException;
 import exception.IdFailException;
 import exception.NicknameDuplicatedException;
+import exception.SearchFailException;
 import exception.passFailException;
 
 @Service
@@ -77,6 +80,35 @@ public class UserServiceImpl implements UserService {
 			throw new IdDuplicatedException();
 		}
 		return result;
+	}
+
+	@Override
+	public String searchId(String id) {
+		logger.trace("ServiceImpl - searchId 동작");
+		User user = uDao.searchId(id);		
+		if(user == null){
+			logger.trace("없는 아이디");
+			throw new IdFailException();
+		}
+		return user.getUserId();
+	}
+
+	@Override
+	public String searchPw(String id,String name,String email) {
+		logger.trace("ServiceImpl - searchPw 동작");
+		Map<String,Object> info = new HashMap<>();
+		info.put("id", id);
+		info.put("name", name);
+		info.put("email", email);		
+		
+		User user = uDao.searchPw(info);
+		
+		if(user == null){
+			logger.trace("오류");
+			throw new SearchFailException();
+		}
+		
+		return user.getPassword();
 	}
 
 }
