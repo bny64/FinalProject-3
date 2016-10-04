@@ -25,67 +25,41 @@ public class LoginController {
 	@Autowired
 	UserService service;
 
-	/*@RequestMapping(value = "/login")
-	public String index(Model model) {		
-		User user =null;
-		
-		model.addAttribute("user",user);
-		return "index";
-	}*/
-
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model, User user, HttpSession session, @RequestParam String id) {
-		logger.trace("{}",id);
+	public String login(Model model, HttpSession session, @RequestParam String id, @RequestParam String password) {
+		logger.trace("class : LoginController, method : login ////// id : {}, password : {}",id, password);
 		
 		
-		logger.trace("class : LoginController, method : login");
-		
-		
-		User loginusers = service.loginUser(user.getUserId(), user.getPassword());
-		if (loginusers != null) {
-			session.setAttribute("id", user.getUserId());
-
-			// Test
-			model.addAttribute("message", user);
-			return "showMessage";
-
-			// return "mainBoard";
+		User loginUser = service.loginUser(id, password);
+		if (loginUser != null) {
+			session.setAttribute("id", id);
+			model.addAttribute("message", loginUser);
+			return "main";
 		} else {
-			return "";
+			// 민국 - 로그인이 안됬을 시, 로그인 실패에 해당하는 페이지나 알람을 보여줘야 함.
+			return "index";
 		}
 	}
 
-	@RequestMapping(value = "/joinPage", method = RequestMethod.POST)
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(Model model, User user) {
 		logger.trace("class : LoginController, method : join");
-		/*
-		 * int result = service.join(user); if(result == 1){ return "index";
-		 * }else{ return "joinFail"; }
-		 */
-
-		return "";
+			
+		return "join";
 	}
 
-	@RequestMapping(value = "/serchId", method = RequestMethod.POST)
+	@RequestMapping(value = "/searchId", method = RequestMethod.POST)
 	public String searchId(Model model, User user) {
 		logger.trace("class : LoginController, method : searchId");
-		/*
-		 * int result = service.join(user); if(result == 1){ return "index";
-		 * }else{ return "joinFail"; }
-		 */
 
-		return "";
+		return "searchId";
 	}
 
-	@RequestMapping(value = "/serchPw", method = RequestMethod.POST)
+	@RequestMapping(value = "/searchPw", method = RequestMethod.POST)
 	public String searchPw(Model model, User user) {
-		/*
-		 * logger.trace("class : LoginController, method : searchPw"); int result
-		 * = service.join(user); if(result == 1){ return "index"; }else{ return
-		 * "joinFail"; }
-		 */
+		logger.trace("class : LoginController, method : searchPw");
 
-		return "";
+		return "searchPw";
 	}
 
 }
