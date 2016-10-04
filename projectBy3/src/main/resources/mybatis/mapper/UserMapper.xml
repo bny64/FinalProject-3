@@ -8,6 +8,11 @@
 		from users
 		where user_id=#{userId}
 	</select>
+	<select id="selectUserByNickname" resultMap="usersBase" parameterType="String">
+		select user_no, user_id, password, nickname, user_name, tel, email, birthdate
+		from users
+		where nickname=#{nickname}
+	</select>
 	<select id="selectAllUser" resultMap="usersBase">
 		select *
 		from users

@@ -19,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import config.ApplicationConfig;
 import dto.User;
+import exception.IdDuplicatedException;
 import exception.IdFailException;
+import exception.NicknameDuplicatedException;
 import exception.passFailException;
 import service.UserService;
 
@@ -72,6 +74,34 @@ public class serviceTest {
 												"010-000-0000", "abc@def", date);
 			int result = service.insertUser(user);
 			assertThat(result, is(1));
+			logger.trace("result : {}", result);
+	}
+	
+	//@Test(expected=IdDuplicatedException.class)
+	//@Transactional
+	public void insertUserDuplicateByIdTest() throws ParseException{
+		//아이디 중복 오류 테스트
+		String str = "88-12-12";
+		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
+		Date date = fdm.parse(str);
+			User user = new User(0, "hong", "aabb", "hodong", "kanghodong",
+												"010-000-0000", "abc@def", date);
+			int result = service.insertUser(user);
+			assertThat(result, is(0));
+			logger.trace("result : {}", result);
+	}
+	
+	@Test(expected=NicknameDuplicatedException.class)
+	@Transactional
+	public void insertUserDuplicateByNicknameTest() throws ParseException{
+		//아이디 중복 오류 테스트
+		String str = "88-12-12";
+		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
+		Date date = fdm.parse(str);
+			User user = new User(0, "kang", "aabb", "hhh", "kanghodong",
+												"010-000-0000", "abc@def", date);
+			int result = service.insertUser(user);
+			assertThat(result, is(0));
 			logger.trace("result : {}", result);
 	}
 	

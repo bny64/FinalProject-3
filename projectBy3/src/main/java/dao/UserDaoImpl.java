@@ -28,11 +28,19 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	// 사용자 한명을 검색하는 메서드(로그인 서비스에 사용)
+	// 사용자 한명을 검색하는 메서드(로그인 서비스, 회원가입 아이디 중복확인에 사용)
 	public User selectUser(String userId) {
 		logger.trace("UserDaoImpl - selectUser 동작");
 		String stmt = NAME_SPACE + "selectUser";
 		return template.selectOne(stmt, userId);
+	}
+	
+	@Override
+	//사용자 한명을 닉네임으로 검색하는 메서드(회원가입 닉네임 중복확인에 사용)
+	public User selectUserByNickname(String nickname) {
+		logger.trace("UserDaoImpl - selectUserByNickname 동작");
+		String stmt = NAME_SPACE + "selectUserByNickname";
+		return template.selectOne(stmt, nickname);
 	}
 
 	@Override

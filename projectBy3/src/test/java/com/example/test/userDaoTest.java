@@ -31,9 +31,15 @@ public class userDaoTest {
 	UserDao uDao;
 
 	//@Test
-	public void selectUserDaoTest() {
+	public void selectUserTest() {
 		// selectUser 테스트
 		User user = uDao.selectUser("hong");
+		assertThat(user.getUserName(), is("kildong"));
+	}
+	
+	//@Test
+	public void selectUserByNicknameTest(){
+		User user = uDao.selectUserByNickname("hhh");
 		assertThat(user.getUserName(), is("kildong"));
 	}
 

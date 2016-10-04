@@ -27,10 +27,12 @@ public class UserServiceImpl implements UserService {
 	public User loginUser(String userId, String password) {
 		logger.trace("ServiceImpl - loginUser 동작");
 		User user = uDao.selectUser(userId);
+		boolean login = false;
 
 		if (user != null) {
 
 			if (password.equals(user.getPassword())) {
+				login = true;
 				logger.trace("로그인 성공");
 			} else {
 				logger.error("비밀번호가 맞지 않습니다");
@@ -57,27 +59,24 @@ public class UserServiceImpl implements UserService {
 	// 회원 가입 서비스
 	public int insertUser(User user) {
 		logger.trace("ServiceImpl - insertUser 동작");
+		
 		int result;
-		List<User> users = uDao.selectAllUser();
-		for (User user1 : users) {
-
-			if (user.getUserId().equals(user1.getUserId())) {
-				throw new IdDuplicatedException();
-			} else {
-
-				if (user.getNickname().equals(user1.getNickname())) {
-					throw new NicknameDuplicatedException();
-				} else {
-
-					result = uDao.insertUser(user);
-
-				}
-
+		User checkuser1 = uDao.selectUser(user.getUserId());
+		User checkuser2 = uDao.selectUserByNickname(user.getNickname());
+		
+		if(checkuser1==null){
+			if(checkuser2==null){
+				result = uDao.insertUser(user);
+				logger.trace("가입 성공");
+			}else{
+				logger.error("닉네임이 중복됩니다");
+				throw new NicknameDuplicatedException();
 			}
-
+		}else{
+			logger.error("ID가 중복됩니다");
+			throw new IdDuplicatedException();
 		}
-		return 0;
-
+		return result;
 	}
 
 }
