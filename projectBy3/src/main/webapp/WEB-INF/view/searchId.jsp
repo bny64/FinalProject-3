@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -42,15 +43,15 @@
 					<sform:button>찾기</sform:button>
 				</fieldset>
 			</sform:form>
+			<fieldset>
+				<legend>사용자 ID</legend>
+				<input id="id" value="사용자 입니다">
+			</fieldset>
 			<button>회원가입</button>
 			<button>돌아가기</button>
 		</div>
-			<label>
-			  
-			</label>
-		<div>
-			
-		</div>
+		<label> </label>
+		<div></div>
 		</section>
 		<!-- Footer -->
 		<footer id="footer">

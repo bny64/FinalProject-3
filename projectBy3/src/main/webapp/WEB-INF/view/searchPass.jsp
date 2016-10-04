@@ -49,8 +49,8 @@
 		</div>
 		</section>
 		<fieldset>
-			<legend>사용자 ID</legend>
-			<input id="id" value="사용자 입니다">
+			<legend>사용자 패스워드</legend>
+			<input id="password" value="패스워드 입니다">
 		</fieldset>
 		<!-- Footer -->
 		<footer id="footer">
