@@ -67,8 +67,8 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/serchId", method = RequestMethod.POST)
-	public String serchId(Model model, User user) {
-		logger.trace("class : LoginController, method : serchId");
+	public String searchId(Model model, User user) {
+		logger.trace("class : LoginController, method : searchId");
 		/*
 		 * int result = service.join(user); if(result == 1){ return "index";
 		 * }else{ return "joinFail"; }
@@ -78,9 +78,9 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/serchPw", method = RequestMethod.POST)
-	public String serchPw(Model model, User user) {
+	public String searchPw(Model model, User user) {
 		/*
-		 * logger.trace("class : LoginController, method : serchPw"); int result
+		 * logger.trace("class : LoginController, method : searchPw"); int result
 		 * = service.join(user); if(result == 1){ return "index"; }else{ return
 		 * "joinFail"; }
 		 */
