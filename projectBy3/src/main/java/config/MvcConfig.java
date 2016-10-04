@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages={"com.example.controller"}) // <context:component-scan base-package="com.example.controller"/>
+@ComponentScan(basePackages={"controller"}) // <context:component-scan base-package="com.example.controller"/>
 @EnableWebMvc //<mvc:annotation-driven />
 //mvc-config.xml을 대체
 public class MvcConfig extends WebMvcConfigurerAdapter{

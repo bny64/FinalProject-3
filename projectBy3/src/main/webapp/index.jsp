@@ -27,6 +27,9 @@
 			#main{
 				height: 200px;
 			} 
+			body {
+				background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
+			}
 		</style>
 	</head>
 	<body>
@@ -44,8 +47,8 @@
 							<h2>로고</h2>
 						</div>
 						<div id="loginView">							
-							<c:url value="/login" var="log"/>
-							<form method="post" action="${log }">
+							<c:url value="/login" var="login"/>
+							<form method="post" action="${login }">
 								<fieldset>
 									<legend>로그인</legend>
 									<input type="text" name="id" placeholder="아이디">								
@@ -53,13 +56,12 @@
 									<input type="text" name="password" placeholder="패스워드">									
 									<br>
 								</fieldset>
-								<br>
-								<button>로그인</button>
-								<button>회원가입</button>
-								<button>아이디 찾기</button>
-								<button>비밀번호 찾기</button>
-							</form>
-							
+								<input type="submit" value="로그인">
+							</form>	
+							<c:url value="/join" var="join"/>
+							<a href="${join }"><button>회원가입</button></a>
+							<button>아이디 찾기</button>
+							<button>비밀번호 찾기</button>
 						</div>
 					</section>
 				<!-- Footer -->
