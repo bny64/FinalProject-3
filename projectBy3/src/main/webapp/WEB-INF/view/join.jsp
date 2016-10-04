@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 	<head>
@@ -27,19 +28,18 @@
 				<!-- Main -->
 					<section id="main">
 						<div id="joinForm">
-							<form id="join">
+							<sform:form method="post" action="" modelAttribute="user">
 								<fieldset>
-								<input type="text" name="name" id="name"  placeholder="아이디"><br>
-								<input type="password" name="password" id="password"  placeholder="비밀번호" value="1234"><br>
-								<input type="text" name="nickName" id="nickName" placeholder="닉네임" value="hong1234"><br>
-								<input type="text" name="userName" id="userName" placeholder="이름" value="홍길동"><br>
-								<input type="text" name="tel" id="tel" placeholder="***-****-****" value="010-0000-0000"><br>
-								<input type="email" name="email" id="email" placeholder="이메일" value="hong1234@naver.com"><br>
-								<input type="text" name="birthdate" id="birthdate" placeholder="yyyy/MM/dd" value="2016/10/04"><br>
-								<input type="reset" value="초기화" >&nbsp;&nbsp;
-								<input type="submit" value="회원가입">
+								<sform:input path="userId" placeholder="ID"/><br>
+								<sform:input path="password"  placeholder="비밀번호" value="1234" /><br>
+								<sform:input path="nickname" placeholder="닉네임" value="hong1234" /><br>
+								<sform:input path="userName" placeholder="이름" value="홍길동" /><br>
+								<sform:input path="tel" placeholder="***-****-****" value="010-0000-0000" /><br>
+								<sform:input path="email" placeholder="이메일" value="hong1234@naver.com" /><br>
+								<sform:input path="birthdate" placeholder="yyyy/MM/dd" value="2016/10/04" /><br>
+								<sform:button>회원 가입</sform:button>
 								</fieldset>
-							</form>
+							</sform:form>
 						</div>
 					</section>
 				<!-- Footer -->
