@@ -71,7 +71,7 @@ body {
 	<c:url value="/searchPass" var="searchPass"/>
 	$("#search").on("click", function() {
 		$.ajax({
-			type : "post",
+			type : "get",
 			url : "${searchPass}",
 			data : {
 				id : $("#id").val(),

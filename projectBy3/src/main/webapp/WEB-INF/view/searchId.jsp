@@ -69,7 +69,7 @@ body {
 	<c:url value="/searchId" var="searchId"/>
 	$("#search").on("click", function() {
 		$.ajax({
-			type : "post",
+			type : "get",
 			url : "${searchId}",
 			data : {
 				name : $("#name").val(),
