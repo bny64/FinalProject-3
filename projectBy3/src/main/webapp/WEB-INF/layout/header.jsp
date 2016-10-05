@@ -56,8 +56,11 @@
 	<div id="loginView">
 		<div>
 			<button>전체 알림</button>
-			<button>설정</button>
-			<button>로그아웃</button>
+			<c:url value="/setup" var="setup"/>
+			<a href="${setup }"><button>설정</button></a>
+			<c:url value="/logout" var="logout"/>
+			<a href="${logout }"><button>로그아웃</button></a>
+			
 		</div>		
 	</div>
 	
@@ -65,12 +68,24 @@
 <section>
 	<div id = "heade">	
 		<div id="headers">
-			<button>카 테 고 리</button>
+			<c:url value="/category" var="category"/>
+			<a href="${category }"><button>카 테 고 리</button></a>
+			
 			<input id="str"type="text" placeholder="글 검색">
-			<button>친구 관리</button>
-			<button>글쓰기</button>
-			<button>내글보기</button>
-			<button>위치저장</button>
+			
+			<c:url value="/mainFriend" var="mainFriend"/>
+			<a href="${mainFriend }"><button>친구 관리</button></a>
+			
+			<c:url value="/writeBoard" var="writeBoard"/>
+			<a href="${writeBoard }"><button>글쓰기</button></a>
+			
+			<c:url value="/myBoard" var="myBoard"/>
+			<a href="${myBoard }"><button>내글보기</button></a>
+			
+			<c:url value="/mylocation" var="mylocation"/>
+			<a href="${mylocation }"><button>위치저장</button></a>
+			
+			
 							
 		</div>
 	</div>
