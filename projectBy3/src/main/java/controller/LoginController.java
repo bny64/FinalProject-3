@@ -90,8 +90,6 @@ public class LoginController {
 	@RequestMapping(value = "/searchId", method = RequestMethod.POST)
 	public String searchId(Model model, User user) {
 		logger.trace("class : LoginController, method : searchId");
-		String userId = service.searchId(user.getUserId());
-		model.addAttribute("userId", userId);
 		
 		return "searchId";
 	}
