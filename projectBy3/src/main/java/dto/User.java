@@ -20,6 +20,6 @@ public class User {
 	String userName;
 	String tel;
 	String email;
-	@DateTimeFormat(pattern="yy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date birthdate;
 }

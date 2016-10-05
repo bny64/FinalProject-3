@@ -58,8 +58,8 @@
 								</fieldset>
 								<input type="submit" value="로그인">
 							</form>	
-							<c:url value="/join" var="join"/>
-							<a href="${join }"><button>회원가입</button></a>
+							<c:url value="/joinPage" var="joinPage"/>
+							<a href="${joinPage }"><button>회원가입</button></a>
 							<button>아이디 찾기</button>
 							<button>비밀번호 찾기</button>
 						</div>
