@@ -10,6 +10,6 @@ public interface UserDao {
 	public User selectUser(String userId);
 	public User selectUserByNickname(String nickname);
 	public int insertUser(User user);
-	public User searchId(String id);
+	public User searchId(Map<String,Object> info);
 	public User searchPw(Map<String,Object> info);
 }

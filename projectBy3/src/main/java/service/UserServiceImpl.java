@@ -83,9 +83,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String searchId(String id) {
+	public String searchId(String id,String name) {
 		logger.trace("ServiceImpl - searchId 동작");
-		User user = uDao.searchId(id);		
+		Map<String,Object> info = new HashMap<>();
+		info.put("id", id);
+		info.put("name", name);
+		User user = uDao.searchId(info);		
 		if(user == null){
 			logger.trace("없는 아이디");
 			throw new IdFailException();

@@ -53,11 +53,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User searchId(String id) {
+	public User searchId(Map<String,Object> info) {
 		// 사용자의 아이디를 찾기위한 메서드(이름으로 id 찾기)
 		logger.trace("UserDaoImpl - searchId 동작");
 		String stmt = NAME_SPACE + "searchId";
-		return template.selectOne(stmt,id);
+		return template.selectOne(stmt,info);
 	}
 
 	@Override
