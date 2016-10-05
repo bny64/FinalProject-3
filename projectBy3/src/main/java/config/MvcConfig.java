@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -57,6 +58,13 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/searchIdPage").setViewName("searchId");
+		registry.addViewController("/searchPassPage").setViewName("searchPass");
+	}
+	
 	/*<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	        <!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
 	        <property name="prefix" value="/WEB-INF/view/"/>
