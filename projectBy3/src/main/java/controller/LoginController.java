@@ -80,9 +80,18 @@ public class LoginController {
 		return "index";
 	}
 
+	@RequestMapping(value = "/searchId", method=RequestMethod.GET)
+	public String searchIdPage(Model model){
+		logger.trace("class : LoginController, method : searchIdPage");
+		model.addAttribute("user", new User());
+		return "searchId";
+	}
+	
 	@RequestMapping(value = "/searchId", method = RequestMethod.POST)
 	public String searchId(Model model, User user) {
 		logger.trace("class : LoginController, method : searchId");
+		String userId = service.searchId(user.getUserId());
+		model.addAttribute("userId", userId);
 		
 		return "searchId";
 	}

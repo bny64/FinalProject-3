@@ -34,7 +34,7 @@
 		<!-- Main -->
 		<section id="searchId">
 		<div id="searchIdForm">
-			<sform:form method="post" action="" modelAttribute="user">
+			<sform:form method="post" action="searchId" modelAttribute="user">
 				<fieldset>
 					<sform:input path="name" placeholder="이름" />
 					<br>

@@ -60,7 +60,8 @@
 							</form>	
 							<c:url value="/joinPage" var="joinPage"/>
 							<a href="${joinPage }"><button>회원가입</button></a>
-							<button>아이디 찾기</button>
+							<c:url value="/searchId" var="searchId"/>
+							<a href="${searchId }"><button>아이디 찾기</button></a>
 							<button>비밀번호 찾기</button>
 						</div>
 					</section>
