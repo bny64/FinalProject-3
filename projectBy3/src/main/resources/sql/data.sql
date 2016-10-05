@@ -14,9 +14,9 @@ insert into category VALUES(category_no_seq.NEXTVAL,'computer');
 insert into category VALUES(category_no_seq.NEXTVAL,'study');
 insert into category VALUES(category_no_seq.NEXTVAL,'food');
 
-insert into BOARD VALUES(board_no_seq.NEXTVAL,'title:sample data',1,'this is sparta',sysdate,2,1);
-insert into BOARD VALUES(board_no_seq.NEXTVAL,'title:sample data2',1,'this is sparta',sysdate,2,1);
-insert into BOARD VALUES(board_no_seq.NEXTVAL,'title:sample data3',1,'this is sparta',sysdate,2,1);
+insert into BOARD VALUES(board_no_seq.NEXTVAL,'sample data',1,'this is sparta',sysdate,2,1,'');
+insert into BOARD VALUES(board_no_seq.NEXTVAL,'sample data2',1,'this is sparta',sysdate,2,1,'');
+insert into BOARD VALUES(board_no_seq.NEXTVAL,'sample data3',1,'this is sparta',sysdate,2,1,'');
 
 insert into BOARD_LOCATION VALUES(board_location_no_seq.nextval,36.115129,127.91389389,1);
 
