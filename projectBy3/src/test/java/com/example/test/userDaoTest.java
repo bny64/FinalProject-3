@@ -69,7 +69,10 @@ public class userDaoTest {
 	@Test
 	public void searchId() {
 		// searchId 테스트
-		User users = uDao.searchId("hong1");
+		Map<String,Object> info = new HashMap<>();
+		info.put("id", "hong");
+		info.put("name", "kildong");
+		User users = uDao.searchId(info);
 		logger.trace("users : {}", users);
 	}
 	
