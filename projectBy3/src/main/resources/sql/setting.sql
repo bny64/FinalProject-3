@@ -102,3 +102,11 @@ foreign key (user_no) references users (user_no) on delete cascade;
 
 create sequence category_list_no_seq
 start with 1 increment by 1;
+
+
+
+
+alter table board add(image_path varchar2(20));
+
+
+

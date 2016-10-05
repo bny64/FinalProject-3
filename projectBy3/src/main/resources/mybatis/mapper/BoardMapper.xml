@@ -17,6 +17,7 @@
 		<result column="writed_date" property="writedDate"/>
 		<result column="user_no" property="userNo"/>
 		<result column="category_no" property="categoryNo"/>
+		<result column="image_path" property="imagePath"/>
 	</resultMap>
 
 </mapper>

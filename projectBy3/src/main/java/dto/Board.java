@@ -20,4 +20,5 @@ public class Board {
 	Date writedDate;
 	int userNo;
 	int categoryNo;
+	String imagePath;
 }
