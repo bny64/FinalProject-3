@@ -8,6 +8,16 @@
 		select *
 		from board
 	</select>
+	<select id="selectBoard" resultMap="boardBase" parameterType="int">
+		select *
+		from board
+		where board_no=#{boardNo}
+	</select>
+	<select id="selectMyBoard" resultMap="boardBase" parameterType="int">
+		select *
+		from board
+		where user_no=#{userNo}
+	</select>
 	
 	<resultMap type="board" id="boardBase">
 		<id column="board_no" property="boardNo"/>

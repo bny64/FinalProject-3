@@ -23,4 +23,18 @@ public class BoardServiceImpl implements BoardService{
 		return board.selectAllBoard();
 	}
 
+	@Override
+	public Board selectBoard(int boardNo) {
+		//boardNo로 Board객체 하나 검색
+		logger.trace("BoardServiceImpl - selectBoard() 동작");
+		return board.selectBoard(boardNo);
+	}
+
+	@Override
+	public List<Board> selectMyBoard(int userNo) {
+		//userNo로 내가 쓴 Board 리스트로 검색
+		logger.trace("BoardServiceImpl - selectMyBoard() 동작");
+		return board.selectMyBoard(userNo);
+	}
+
 }

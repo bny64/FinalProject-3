@@ -2,6 +2,7 @@ package com.example.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.text.ParseException;
@@ -36,10 +37,25 @@ public class BoardServiceTest {
 	@Autowired
 	BoardService service;
 
-	@Test
+	//@Test
 	public void viewAllBoards() {
 		List<Board> boards = service.viewAllBoards();
 		logger.trace("boards.size : {}", boards.size()); 
 		assertThat(boards.size(), is(notNullValue()));
+	}
+	
+	@Test
+	public void viewBoard(){
+		Board board = service.selectBoard(1);
+		logger.trace("board : {}", board);
+		assertThat(board, is(notNullValue()));
+		assertThat(service.selectBoard(4), is(nullValue()));
+	}
+	
+	@Test
+	public void viewMyBoard(){
+		List<Board> boards = service.selectMyBoard(2);
+		logger.trace("boards.size() : {}", boards.size());
+		assertThat(boards.size(), is(3));
 	}
 }

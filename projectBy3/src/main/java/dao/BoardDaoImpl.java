@@ -25,4 +25,18 @@ public class BoardDaoImpl implements BoardDao{
 		String stmt = BOARD_NS + "selectAllBoard";
 		return template.selectList(stmt);
 	}
+
+	@Override
+	public Board selectBoard(int boardNo) {
+		logger.trace("BoardDaoImpl - selectBoard 동작");
+		String stmt = BOARD_NS + "selectBoard";
+		return template.selectOne(stmt, boardNo);
+	}
+
+	@Override
+	public List<Board> selectMyBoard(int userNo) {
+		logger.trace("BoardDaoImpl - selectMyBoard 동작");
+		String stmt = BOARD_NS + "selectMyBoard";
+		return template.selectList(stmt, userNo);
+	}
 }

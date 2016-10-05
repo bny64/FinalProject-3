@@ -35,10 +35,24 @@ public class BoardDaoTest {
 	@Autowired
 	BoardDao bDao;
 
-	@Test
-	public void selectBoardTest() {
+	//@Test
+	public void selectAllBoardTest() {
 		List<Board> boards = bDao.selectAllBoard();
 		logger.trace("boards.size : {}", boards.size()); 
 		assertThat(boards.size(), is(notNullValue()));
+	}
+	
+	//@Test
+	public void selectBoardTest(){
+		Board board = bDao.selectBoard(1);
+		logger.trace("board : {}", board);
+		assertThat(board.getTitle(), is(notNullValue()));
+	}
+	
+	@Test
+	public void selectMyBoardTest(){
+		List<Board> boards = bDao.selectMyBoard(2);
+		logger.trace("boards.size : {}", boards.size());
+		assertThat(boards.size(), is(3));
 	}
 }
