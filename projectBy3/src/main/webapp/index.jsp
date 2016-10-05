@@ -62,7 +62,8 @@
 							<a href="${joinPage }"><button>회원가입</button></a>
 							<c:url value="/searchId" var="searchId"/>
 							<a href="${searchId }"><button>아이디 찾기</button></a>
-							<button>비밀번호 찾기</button>
+							<c:url value="/searchPass" var="searchPass"/>
+							<a href="${searchPass }"><button>비밀번호 찾기</button></a>
 						</div>
 					</section>
 				<!-- Footer -->

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.User;
 import service.UserService;
@@ -79,26 +79,44 @@ public class LoginController {
 		// 민국 - 유저가 null 일 경우..
 		return "index";
 	}
-
+	
 	@RequestMapping(value = "/searchId", method=RequestMethod.GET)
 	public String searchIdPage(Model model){
 		logger.trace("class : LoginController, method : searchIdPage");
-		model.addAttribute("user", new User());
 		return "searchId";
 	}
 	
 	@RequestMapping(value = "/searchId", method = RequestMethod.POST)
-	public String searchId(Model model, User user) {
+	public @ResponseBody String searchId(@RequestParam String name, @RequestParam String email) {
 		logger.trace("class : LoginController, method : searchId");
-		
-		return "searchId";
+		String id = service.searchId(name, email);
+		return id;
+	}
+	
+	@RequestMapping(value = "/searchPass", method=RequestMethod.GET)
+	public String searchPassPage(Model model){
+		logger.trace("class : LoginController, method : searchPassPage");
+		return "searchPass";
+	}
+	
+	@RequestMapping(value = "/searchPass", method = RequestMethod.POST)
+	public @ResponseBody String searchPass(@RequestParam String id,@RequestParam String name, @RequestParam String email) {
+		logger.trace("class : LoginController, method : searchPass");
+		String password = service.searchPw(id, name, email);
+		return password;
 	}
 
-	@RequestMapping(value = "/searchPw", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/searchId", method = RequestMethod.POST)
+	public String searchId(Model model, User user) {
+		logger.trace("class : LoginController, method : searchId");
+		return "searchId";
+	}*/
+	
+	/*@RequestMapping(value = "/searchPw", method = RequestMethod.POST)
 	public String searchPw(Model model, User user) {
 		logger.trace("class : LoginController, method : searchPw");
 
 		return "searchPw";
-	}
+	}*/
 
 }

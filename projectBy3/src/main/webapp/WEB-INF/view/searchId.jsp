@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>패스워드 찾기</title>
+<title>ID 찾기</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="<%=request.getContextPath()%>/css/main.css" type="text/css"
@@ -19,8 +19,11 @@
 	align: center;
 }
 
-#body {
+body {
 	background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
+}
+#id{
+	color:black;
 }
 </style>
 </head>
@@ -34,32 +37,53 @@
 		<!-- Main -->
 		<section id="searchId">
 		<div id="searchIdForm">
-			<sform:form method="post" action="searchId" modelAttribute="user">
-				<fieldset>
-					<sform:input path="name" placeholder="이름" />
-					<br>
-					<sform:input path="email" placeholder="이메일" />
-					<br>
-					<sform:button>찾기</sform:button>
-				</fieldset>
-			</sform:form>
+			<fieldset>
+				<legend>회원 정보</legend>
+				<label for="name">이름</label>
+				 <input type="text" id="name"><br>
+				<label for="email">이메일</label>
+				 <input type="text" id="email"><br>
+				<button id="search">찾기</button>
+			</fieldset>
 			<fieldset>
 				<legend>사용자 ID</legend>
-				<input id="id" value="사용자 입니다">
-			</fieldset>
-			<button>회원가입</button>
-			<button>돌아가기</button>
+				<input id="id">
+			</fieldset><br>
+			<c:url value="/joinPage" var="joinPage"/>
+			<a href="joinPage"><button>회원가입</button></a>
+			<a href="index.jsp"><button>돌아가기</button></a>
 		</div>
 		<label> </label>
-		<div></div>
 		</section>
 		<!-- Footer -->
-		<footer id="footer">
+		<!-- <footer id="footer">
 		<p>
 			&copy; Untitled. All rights reserved. Design: <a
 				href="http://templated.co">TEMPLATED</a>.
 		</p>
-		</footer>
+		</footer> -->
 	</div>
 </body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+	<c:url value="/searchId" var="searchId"/>
+	$("#search").on("click", function() {
+		$.ajax({
+			type : "post",
+			url : "${searchId}",
+			data : {
+				name : $("#name").val(),
+				email : $("#email").val()
+			},
+			success : function(res) {
+				if (res) {
+					$("#id").val(res);
+				}
+			},
+			error : function(xhr, status, error) {
+				alert("해당 하는 정보가 없습니다");
+			}
+		});
+	});
+</script>
 </html>
