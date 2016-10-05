@@ -8,10 +8,12 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="dto.User" alias="user" />
+		<typeAlias type="dto.Board" alias="board" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/mapper/UserMapper.xml"/>
+		<mapper resource="mybatis/mapper/BoardMapper.xml"/>
 	</mappers>
 
 
