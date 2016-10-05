@@ -2,6 +2,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 	<head>
@@ -13,7 +14,7 @@
 			#main{
 				width: 400px;
 				margin: 0 auto;
-				height: 600px;
+				height: 650px;
 			}
 			body {
 				background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
@@ -31,7 +32,7 @@
 				<!-- Main -->
 					<section id="main">
 						<div id="joinForm">
-							<sform:form method="post" action="" modelAttribute="user">
+							<sform:form method="post" action="joinPage" modelAttribute="user">
 								<fieldset>
 								<sform:input path="userId" placeholder="ID"/><br>
 								<sform:input path="password"  placeholder="비밀번호" value="1234" /><br>
@@ -39,16 +40,16 @@
 								<sform:input path="userName" placeholder="이름" value="홍길동" /><br>
 								<sform:input path="tel" placeholder="***-****-****" value="010-0000-0000" /><br>
 								<sform:input path="email" placeholder="이메일" value="hong1234@naver.com" /><br>
-								<sform:input path="birthdate" placeholder="yyyy/MM/dd" value="2016/10/04" /><br>
-								<sform:button>회원 가입</sform:button>
+								<sform:input path="birthdate" placeholder="yyyy-MM-dd" value="2016-10-04" /><br>
 								</fieldset>
+								<sform:button>가입 하기</sform:button>
 							</sform:form>
 						</div>
 					</section>
 				<!-- Footer -->
-					<footer id="footer">
+					<!-- <footer id="footer">
 						<p>&copy; Untitled. All rights reserved. Design: <a href="http://templated.co">TEMPLATED</a>. </p>
-					</footer>
+					</footer> -->
 			</div>
 	</body>
 	<script src="http://code.jquery.com/jquery.js"></script>
