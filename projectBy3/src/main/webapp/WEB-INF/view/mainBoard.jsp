@@ -128,7 +128,6 @@
 				</a>
 			</div>
 		</section>
-	<button id ="new">더보기</button>
 	</section>
 	
 </body>
@@ -139,8 +138,8 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	var index = 1;
-	<c:url value = "/more" var="more"/>
-	$("#new").on("click",function(){
+	<c:url value = "/more" var="more"/>	
+	function dataReceive(){
 		$.ajax({
 			type : "post",
 			url : "${more}",
@@ -158,13 +157,13 @@
 					if(true){
 						switch(i/3){
 						case 0 :
-							$left.after($new);
+							$left.append($new);
 							break;
 						case 1 :
-							$center.after($new);
+							$center.append($new);
 							break;
 						case 2:
-							$right.after($new);
+							$right.append($new);
 							break;
 						}
 					}
@@ -172,7 +171,35 @@
 				
 			}
 		});
+	}
+	
+	
+	
+	
+	
+	$(window).scroll(function(){
+		if  ($(window).scrollTop() >= $(document).height() - $(window).height()){
+			console.log("스크롤 감지");
+			lastPostFunc();
+		}
 	});
+	
+	function lastPostFunc(){
+		$left = $("#left");
+		$center = $("#center");
+		$right = $("#right");
+		
+		$newOne1 = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' /><h3>Lorem ipsum dolor sit amet</h3>");
+		$newOne2 = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' /><h3>Lorem ipsum dolor sit amet</h3>");
+		$newOne3 = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' /><h3>Lorem ipsum dolor sit amet</h3>");
+		
+		$left.append($newOne1);
+		$center.append($newOne2);
+		$right.append($newOne3);
+		
+		
+	}
+	
 	
 
 
