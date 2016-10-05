@@ -86,7 +86,7 @@ public class LoginController {
 		return "searchId";
 	}*/
 	
-	@RequestMapping(value = "/searchId", method = RequestMethod.POST)
+	@RequestMapping(value = "/searchId", method = RequestMethod.GET)
 	public @ResponseBody String searchId(@RequestParam String name, @RequestParam String email) {
 		logger.trace("class : LoginController, method : searchId");
 		String id = service.searchId(name, email);
@@ -99,7 +99,7 @@ public class LoginController {
 		return "searchPass";
 	}*/
 	
-	@RequestMapping(value = "/searchPass", method = RequestMethod.POST)
+	@RequestMapping(value = "/searchPass", method = RequestMethod.GET)
 	public @ResponseBody String searchPass(@RequestParam String id,@RequestParam String name, @RequestParam String email) {
 		logger.trace("class : LoginController, method : searchPass");
 		String password = service.searchPw(id, name, email);

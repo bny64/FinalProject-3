@@ -27,9 +27,9 @@ import service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={ApplicationConfig.class})
-public class serviceTest {
+public class UserServiceTest {
 
-	static Logger logger = LoggerFactory.getLogger(serviceTest.class);
+	static Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
 	
 	@Autowired
 	UserService service;
