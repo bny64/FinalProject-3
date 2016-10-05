@@ -80,11 +80,11 @@ public class LoginController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/searchId", method=RequestMethod.GET)
+	/*@RequestMapping(value = "/searchId", method=RequestMethod.GET)
 	public String searchIdPage(Model model){
 		logger.trace("class : LoginController, method : searchIdPage");
 		return "searchId";
-	}
+	}*/
 	
 	@RequestMapping(value = "/searchId", method = RequestMethod.POST)
 	public @ResponseBody String searchId(@RequestParam String name, @RequestParam String email) {
@@ -92,12 +92,12 @@ public class LoginController {
 		String id = service.searchId(name, email);
 		return id;
 	}
-	
+/*	
 	@RequestMapping(value = "/searchPass", method=RequestMethod.GET)
 	public String searchPassPage(Model model){
 		logger.trace("class : LoginController, method : searchPassPage");
 		return "searchPass";
-	}
+	}*/
 	
 	@RequestMapping(value = "/searchPass", method = RequestMethod.POST)
 	public @ResponseBody String searchPass(@RequestParam String id,@RequestParam String name, @RequestParam String email) {

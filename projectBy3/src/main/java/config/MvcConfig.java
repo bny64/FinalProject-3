@@ -56,6 +56,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/searchIdPage").setViewName("searchId");
+		registry.addViewController("/searchPassPage").setViewName("searchPass");
+	}
+	
 	/*<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	        <!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
 	        <property name="prefix" value="/WEB-INF/view/"/>
