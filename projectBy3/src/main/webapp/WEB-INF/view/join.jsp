@@ -44,6 +44,7 @@
 								</fieldset>
 								<sform:button>가입 하기</sform:button>
 							</sform:form>
+							<a href="index.jsp"><button>돌아가기</button></a>
 						</div>
 					</section>
 				<!-- Footer -->

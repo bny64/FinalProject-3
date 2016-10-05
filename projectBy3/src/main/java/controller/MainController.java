@@ -37,8 +37,8 @@ public class MainController {
 	
 	//1. 게시물 불러오기 a.jax 처리
 	//3. 글 검색
-	@RequestMapping(value="getBoard", method=RequestMethod.GET)
-	public @ResponseBody List<Board> getBoards(Model model){
+	@RequestMapping(value="getAllBoards", method=RequestMethod.GET)
+	public @ResponseBody List<Board> getAllBoards(Model model){
 		logger.trace("class : LoginController, method : getBoards");
 		List<Board> boards = service.viewAllBoards();
 		return boards;
