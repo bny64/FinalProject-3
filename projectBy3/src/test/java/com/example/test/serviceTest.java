@@ -109,7 +109,7 @@ public class serviceTest {
 	@Test(expected=IdFailException.class)
 	public void searchId() {
 		// searchId 테스트
-		String str = service.searchId("hong","kildong");
+		String str = service.searchId("kildong","eungoo1241@naver.com");
 		logger.trace("searchId - hong: {}", str);
 	}
 	

@@ -70,8 +70,8 @@ public class userDaoTest {
 	public void searchId() {
 		// searchId 테스트
 		Map<String,Object> info = new HashMap<>();
-		info.put("id", "hong");
 		info.put("name", "kildong");
+		info.put("email", "eungoo1241@naver.com");
 		User users = uDao.searchId(info);
 		logger.trace("users : {}", users);
 	}

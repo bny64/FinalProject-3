@@ -25,7 +25,7 @@
 	<select id="searchId" parameterType="String" resultMap="usersBase">
 		select *
 		from users
-		where user_id = #{id} and user_name = #{name}
+		where user_name = #{name} and email = #{email}
 	</select>
 	
 	<select id="searchPw" parameterType="map" resultMap="usersBase">
