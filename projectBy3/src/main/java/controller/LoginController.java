@@ -54,7 +54,7 @@ public class LoginController {
 		if (loginUser != null) {
 			session.setAttribute("id", id);
 			model.addAttribute("message", loginUser);
-			return "main";
+			return "mainBoard";
 		} else {
 			// 민국 - 로그인이 안됬을 시, 로그인 실패에 해당하는 페이지나 알람을 보여줘야 함.
 			return "index";
