@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
-	int board_no;
+	int boardNo;
 	String title;
 	int hit;
 	String content;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date writedDate;
-	int user_no;
-	int category_no;
+	int userNo;
+	int categoryNo;
 }

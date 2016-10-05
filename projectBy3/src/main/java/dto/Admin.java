@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Admin {
-	String admin_id;
+	String adminId;
 	String password;
 }

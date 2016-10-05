@@ -22,8 +22,8 @@ import config.ApplicationConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ApplicationConfig.class })
-public class dataSourceTest {
-	static Logger logger = LoggerFactory.getLogger(dataSourceTest.class);
+public class DataSourceTest {
+	static Logger logger = LoggerFactory.getLogger(DataSourceTest.class);
 	
 	@Autowired
 	DataSource ds;

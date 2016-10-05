@@ -25,9 +25,9 @@ import dto.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ApplicationConfig.class })
-public class userDaoTest {
+public class UserDaoTest {
 
-	static Logger logger = LoggerFactory.getLogger(userDaoTest.class);
+	static Logger logger = LoggerFactory.getLogger(UserDaoTest.class);
 
 	@Autowired
 	UserDao uDao;
