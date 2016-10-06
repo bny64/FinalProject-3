@@ -41,6 +41,7 @@ public class MainController {
 	public @ResponseBody List<Board> getAllBoards(Model model){
 		logger.trace("class : LoginController, method : getBoards");
 		List<Board> boards = service.viewAllBoards();
+		model.addAttribute("boards", boards);
 		return boards;
 	}
 	
