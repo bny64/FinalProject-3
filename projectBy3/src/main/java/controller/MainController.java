@@ -83,7 +83,8 @@ public class MainController {
 		logger.trace("boardNo : {}",boardNo);
 		logger.trace("userNo : {}",userNo);
 		logger.trace("Board userNo : {}",board.getUserNo());
-		model.addAttribute("board", board);		
+		session.setAttribute("myBoard", board);
+		model.addAttribute("board", board);
 		if(userNo == board.getUserNo()){
 			logger.trace("detailMyBoard 콜");
 			return "detailMyBoard";
