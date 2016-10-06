@@ -21,7 +21,7 @@ import dto.Board;
 import service.BoardService;
 
 @Controller
-@SessionAttributes({"MyBoard"})
+@SessionAttributes({"myBoard"})
 public class BoardController {
 
 	static Logger logger = LoggerFactory.getLogger(BoardController.class);
