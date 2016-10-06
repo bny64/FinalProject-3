@@ -69,6 +69,7 @@ public class MainController {
 		logger.trace("class : MainController, method : selectMyBoard");
 		int userNo =  (int) session.getAttribute("userNo");				
 		List<Board> boards = service.selectMyBoardByPaging(userNo,index);		
+		//List<Board> boards = service.selectMyBoard(userNo);
 		return boards;
 	}
 	
@@ -81,11 +82,13 @@ public class MainController {
 		int userNo =  (int) session.getAttribute("userNo");
 		logger.trace("boardNo : {}",boardNo);
 		logger.trace("userNo : {}",userNo);
-		
+		logger.trace("Board userNo : {}",board.getUserNo());
 		model.addAttribute("board", board);		
-		if(userNo == board.getUserNo())
+		if(userNo == board.getUserNo()){
+			logger.trace("detailMyBoard 콜");
 			return "detailMyBoard";
-		else{
+		}else{
+			logger.trace("detailBoard 콜");
 			return "detailBoard";
 		}	
 		

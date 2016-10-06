@@ -46,7 +46,7 @@ public class BoardServiceImpl implements BoardService{
 		filter.put("from", 9*pageNo-8);
 		filter.put("to", 9*pageNo);
 		filter.put("userNo", userNo);
-		return board.selectAllBoardByPaging(filter);
+		return board.selectMyBoardByPaging(filter);
 	}
 
 	@Override
