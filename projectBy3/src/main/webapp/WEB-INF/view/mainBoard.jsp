@@ -30,20 +30,13 @@
 }
 </style>
 </head>
-<body>
-	<%-- <jsp:include page="<%=request.getContextPath()%>/layout/header.jsp"></jsp:include> --%>
-	<jsp:include page="../layout/header.jsp"></jsp:include>
-	<button id="rec"></button>
+<body>	
+	<jsp:include page="../layout/header.jsp"></jsp:include>	
 	<section id="main">
-
-		<!-- Thumbnails -->
 		<section class="thumbnails">		    		
-			<div id="left">
-			</div>		
-			<div id="center">				
-			</div>
-			<div id = "right">				
-			</div>
+			<div id="left"></div>		
+			<div id="center"></div>
+			<div id = "right"></div>
 		</section>		
 	</section>
 	
@@ -56,6 +49,7 @@
 <script type="text/javascript">
 
 	var index = 1;
+	var 
 	window.onload = function() { loadBoard(); };	
 		
 	function loadBoard(){	
@@ -68,14 +62,16 @@
 					index : index,					
 				},
 				success:function(res){
-										
+					console.log(res);
+					if(res.length==0){
+						alert("끝");
+					}					
 					$left = $("#left");
 					$center = $("#center");
 					$right = $("#right");
 					$(res).each(function(idx,data){
 						$newOne = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />");
 											
-						
 						switch(idx%3){
 						case 0:
 							$left.append($newOne).append("<h3>" + data.title + "</h3>");
@@ -86,7 +82,8 @@
 						case 2:
 							$right.append($newOne).append("<h3>" + data.title + "</h3>");
 							break;
-						}						
+						}					
+						
 				});
 				},
 				error:function(request,status,error){
