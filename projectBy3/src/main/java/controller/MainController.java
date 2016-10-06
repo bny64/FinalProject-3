@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class MainController {
 	
 	@Autowired
 	BoardService service;
+	@Autowired
+	UserService userservice;
 	
 	// Format 형태로 입력된 문자열을 date로 바꿈
 	@InitBinder
@@ -40,16 +44,43 @@ public class MainController {
 	//3. 글 검색
 	@RequestMapping(value="getAllBoards", method=RequestMethod.GET)
 	public @ResponseBody List<Board> getAllBoards(Model model){
-		logger.trace("class : LoginController, method : getBoards");
+		logger.trace("class : MainController, method : getBoards");
 		List<Board> boards = service.viewAllBoards();
 		return boards;
 	}
 	
 	@RequestMapping(value="/mainBoard", method=RequestMethod.GET)
 	public @ResponseBody List<Board> getAllBoards2(Model model,@RequestParam Integer index){
-		logger.trace("class : LoginController, method : getBoards");
+		logger.trace("class : MainController, method : getAllBoards2");
 		List<Board> boards = service.selectAllBoardByPaging(index);		
 		return boards;
 	}
+	
+	@RequestMapping(value="/selectBoard", method=RequestMethod.GET)
+	public @ResponseBody Board getBoard(Model model,@RequestParam Integer userNo){
+		logger.trace("class : MainController, method : getBoard");
+		Board board = service.selectBoard(userNo);		
+		return board;
+	}
+	
+	@RequestMapping(value="/selectMyBoard", method=RequestMethod.GET)
+	public @ResponseBody List<Board> selectMyBoard(Model model,HttpSession session){
+		logger.trace("class : MainController, method : selectMyBoard");
+		int userNo = (int) session.getAttribute("userNo");
+		logger.trace("UserNo Session : {}",userNo);
+		List<Board> boards = service.selectMyBoard(userNo);		
+		return boards;
+	}
+	
+	
+	@RequestMapping(value="/detailBoard", method=RequestMethod.GET)
+	public String detailBoard(Model model,@RequestParam Integer boardNo){
+		logger.trace("class : MainController, method : detailBoard");		
+		logger.trace("boardNo : {}",boardNo);		
+		Board board = service.selectBoard(boardNo);
+		model.addAttribute("board", board);
+		return "detailBoard";
+	}
+	
 	
 }

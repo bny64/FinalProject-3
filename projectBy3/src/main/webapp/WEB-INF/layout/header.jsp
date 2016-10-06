@@ -80,7 +80,8 @@
 			<a href="${writeBoard }"><button>글쓰기</button></a>
 			
 			<c:url value="/myBoard" var="myBoard"/>
-			<a href="${myBoard }"><button>내글보기</button></a>
+			<%-- <a href="${myBoard }"><button id = "btn">내글보기</button></a> --%>
+			<button id = "btn">내글보기</button>
 			
 			<c:url value="/mylocation" var="mylocation"/>
 			<a href="${mylocation }"><button>위치저장</button></a>

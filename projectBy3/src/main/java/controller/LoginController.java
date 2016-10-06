@@ -50,9 +50,10 @@ public class LoginController {
 	public String login(Model model, HttpSession session, @RequestParam String id, @RequestParam String password) {
 		logger.trace("class : LoginController, method : login ////// id : {}, password : {}",id, password);
 		
-		User loginUser = service.loginUser(id, password);
+		User loginUser = service.loginUser(id, password);		
+		
 		if (loginUser != null) {
-			session.setAttribute("id", id);
+			session.setAttribute("userNo", loginUser.getUserNo());
 			model.addAttribute("message", loginUser);
 			return "mainBoard";
 		} else {

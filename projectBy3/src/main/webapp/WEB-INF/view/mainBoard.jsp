@@ -51,9 +51,9 @@
 	var index = 1;
 	var loadData = true;
 
-	window.onload = function() { loadBoard(); };	
+	window.onload = function() { loadAllBoard(); };	
 		
-	function loadBoard(){	
+	function loadAllBoard(){	
 		<c:url value = "/mainBoard" var="mainBoard"/>
 		console.log("로드 데이터");
 			$.ajax({
@@ -74,9 +74,11 @@
 					$center = $("#center");
 					$right = $("#right");
 					$(res).each(function(idx,data){
-						$newOne = $("<a href='<%=request.getContextPath()%>/view/detailBoard.jsp'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />")
-										.append("<h3>" + data.title + "</h3>");
-											
+						<c:url value = "/detailBoard" var="detailBoard"/>
+						$newOne = "<a href='${detailBoard}?boardNo=" + data.boardNo
+						 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
+					     		+"<h3>" + data.title + "</h3></a>";						
+			
 						switch(idx%3){
 						case 0:
 							$left.append($newOne);
@@ -104,12 +106,69 @@
 			
 			console.log(index);
 			if(loadData){
-				loadBoard();
+				loadAllBoard();
 			}else{
 				console.log("데이터가 끝입니다");
 			}
 		}
 	});	
+	
+	
+	
+	 $("#btn").on("click",function(){
+		$left = $("#left");
+		$center = $("#center");
+		$right = $("#right");
+		
+		
+		$left.empty();
+		$center.empty();
+		$right.empty();
+		loadMyBoard();
+	}); 
+	
+	 function loadMyBoard(){	
+			<c:url value = "/selectMyBoard" var="selectMyBoard"/>
+			console.log("로드 데이터");
+				$.ajax({
+					type : "get",
+					url : "${selectMyBoard}",					
+					success:function(res){
+						console.log(res);
+						if(res.length==0){
+							alert("끝");
+							loadData = false;
+						}else{
+							++index;
+						}					
+						$left = $("#left");
+						$center = $("#center");
+						$right = $("#right");
+						$(res).each(function(idx,data){
+							<c:url value = "/detailBoard" var="detailBoard"/>
+							$newOne = "<a href='${detailBoard}?boardNo=" + data.boardNo
+							 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
+						     		+"<h3>" + data.title + "</h3></a>";						
+				
+							switch(idx%3){
+							case 0:
+								$left.append($newOne);
+								break;
+							case 1:
+								$center.append($newOne);
+								break;
+							case 2:
+								$right.append($newOne);
+								break;
+							}					
+							
+					});
+					},
+					error:function(request,status,error){
+					    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+				});
+
+		}
 	
 	
 

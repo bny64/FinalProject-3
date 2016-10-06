@@ -47,12 +47,12 @@
 		<div id="detailWrapper">
 			<!-- 제목 -->
 			<div id="title">
-				제목<input type="text" id="title" name="title" readonly="readonly">
+				제목<input type="text" id="title" name="title" readonly="readonly" value="${board.title }">
 			</div>
 			<!-- 왼쪽 메뉴 -->
 			<div id="leftSide">
-				글쓴 날짜<input type="text" id="writedDate" name="writedDate" readonly="readonly"><br>
-				내용<textarea rows="10" cols="5">내용</textarea>
+				글쓴 날짜<input type="text" id="writedDate" name="writedDate" readonly="readonly" value="${board.writedDate }"><br>
+				내용<textarea rows="10" cols="5">${board.content }</textarea>
 			</div>
 			<!-- 오른쪽 메뉴 -->
 			<div id="rightSide">
