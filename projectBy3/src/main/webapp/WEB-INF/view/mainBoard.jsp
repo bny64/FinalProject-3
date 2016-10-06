@@ -74,7 +74,8 @@
 					$center = $("#center");
 					$right = $("#right");
 					$(res).each(function(idx,data){
-						$newOne = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />").append("<h3>" + data.title + "</h3>");
+						$newOne = $("<a href='<%=request.getContextPath()%>/view/detailBoard.jsp'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />")
+										.append("<h3>" + data.title + "</h3>");
 											
 						switch(idx%3){
 						case 0:
