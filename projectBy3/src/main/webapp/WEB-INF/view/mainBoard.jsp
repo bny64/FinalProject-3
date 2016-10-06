@@ -59,12 +59,12 @@
 	$("#rec").on("click",function(){	
 		console.log("버튼 클릭");
 			$.ajax({
-				type : "post",
+				type : "get",
 				url : "${mainBoard}",
 				data : {
 					index : index,					
 				},
-				sucess:function(res){
+				success:function(res){
 					alert("성공");
 					console.log(res);
 				},

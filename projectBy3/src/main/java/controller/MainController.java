@@ -42,11 +42,10 @@ public class MainController {
 	public @ResponseBody List<Board> getAllBoards(Model model){
 		logger.trace("class : LoginController, method : getBoards");
 		List<Board> boards = service.viewAllBoards();
-		model.addAttribute("boards", boards);
 		return boards;
 	}
 	
-	@RequestMapping(value="/mainBoard", method=RequestMethod.POST)
+	@RequestMapping(value="/mainBoard", method=RequestMethod.GET)
 	public @ResponseBody List<Board> getAllBoards2(Model model,@RequestParam Integer index){
 		logger.trace("class : LoginController, method : getBoards");
 		List<Board> boards = service.viewAllBoards();
