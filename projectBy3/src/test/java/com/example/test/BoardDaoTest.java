@@ -82,7 +82,7 @@ public class BoardDaoTest {
 		Board board = new Board();
 		board.setBoardNo(1);
 		board.setTitle("나는 은구다");
-		board.setContent("이것은 수정이다");
+		board.setContent("이것은 수정");
 		board.setCategoryNo(1);
 		board.setImagePath("/img/thumbs/01.jpg");
 		
