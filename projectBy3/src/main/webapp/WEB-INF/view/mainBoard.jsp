@@ -66,22 +66,25 @@
 					console.log(res);
 					if(res.length==0){
 						alert("끝");
+						loadData = false;
+					}else{
+						++index;
 					}					
 					$left = $("#left");
 					$center = $("#center");
 					$right = $("#right");
 					$(res).each(function(idx,data){
-						$newOne = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />");
+						$newOne = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />").append("<h3>" + data.title + "</h3>");
 											
 						switch(idx%3){
 						case 0:
-							$left.append($newOne).append("<h3>" + data.title + "</h3>");
+							$left.append($newOne);
 							break;
 						case 1:
-							$center.append($newOne).append("<h3>" + data.title + "</h3>");
+							$center.append($newOne);
 							break;
 						case 2:
-							$right.append($newOne).append("<h3>" + data.title + "</h3>");
+							$right.append($newOne);
 							break;
 						}					
 						
@@ -97,10 +100,12 @@
 	$(window).scroll(function(){
 		if  ($(window).scrollTop() >= $(document).height() - $(window).height()){
 			console.log("스크롤 감지");
-			++index;
+			
 			console.log(index);
 			if(loadData){
 				loadBoard();
+			}else{
+				console.log("데이터가 끝입니다");
 			}
 		}
 	});	
