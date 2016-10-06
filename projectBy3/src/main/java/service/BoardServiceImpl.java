@@ -17,26 +17,26 @@ public class BoardServiceImpl implements BoardService{
 	static Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 
 	@Autowired
-	BoardDao board;
+	BoardDao boardDao;
 	
 	@Override
 	public List<Board> viewAllBoards() {
 		logger.trace("BoardServiceImpl - viewAllBoards() 동작");
-		return board.selectAllBoard();
+		return boardDao.selectAllBoard();
 	}
 
 	@Override
 	public Board selectBoard(int boardNo) {
 		//boardNo로 Board객체 하나 검색
 		logger.trace("BoardServiceImpl - selectBoard() 동작");
-		return board.selectBoard(boardNo);
+		return boardDao.selectBoard(boardNo);
 	}
 
 	@Override
 	public List<Board> selectMyBoard(int userNo) {
 		//userNo로 내가 쓴 Board 리스트로 검색
 		logger.trace("BoardServiceImpl - selectMyBoard() 동작");
-		return board.selectMyBoard(userNo);
+		return boardDao.selectMyBoard(userNo);
 	}
 	
 	@Override
@@ -46,7 +46,7 @@ public class BoardServiceImpl implements BoardService{
 		filter.put("from", 9*pageNo-8);
 		filter.put("to", 9*pageNo);
 		filter.put("userNo", userNo);
-		return board.selectMyBoardByPaging(filter);
+		return boardDao.selectMyBoardByPaging(filter);
 	}
 
 	@Override
@@ -56,13 +56,19 @@ public class BoardServiceImpl implements BoardService{
 		Map<String, Object> filter = new HashMap<>();
 		filter.put("from", 9*pageNo-8);
 		filter.put("to", 9*pageNo);
-		return board.selectAllBoardByPaging(filter);
+		return boardDao.selectAllBoardByPaging(filter);
 	}
 
 	@Override
 	public int deleteBoardByBoardNo(int boardNo) {
 		logger.trace("BoardServiceImpl - deleteBoardByBoardNo() 동작");		
-		return board.deleteBoardByBoardNo(boardNo);
+		return boardDao.deleteBoardByBoardNo(boardNo);
+	}
+
+	@Override
+	public int updateBoard(Board board) {
+		logger.trace("BoardServiceImpl - updateBoard() 동작");		
+		return boardDao.updateBoard(board);
 	}
 
 	

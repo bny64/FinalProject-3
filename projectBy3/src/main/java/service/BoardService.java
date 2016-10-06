@@ -11,4 +11,5 @@ public interface BoardService {
 	public List<Board> selectMyBoardByPaging(int userNo,int pageNo);
 	public List<Board> selectAllBoardByPaging(int pageNo);
 	public int deleteBoardByBoardNo(int boardNo);
+	public int updateBoard(Board board);
 }

@@ -76,4 +76,23 @@ public class BoardServiceTest {
 		assertThat(result, is(1));
 	}
 	
+	
+	@Test
+	public void updateBoard(){
+		
+		Board board = new Board();
+		board.setBoardNo(1);
+		board.setTitle("나는 은구다");
+		board.setContent("이것은 수정이다");
+		board.setCategoryNo(1);
+		board.setImagePath("/img/thumbs/01.jpg");
+		
+		int result = service.updateBoard(board);
+				
+				
+		assertThat(result, is(1));
+	}
+	
+	
+	
 }
