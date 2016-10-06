@@ -55,4 +55,15 @@ public class BoardDaoTest {
 		logger.trace("boards.size : {}", boards.size());
 		assertThat(boards.size(), is(3));
 	}
+	
+	@Test
+	public void selectAllBoardByPagingTest(){
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("from", 1);
+		filter.put("to", 2);
+		
+		List<Board> boards = bDao.selectAllBoardByPaging(filter);
+		logger.trace("boards.size : {}", boards.size());
+		assertThat(boards.size(), is(2));
+	}
 }

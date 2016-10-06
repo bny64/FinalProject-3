@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -38,5 +39,12 @@ public class BoardDaoImpl implements BoardDao{
 		logger.trace("BoardDaoImpl - selectMyBoard 동작");
 		String stmt = BOARD_NS + "selectMyBoard";
 		return template.selectList(stmt, userNo);
+	}
+
+	@Override
+	public List<Board> selectAllBoardByPaging(Map<String, Object> filter) {
+		logger.trace("BoardDaoImpl - selectAllBoardByPaging 동작");
+		String stmt = BOARD_NS + "selectAllBoardByPaging";
+		return template.selectList(stmt, filter);
 	}
 }
