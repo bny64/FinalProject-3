@@ -66,4 +66,14 @@ public class BoardServiceTest {
 		logger.trace("boards.size() : {}", boards.size());
 		//assertThat(boards.size(), is(9));
 	}
+	
+	
+	@Test
+	public void deleteBoardByBoardNo(){
+		int result = service.deleteBoardByBoardNo(53);
+		Board board = service.selectBoard(53);
+		logger.trace("board : {}", board);
+		assertThat(result, is(1));
+	}
+	
 }

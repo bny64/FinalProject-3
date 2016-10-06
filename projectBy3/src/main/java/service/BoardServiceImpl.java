@@ -59,6 +59,12 @@ public class BoardServiceImpl implements BoardService{
 		return board.selectAllBoardByPaging(filter);
 	}
 
+	@Override
+	public int deleteBoardByBoardNo(int boardNo) {
+		logger.trace("BoardServiceImpl - deleteBoardByBoardNo() 동작");		
+		return board.deleteBoardByBoardNo(boardNo);
+	}
+
 	
 
 }

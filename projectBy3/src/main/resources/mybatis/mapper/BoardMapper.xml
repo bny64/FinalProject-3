@@ -37,6 +37,18 @@
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
 	</select>
 	
+	<delete id="deleteBoardByBoardNo" parameterType="int">
+		delete board where board_no = #{boardNo}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<resultMap type="board" id="boardBase">
 		<id column="board_no" property="boardNo"/>
 		<result column="title" property="title"/>

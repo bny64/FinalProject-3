@@ -11,4 +11,5 @@ public interface BoardDao {
 	public List<Board> selectMyBoard(int userNo);
 	public List<Board> selectMyBoardByPaging(Map<String, Object> filter);
 	public List<Board> selectAllBoardByPaging(Map<String, Object> filter);
+	public int deleteBoardByBoardNo(int boardNo);
 }
