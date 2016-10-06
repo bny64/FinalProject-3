@@ -54,5 +54,12 @@ public class BoardDaoImpl implements BoardDao{
 		return template.selectList(stmt, filter);
 	}
 
+	@Override
+	public int deleteBoardByBoardNo(int boardNo) {
+		logger.trace("BoardDaoImpl - deleteBoardByBoardNo 동작");
+		String stmt = BOARD_NS + "deleteBoardByBoardNo";
+		return template.delete(stmt,boardNo);
+	}
+
 	
 }

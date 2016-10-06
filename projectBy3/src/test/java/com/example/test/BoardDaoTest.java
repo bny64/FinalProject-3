@@ -66,4 +66,12 @@ public class BoardDaoTest {
 		logger.trace("boards.size : {}", boards.size());
 		assertThat(boards.size(), is(2));
 	}
+	
+	@Test
+	public void deleteBoardByBoardNo(){
+		int result = bDao.deleteBoardByBoardNo(54);
+		Board board = bDao.selectBoard(54);
+		logger.trace("board : {}", board);
+		assertThat(result, is(1));
+	}
 }
