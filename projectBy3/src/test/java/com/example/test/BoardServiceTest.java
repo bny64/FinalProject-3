@@ -58,4 +58,12 @@ public class BoardServiceTest {
 		logger.trace("boards.size() : {}", boards.size());
 		assertThat(boards.size(), is(3));
 	}
+	
+	@Test
+	public void selectAllBoardByPagingTest(){
+		int pageNo = 1;
+		List<Board> boards = service.selectAllBoardByPaging(pageNo);
+		logger.trace("boards.size() : {}", boards.size());
+		//assertThat(boards.size(), is(9));
+	}
 }

@@ -1,6 +1,8 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +37,16 @@ public class BoardServiceImpl implements BoardService{
 		//userNo로 내가 쓴 Board 리스트로 검색
 		logger.trace("BoardServiceImpl - selectMyBoard() 동작");
 		return board.selectMyBoard(userNo);
+	}
+
+	@Override
+	public List<Board> selectAllBoardByPaging(int pageNo) {
+		// TODO Auto-generated method stub
+		logger.trace("BoardServiceImpl - selectAllBoardByPaging() 동작");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("from", 9*pageNo-8);
+		filter.put("to", 9*pageNo);
+		return board.selectAllBoardByPaging(filter);
 	}
 
 }
