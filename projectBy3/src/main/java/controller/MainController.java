@@ -79,9 +79,12 @@ public class MainController {
 		logger.trace("boardNo : {}",boardNo);		
 		Board board = service.selectBoard(boardNo);
 		int userNo =  (int) session.getAttribute("userNo");
+		logger.trace("boardNo : {}",boardNo);
+		logger.trace("userNo : {}",userNo);
+		
 		model.addAttribute("board", board);		
 		if(userNo == board.getUserNo())
-			return "mydetailBoard";
+			return "detailMyBoard";
 		else{
 			return "detailBoard";
 		}	
