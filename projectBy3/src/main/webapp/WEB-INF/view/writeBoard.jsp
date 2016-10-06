@@ -7,8 +7,8 @@
 <title>글쓰기</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="<%=request.getContextPath()%>/css/main.css" type="text/css"
-	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/main.css"
+	type="text/css" rel="stylesheet">
 <style>
 body {
 	background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
@@ -78,30 +78,30 @@ table tbody tr:nth-child(2n + 1) {
 </style>
 </head>
 <body>
-	<!-- Header -->
+<!-- Header -->
 	<header id="header">
-	<h2>홈페이지 소개</h2>
-	<div id=title>
-		<table style="filter: alpha(opacity = 50)">
-			<tr>
-				<td><label>제목</label></td>
-				<td><input type="text" placeholder="제목을 입력하세요"></td>
-			</tr>
-		</table>
-	</div>
-	<div id=category>
-		<h1>카테고리 설정</h1>
-	</div>
-	<div id="content">
-		<input type="text" placeholder="내용을 입력하세요">
-	</div>
-	<div id="insertData">
-		<h3>데이터 첨부</h3>
-	</div>
-	<div id="map">
-		<button>쓰기</button>
-		<button>취소</button>
-	</div>
+		<h2>홈페이지 소개</h2>
+		<div id=title>
+			<table style="filter:alpha(opacity=50)">
+				<tr>
+					<td><label>제목</label></td>
+					<td><input type="text" placeholder="제목을 입력하세요"></td>
+				</tr>
+			</table>
+		</div>
+		<div id=category>
+			<h1>카테고리 설정</h1>
+		</div>
+		<div id="content">
+			<textarea rows="7" cols="8"></textarea>
+		</div>
+		<div id="insertData">
+			<h3>데이터 첨부</h3>
+		</div>
+		<div id="map">
+			<button>쓰기</button>
+			<button>취소</button>
+		</div>
 </body>
 </body>
 </html>
