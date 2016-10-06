@@ -30,20 +30,13 @@
 }
 </style>
 </head>
-<body>
-	<%-- <jsp:include page="<%=request.getContextPath()%>/layout/header.jsp"></jsp:include> --%>
-	<jsp:include page="../layout/header.jsp"></jsp:include>
-	<button id="rec"></button>
+<body>	
+	<jsp:include page="../layout/header.jsp"></jsp:include>	
 	<section id="main">
-
-		<!-- Thumbnails -->
 		<section class="thumbnails">		    		
-			<div id="left">
-			</div>		
-			<div id="center">				
-			</div>
-			<div id = "right">				
-			</div>
+			<div id="left"></div>		
+			<div id="center"></div>
+			<div id = "right"></div>
 		</section>		
 	</section>
 	
@@ -54,10 +47,14 @@
 <script src="<%=request.getContextPath()%>/js/main.js"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+
 	var index = 1;
-	<c:url value = "/mainBoard" var="mainBoard"/>	
-	$("#rec").on("click",function(){	
-		console.log("버튼 클릭");
+	var 
+	window.onload = function() { loadBoard(); };	
+		
+	function loadBoard(){	
+		<c:url value = "/mainBoard" var="mainBoard"/>
+		console.log("로드 데이터");
 			$.ajax({
 				type : "get",
 				url : "${mainBoard}",
@@ -65,57 +62,45 @@
 					index : index,					
 				},
 				success:function(res){
-					alert("성공");
 					console.log(res);
+					if(res.length==0){
+						alert("끝");
+					}					
+					$left = $("#left");
+					$center = $("#center");
+					$right = $("#right");
+					$(res).each(function(idx,data){
+						$newOne = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />");
+											
+						switch(idx%3){
+						case 0:
+							$left.append($newOne).append("<h3>" + data.title + "</h3>");
+							break;
+						case 1:
+							$center.append($newOne).append("<h3>" + data.title + "</h3>");
+							break;
+						case 2:
+							$right.append($newOne).append("<h3>" + data.title + "</h3>");
+							break;
+						}					
+						
+				});
 				},
 				error:function(request,status,error){
 				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
 			});
-	});
-	
-	
-	function dataReceive(){
-		<c:url value = "/mainBoard" var="more"/>	
-		$.ajax({
-			type : "get",
-			url : "${more}",			
-			sucess:function(res){
-				$left = $("#left");
-				$center = $("#center");
-				$right = $("#right");
-				
-				$new = $("<a href='<%=request.getContextPath()%>/img/fulls/07.jpg'><img src='<%=request.getContextPath()%>/img/thumbs/07.jpg' alt='' /><h3>Lorem ipsum dolor sit amet</h3>");
-								
-			}
-		});
+
 	}
-	
-	
-	
 	
 	
 	$(window).scroll(function(){
 		if  ($(window).scrollTop() >= $(document).height() - $(window).height()){
 			console.log("스크롤 감지");
-			lastPostFunc();
+			++index;
+			console.log(index);
+			loadBoard();	
 		}
-	});
-	
-	function lastPostFunc(){
-		$left = $("#left");
-		$center = $("#center");
-		$right = $("#right");
-		
-		$newOne1 = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' /><h3>Lorem ipsum dolor sit amet</h3>");
-		$newOne2 = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' /><h3>Lorem ipsum dolor sit amet</h3>");
-		$newOne3 = $("<a href='<%=request.getContextPath()%>/img/fulls/06.jpg'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' /><h3>Lorem ipsum dolor sit amet</h3>");
-		
-		$left.append($newOne1);
-		$center.append($newOne2);
-		$right.append($newOne3);
-		
-		
-	}
+	});	
 	
 	
 

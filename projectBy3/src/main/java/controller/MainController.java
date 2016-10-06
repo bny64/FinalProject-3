@@ -48,9 +48,7 @@ public class MainController {
 	@RequestMapping(value="/mainBoard", method=RequestMethod.GET)
 	public @ResponseBody List<Board> getAllBoards2(Model model,@RequestParam Integer index){
 		logger.trace("class : LoginController, method : getBoards");
-		List<Board> boards = service.viewAllBoards();
-		logger.trace("board size : {}", boards.size());
-		logger.trace("index:{}",index);
+		List<Board> boards = service.selectAllBoardByPaging(index);		
 		return boards;
 	}
 	
