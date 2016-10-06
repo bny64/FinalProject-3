@@ -57,6 +57,10 @@ table tbody tr {
 table tbody tr:nth-child(2n + 1) {
 	background-color: rgba(255, 255, 255, 0.0);
 }
+table{
+	width: 30%;
+	margin-left: 25%;
+}
 </style>
 </head>
 <body>
