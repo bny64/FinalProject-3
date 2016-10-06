@@ -59,27 +59,33 @@ public class MainController {
 	@RequestMapping(value="/selectBoard", method=RequestMethod.GET)
 	public @ResponseBody Board getBoard(Model model,@RequestParam Integer userNo){
 		logger.trace("class : MainController, method : getBoard");
-		Board board = service.selectBoard(userNo);		
+		Board board = service.selectBoard(userNo);
+		
 		return board;
 	}
 	
 	@RequestMapping(value="/selectMyBoard", method=RequestMethod.GET)
-	public @ResponseBody List<Board> selectMyBoard(Model model,HttpSession session){
+	public @ResponseBody List<Board> selectMyBoard(Model model,HttpSession session,@RequestParam Integer index){
 		logger.trace("class : MainController, method : selectMyBoard");
-		int userNo = (int) session.getAttribute("userNo");
-		logger.trace("UserNo Session : {}",userNo);
-		List<Board> boards = service.selectMyBoard(userNo);		
+		int userNo =  (int) session.getAttribute("userNo");				
+		List<Board> boards = service.selectMyBoardByPaging(userNo,index);		
 		return boards;
 	}
 	
 	
 	@RequestMapping(value="/detailBoard", method=RequestMethod.GET)
-	public String detailBoard(Model model,@RequestParam Integer boardNo){
+	public String detailBoard(Model model,@RequestParam Integer boardNo,HttpSession session){
 		logger.trace("class : MainController, method : detailBoard");		
 		logger.trace("boardNo : {}",boardNo);		
 		Board board = service.selectBoard(boardNo);
-		model.addAttribute("board", board);
-		return "detailBoard";
+		int userNo =  (int) session.getAttribute("userNo");
+		model.addAttribute("board", board);		
+		if(userNo == board.getUserNo())
+			return "mydetailBoard";
+		else{
+			return "detailBoard";
+		}	
+		
 	}
 	
 	

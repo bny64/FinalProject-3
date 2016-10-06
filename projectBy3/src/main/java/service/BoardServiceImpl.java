@@ -38,6 +38,16 @@ public class BoardServiceImpl implements BoardService{
 		logger.trace("BoardServiceImpl - selectMyBoard() 동작");
 		return board.selectMyBoard(userNo);
 	}
+	
+	@Override
+	public List<Board> selectMyBoardByPaging(int userNo, int pageNo) {
+		logger.trace("BoardServiceImpl - selectAllBoardByPaging() 동작");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("from", 9*pageNo-8);
+		filter.put("to", 9*pageNo);
+		filter.put("userNo", userNo);
+		return board.selectAllBoardByPaging(filter);
+	}
 
 	@Override
 	public List<Board> selectAllBoardByPaging(int pageNo) {
@@ -48,5 +58,7 @@ public class BoardServiceImpl implements BoardService{
 		filter.put("to", 9*pageNo);
 		return board.selectAllBoardByPaging(filter);
 	}
+
+	
 
 }

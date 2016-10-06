@@ -69,7 +69,7 @@
 				<button>댓글 작성</button> 
 			</div>
 			<!-- 하단 버튼 -->
-			<div id="bottom">
+			<div id="bottom">			
 				<button>수정</button>
 				<button>삭제</button>
 				<button>닫기</button>

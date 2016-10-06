@@ -116,10 +116,10 @@
 	
 	
 	 $("#btn").on("click",function(){
+		index = 1;
 		$left = $("#left");
 		$center = $("#center");
-		$right = $("#right");
-		
+		$right = $("#right");		
 		
 		$left.empty();
 		$center.empty();
@@ -132,7 +132,10 @@
 			console.log("로드 데이터");
 				$.ajax({
 					type : "get",
-					url : "${selectMyBoard}",					
+					url : "${selectMyBoard}",
+					data : {
+						index : index,					
+					},
 					success:function(res){
 						console.log(res);
 						if(res.length==0){

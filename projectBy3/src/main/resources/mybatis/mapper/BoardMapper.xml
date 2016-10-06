@@ -28,6 +28,14 @@
 		from board
 		where user_no=#{userNo}
 	</select>
+	<select id="selectMyBoardByPaging" resultMap="boardBase">
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board where user_no=#{userNo}) sub 
+			)
+		<!-- where rnum between #{from} and #{to}-->
+		where rnum &gt;= #{from} and rnum &lt;= #{to} 
+	</select>
 	
 	<resultMap type="board" id="boardBase">
 		<id column="board_no" property="boardNo"/>

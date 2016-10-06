@@ -40,11 +40,19 @@ public class BoardDaoImpl implements BoardDao{
 		String stmt = BOARD_NS + "selectMyBoard";
 		return template.selectList(stmt, userNo);
 	}
-
+	@Override
+	public List<Board> selectMyBoardByPaging(Map<String, Object> filter) {
+		logger.trace("BoardDaoImpl - selectMyBoardByPaging 동작");
+		String stmt = BOARD_NS + "selectMyBoardByPaging";
+		return template.selectList(stmt, filter);
+	}
+	
 	@Override
 	public List<Board> selectAllBoardByPaging(Map<String, Object> filter) {
 		logger.trace("BoardDaoImpl - selectAllBoardByPaging 동작");
 		String stmt = BOARD_NS + "selectAllBoardByPaging";
 		return template.selectList(stmt, filter);
 	}
+
+	
 }
