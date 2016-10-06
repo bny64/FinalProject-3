@@ -71,11 +71,14 @@
 			</div>
 			<!-- 하단 버튼 -->
 			<div id="bottom">
-				<c:url value="/updateBoard" var="updateBoard" />
-				<a href="updateBoard"><button>수정</button></a>
-				<c:url value="/deleteBoard" var="deleteBoard" />
-				<a href="deleteBoard"><button>삭제</button></a>
+				<c:url value="/deleteBoard" var="deleteBoard"></c:url>
+				<form method="post" action="deleteBoard">
+				<button>삭제
+				</button>
+				</form>
+				<form>
 				<button>닫기</button>
+				</form>
 			</div>	
 		</div>
 	</div>

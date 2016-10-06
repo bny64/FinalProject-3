@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import dto.Board;
+import service.BoardService;
 
 @Controller
 @SessionAttributes({"MyBoard"})
 public class BoardController {
 
 	static Logger logger = LoggerFactory.getLogger(BoardController.class);
+	
+	@Autowired
+	BoardService service;
 	
 	@InitBinder
 	public void setBindingFormat(WebDataBinder binder){
@@ -31,10 +36,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/deleteBoard", method=RequestMethod.POST)
-	public String deleteBoard(Model model, HttpSession session){
+	public String deleteBoard(HttpSession session){
+		int result;
 		logger.trace("class : BoardController, method : deleteBoard");
-		Board board = (Board) session.getAttribute("MyBoard");
-		//int result = service.deleteBoard(board.getBoardNo);
+		Board board = (Board) session.getAttribute("myBoard");
+		logger.trace("myBoard : {}", board);
+		result = service.deleteBoardByBoardNo(board.getBoardNo());
+		logger.trace("삭제 결과 : {}", result);
 		return "mainBoard";
 	}
 	
