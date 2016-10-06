@@ -78,6 +78,7 @@ public class BoardServiceTest {
 	
 	
 	@Test
+	@Transactional
 	public void updateBoard(){
 		
 		Board board = new Board();
@@ -88,7 +89,7 @@ public class BoardServiceTest {
 		board.setImagePath("/img/thumbs/01.jpg");
 		
 		int result = service.updateBoard(board);
-				
+		logger.trace("update result : {}",result);		
 				
 		assertThat(result, is(1));
 	}
