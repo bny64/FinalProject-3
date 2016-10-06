@@ -8,6 +8,16 @@
 		select *
 		from board
 	</select>
+	
+	<select id="selectAllBoardByPaging" resultMap="boardBase">
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board) sub 
+			)
+		<!-- where rnum between #{from} and #{to}-->
+		where rnum &gt;= #{from} and rnum &lt;= #{to} 
+	</select>
+	
 	<select id="selectBoard" resultMap="boardBase" parameterType="int">
 		select *
 		from board
