@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
@@ -41,6 +42,15 @@ public class MainController {
 	public @ResponseBody List<Board> getAllBoards(Model model){
 		logger.trace("class : LoginController, method : getBoards");
 		List<Board> boards = service.viewAllBoards();
+		return boards;
+	}
+	
+	@RequestMapping(value="/mainBoard", method=RequestMethod.POST)
+	public @ResponseBody List<Board> getAllBoards2(Model model,@RequestParam Integer index){
+		logger.trace("class : LoginController, method : getBoards");
+		List<Board> boards = service.viewAllBoards();
+		logger.trace("board size : {}", boards.size());
+		logger.trace("index:{}",index);
 		return boards;
 	}
 	

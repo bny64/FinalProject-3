@@ -37,7 +37,7 @@ public class BoardServiceTest {
 	@Autowired
 	BoardService service;
 
-	//@Test
+	@Test
 	public void viewAllBoards() {
 		List<Board> boards = service.viewAllBoards();
 		logger.trace("boards.size : {}", boards.size()); 

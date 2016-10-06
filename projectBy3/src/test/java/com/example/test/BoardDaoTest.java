@@ -35,7 +35,7 @@ public class BoardDaoTest {
 	@Autowired
 	BoardDao bDao;
 
-	//@Test
+	@Test
 	public void selectAllBoardTest() {
 		List<Board> boards = bDao.selectAllBoard();
 		logger.trace("boards.size : {}", boards.size()); 

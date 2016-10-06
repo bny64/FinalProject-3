@@ -32,7 +32,7 @@
 		ref="dailyout" /> <appender-ref ref="STDOUT" /> </logger>
  -->
 	<!-- root 로거 기본 설정 -->
-	<logger name="org.springframework" level="warn"></logger>
+	<logger name="org.springframework" level="trace"></logger>
 	<root level="trace">
 		<appender-ref ref="STDOUT" />
 		<!-- <appender-ref ref="dailyout" /> -->

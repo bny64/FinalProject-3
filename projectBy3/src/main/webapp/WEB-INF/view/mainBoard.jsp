@@ -33,101 +33,18 @@
 <body>
 	<%-- <jsp:include page="<%=request.getContextPath()%>/layout/header.jsp"></jsp:include> --%>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
+	<button id="rec"></button>
 	<section id="main">
 
 		<!-- Thumbnails -->
-		<section class="thumbnails">
+		<section class="thumbnails">		    		
 			<div id="left">
-				<a href="<%=request.getContextPath()%>/img/fulls/01.jpg"><img src="<%=request.getContextPath()%>/img/thumbs/01.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3> </a> 
-				<a href="<%=request.getContextPath()%>/img/fulls/02.jpg">
-					<img src="<%=request.getContextPath()%>/img/thumbs/02.jpg" alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> 
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/02.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/02.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> 
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/02.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/02.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> 
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/02.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/02.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a>
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/02.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/02.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a>
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/02.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/02.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a>
-				
+			</div>		
+			<div id="center">				
 			</div>
-			<div id="center">
-			
-				<a href="<%=request.getContextPath()%>/img/fulls/03.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/03.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> 
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/04.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/04.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a>
-				
-				 <a href="<%=request.getContextPath()%>/img/fulls/05.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/05.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> 
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/05.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/05.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> 
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/05.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/05.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> 
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/05.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/05.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> 
-				
-				<a href="<%=request.getContextPath()%>/img/fulls/05.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/05.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a>
+			<div id = "right">				
 			</div>
-			<div id = "right">
-				<a href="<%=request.getContextPath()%>/img/fulls/06.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/06.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> <a href="<%=request.getContextPath()%>/img/fulls/07.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/07.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> </a> <a href="<%=request.getContextPath()%>/img/fulls/07.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/07.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> </a> <a href="<%=request.getContextPath()%>/img/fulls/07.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/07.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a> </a> <a href="<%=request.getContextPath()%>/img/fulls/07.jpg"> <img src="<%=request.getContextPath()%>/img/thumbs/07.jpg"
-					alt="" />
-					<h3>Lorem ipsum dolor sit amet</h3>
-				</a>
-			</div>
-		</section>
+		</section>		
 	</section>
 	
 </body>
@@ -138,37 +55,37 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	var index = 1;
-	<c:url value = "/more" var="more"/>	
+	<c:url value = "/mainBoard" var="mainBoard"/>	
+	$("#rec").on("click",function(){	
+		console.log("버튼 클릭");
+			$.ajax({
+				type : "post",
+				url : "${mainBoard}",
+				data : {
+					index : index,					
+				},
+				sucess:function(res){
+					alert("성공");
+					console.log(res);
+				},
+				error:function(request,status,error){
+				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+			});
+	});
+	
+	
 	function dataReceive(){
+		<c:url value = "/mainBoard" var="more"/>	
 		$.ajax({
-			type : "post",
-			url : "${more}",
-			data : {
-				index : "index",
-			},
+			type : "get",
+			url : "${more}",			
 			sucess:function(res){
 				$left = $("#left");
 				$center = $("#center");
 				$right = $("#right");
 				
 				$new = $("<a href='<%=request.getContextPath()%>/img/fulls/07.jpg'><img src='<%=request.getContextPath()%>/img/thumbs/07.jpg' alt='' /><h3>Lorem ipsum dolor sit amet</h3>");
-				
-				for(var i = 0 ; i < 100; i ++){
-					if(true){
-						switch(i/3){
-						case 0 :
-							$left.append($new);
-							break;
-						case 1 :
-							$center.append($new);
-							break;
-						case 2:
-							$right.append($new);
-							break;
-						}
-					}
-				}
-				
+								
 			}
 		});
 	}
