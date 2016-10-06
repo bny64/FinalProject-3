@@ -49,7 +49,8 @@
 <script type="text/javascript">
 
 	var index = 1;
-	var 
+	var loadData = true;
+
 	window.onload = function() { loadBoard(); };	
 		
 	function loadBoard(){	
@@ -98,7 +99,9 @@
 			console.log("스크롤 감지");
 			++index;
 			console.log(index);
-			loadBoard();	
+			if(loadData){
+				loadBoard();
+			}
 		}
 	});	
 	
