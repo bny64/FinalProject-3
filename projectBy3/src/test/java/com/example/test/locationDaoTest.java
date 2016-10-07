@@ -44,4 +44,14 @@ public class locationDaoTest {
 		assertThat(location.size(), is(1));
 	}
 
+	@Test
+	public void insertUserLocationTest() throws ParseException{
+		String str = "88-12-12";
+		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
+		Date date = fdm.parse(str);
+		UserLocation userLocation = new UserLocation(0, date, 1000,1000,2);
+		int result = lDao.insertUserLocation(userLocation);
+		logger.trace("등록된 값 : {}", userLocation);
+		assertThat(result, is(1));
+	}
 }

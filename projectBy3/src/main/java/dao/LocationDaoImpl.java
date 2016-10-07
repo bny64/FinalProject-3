@@ -27,4 +27,11 @@ public class LocationDaoImpl implements LocationDao {
 		return template.selectList(stmt, userNo);
 	}
 
+	@Override
+	public int insertUserLocation(UserLocation userLocation) {
+		logger.trace("LocationDaoImpl - insertUserLocation 동작");
+		String stmt = LOCATION_NS + "insertUserLocation";
+		return template.update(stmt, userLocation);
+	}
+
 }

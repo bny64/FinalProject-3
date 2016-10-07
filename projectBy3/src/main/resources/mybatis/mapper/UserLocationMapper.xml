@@ -9,7 +9,10 @@
 		from user_location
 		where user_no=#{userNo}
 	</select>
-	
+	<insert id="insertUserLocation" parameterType="userLocation">
+		insert into user_location
+		values(user_location_no_seq.nextval, #{registerDate}, #{userNo},#{latitude}, #{longitude})
+	</insert>
 	
 	<resultMap type="userLocation" id="userLocationBase">
 		<id column="user_location_no" property="userLocationNo"/>
