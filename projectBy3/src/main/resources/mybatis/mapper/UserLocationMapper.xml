@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserLocationMapper">
+	
+	<select id="selectUserLocation" resultMap="userLocationBase" parameterType="int">
+		select *
+		from user_location
+		where user_no=#{userNo}
+	</select>
+	<insert id="insertUserLocation" parameterType="userLocation">
+		insert into user_location
+		values(user_location_no_seq.nextval, #{registerDate}, #{userNo},#{latitude}, #{longitude})
+	</insert>
+	
+	<resultMap type="userLocation" id="userLocationBase">
+		<id column="user_location_no" property="userLocationNo"/>
+		<result column="register_date" property="registerDate"/>
+		<result column="user_no" property="userNo"/>
+		<result column="latitude" property="latitude"/>
+		<result column="longitude" property="longitude"/>
+		
+		
+	</resultMap>
+
+</mapper>

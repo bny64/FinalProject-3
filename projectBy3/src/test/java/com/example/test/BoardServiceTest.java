@@ -100,7 +100,7 @@ public class BoardServiceTest {
 		
 		Board board = new Board();	
 		board.setUserNo(2);
-		board.setTitle("나는 은구다");
+		board.setTitle("나는 은구다2222");
 		board.setContent("이것은 insert 다");
 		board.setCategoryNo(1);
 		board.setImagePath("/img/thumbs/01.jpg");
