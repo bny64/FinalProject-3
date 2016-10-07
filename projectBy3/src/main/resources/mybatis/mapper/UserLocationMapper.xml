@@ -4,15 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserLocationMapper">
 	
-	<select id="selectAllCategory" resultMap="categoryBase">
+	<select id="selectUserLocation" resultMap="userLocationBase" parameterType="int">
 		select *
-		from category
+		from user_location
+		where user_no=#{userNo}
 	</select>
 	
 	
-	<resultMap type="category" id="categoryBase">
-		<id column="category_no" property="categoryNo"/>
-		<result column="category_name" property="categoryName"/>
+	<resultMap type="userLocation" id="userLocationBase">
+		<id column="user_location_no" property="userLocationNo"/>
+		<result column="register_date" property="registerDate"/>
+		<result column="user_no" property="userNo"/>
+		<result column="latitude" property="latitude"/>
+		<result column="longitude" property="longitude"/>
+		
 		
 	</resultMap>
 
