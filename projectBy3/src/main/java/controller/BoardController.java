@@ -40,7 +40,7 @@ public class BoardController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 	}
 	
-	@RequestMapping(value="/deleteBoard", method=RequestMethod.POST)
+	@RequestMapping(value="/deleteBoard", method=RequestMethod.GET)
 	public String deleteBoard(HttpSession session){
 		int result;
 		logger.trace("class : BoardController, method : deleteBoard");
@@ -77,6 +77,10 @@ public class BoardController {
 		return "mainBoard";
 	}
 	
+	@RequestMapping(value="/returnMainBoard", method=RequestMethod.GET)
+	public String returnMainBoard(HttpSession session, Board board){
+		return "mainBoard";
+	}
 	
 	
 	

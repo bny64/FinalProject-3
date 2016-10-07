@@ -45,8 +45,16 @@ body {
 	text-align: center;
 }
 
-#bottom button {
-	margin-right: 30px;
+#bottom > a{
+	border-bottom: none;
+}
+
+#bottom > a img{
+	margin-right: 20px;
+}
+
+#bottom > button{
+	margin-right: 20px;
 }
 
 table tbody tr {
@@ -103,10 +111,11 @@ table{
 			
 				<!-- 하단 버튼 -->
 			<div id="bottom">
-				<button>수정</button> 
-				<c:url value="/deleteBoard" var="deleteBoard"></c:url>
-				<button>삭제</button>
-				<button>닫기</button>
+				<button>수정</button>
+				<c:url value="/deleteBoard" var="deleteBoard" /> 
+				<a href="${deleteBoard }?=${board.boardNo}"><img src="<%=request.getContextPath()%>/img/button/delete.png"></a>
+				<c:url value="/returnMainBoard" var="returnMainBoard"></c:url>
+				<a href="${returnMainBoard }"><img src="<%=request.getContextPath()%>/img/button/close.png"></a>
 			</div>
 			</sform:form>
 		</div>
