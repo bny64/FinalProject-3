@@ -8,11 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.BoardDao;
 import dto.Board;
 
 @Service
+@Transactional(timeout=60)
 public class BoardServiceImpl implements BoardService{
 	static Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 
@@ -64,7 +66,7 @@ public class BoardServiceImpl implements BoardService{
 		logger.trace("BoardServiceImpl - deleteBoardByBoardNo() 동작");		
 		return boardDao.deleteBoardByBoardNo(boardNo);
 	}
-
+	
 	@Override
 	public int updateBoard(Board board) {
 		logger.trace("BoardServiceImpl - updateBoard() 동작");		

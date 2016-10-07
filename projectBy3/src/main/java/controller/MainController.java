@@ -67,7 +67,7 @@ public class MainController {
 	@RequestMapping(value="/selectMyBoard", method=RequestMethod.GET)
 	public @ResponseBody List<Board> selectMyBoard(Model model,HttpSession session,@RequestParam Integer index){
 		logger.trace("class : MainController, method : selectMyBoard");
-		int userNo =  (int) session.getAttribute("userNo");				
+		int userNo =  (int) session.getAttribute("userNo");
 		List<Board> boards = service.selectMyBoardByPaging(userNo,index);		
 		//List<Board> boards = service.selectMyBoard(userNo);
 		return boards;

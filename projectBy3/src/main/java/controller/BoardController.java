@@ -58,6 +58,24 @@ public class BoardController {
 		return "writeBoard";
 	}
 	
+	@RequestMapping(value="/updateBoard", method=RequestMethod.POST)
+	public String updateBoard(HttpSession session, Board board){
+		logger.trace("class : BoardController, method : deleteBoard");
+		String ImagePath = board.getImagePath();
+		
+		logger.trace("board : {}", board);
+		
+		
+		// 이미지가 문자열 null이 아니고 주소가 null일떄 예외 처리.
+		logger.trace("myBoard imagePath : {}", ImagePath);
+		if(ImagePath == null ){
+			logger.trace("ImagePath null!!!!!!!!!");
+			board.setImagePath("null");
+		}
+		int result = service.updateBoard(board); 
+		logger.trace("수정 결과 : {}", result);
+		return "mainBoard";
+	}
 	
 	
 	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,59 +62,57 @@ table{
 	width: 30%;
 	margin-left: 25%;
 }
+
+#hidden{
+	display: none;
+}
 </style>
 </head>
 <body>
 	<div id="wrapper">
 		<div id="detailWrapper">
-			<!-- 제목 -->
-			<div id="title">
-				제목<input type="text" id="title" name="title" readonly="readonly"
-					value="${board.title }">
-			</div>
-			<!-- 왼쪽 메뉴 -->
-			<div id="leftSide">
-				글쓴 날짜<input type="text" id="writedDate" name="writedDate"
-					readonly="readonly" value="${board.writedDate }"><br>
-				내용
-				<textarea rows="10" cols="5">${board.content }</textarea>
-			</div>
-			<!-- 오른쪽 메뉴 -->
-			<div id="rightSide">
-				<!-- 위치 -->
-				<div id="location">위치</div>
-				<!-- 댓글 -->
-				<div id="reply">댓글</div>
-				<br> <input type="text" value="댓글 쓰기">
-				<button>댓글 작성</button>
-			</div>
-			<!-- 하단 버튼 -->
+			<c:url value="/updateBoard" var="updateBoard"></c:url>
+			<sform:form method="post" action="updateBoard" modelAttribute="board">
+				<!-- 제목 -->
+				<div id="title">
+					제목<sform:input path="title"/>
+				</div>
+				<!-- 왼쪽 메뉴 -->
+				<div id="leftSide">
+					글쓴 날짜<sform:input path="writedDate"/><br>
+					내용 <sform:textarea path="content"/>
+				</div>
+				<!-- 오른쪽 메뉴 -->
+				<div id="rightSide">
+					<!-- 위치 -->
+					<div id="location">위치</div>
+					<!-- 댓글 -->
+					<div id="reply">댓글</div>
+					<br> <input type="text" value="댓글 쓰기">
+					<button>댓글 작성</button>
+				</div>
+				
+				<!-- attribute 값인데 안보여줘도 될 것들. -->
+				<div id="hidden">
+					<sform:input path="boardNo" />
+					<sform:input path="hit" />
+					<sform:input path="userNo" />
+					<sform:input path="categoryNo" />
+					<sform:input path="imagePath" />
+				</div>
+			
+				<!-- 하단 버튼 -->
 			<div id="bottom">
+				<button>수정</button> 
 				<c:url value="/deleteBoard" var="deleteBoard"></c:url>
-				<c:url value="/updateBoard" var="updateBoard"></c:url>
-				<table>
-					<tr>
-						<td>
-							<form method="post" action="updateBoard">
-								<button>수정</button>
-							</form>
-						</td>
-						<td>
-							<form method="post" action="deleteBoard">
-								<button>삭제</button>
-							</form>
-						</td>
-						<td>
-							<button>닫기</button>
-						</td>
-					</tr>
-				</table>
+				<button>삭제</button>
+				<button>닫기</button>
 			</div>
+			</sform:form>
 		</div>
 	</div>
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
-<script type="">
-	
+<script>
 </script>
 </html>
