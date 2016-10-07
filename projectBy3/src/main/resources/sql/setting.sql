@@ -63,7 +63,7 @@ create table board(
   board_no number not null,
   title varchar2(20) not null,
   hit number,
-  content varchar2(20),
+  content varchar2(500),
   writed_date date not null,
   user_no number not null,
   category_no number not null,

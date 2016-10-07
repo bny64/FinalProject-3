@@ -3,6 +3,7 @@ package controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -43,6 +44,25 @@ public class BoardController {
 		logger.trace("myBoard : {}", board);
 		result = service.deleteBoardByBoardNo(board.getBoardNo());
 		logger.trace("삭제 결과 : {}", result);
+		return "mainBoard";
+	}
+	
+	@RequestMapping(value="/updateBoard", method=RequestMethod.POST)
+	public String updateBoard(HttpSession session, Board board){
+		logger.trace("class : BoardController, method : deleteBoard");
+		String ImagePath = board.getImagePath();
+		
+		logger.trace("board : {}", board);
+		
+		
+		// 이미지가 문자열 null이 아니고 주소가 null일떄 예외 처리.
+		logger.trace("myBoard imagePath : {}", ImagePath);
+		if(ImagePath == null ){
+			logger.trace("ImagePath null!!!!!!!!!");
+			board.setImagePath("null");
+		}
+		int result = service.updateBoard(board); 
+		logger.trace("수정 결과 : {}", result);
 		return "mainBoard";
 	}
 	
