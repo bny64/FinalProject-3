@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,14 +26,6 @@ body {
 
 #title>input {
 	width: 70%;
-}
-
-table tbody tr {
-	border: solid 1px rgba(255, 255, 255, 0.0);
-}
-
-table tbody tr:nth-child(2n + 1) {
-	background-color: rgba(255, 255, 255, 0.0);
 }
 
 #category {
@@ -64,7 +57,6 @@ table tbody tr:nth-child(2n + 1) {
 #map {
 	width: 40%;
 	margin-left: 30%;
-	/* border: 1px solid gray; */
 	clear: both;
 }
 
@@ -73,7 +65,9 @@ table tbody tr:nth-child(2n + 1) {
 	margin: 30px;
 }
 
-
+#hidden{
+	display: none;
+}
 
 </style>
 </head>
@@ -81,82 +75,46 @@ table tbody tr:nth-child(2n + 1) {
 	<div id="title">
 		<h2>홈페이지 소개</h2>
 	</div>
-	<div id="title">
-		<input type="text" placeholder="제목을 입력하세요">
-	</div>
-	<br>
-
-	<div id="category">
-		<select>
-			<option selected="selected">카테고리를 선택하세요</option>
-			<c:forEach items="${category}" var="ct">
-				<option><c:out value="${ct.categoryName }" /></option>
-			</c:forEach>
-		</select>
-	</div>
-	<br>
-	<div id="content">
-		<textarea rows="9" cols="8" placeholder="내용을 입력하세요"></textarea>
-	</div>
-	<div id="insertData" >
-		<input type="file" value="file">		
-	</div>
-	<br>
-	<div id="map">
-		<label>지도 정보</label> 
-	</div>
-	<div id="map">
-		<button id="onclick">쓰기</button>
-		<button>취소</button>
-	</div>
+	
+	<c:url value="/writeBoard" var="writeBoard"/>
+	<sform:form method="post" action="writeBoard" modelAttribute="board" id="inputForm">
+		<div id="title">
+			<sform:label path="title">제목</sform:label>
+			<sform:input path="title"/>
+		</div>
+		<br>
+	
+		<div id="category">
+			<sform:label path="categoryNo">카테고리</sform:label>
+			<sform:select path="categoryNo" multiple="multiple" items="${category }" itemLabel="categoryName" itemValue="categoryNo"/>
+		</div>
+		<br>
+		<div id="content">
+			<sform:label path="content">내용</sform:label>
+			<sform:textarea path="content"/>
+		</div>
+		<div id="insertData" >
+			<input type="file" value="file">		
+		</div>
+		<br>
+		<div id="map">
+			<!-- 민국 - 이미지로 바꿔서 onclick메소드를 통해 ajax로 위치정보호출. -->
+			<button>위치 정보 가져오기</button> 
+			<!-- 민국 - ajax로 위치정보 가져와서 가져온값을 보여주는 것을 만들어야됨. -->
+		</div>
+		<div id="map">
+			<button>쓰기</button>
+			<button>취소</button>
+		</div>
+		
+		<div id="hidden">
+			<sform:input path="boardNo"/>
+			<sform:input path="userNo"/>
+			<sform:input path="imagePath"/>
+		</div>
+	</sform:form>
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-
-	$("#onclick").on("click",function(){
-		<c:url value = "/writeBoard" var = "writeBoard"/>
-		$.ajax({
-			type:"post",
-			url : "${writeBoard}",
-			data :{
-				
-			},
-			success:function(){
-				alert("저장완료");
-			}
-		});
-	});
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 </html>

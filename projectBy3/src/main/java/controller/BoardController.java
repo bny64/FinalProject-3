@@ -1,9 +1,13 @@
 package controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -51,10 +55,19 @@ public class BoardController {
 		return "mainBoard";
 	}
 	
-	@RequestMapping(value="/writeBoard")
-	public String insertBoard(Model model){
+	@RequestMapping(value="/writeBoard", method=RequestMethod.GET)
+	public String writeBoard(Model model, HttpSession session){
+		logger.trace("class : BoardController, method : writeBoard");
+		
 		List<Category> category = ctservice.selectAllCategory();
 		model.addAttribute("category", category);
+		
+		int userNo = (int) session.getAttribute("userNo");
+		logger.trace("userNo : {}", userNo);
+		
+		Board board = new Board(0,"",0,"",null,userNo,0,"");
+		model.addAttribute("board", board);
+		
 		return "writeBoard";
 	}
 	
@@ -79,29 +92,21 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
-	public String writeBoard(HttpSession session, Board board){
-		logger.trace("class : BoardController, method : writeBoard");	
+	public String writeBoardPost(HttpSession session, Board board){
+		logger.trace("class : BoardController, method : writeBoardPost");	
 		logger.trace("board : {}", board);		
 		
+		//쓰기 버튼을 누르고 글 작성 시간 추가
+		board.setWritedDate(new Date());
+		
 		int result = service.insertBoard(board);
-		if(result == 1){
-			return "mainBoard";
-		}else
-		{
-			return "showMessage";
-		}
+		logger.trace("글쓰기 결과 : {}", result);
+		
+		return "mainBoard";
 	}
-	
-	
-	
 	
 	@RequestMapping(value="/returnMainBoard", method=RequestMethod.GET)
 	public String returnMainBoard(HttpSession session, Board board){
 		return "mainBoard";
 	}
-	
-	
-	
-	
-	
 }
