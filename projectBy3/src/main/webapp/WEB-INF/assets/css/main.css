@@ -2262,7 +2262,7 @@
 
 		input[type="submit"].fit,
 		input[type="reset"].fit,
-		input[type="button"].fit,
+		input[type="button"].fit,				
 		button.fit,
 		.button.fit {
 			display: block;

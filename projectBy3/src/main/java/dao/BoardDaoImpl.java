@@ -68,5 +68,13 @@ public class BoardDaoImpl implements BoardDao{
 		return template.update(stmt, board);	
 	}
 
+	@Override
+	public int insertBoard(Board board) {
+		logger.trace("BoardDaoImpl - insertBoard 동작");
+		String stmt = BOARD_NS + "insertBoard";
+		return template.insert(stmt, board);
+		
+	}
+
 	
 }

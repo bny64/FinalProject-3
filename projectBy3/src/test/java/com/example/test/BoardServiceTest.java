@@ -95,5 +95,22 @@ public class BoardServiceTest {
 	}
 	
 	
+	@Test	
+	public void insertBoard(){
+		
+		Board board = new Board();	
+		board.setUserNo(2);
+		board.setTitle("나는 은구다");
+		board.setContent("이것은 insert 다");
+		board.setCategoryNo(1);
+		board.setImagePath("/img/thumbs/01.jpg");
+		
+		int result = service.insertBoard(board);
+		logger.trace("insertBoard result : {}",result);		
+				
+		assertThat(result, is(1));
+	}
+	
+	
 	
 }

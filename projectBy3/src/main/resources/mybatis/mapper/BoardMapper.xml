@@ -47,7 +47,10 @@
 	
 	</update>
 	
-	
+	<insert id="insertBoard" parameterType="board">
+		insert into BOARD
+		VALUES(board_no_seq.NEXTVAL,#{title},1,#{content},sysdate,#{userNo},#{categoryNo},#{imagePath})
+	</insert>
 	
 	
 	

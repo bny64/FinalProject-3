@@ -71,6 +71,12 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.updateBoard(board);
 	}
 
+	@Override
+	public int insertBoard(Board board) {
+		logger.trace("BoardServiceImpl - insertBoard() 동작");		
+		return boardDao.insertBoard(board);
+	}
+
 	
 
 }

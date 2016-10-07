@@ -9,11 +9,13 @@
 	<typeAliases>
 		<typeAlias type="dto.User" alias="user" />
 		<typeAlias type="dto.Board" alias="board" />
+		<typeAlias type="dto.Category" alias="category" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/mapper/UserMapper.xml"/>
 		<mapper resource="mybatis/mapper/BoardMapper.xml"/>
+		<mapper resource="mybatis/mapper/CategoryMapper.xml"/>
 	</mappers>
 
 

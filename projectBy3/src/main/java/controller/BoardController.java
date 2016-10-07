@@ -2,6 +2,7 @@ package controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import dto.Board;
+import dto.Category;
 import service.BoardService;
+import service.CategoryService;
 
 @Controller
 @SessionAttributes({"MyBoard"})
@@ -28,6 +31,8 @@ public class BoardController {
 	
 	@Autowired
 	BoardService service;
+	@Autowired
+	CategoryService ctservice;
 	
 	@InitBinder
 	public void setBindingFormat(WebDataBinder binder){
@@ -45,5 +50,18 @@ public class BoardController {
 		logger.trace("삭제 결과 : {}", result);
 		return "mainBoard";
 	}
+	
+	@RequestMapping(value="/writeBoard")
+	public String insertBoard(Model model){
+		List<Category> category = ctservice.selectAllCategory();
+		model.addAttribute("category", category);
+		return "writeBoard";
+	}
+	
+	
+	
+	
+	
+	
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,8 +8,8 @@
 <title>글쓰기</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="<%=request.getContextPath()%>/css/main.css"
-	type="text/css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/main.css" type="text/css"
+	rel="stylesheet">
 <style>
 body {
 	background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
@@ -75,33 +76,45 @@ table tbody tr:nth-child(2n + 1) {
 	text-align: center;
 	margin: 30px;
 }
+
+
+
 </style>
 </head>
 <body>
-<!-- Header -->
-	<header id="header">
+	<section id="main">
+	<div id="title">
 		<h2>홈페이지 소개</h2>
-		<div id=title>
-			<table style="filter:alpha(opacity=50)">
-				<tr>
-					<td><label>제목</label></td>
-					<td><input type="text" placeholder="제목을 입력하세요"></td>
-				</tr>
-			</table>
-		</div>
-		<div id=category>
-			<h1>카테고리 설정</h1>
-		</div>
-		<div id="content">
-			<textarea rows="7" cols="8"></textarea>
-		</div>
-		<div id="insertData">
-			<h3>데이터 첨부</h3>
-		</div>
-		<div id="map">
-			<button>쓰기</button>
-			<button>취소</button>
-		</div>
+	</div>
+	<div id="title">
+		<input type="text" placeholder="제목을 입력하세요">
+	</div>
+	<br>
+
+	<div id="category">
+		<select>
+			<option selected="selected">카테고리를 선택하세요</option>
+			<c:forEach items="${category}" var="ct">
+				<option><c:out value="${ct.categoryName }" /></option>
+			</c:forEach>
+		</select>
+	</div>
+	<br>
+	<div id="content">
+		<textarea rows="9" cols="8" placeholder="내용을 입력하세요"></textarea>
+	</div>
+	<div id="insertData">
+		<input type="file" value="file">		
+	</div>
+	<br>
+	<div id="map">
+		<label>지도 정보</label> 
+	</div>
+	<div id="map">
+		<button>쓰기</button>
+		<button>취소</button>
+	</div>
+	</section>
 </body>
 </body>
 </html>
