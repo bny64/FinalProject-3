@@ -34,6 +34,8 @@ public class BoardController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 	}
+	/*@RequestMapping(value="/updateBoard", method=RequestMethod.POST)
+	public String updateBoard(HttpSession session, )*/
 	
 	@RequestMapping(value="/deleteBoard", method=RequestMethod.POST)
 	public String deleteBoard(HttpSession session){
