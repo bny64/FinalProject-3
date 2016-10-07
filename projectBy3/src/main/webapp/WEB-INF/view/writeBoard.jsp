@@ -103,7 +103,7 @@ table tbody tr:nth-child(2n + 1) {
 	<div id="content">
 		<textarea rows="9" cols="8" placeholder="내용을 입력하세요"></textarea>
 	</div>
-	<div id="insertData">
+	<div id="insertData" >
 		<input type="file" value="file">		
 	</div>
 	<br>
@@ -111,10 +111,58 @@ table tbody tr:nth-child(2n + 1) {
 		<label>지도 정보</label> 
 	</div>
 	<div id="map">
-		<button>쓰기</button>
+		<button id="onclick">쓰기</button>
 		<button>취소</button>
 	</div>
 	</section>
 </body>
-</body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+
+	$("#onclick").on("click",function(){
+		<c:url value = "/writeBoard" var = "writeBoard"/>
+		$.ajax({
+			type:"post",
+			url : "${writeBoard}",
+			data :{
+				
+			},
+			success:function(){
+				alert("저장완료");
+			}
+		});
+	});
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
 </html>
