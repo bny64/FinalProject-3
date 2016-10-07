@@ -78,7 +78,7 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value="/updateBoard", method=RequestMethod.POST)
+	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
 	public String writeBoard(HttpSession session, Board board){
 		logger.trace("class : BoardController, method : writeBoard");	
 		logger.trace("board : {}", board);		
@@ -90,8 +90,6 @@ public class BoardController {
 		{
 			return "showMessage";
 		}
-	
-		
 	}
 	
 	

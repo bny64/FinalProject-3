@@ -20,7 +20,6 @@ body {
 	height: 70%;
 	margin-top: 5%;
 	margin-left: 30%;
-	/* border: 1px solid yellow; */
 	text-align: center;
 }
 
@@ -38,14 +37,12 @@ table tbody tr:nth-child(2n + 1) {
 
 #category {
 	width: 40%;
-	/* border: 1px solid red; */
 	margin-left: 30%;
 	clear: both;
 	vertical-align: middle;
 }
 
 #content {
-	/* border: 1px solid green;  */
 	width: 40%;
 	margin-left: 30%;
 	height: 200%;
@@ -61,7 +58,6 @@ table tbody tr:nth-child(2n + 1) {
 	height: 20%;
 	margin-top: 2%;
 	margin-left: 30%;
-	/* border: 1px solid blue; */
 	clear: both;
 }
 
@@ -82,7 +78,6 @@ table tbody tr:nth-child(2n + 1) {
 </style>
 </head>
 <body>
-	<section id="main">
 	<div id="title">
 		<h2>홈페이지 소개</h2>
 	</div>
@@ -114,7 +109,6 @@ table tbody tr:nth-child(2n + 1) {
 		<button id="onclick">쓰기</button>
 		<button>취소</button>
 	</div>
-	</section>
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
