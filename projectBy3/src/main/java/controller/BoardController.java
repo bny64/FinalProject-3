@@ -22,7 +22,7 @@ import dto.Board;
 import service.BoardService;
 
 @Controller
-@SessionAttributes({"MyBoard"})
+@SessionAttributes({"myBoard"})
 public class BoardController {
 
 	static Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -35,6 +35,8 @@ public class BoardController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 	}
+	/*@RequestMapping(value="/updateBoard", method=RequestMethod.POST)
+	public String updateBoard(HttpSession session, )*/
 	
 	@RequestMapping(value="/deleteBoard", method=RequestMethod.POST)
 	public String deleteBoard(HttpSession session){
