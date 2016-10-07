@@ -108,5 +108,9 @@ start with 1 increment by 1;
 
 alter table board add(image_path varchar2(20));
 
+alter table board_location
+drop constraint board_no_fk;
 
+alter table board_location
+add constraint board_no_fk foreign key(board_no) references board(board_no);
 
