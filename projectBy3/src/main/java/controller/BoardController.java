@@ -77,6 +77,26 @@ public class BoardController {
 		return "mainBoard";
 	}
 	
+	
+	@RequestMapping(value="/updateBoard", method=RequestMethod.POST)
+	public String writeBoard(HttpSession session, Board board){
+		logger.trace("class : BoardController, method : writeBoard");	
+		logger.trace("board : {}", board);		
+		
+		int result = service.insertBoard(board);
+		if(result == 1){
+			return "mainBoard";
+		}else
+		{
+			return "showMessage";
+		}
+	
+		
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/returnMainBoard", method=RequestMethod.GET)
 	public String returnMainBoard(HttpSession session, Board board){
 		return "mainBoard";
