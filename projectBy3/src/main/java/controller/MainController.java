@@ -91,8 +91,18 @@ public class MainController {
 		}else{
 			logger.trace("detailBoard 콜");
 			return "detailBoard";
-		}	
+		}		
+	}
+	@RequestMapping(value="/mylocation")
+	public String userLocation(){
+		return "userLocation";
+	}
+	@RequestMapping(value="/savelocation")
+	public String savelocation(@RequestParam Integer latitude,@RequestParam Integer longitude){
 		
+		
+		
+		return "mainBoard";
 	}
 	
 	
