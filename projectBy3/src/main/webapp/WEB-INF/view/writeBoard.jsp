@@ -16,23 +16,43 @@ body {
 	background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
 }
 
-#title {
-	width: 40%;
-	height: 70%;
+#head{
 	margin-top: 5%;
-	margin-left: 30%;
 	text-align: center;
 }
 
-#title>input {
-	width: 70%;
+#inputForm{
+	margin-top: 5%;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+#title{
+}
+
+#category{
+	margin-bottom: 20px;
+}
+
+#content{
+	margin-bottom: 20px;
+}
+
+#map{
+	margin-bottom: 20px;
+}
+
+/* 
+#title {
+	height: 70%;
+	margin-left: 30%;
 }
 
 #category {
 	width: 40%;
 	margin-left: 30%;
 	clear: both;
-	vertical-align: middle;
+ 	vertical-align: middle; 
 }
 
 #content {
@@ -52,17 +72,22 @@ body {
 	margin-top: 2%;
 	margin-left: 30%;
 	clear: both;
-}
-
+} 
+*/
 #map {
-	width: 40%;
-	margin-left: 30%;
-	clear: both;
+	
 }
 
-#map button {
+#bottomBtns {
+	margin-top: 5%;
+	margin-left: 20%;
+	clear: both;
 	text-align: center;
 	margin: 30px;
+}
+
+#bottomBtns > button {
+	margin-right: 100px;
 }
 
 #hidden{
@@ -72,15 +97,14 @@ body {
 </style>
 </head>
 <body>
-	<div id="title">
+	<div id="head">
 		<h2>홈페이지 소개</h2>
 	</div>
 	
 	<c:url value="/writeBoard" var="writeBoard"/>
-	<sform:form method="post" action="writeBoard" modelAttribute="board" id="inputForm">
+	<sform:form method="post" action="writeBoard" modelAttribute="board" id="inputForm" enctype="multipart/form-data">
 		<div id="title">
-			<sform:label path="title">제목</sform:label>
-			<sform:input path="title"/>
+			<sform:input path="title" placeholder="제목을 입력해 주세요."/>
 		</div>
 		<br>
 	
@@ -90,19 +114,19 @@ body {
 		</div>
 		<br>
 		<div id="content">
-			<sform:label path="content">내용</sform:label>
-			<sform:textarea path="content"/>
+			<sform:textarea path="content" placeholder="내용을 입력해 주세요."/>
 		</div>
 		<div id="insertData" >
-			<input type="file" value="file">		
+			<sform:input path="file" type="file"/>
+			<!-- <input type="file" name="file"> -->
 		</div>
 		<br>
 		<div id="map">
-			<!-- 민국 - 이미지로 바꿔서 onclick메소드를 통해 ajax로 위치정보호출. -->
-			<button>위치 정보 가져오기</button> 
-			<!-- 민국 - ajax로 위치정보 가져와서 가져온값을 보여주는 것을 만들어야됨. -->
+			<c:url value="/getMyLocation" var="getMyLocation"/>
+			<!-- 민국 - 팝업으로 바꿔야함. -->
+			<a href="${getMyLocation }"><img id="getMyLocation" src="<%=request.getContextPath() %>/img/button/getMyLocation.png"></a> 
 		</div>
-		<div id="map">
+		<div id="bottomBtns">
 			<button>쓰기</button>
 			<button>취소</button>
 		</div>
@@ -116,5 +140,19 @@ body {
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+	/* <c:url value="/getMyLocation" var="getMyLocation"/>
+		$("#getMyLocation").on("click", function() {
+			$.ajax({
+				type : "get",
+				url : "${getMyLocation}",
+				data : {
+				},
+				success : function() {
+				},
+				error : function(xhr, status, error) {
+					alert("해당 하는 정보가 없습니다");
+				}
+			});
+		}); */
 </script>
 </html>
