@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserLocation {
 	int userLocationNo;
+	String locationName;
 	Date registerDate;
 	int userNo;
 	float latitude;
