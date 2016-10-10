@@ -43,7 +43,7 @@ public class LocationServiceTest {
 		assertThat(userLocation.size(), is(1));
 		assertThat(userLocation.get(0).getUserLocationNo(), is(2));
 	}
-	
+	 
 	@Test
 	public void insertUserLocationTest() throws ParseException{
 		String str = "99-02-12";
