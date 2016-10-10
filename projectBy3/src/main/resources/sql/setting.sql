@@ -115,3 +115,5 @@ drop constraint board_no_fk;
 alter table board_location
 add constraint board_no_fk foreign key(board_no) references board(board_no);
 
+alter table user_friend add alarm varchar2(20) check(alarm in('on','off'));
+alter table user_friend modify alarm constraint alarm_nn not null;
