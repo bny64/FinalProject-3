@@ -11,6 +11,8 @@
 		<typeAlias type="dto.Board" alias="board" />
 		<typeAlias type="dto.Category" alias="category" />
 		<typeAlias type="dto.UserLocation" alias="userLocation" />
+		<typeAlias type="dto.UserCategory" alias="usercategory" />
+		
 	</typeAliases>
 
 	<mappers>
@@ -18,6 +20,7 @@
 		<mapper resource="mybatis/mapper/BoardMapper.xml"/>
 		<mapper resource="mybatis/mapper/CategoryMapper.xml"/>
 		<mapper resource="mybatis/mapper/UserLocationMapper.xml"/>
+		<mapper resource="mybatis/mapper/UserCategoryMapper.xml"/>
 	</mappers>
 
 
