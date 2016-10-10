@@ -1,13 +1,11 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -20,12 +18,15 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import dto.Board;
 import dto.Category;
 import service.BoardService;
 import service.CategoryService;
+import service.UserService;
 
 @Controller
 @SessionAttributes({"MyBoard"})
@@ -37,6 +38,9 @@ public class BoardController {
 	BoardService service;
 	@Autowired
 	CategoryService ctservice;
+	@Autowired 
+	UserService userService;
+
 	
 	@InitBinder
 	public void setBindingFormat(WebDataBinder binder){
@@ -65,7 +69,7 @@ public class BoardController {
 		int userNo = (int) session.getAttribute("userNo");
 		logger.trace("userNo : {}", userNo);
 		
-		Board board = new Board(0,"",0,"",null,userNo,0,"");
+		Board board = new Board(0,"",0,"",null,userNo,0,"",null);
 		model.addAttribute("board", board);
 		
 		return "writeBoard";
@@ -91,10 +95,17 @@ public class BoardController {
 	}
 	
 	
+	private static final String uploadDir = "c:/Users/1-718-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/";	
 	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
-	public String writeBoardPost(HttpSession session, Board board){
+	public String writeBoardPost(HttpSession session, Board board, @RequestParam MultipartFile file) throws IllegalStateException, IOException{
 		logger.trace("class : BoardController, method : writeBoardPost");	
-		logger.trace("board : {}", board);		
+		logger.trace("board : {}", board);
+		int userNo = (int)session.getAttribute("userNo");
+		
+		File uploadFile = new File ( uploadDir + userNo +"." +System.currentTimeMillis()+file.getOriginalFilename());
+		file.transferTo(uploadFile);	
+		
+		board.setImagePath(file.getOriginalFilename());
 		
 		//쓰기 버튼을 누르고 글 작성 시간 추가
 		board.setWritedDate(new Date());
@@ -102,11 +113,37 @@ public class BoardController {
 		int result = service.insertBoard(board);
 		logger.trace("글쓰기 결과 : {}", result);
 		
+		
 		return "mainBoard";
 	}
+	@RequestMapping(value="/getMyLocation", method=RequestMethod.GET)
+	public String getMyLocation(HttpSession session, Board board){
+		return "writeLocation";
+	}
+	
 	
 	@RequestMapping(value="/returnMainBoard", method=RequestMethod.GET)
 	public String returnMainBoard(HttpSession session, Board board){
 		return "mainBoard";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,8 +6,8 @@ insert into users(USER_NO,USER_ID,PASSWORD,NICKNAME,USER_NAME,TEL,EMAIL,BIRTHDAT
 VALUES(USER_NO_SEQ.NEXTVAL,'ba','1234','nam','namy','010-7898-8888','kkk@naver.com',sysdate);
 
 
-insert into USER_LOCATION VALUES(user_location_no_seq.NEXTVAL, 'location1',sysdate,36.815129,127.11389389,2);
-insert into USER_LOCATION VALUES(user_location_no_seq.NEXTVAL, 'location2',sysdate,36.855139,127.21389389,3);
+insert into USER_LOCATION VALUES(user_location_no_seq.NEXTVAL,'location1',sysdate,36.815129,127.11389389,2);
+insert into USER_LOCATION VALUES(user_location_no_seq.NEXTVAL,'location2',sysdate,36.855139,127.21389389,3);
 
 
 insert into category VALUES(category_no_seq.NEXTVAL,'computer');

@@ -77,7 +77,7 @@ body {
 	</div>
 	
 	<c:url value="/writeBoard" var="writeBoard"/>
-	<sform:form method="post" action="writeBoard" modelAttribute="board" id="inputForm">
+	<sform:form method="post" action="writeBoard" modelAttribute="board" id="inputForm" enctype="multipart/form-data">
 		<div id="title">
 			<sform:label path="title">제목</sform:label>
 			<sform:input path="title"/>
@@ -94,12 +94,14 @@ body {
 			<sform:textarea path="content"/>
 		</div>
 		<div id="insertData" >
-			<input type="file" value="file">		
+			<sform:input path="file" type="file"/>
+			<!-- <input type="file" name="file"> -->
 		</div>
 		<br>
 		<div id="map">
+			<c:url value="/getMyLocation" var="getMyLocation"/>
 			<!-- 민국 - 이미지로 바꿔서 onclick메소드를 통해 ajax로 위치정보호출. -->
-			<button>위치 정보 가져오기</button> 
+			<a href="${getMyLocation }"><img id="getMyLocation" src="<%=request.getContextPath() %>/img/button/getMyLocation.png"></a> 
 			<!-- 민국 - ajax로 위치정보 가져와서 가져온값을 보여주는 것을 만들어야됨. -->
 		</div>
 		<div id="map">
@@ -116,5 +118,19 @@ body {
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+	/* <c:url value="/getMyLocation" var="getMyLocation"/>
+		$("#getMyLocation").on("click", function() {
+			$.ajax({
+				type : "get",
+				url : "${getMyLocation}",
+				data : {
+				},
+				success : function() {
+				},
+				error : function(xhr, status, error) {
+					alert("해당 하는 정보가 없습니다");
+				}
+			});
+		}); */
 </script>
 </html>
