@@ -14,5 +14,5 @@ public interface BoardDao {
 	public int deleteBoardByBoardNo(int boardNo);
 	public int updateBoard(Board board);
 	public int insertBoard(Board board);
-
+	public List<Board> selectMyCategoryBoardByPaging(Map<String, Object> filter);
 }

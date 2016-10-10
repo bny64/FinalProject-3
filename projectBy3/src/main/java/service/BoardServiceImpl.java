@@ -79,6 +79,17 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.insertBoard(board);
 	}
 
+	@Override
+	public List<Board> selectMyCategoryBoardByPaging(int userNo, int pageNo, int categoryNo) {
+		logger.trace("BoardServiceImpl - selectAllBoardByPaging() 동작");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("from", 9*pageNo-8);
+		filter.put("to", 9*pageNo);
+		filter.put("userNo", userNo);
+		filter.put("categoryNo", categoryNo);
+		return boardDao.selectMyCategoryBoardByPaging(filter);
+	}
+
 	
 
 }

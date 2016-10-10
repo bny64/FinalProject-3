@@ -11,7 +11,7 @@
 	</select>
 	<insert id="insertUserLocation" parameterType="userLocation">
 		insert into user_location
-		values(user_location_no_seq.nextval, #{locationName}, sysdate, #{userNo},#{latitude}, #{longitude})
+		values(user_location_no_seq.nextval, #{locationName}, sysdate,#{latitude}, #{longitude}, #{userNo})
 	</insert>
 	
 	<resultMap type="userLocation" id="userLocationBase">

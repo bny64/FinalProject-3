@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import dto.Board;
 
@@ -13,4 +14,5 @@ public interface BoardService {
 	public int deleteBoardByBoardNo(int boardNo);
 	public int updateBoard(Board board);
 	public int insertBoard(Board board);
+	public List<Board> selectMyCategoryBoardByPaging(int userNo,int pageNo,int categoryNo);
 }

@@ -9,12 +9,28 @@
 		from USER_CATEGORY
 	</select>
 	
+	<select id="selectUserCategory" resultMap="usercategoryDetail" parameterType="int">
+		select c.CATEGORY_NO,c.CATEGORY_NAME 
+		from USER_CATEGORY u, CATEGORY c
+		where u.CATEGORY_NO = c.CATEGORY_NO and u.user_no = #{id}
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	
 	<resultMap type="usercategory" id="userCategoryBase">
 		<id column="list_no" property="listNo"/>
 		<result column="category_no" property="categoryNo"/>
-		<result column="user_no" property="userNo"/>
-		
+		<result column="user_no" property="userNo"/>		
 	</resultMap>
+	
+	<resultMap type="usercategory" id="usercategoryDetail" extends="userCategoryBase">
+		<collection property="contrySet" ofType="category" resultMap="UserCategoryMapper.categoryBase"></collection>
+	</resultMap>
+	
 
 </mapper>

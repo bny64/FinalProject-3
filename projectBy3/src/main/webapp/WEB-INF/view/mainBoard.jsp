@@ -125,7 +125,12 @@
 		$center.empty();
 		$right.empty();
 		loadMyBoard();
-	}); 
+	});
+	
+	 
+	 
+	 
+	 
 	
 	 function loadMyBoard(){	
 			<c:url value = "/selectMyBoard" var="selectMyBoard"/>
