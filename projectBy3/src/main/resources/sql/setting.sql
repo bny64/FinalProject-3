@@ -23,6 +23,7 @@ start with 1 increment by 1;
 
 create table user_location(
   user_location_no number not null,
+  location_name varchar2(20) not null,
   register_date date not null,
   latitude float not null,
   longitude float not null,
