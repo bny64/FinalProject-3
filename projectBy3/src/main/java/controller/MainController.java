@@ -20,7 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
+import dto.Category;
+import dto.UserCategory;
+import dto.UserLocation;
 import service.BoardService;
+import service.CategoryService;
+import service.LocationService;
+import service.UserCategoryService;
 import service.UserService;
 
 @Controller
@@ -32,6 +38,12 @@ public class MainController {
 	BoardService service;
 	@Autowired
 	UserService userservice;
+	@Autowired
+	LocationService location;
+	@Autowired
+	CategoryService category;
+	@Autowired
+	UserCategoryService userCategory;
 	
 	// Format 형태로 입력된 문자열을 date로 바꿈
 	@InitBinder
@@ -94,16 +106,34 @@ public class MainController {
 		}		
 	}
 	@RequestMapping(value="/mylocation")
-	public String userLocation(){
+	public String userLocation(Model model,HttpSession session){
+		logger.trace("class : MainController, method : userLocation");
+				
+		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
+		model.addAttribute("locations", locations);
 		return "userLocation";
 	}
 	@RequestMapping(value="/savelocation")
-	public String savelocation(@RequestParam Integer latitude,@RequestParam Integer longitude){
-		
-		
-		
-		return "mainBoard";
+	public @ResponseBody List<UserLocation> savelocation(HttpSession session,@RequestParam Float latitude,@RequestParam Float longitude){
+		logger.trace("class : MainController, method : savelocation");
+		logger.trace("latitude : {} , longitude {}",latitude,longitude);
+		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
+		return locations;
 	}
+	
+	
+	@RequestMapping(value="/category")
+	public String category(Model model,HttpSession session){
+		logger.trace("class : MainController, method : category");
+		List<UserCategory> categories = userCategory.selectAllUserCategory();
+		model.addAttribute("categories",categories);		
+		return "category";
+	}
+	
+	
+	
+	
+	
 	
 	
 }

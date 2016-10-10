@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -33,10 +33,18 @@
 			<br>
 			<input type = "text" placeholder="위치 저장명">
 			<div>
-				<c:url value = "/savelocation" var="savelocation"/>
-				<a href="${detailBoard}?latitude=${latitude }&longitud=${longitude}"><button>저장</button></a>
-			</div>			
+				<%-- <c:url value = "/savelocation" var="savelocation"/>
+				<a href="${savelocation}?latitude=${latitude }&longitud=${longitude}"><button>저장</button></a> --%>
+				<button id = "btn2">저장</button>
+			</div>
+			<br><br>			
+			<div id="locationDiv">
+				<c:forEach items="${locations}" var="loaction">
+					<h3>${loaction.userNo },  ${loaction.latitude },  ${loaction.longitude }</h3>					
+				</c:forEach>
+			</div>
 	</section>
+	
 	
 
 </body>
@@ -49,6 +57,9 @@
 	src="//apis.daum.net/maps/maps3.js?apikey=d0fc516accb46bd8c6bd705b190857d0"></script>
 <script>
 	var x = document.getElementById("demo");
+	var latitude;
+	var longitude;
+	
 	window.onload = function() {
 		getLocation();
 	};
@@ -61,8 +72,8 @@
 	}
 
 	function showPosition(position) {		
-		$latitude=position.coords.latitude;
-		$longitude=position.coords.longitude;
+		latitude=position.coords.latitude;
+		longitude=position.coords.longitude;
 		var markerPosition = new daum.maps.LatLng(position.coords.latitude,
 				position.coords.longitude);
 		var marker = {
@@ -80,6 +91,41 @@
 				staticMapOption);
 
 	}
+	
+	$("#btn2").on("click",function(){
+		console.log("클릭");
+		<c:url value = "/savelocation" var="savelocation"/>
+		$.ajax({
+			type:"get",
+			url:"${savelocation}",
+			data :{
+				latitude : latitude,
+				longitude : longitude,				
+			},
+			success:function(res){
+				console.log("전송");
+				$locationDiv = $("#locationDiv");
+				$locationDiv.empty();
+				$(res).each(function(idx,data){					
+					$newOne = "<h3>"+ data.userNo +"    "+ data.latitude + "  " + data.longitude+ " <h3>"; 					
+					$locationDiv.append($newOne);
+				});
+			},
+			error:function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		
+		});
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 </html>
