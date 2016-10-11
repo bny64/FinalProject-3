@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="selectUserCategory" resultMap="usercategoryDetail" parameterType="int">
-		select c.CATEGORY_NO,c.CATEGORY_NAME 
+		select *
 		from USER_CATEGORY u, CATEGORY c
 		where u.CATEGORY_NO = c.CATEGORY_NO and u.user_no = #{id}
 	</select>
@@ -29,7 +29,7 @@
 	</resultMap>
 	
 	<resultMap type="usercategory" id="usercategoryDetail" extends="userCategoryBase">
-		<collection property="contrySet" ofType="category" resultMap="UserCategoryMapper.categoryBase"></collection>
+		<association property="category" column="category_no" javaType="category" resultMap="CategoryMapper.categoryBase"></association>
 	</resultMap>
 	
 
