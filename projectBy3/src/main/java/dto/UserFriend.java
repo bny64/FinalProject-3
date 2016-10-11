@@ -15,5 +15,4 @@ public class UserFriend {
 	String statue;
 	int userNo;
 	String alarm;
-	String userName;
 }

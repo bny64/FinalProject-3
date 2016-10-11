@@ -42,5 +42,6 @@ public class UserFriendDaoTest {
 	public void friendListTest(){
 		List<UserFriend> friends = ufDao.friendList(2);
 		logger.trace("친구 목록 : {}", friends);
+//		assertThat(friends.size(), is(1));
 	}
 }
