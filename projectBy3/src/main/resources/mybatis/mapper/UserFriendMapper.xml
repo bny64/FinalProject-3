@@ -10,12 +10,13 @@
 		<result column="statue" property="statue" />
 		<result column="user_no" property="userNo" />
 		<result column="alarm" property="alarm" />
+		<result column="user_name" property="userName" />
 	</resultMap>
 	
 	<select id="friendList" resultMap="userFriendDetail" parameterType="int">
-		select f.*, user_name
+		select list_no, friend_no, statue, f.user_no, alarm, user_name
 		from user_friend f join users u
-		on f.user_no = u.user_no
+		on friend_no = u.user_no
 		where f.user_no=#{userNo}
 	</select>
 	

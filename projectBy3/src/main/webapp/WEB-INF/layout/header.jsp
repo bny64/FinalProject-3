@@ -74,8 +74,8 @@
 			
 			<input id="str"type="text" placeholder="글 검색">
 			
-			<c:url value="/mainFriend" var="mainFriend"/>
-			<a href="${mainFriend }"><button>친구 관리</button></a>
+			<c:url value="/friendList" var="friendList"/>
+			<a href="${friendList }"><button>친구 관리</button></a>
 			
 			<c:url value="/writeBoard" var="writeBoard"/>
 			<a href="${writeBoard }"><button>글쓰기</button></a>
