@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -25,6 +26,16 @@ public class UserCategoryDaoImpl implements UserCategoryDao{
 		String stmt = BOARD_NS + "selectAllUserCategory";
 		return template.selectList(stmt);
 	}	
+
+	@Override
+	public List<UserCategory> selectUserCategory(int userNo) {
+		logger.trace("UserCategoryDaoImpl - selectUserCategory 동작");
+		String stmt = BOARD_NS + "selectUserCategory";
+		return template.selectList(stmt, userNo);
+	}	
+	
+	
+
 
 	
 

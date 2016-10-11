@@ -134,7 +134,7 @@ public class MainController {
 	@RequestMapping(value="/category")
 	public String category(Model model,HttpSession session){
 		logger.trace("class : MainController, method : category");
-		List<UserCategory> categories = userCategory.selectAllUserCategory();
+		List<UserCategory> categories = userCategory.selectUserCategory((int) session.getAttribute("userNo"));
 		model.addAttribute("categories",categories);		
 		return "category";
 	}
