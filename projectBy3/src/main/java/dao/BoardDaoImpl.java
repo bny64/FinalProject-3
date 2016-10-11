@@ -76,5 +76,12 @@ public class BoardDaoImpl implements BoardDao{
 		
 	}
 
+	@Override
+	public List<Board> selectMyCategoryBoardByPaging(Map<String, Object> filter) {
+		logger.trace("BoardDaoImpl - selectMyCategoryBoardByPaging 동작");
+		String stmt = BOARD_NS + "selectMyCategoryBoardByPaging";
+		return template.selectList(stmt, filter);
+	}
+
 	
 }

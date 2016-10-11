@@ -31,7 +31,7 @@
 	<section id="content">			    		
 			<div id="map" style="width: 500px; height: 400px;"></div>
 			<br>
-			<input type = "text" placeholder="위치 저장명">
+			<input type = "text" placeholder="위치 저장명" id="userLocationName">
 			<div>
 				<%-- <c:url value = "/savelocation" var="savelocation"/>
 				<a href="${savelocation}?latitude=${latitude }&longitud=${longitude}"><button>저장</button></a> --%>
@@ -100,7 +100,8 @@
 			url:"${savelocation}",
 			data :{
 				latitude : latitude,
-				longitude : longitude,				
+				longitude : longitude,
+				userLocationName : $("#userLocationName").val()
 			},
 			success:function(res){
 				console.log("전송");

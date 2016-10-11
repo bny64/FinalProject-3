@@ -70,6 +70,7 @@
 		<div id="headers">
 			<c:url value="/category" var="category"/>
 			<a href="${category }"><button>카 테 고 리</button></a>
+			<!-- <button id = "btnCategory">카 테 고 리</button> -->
 			
 			<input id="str"type="text" placeholder="글 검색">
 			
@@ -93,3 +94,7 @@
 </section>
 <br>
 
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.poptrox.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/skel.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/main.js"></script>

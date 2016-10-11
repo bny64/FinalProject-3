@@ -30,8 +30,10 @@
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<section id="content">
+		<h1>사용자가 추가한</h1>
+		<c:url value = "/scategoryBoard" var="scategoryBoard"/>
 		<c:forEach items="${categories}" var="category">
-					<h3>${category.listNo },  ${category.categoryNo },  ${category.userNo }</h3>					
+					<a href="${scategoryBoard}?categoryNo=${category.categoryNo}" ><h3>${category.listNo },  ${category.categoryNo },  ${category.userNo }</h3></a>					
 		</c:forEach>	
 	</section>
 </body>

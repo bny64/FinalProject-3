@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -114,9 +116,16 @@ public class MainController {
 		return "userLocation";
 	}
 	@RequestMapping(value="/savelocation")
-	public @ResponseBody List<UserLocation> savelocation(HttpSession session,@RequestParam Float latitude,@RequestParam Float longitude){
+	public @ResponseBody List<UserLocation> savelocation(HttpSession session,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String userLocationName) throws ParseException{
 		logger.trace("class : MainController, method : savelocation");
-		logger.trace("latitude : {} , longitude {}",latitude,longitude);
+		logger.trace("userLocationName :{} , latitude : {} , longitude {}",userLocationName,latitude,longitude);
+		UserLocation ul = new UserLocation();
+				
+		ul.setLatitude(latitude);
+		ul.setLocationName(userLocationName);
+		ul.setLongitude(longitude);
+		ul.setUserNo((int) session.getAttribute("userNo"));
+		location.insertUserLocation(ul);
 		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
 		return locations;
 	}
@@ -130,7 +139,18 @@ public class MainController {
 		return "category";
 	}
 	
-	
+	@RequestMapping(value="/scategoryBoard")
+	public String scategoryBoard(Model model,HttpSession session,@RequestParam Integer categoryNo){
+		logger.trace("class : MainController, method : categoryBoard");
+		model.addAttribute("categoryNo",categoryNo);		
+		return "categoryBoard";		
+	}
+	@RequestMapping(value="/categoryBoard")
+	public @ResponseBody List<Board> categoryBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam Integer categoryNo){
+		logger.trace("class : MainController, method : categoryBoard");				
+		List<Board> boards = service.selectMyCategoryBoardByPaging((int) session.getAttribute("userNo"), index, categoryNo);	
+		return boards;		
+	}
 	
 	
 	
