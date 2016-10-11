@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -25,6 +26,27 @@ public class UserFriendDaoImpl implements UserFriendDao {
 		logger.trace("UserFriendDaoImpl - friendList 동작");
 		String stmt = USERFRIEND_NS + "friendList";
 		return template.selectList(stmt, userNo);
+	}
+
+	@Override
+	public int updateAlarm(Map<String, Object> friend) {
+		logger.trace("UserFriendDaoImpl - updateAlarm 동작");
+		String stmt = USERFRIEND_NS + "updateAlarm";
+		return template.update(stmt, friend);
+	}
+
+	@Override
+	public String selectAlarm(int friendNo) {
+		logger.trace("UserFriendDaoImpl - selectAlarm 동작");
+		String stmt = USERFRIEND_NS + "selectAlarm";
+		return template.selectOne(stmt, friendNo);
+	}
+
+	@Override
+	public int deleteFriend(int friendNo) {
+		logger.trace("UserFriendDaoImpl - deleteFriend 동작");
+		String stmt = USERFRIEND_NS + "deleteFriend";
+		return template.delete(stmt, friendNo);
 	}
 
 }

@@ -19,7 +19,18 @@
 		on friend_no = u.user_no
 		where f.user_no=#{userNo}
 	</select>
+	<update id="updateAlarm" parameterType="hashmap">
+		update user_friend set alarm=#{alarm} where friend_no=#{friendNo}
+	</update>
 	
+	<select id="selectAlarm" parameterType="int" resultType="String">
+		select alarm
+		from user_friend
+		where friend_no=#{friendNo}
+	</select>
+	<delete id="deleteFriend" parameterType="int">
+		delete from user_friend where friend_no=#{friendNo}
+	</delete>
 	<resultMap type="userfriend" id="userFriendDetail" extends="userFriendBase">
 		<collection property="usersSet" ofType="user" resultMap="UserMapper.usersBase"></collection>
 	</resultMap>

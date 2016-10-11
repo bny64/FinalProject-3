@@ -3,7 +3,9 @@ package com.example.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,11 +28,34 @@ public class UserFriendServiceTest {
 	@Autowired
 	UserFriendService service;
 	
-	@Test
+	//@Test
 	public void friendListTest() {
 		List<UserFriend> friends = service.friendList(2);
 		logger.trace("friends : {}", friends);
 		assertThat(friends.size(), is(1));
 	}
 
+	//@Test
+	public void updateAlarmTest(){
+		int result;
+		Map<String, Object> friend = new HashMap<>();
+		friend.put("alarm", "on");
+		friend.put("friendNo", 1);
+		result = service.updateAlarm(friend);
+		logger.trace("result : {}", result);
+	}
+	
+	//@Test
+	public void selectAlarmTest(){
+		String result = service.selectAlarm(1);
+		logger.trace("result : {}", result);
+		assertThat(result.toString(), is("on"));
+	}
+	
+	@Test
+	public void deleteFriendTest(){
+		int result = service.deleteFriend(1);
+		logger.trace("result : {}", result);
+		assertThat(result, is(1));
+	}
 }

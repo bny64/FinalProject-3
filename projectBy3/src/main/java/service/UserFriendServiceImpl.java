@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,24 @@ public class UserFriendServiceImpl implements UserFriendService {
 		logger.trace("UserFriendServiceImpl - friendList() 동작");
 		List<UserFriend> friends = ufDao.friendList(userNo);
 		return friends;
+	}
+
+	@Override
+	public int updateAlarm(Map<String, Object> friend) {
+		logger.trace("UserFriendServiceImpl - updateAlarm() 동작");
+		return ufDao.updateAlarm(friend);
+	}
+
+	@Override
+	public String selectAlarm(int friendNo) {
+		logger.trace("UserFriendServiceImpl - selectAlarm() 동작");
+		return ufDao.selectAlarm(friendNo);
+	}
+
+	@Override
+	public int deleteFriend(int friendNo) {
+		logger.trace("UserFriendServiceImpl - deleteFriend() 동작");
+		return ufDao.deleteFriend(friendNo);
 	}
 
 }

@@ -1,6 +1,8 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.UserFriend;
 import service.UserFriendService;
@@ -26,6 +30,28 @@ public class FriendController {
 	@RequestMapping(value="/friendList", method=RequestMethod.GET)
 	public String friendList(Model model, HttpSession session){
 		logger.trace("class : FriendController, method : friendList");
+		int userNo = (int) session.getAttribute("userNo");
+		List<UserFriend> friends = service.friendList(userNo);
+		model.addAttribute("friends", friends);
+//		logger.trace("alarm : {}", friends.get(0).getAlarm());
+		return "friendList";
+	}
+	
+	@RequestMapping(value="/updateAlarm", method=RequestMethod.POST)
+	public @ResponseBody String updateAlarm(@RequestParam String alarm, 
+																		  @RequestParam int friendNo){
+		logger.trace("class : FriendController, method : updateAlarm");
+		Map<String, Object> friend = new HashMap<>();
+		friend.put("alarm", alarm);
+		friend.put("friendNo", friendNo);
+		service.updateAlarm(friend);
+		return service.selectAlarm(friendNo);
+	}
+	
+	@RequestMapping(value="/deleteFriend", method=RequestMethod.GET)
+	public String deleteFriend(HttpSession session, Model model, @RequestParam int friendNo){
+		logger.trace("class : FriendController, method : deleteFriend");
+		service.deleteFriend(friendNo);
 		int userNo = (int) session.getAttribute("userNo");
 		List<UserFriend> friends = service.friendList(userNo);
 		model.addAttribute("friends", friends);

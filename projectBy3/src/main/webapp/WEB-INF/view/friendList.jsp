@@ -60,14 +60,21 @@ select {
 			<c:forEach var="friends" items="${friends}">
 						<tr>
 							<td align="center"><label>프로필 사진</label></td>
+							<c:set var="friendNo" value="${friends.friendNo }" />
 							<td align="center"><label>${friends.userName}</label></td>
 							<td align="right"><label>알람 설정</label></td>
-							<td align="left"><select id="alarm">
-									<option selected="${friends.alarm}">
-									<option value="ON">ON</option>
-									<option value="OFF">OFF</option>
-							</select></td>
-							<td align="center"><button id="deleteBtn">친구 삭제</button>
+							<td align="left">
+								<select id="alarm" name="${friends.alarm }">
+									<%-- <option selected="selected" value="">${friends.alarm }</option> --%>
+									<% 
+										
+									%>
+									<option value="on" id="alarmOn">on</option>									
+									<option value="off" id="alarmoff">off</option>
+								</select>
+							</td>
+							<c:url value="/deleteFriend" var="deleteFriend"/>
+							<td align="center"><a href="${deleteFriend}?friendNo=${friends.friendNo}"><button>친구 삭제</button></a>
 							</td>
 						</tr>
 			</c:forEach>
@@ -76,4 +83,44 @@ select {
 		</table>
 	</div>
 </body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+
+	<c:url var="/updateAlarm" value="updateAlarm"/>
+	$("option").on("change", function(){
+		$.ajax({
+			type : "post",
+			url : "${updateAlarm}",
+			data : {
+				alarm : $("#alarm").val(),
+				friendNo : "${friendNo}"
+			},
+			success : function(res){
+				$("#alarm").val(res);
+			},
+			error : function(xhr, status, error){
+				alert("잘못된 접근 입니다");
+			}
+		});
+	});
+<%-- 	var friend = ${friends};
+	<c:url value="/deleteFriend" var="deleteFriend"/>
+	$("#deleteBtn").on("click",function(){
+		$.ajax({
+			type:"post",
+			url : "${deleteFriend}",
+			data : {
+				friendNo : $("#deleteBtn").val()
+			},
+			success : function(){
+				alert("삭제 되었습니다");
+				location.href = "<%=request.getContextPath()%>/friendList";
+				
+			},
+			error:function(xhr, status, error){
+				alert("잘못된 접근입니다");
+			}
+		});
+	}); --%>
+</script>
 </html>
