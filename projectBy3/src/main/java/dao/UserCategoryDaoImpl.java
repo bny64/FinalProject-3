@@ -23,7 +23,7 @@ public class UserCategoryDaoImpl implements UserCategoryDao{
 	@Override
 	public List<UserCategory> selectAllUserCategory() {
 		logger.trace("UserCategoryDaoImpl - selectAllUserCategory 동작");
-		String stmt = BOARD_NS + "selectAllUserCategory";
+		String stmt = BOARD_NS + "selectUserCategory";
 		return template.selectList(stmt);
 	}
 

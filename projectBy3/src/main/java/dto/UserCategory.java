@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 public class UserCategory {
 	int listNo;
 	int categoryNo;
-	int userNo;	
+	int userNo;
+	Category category;
 }
