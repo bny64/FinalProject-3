@@ -23,7 +23,7 @@ public class UserCategoryDaoImpl implements UserCategoryDao{
 	@Override
 	public List<UserCategory> selectAllUserCategory() {
 		logger.trace("UserCategoryDaoImpl - selectAllUserCategory 동작");
-		String stmt = BOARD_NS + "selectUserCategory";
+		String stmt = BOARD_NS + "selectAllUserCategory";
 		return template.selectList(stmt);
 	}
 
@@ -32,7 +32,17 @@ public class UserCategoryDaoImpl implements UserCategoryDao{
 		logger.trace("UserCategoryDaoImpl - selectAllUserCategory 동작");
 		String stmt = BOARD_NS + "selectUserCategory";
 		return null;
+	}
+
+	@Override
+	public List<UserCategory> selectUserCategory(int userNo) {
+		logger.trace("UserCategoryDaoImpl - selectUserCategory 동작");
+		String stmt = BOARD_NS + "selectUserCategory";
+		return template.selectList(stmt, userNo);
 	}	
+	
+	
+
 
 	
 
