@@ -24,6 +24,12 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 		logger.trace("UserCategoryServiceImpl - selectAllUserCategory() 동작");
 		return userCategoryDao.selectAllUserCategory();
 				
+	}
+
+	@Override
+	public List<UserCategory> selectUserCategory(int userNo) {
+		logger.trace("UserCategoryServiceImpl - selectUserCategory() 동작");
+		return userCategoryDao.selectUserCategory(userNo);
 	}	
 	
 

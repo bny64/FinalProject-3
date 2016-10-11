@@ -43,5 +43,10 @@ public class UserCategoryServiceTest {
 		List<UserCategory> userCategorys = dao.selectUserCategory(2);
 		logger.trace("userCategorys : {}", userCategorys);
 	}
+	@Test
+	public void selectUserCategoryServiceTest(){
+		List<UserCategory> userCategorys = service.selectUserCategory(2);
+		logger.trace("selectUserCategoryServiceTest userCategorys : {}", userCategorys);
+	}
 
 }
