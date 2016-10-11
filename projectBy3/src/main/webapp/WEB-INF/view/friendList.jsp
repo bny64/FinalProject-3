@@ -64,7 +64,7 @@ select {
 							<td align="center"><label>${friends.userName}</label></td>
 							<td align="right"><label>알람 설정</label></td>
 							<td align="left">
-								<select id="alarm" name="${friends.alarm }">
+								<select id="alarm" name="${friends.alarm }" >
 									<%-- <option selected="selected" value="">${friends.alarm }</option> --%>
 									<% 
 										
