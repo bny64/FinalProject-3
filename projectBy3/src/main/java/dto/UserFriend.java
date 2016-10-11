@@ -1,5 +1,8 @@
 package dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.stereotype.Repository;
 
 import lombok.AllArgsConstructor;
@@ -15,4 +18,6 @@ public class UserFriend {
 	String statue;
 	int userNo;
 	String alarm;
+	String userName;
+	private Set<UserFriend> usersSet; 
 }
