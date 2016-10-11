@@ -41,7 +41,6 @@
 	</section>
 	
 </body>
-<script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
 	var index = 1;
@@ -71,7 +70,7 @@
 					$right = $("#right");
 					$(res).each(function(idx,data){
 						<c:url value = "/detailBoard" var="detailBoard"/>
-						$newOne = "<a href='${detailBoard}?boardNo=" + data.boardNo
+						$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
 						 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
 					     		+"<h3>" + data.title + "</h3></a>";						
 			
@@ -150,7 +149,7 @@
 						$right = $("#right");
 						$(res).each(function(idx,data){
 							<c:url value = "/detailBoard" var="detailBoard"/>
-							$newOne = "<a href='${detailBoard}?boardNo=" + data.boardNo
+							$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
 							 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
 						     		+"<h3>" + data.title + "</h3></a>";						
 				

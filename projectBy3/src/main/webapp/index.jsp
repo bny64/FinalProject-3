@@ -77,8 +77,4 @@
 			<script src="<%= request.getContextPath() %>/js/skel.min.js"></script>
 			<script src="<%= request.getContextPath() %>/js/main.js"></script>
 	</body>
-	<script src="http://code.jquery.com/jquery.js"></script>
-	<script type="text/javascript">
-		
-	</script>
 </html>

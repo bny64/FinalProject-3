@@ -11,7 +11,7 @@ $(function() {
 			$body = $('body'),
 			$wrapper = $('#wrapper');
 
-	// MK - 모바일에서도 사이즈 맞추려는데 쓰는듯?	
+	// 민국 - 모바일에서도 사이즈 맞추려는데 쓰는듯?	
 	// Breakpoints. 
 		skel.breakpoints({
 			xlarge:	'(max-width: 1680px)',
@@ -28,7 +28,7 @@ $(function() {
 			$body.removeClass('is-loading');
 		});
 
-    // MK - popup창을 띄울때 사용 하는듯
+    // 민국 - popup창을 띄울때 사용
 	// Poptrox.
 		$window.on('load', function() {
 
@@ -47,5 +47,18 @@ $(function() {
 			});
 
 		});
-
+		
+		$('.thumbnails').poptrox({
+			onPopupClose: function() { $body.removeClass('is-covered'); },
+			onPopupOpen: function() { $body.addClass('is-covered'); },
+			baseZIndex: 10001,
+			useBodyOverflow: false,
+			usePopupEasyClose: true,
+			overlayColor: '#000000',
+			overlayOpacity: 0.75,
+			popupLoaderText: '',
+			fadeSpeed: 500,
+			usePopupDefaultStyling: false,
+			windowMargin: (skel.breakpoint('small').active ? 5 : 50)
+		});
 });
