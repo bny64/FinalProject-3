@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dto.User;
 import dto.UserFriend;
 import service.UserFriendService;
+import service.UserService;
 
 @Controller
 public class FriendController {
@@ -26,6 +29,9 @@ public class FriendController {
 	
 	@Autowired
 	UserFriendService service;
+	
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping(value="/friendList", method=RequestMethod.GET)
 	public String friendList(Model model, HttpSession session){
@@ -59,6 +65,47 @@ public class FriendController {
 		int userNo = (int) session.getAttribute("userNo");
 		List<UserFriend> friends = service.friendList(userNo);
 		model.addAttribute("friends", friends);
+		return "friendList";
+	}
+	
+	@RequestMapping(value="/initSearchFriend", method=RequestMethod.GET)
+	public String initSearchFriend(Model model, HttpSession session){
+		logger.trace("class : FriendController, method : initSearchFriend");
+		
+		List<User> users =  userService.AllUser();
+		model.addAttribute("users", users);
+		
+		return "searchFriend";
+	}
+	
+	@RequestMapping(value="/searchFriend", method=RequestMethod.POST)
+	public String searchFriend(Model model, HttpSession session, @RequestParam String nickname){
+		logger.trace("class : FriendController, method : searchFriend");
+		
+		if(nickname != null){
+			List<User> users = new ArrayList<>();
+			users.add(service.searchUserbyNickname(nickname));
+			model.addAttribute("users", users);
+		}
+		
+		return "searchFriend";
+	}
+	
+	@RequestMapping(value="/insertFriend", method=RequestMethod.GET)
+	public String insertFriend(HttpSession session, Model model, @RequestParam int userNo){
+		logger.trace("class : FriendController, method : insertFriend");
+		
+		// jsp에서 가져온 userNo -> friendNo
+		int friendNo = userNo;
+		
+		// insert를 요청한 userNo
+		int myUserNo = (int) session.getAttribute("userNo");
+		service.insertFriend(friendNo, myUserNo);
+		
+		// friendList로 보내기 위한 초기값.
+		List<UserFriend> friends = service.friendList(myUserNo);
+		model.addAttribute("friends", friends);
+		
 		return "friendList";
 	}
 }

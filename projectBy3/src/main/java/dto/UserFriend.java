@@ -19,5 +19,6 @@ public class UserFriend {
 	int userNo;
 	String alarm;
 	String userName;
+	String nickname;
 	private Set<UserFriend> usersSet; 
 }

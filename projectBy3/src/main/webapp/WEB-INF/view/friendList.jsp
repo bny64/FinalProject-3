@@ -17,16 +17,17 @@
 }
 #logo {
 	margin-top: 10%;
-	text-align: center;
-	/* border: solid 1px green; */
+	margin-left: 7%;
+	margin-bottom: 100px;
+	width: 83%;
 }
 
 label {
 	display: inline;
 }
 
-#logo>button {
-	margin-left: 70%;
+#logo > #topBtns {
+	float: right;
 }
 
 table {
@@ -45,25 +46,32 @@ table th {
 select {
 	color: silver;
 }
-[data-item="1"]{
-color:red;}
 </style>
 </head>
 <body>
 	<!-- Header -->
 	<div id="logo">
 		<label>로고</label>
-		<button>로그아웃</button>
+		<div id="topBtns">
+			<c:url value="/initSearchFriend" var="initSearchFriend"/>
+			<a href="initSearchFriend">
+				<button>친구 찾기</button>
+			</a>
+			<button>로그아웃</button>
+		</div>
 	</div>
 	<div>
 		<table>
 			<tr>
 				<th align="center">친구 목록</th>
+				<th align="center">이름</th>
+				<th align="center">닉네임</th>
 			</tr>
-			<c:forEach var="friends" items="${friends}">
+				<c:forEach var="friends" items="${friends}">
 						<tr>
 							<td align="center"><label>프로필 사진</label></td>
 							<td align="center"><label>${friends.userName}</label></td>
+							<td align="center"><label>${friends.nickname}</label></td>
 							<td align="right"><label>알람 설정</label></td>
 							<td align="left">
 								<select  id="alarm" data-item="${friends.friendNo }" name="${friends.alarm}" >
@@ -79,12 +87,12 @@ color:red;}
 							<c:url value="/deleteFriend" var="deleteFriend"/>
 							<td align="center">
 							<a href="${deleteFriend}?friendNo=${friends.friendNo}">
-							<button>친구 삭제</button>
-							<input type="hidden" data-item="${friends.friendNo }">
+								<button>친구 삭제</button>
+								<input type="hidden" data-item="${friends.friendNo }">
 							</a>
 							</td>
 						</tr>
-			</c:forEach>
+				</c:forEach>
 			<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
 			<%-- 		</c:forEach> --%>
 		</table>
@@ -92,7 +100,6 @@ color:red;}
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-
 	<c:url value="/updateAlarm" var="updateAlarm"/>
 	$(document).on("change", "#alarm" ,function(){
 			$.ajax({

@@ -13,6 +13,7 @@ import dao.UserDao;
 import dto.User;
 import exception.IdDuplicatedException;
 import exception.IdFailException;
+import exception.NickNameNotFoundException;
 import exception.NicknameDuplicatedException;
 import exception.SearchFailException;
 import exception.passFailException;
@@ -113,4 +114,16 @@ public class UserServiceImpl implements UserService {
 		
 		return user.getPassword();
 	}
+
+	@Override
+	public User searchByNickname(String nickname) {
+		User user = uDao.selectUserByNickname(nickname);
+		if(user == null){
+			logger.trace("없는 닉네임");
+			throw new NickNameNotFoundException();			
+		}
+		
+		return user;
+	}
+
 }

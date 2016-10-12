@@ -10,4 +10,5 @@ public interface UserService {
 	public int insertUser(User user);
 	public String searchId(String name,String email);
 	public String searchPw(String id,String name,String email);
+	public User searchByNickname(String nickname);
 }

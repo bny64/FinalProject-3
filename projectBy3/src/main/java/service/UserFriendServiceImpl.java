@@ -23,7 +23,7 @@ public class UserFriendServiceImpl implements UserFriendService {
 	UserFriendDao ufDao;
 	
 	@Autowired
-	UserDao uDao;
+	UserService userSerivce;
 	
 	@Override
 	public List<UserFriend> friendList(int userNo) {
@@ -53,7 +53,7 @@ public class UserFriendServiceImpl implements UserFriendService {
 	@Override
 	public User searchUserbyNickname(String nickname) {
 		logger.trace("UserFriendServiceImpl - searchUserbyNickname() 동작");
-		return uDao.selectUserByNickname(nickname);
+		return userSerivce.searchByNickname(nickname);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class UserFriendServiceImpl implements UserFriendService {
 		logger.trace("serachResult : {}", searchResult);
 		
 		if("Friend Not Found".equals(searchResult)){
-			UserFriend userFriend = new UserFriend(0,friendNo,"friend",userNo,"on","",null);
+			UserFriend userFriend = new UserFriend(0,friendNo,"friend",userNo,"on","","",null);
 			return ufDao.insertFriend(userFriend);
 		} else {
 			throw new FriendNotFoundException();			
