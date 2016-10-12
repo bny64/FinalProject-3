@@ -58,4 +58,11 @@ public class UserFriendServiceTest {
 		logger.trace("result : {}", result);
 		assertThat(result, is(1));
 	}
+	
+	@Test(expected=exception.FriendNotFoundException.class)
+	public void insertFriendTest(){
+		int result = service.insertFriend(2, 1);
+		logger.trace("result : {}", result);
+		assertThat(result, is(1));
+	}
 }

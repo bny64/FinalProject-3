@@ -49,4 +49,11 @@ public class UserFriendDaoImpl implements UserFriendDao {
 		return template.delete(stmt, friendNo);
 	}
 
+	@Override
+	public int insertFriend(UserFriend userFriend) {
+		logger.trace("UserFriendDaoImpl - insertFriend 동작");
+		String stmt = USERFRIEND_NS + "insertFriend";
+		return template.insert(stmt, userFriend);
+	}
+
 }

@@ -23,9 +23,7 @@ insert into BOARD_LOCATION VALUES(board_location_no_seq.nextval,36.115129,127.91
 insert into USER_CATEGORY VALUES(1,1,2);
 
 insert into user_friend values(friend_list_no_seq.nextval, 2, 'sleep', 2, 'on');
-
 insert into user_friend values(friend_list_no_seq.nextval, 3, 'work', 2, 'off');
-
 insert into user_friend values(friend_list_no_seq.nextval, 1, 'cycle', 2, 'off');
 
 

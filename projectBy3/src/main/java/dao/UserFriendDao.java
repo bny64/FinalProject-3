@@ -10,4 +10,5 @@ public interface UserFriendDao {
 	public int updateAlarm(Map<String , Object> friend);
 	public String selectAlarm(int friendNo);
 	public int deleteFriend(int friendNo);
+	public int insertFriend(UserFriend userFriend);
 }
