@@ -12,4 +12,6 @@ public interface UserDao {
 	public int insertUser(User user);
 	public User searchId(Map<String,Object> info);
 	public User searchPw(Map<String,Object> info);
+	public int deleteUser(int userNo);
+	public List<User> sselectAllUserByPaging(Map<String, Object> filter);
 }

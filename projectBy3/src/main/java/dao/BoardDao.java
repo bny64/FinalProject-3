@@ -15,4 +15,6 @@ public interface BoardDao {
 	public int updateBoard(Board board);
 	public int insertBoard(Board board);
 	public List<Board> selectMyCategoryBoardByPaging(Map<String, Object> filter);
+	public List<Board> searchByTitleContent(Map<String,Object> filter);
+	public List<Board> searchByTitleContentCategory(Map<String,Object> filter);
 }

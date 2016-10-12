@@ -68,4 +68,18 @@ public class UserDaoImpl implements UserDao {
 		String stmt = NAME_SPACE + "searchPw";
 		return template.selectOne(stmt,info);
 	}
+
+	@Override
+	public int deleteUser(int userNo) {
+		logger.trace("");
+		String stmt = NAME_SPACE + "deleteUser";		
+		return template.delete(stmt,userNo);
+	}
+
+	@Override
+	public List<User> sselectAllUserByPaging(Map<String, Object> filter) {
+		logger.trace("sselectAllUserByPaging");
+		String stmt = NAME_SPACE +"sselectAllUserByPaging";
+		return template.selectList(stmt,filter);
+	}
 }

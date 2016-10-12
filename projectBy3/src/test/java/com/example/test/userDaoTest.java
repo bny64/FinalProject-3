@@ -46,7 +46,7 @@ public class userDaoTest {
 		assertThat(user.getUserName(), is("kildong"));
 	}
 
-	//@Test
+	@Test
 	public void selectAllUserTest() {
 		// selectAllUser 테스트
 		List<User> users = uDao.selectAllUser();

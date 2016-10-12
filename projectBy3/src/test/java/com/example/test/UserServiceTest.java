@@ -56,7 +56,7 @@ public class UserServiceTest {
 		logger.trace("user : {}", user);
 	}
 	
-	//@Test
+	@Test
 	public void AllUserTest(){
 		//전체 회원 조회 테스트
 		List<User> users = service.AllUser();
@@ -125,6 +125,16 @@ public class UserServiceTest {
 		// searchPw 테스트
 		String str = service.searchPw("hon","kildong","eungoo1241@naver.com");
 		logger.trace("searchPw - hong : {}", str);
+	}
+	
+	
+	
+	
+	@Test
+	public void deleteUser() {	
+		
+		int str = service.deleteUser(4);
+		logger.trace("deleteUser: {}", str);
 	}
 	
 	

@@ -118,6 +118,6 @@ public class LoginController {
 		logger.trace("class : LoginController, method : searchPw");
 
 		return "searchPw";
-	}*/
+	}*/	
 
 }

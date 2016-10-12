@@ -110,7 +110,11 @@ public class BoardServiceTest {
 				
 		assertThat(result, is(1));
 	}
-	
+	@Test	
+	public void searchByTitleContent(){
+		List<Board> board = service.searchByTitleContent(1, "은구");
+		logger.trace("은구로 검색 한 board : {} ",board);
+	}
 	
 	
 }

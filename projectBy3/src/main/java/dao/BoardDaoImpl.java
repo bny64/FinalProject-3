@@ -83,5 +83,19 @@ public class BoardDaoImpl implements BoardDao{
 		return template.selectList(stmt, filter);
 	}
 
+	@Override
+	public List<Board> searchByTitleContent(Map<String, Object> filter) {
+		logger.trace("BoardDaoImpl - searchByTitleContent 동작");
+		String stmt = BOARD_NS + "searchByTitleContent";
+		return template.selectList(stmt, filter);
+	}
+
+	@Override
+	public List<Board> searchByTitleContentCategory(Map<String, Object> filter) {
+		logger.trace("BoardDaoImpl - searchByTitleContentCategory 동작");
+		String stmt = BOARD_NS + "searchByTitleContentCategory";
+		return template.selectList(stmt, filter);
+	}
+
 	
 }

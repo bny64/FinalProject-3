@@ -68,7 +68,8 @@
 					</section>
 				<!-- Footer -->
 					<footer id="footer">
-						<p>&copy; Untitled. All rights reserved. Design: <a href="http://templated.co">TEMPLATED</a>. </p>
+						<c:url value="/admin" var="admin"/>
+						<p><a href = "${admin}">&copy;</a> Untitled. All rights reserved. Design: <a href="http://templated.co">TEMPLATED</a>. </p>
 					</footer>
 			</div>
 		<!-- Scripts -->

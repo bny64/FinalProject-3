@@ -113,4 +113,19 @@ public class UserServiceImpl implements UserService {
 		
 		return user.getPassword();
 	}
+
+	@Override
+	public int deleteUser(int userNo) {
+		logger.trace("ServiceImpl - deleteUser");
+		return uDao.deleteUser(userNo);
+	}
+
+	@Override
+	public List<User> sselectAllUserByPaging(int pageNo) {
+		logger.trace("ServiceImpl - sselectAllUserByPaging");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("from", 50*pageNo-49);
+		filter.put("to", 50*pageNo);
+		return uDao.sselectAllUserByPaging(filter);
+	}
 }

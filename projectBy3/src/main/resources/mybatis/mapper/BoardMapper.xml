@@ -61,6 +61,32 @@
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
 	</select>
 	
+	<select id="searchByTitleContent" resultMap="boardBase" >
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%') sub 
+			)		
+		where rnum &gt;= #{from} and rnum &lt;= #{to}
+		
+	</select>
+	
+	
+	<select id="searchByTitleContentCategory" resultMap="boardBase" >
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%' and category_no = #{categoryNo}) sub 
+			)		
+		where rnum &gt;= #{from} and rnum &lt;= #{to}
+		
+	</select>
+		
+	
+	<select id ="test">
+	select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%'
+	</select>
+	
+	
+	
 	
 	
 	<resultMap type="board" id="boardBase">

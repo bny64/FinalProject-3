@@ -88,6 +88,24 @@ public class MainController {
 	}
 	
 	
+	@RequestMapping(value="/searchBoard", method=RequestMethod.GET)
+	public @ResponseBody List<Board> searchBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam String searchStr){
+		logger.trace("class : MainController, method : selectMyBoard");		
+		List<Board> boards = service.searchByTitleContent(index, searchStr);		
+		return boards;
+	}
+	@RequestMapping(value="/searchCategoryBoard", method=RequestMethod.GET)
+	public @ResponseBody List<Board> searchCategoryBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam Integer categoryNo,@RequestParam String searchStr){
+		logger.trace("class : MainController, method : selectMyBoard");		
+		List<Board> boards = service.searchByTitleContentCategory(index,categoryNo,searchStr);		
+		return boards;
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value="/detailBoard", method=RequestMethod.GET)
 	public String detailBoard(Model model,@RequestParam Integer boardNo,HttpSession session){
 		logger.trace("class : MainController, method : detailBoard");		
@@ -107,6 +125,9 @@ public class MainController {
 			return "detailBoard";
 		}		
 	}
+	
+	
+	
 	@RequestMapping(value="/mylocation")
 	public String userLocation(Model model,HttpSession session){
 		logger.trace("class : MainController, method : userLocation");
