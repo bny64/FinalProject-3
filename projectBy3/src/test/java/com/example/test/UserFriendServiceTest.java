@@ -35,11 +35,11 @@ public class UserFriendServiceTest {
 		assertThat(friends.size(), is(1));
 	}
 
-	//@Test
+	@Test
 	public void updateAlarmTest(){
 		int result;
 		Map<String, Object> friend = new HashMap<>();
-		friend.put("alarm", "on");
+		friend.put("alarm", "off");
 		friend.put("friendNo", 1);
 		result = service.updateAlarm(friend);
 		logger.trace("result : {}", result);
@@ -52,7 +52,7 @@ public class UserFriendServiceTest {
 		assertThat(result.toString(), is("on"));
 	}
 	
-	@Test
+	//@Test
 	public void deleteFriendTest(){
 		int result = service.deleteFriend(1);
 		logger.trace("result : {}", result);
