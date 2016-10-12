@@ -128,4 +128,15 @@ public class UserServiceImpl implements UserService {
 		filter.put("to", 50*pageNo);
 		return uDao.sselectAllUserByPaging(filter);
 	}
+	@Override
+	public User searchByNickname(String nickname) {
+		User user = uDao.selectUserByNickname(nickname);
+		if(user == null){
+			logger.trace("없는 닉네임");
+			throw new NickNameNotFoundException();			
+		}
+		
+		return user;
+	}
+	
 }

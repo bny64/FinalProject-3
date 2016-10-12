@@ -64,6 +64,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/searchIdPage").setViewName("searchId");
 		registry.addViewController("/searchPassPage").setViewName("searchPass");
+		registry.addViewController("/setupPage").setViewName("setup");
 	}
 	
 	@Bean

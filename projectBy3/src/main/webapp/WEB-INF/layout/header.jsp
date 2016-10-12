@@ -56,7 +56,7 @@
 	<div id="loginView">
 		<div>
 			<button>전체 알림</button>
-			<c:url value="/setup" var="setup"/>
+			<c:url value="/setupPage" var="setup"/>
 			<a href="${setup }"><button>설정</button></a>
 			<c:url value="/logout" var="logout"/>
 			<a href="${logout }"><button>로그아웃</button></a>

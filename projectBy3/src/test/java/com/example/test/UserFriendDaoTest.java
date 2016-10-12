@@ -38,32 +38,40 @@ public class UserFriendDaoTest {
 	@Autowired
 	UserFriendDao ufDao;
 	
-	//@Test
+	@Test
 	public void friendListTest(){
 		List<UserFriend> friends = ufDao.friendList(2);
 		logger.trace("친구 목록 : {}", friends);
 //		assertThat(friends.size(), is(1));
 	}
 	
-	//@Test
+	@Test
 	public void updateAlarmTest(){
 		int result;
 		Map<String, Object> friend = new HashMap<>();
-		friend.put("alarm", "off");
+		friend.put("alarm", "on");
 		friend.put("friendNo", 1);
 		result = ufDao.updateAlarm(friend);
 		logger.trace("result : {}", result);
 	}
-	//@Test
+	@Test
 	public void selectAlarmTest(){
 		String alarm = ufDao.selectAlarm(1);
 		logger.trace("result : {}", alarm);
 	}
 	
-	//@Test
+	@Test
 	@Transactional
 	public void deleteFriendTest(){
 		int result = ufDao.deleteFriend(1);
 		logger.trace("result : {}", result);
+	}
+	
+	@Test
+	public void insertFriendTest(){
+		UserFriend userFriend = new UserFriend(0,3,"unknown",1,"on","","",null);
+		int result = ufDao.insertFriend(userFriend);
+		logger.trace("result : {}", result);
+		assertThat(result, is(1));
 	}
 }

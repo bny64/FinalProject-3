@@ -12,4 +12,6 @@ public interface UserService {
 	public String searchPw(String id,String name,String email);
 	public int deleteUser(int userNo);
 	public List<User> sselectAllUserByPaging(int pageNo);
+	public User searchByNickname(String nickname);
+
 }

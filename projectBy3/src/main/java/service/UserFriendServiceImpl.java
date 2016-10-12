@@ -8,8 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dao.UserDao;
 import dao.UserFriendDao;
+import dto.User;
 import dto.UserFriend;
+import exception.FriendNotFoundException;
 
 @Service
 public class UserFriendServiceImpl implements UserFriendService {
@@ -18,6 +21,9 @@ public class UserFriendServiceImpl implements UserFriendService {
 	
 	@Autowired
 	UserFriendDao ufDao;
+	
+	@Autowired
+	UserService userSerivce;
 	
 	@Override
 	public List<UserFriend> friendList(int userNo) {
@@ -42,6 +48,41 @@ public class UserFriendServiceImpl implements UserFriendService {
 	public int deleteFriend(int friendNo) {
 		logger.trace("UserFriendServiceImpl - deleteFriend() 동작");
 		return ufDao.deleteFriend(friendNo);
+	}
+	
+	@Override
+	public User searchUserbyNickname(String nickname) {
+		logger.trace("UserFriendServiceImpl - searchUserbyNickname() 동작");
+		return userSerivce.searchByNickname(nickname);
+	}
+
+	@Override
+	public int insertFriend(int friendNo, int userNo) {
+		logger.trace("UserFriendServiceImpl - insertFriend() 동작");
+		List<UserFriend> friends = friendList(userNo);
+		
+		// 추가하려는 친구가 이미 있는 친구 인지 검색
+		String searchResult = searchFriend(friendNo, friends);
+		logger.trace("serachResult : {}", searchResult);
+		
+		if("Friend Not Found".equals(searchResult)){
+			UserFriend userFriend = new UserFriend(0,friendNo,"friend",userNo,"on","","",null);
+			return ufDao.insertFriend(userFriend);
+		} else {
+			throw new FriendNotFoundException();			
+		}
+	}
+	
+	// 민국 - 추가 할 유저의 친구 목록과 추가 하려는 친구번호.
+	private String searchFriend(int friendNo, List<UserFriend> friends){
+		logger.trace("searchFriend(), friendNo : {}, friends : {}", friends);
+		for(int i = 0 ; i < friends.size(); i++){
+			if(friends.get(i).getFriendNo() == friendNo){
+				logger.trace("searchFriend(), getFriendNo : {} , friendNo : {}", friends.get(i).getFriendNo(), friendNo);
+				return "Friend Found";
+			}
+		}
+		return "Friend Not Found";
 	}
 
 }
