@@ -40,11 +40,15 @@ public class FriendController {
 	@RequestMapping(value="/updateAlarm", method=RequestMethod.POST)
 	public @ResponseBody String updateAlarm(@RequestParam String alarm, 
 																		  @RequestParam int friendNo){
+		int result;
 		logger.trace("class : FriendController, method : updateAlarm");
+		logger.trace("alarm : {}",service.selectAlarm(friendNo));
+		logger.trace("friendNo : {}", friendNo);
 		Map<String, Object> friend = new HashMap<>();
 		friend.put("alarm", alarm);
 		friend.put("friendNo", friendNo);
-		service.updateAlarm(friend);
+		result = service.updateAlarm(friend);
+		logger.trace("alarm : {}", service.selectAlarm(friendNo));
 		return service.selectAlarm(friendNo);
 	}
 	

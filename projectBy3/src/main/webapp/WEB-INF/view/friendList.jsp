@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="dto.*, java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,23 +61,28 @@ select {
 			<c:forEach var="friends" items="${friends}">
 						<tr>
 							<td align="center"><label>프로필 사진</label></td>
-							<c:set var="friendNo" value="${friends.friendNo }" />
 							<td align="center"><label>${friends.userName}</label></td>
 							<td align="right"><label>알람 설정</label></td>
 							<td align="left">
-								<select id="alarm" name="${friends.alarm }" >
+								<select id="alarm" name="${friends.alarm}" >
 									<%-- <option selected="selected" value="">${friends.alarm }</option> --%>
-									<% 
-										
-									%>
-									<option value="on" id="alarmOn">on</option>									
-									<option value="off" id="alarmoff">off</option>
+									<option
+									<c:if test='${friends.alarm == "on"}'>selected="selected"</c:if>
+									value="on">on</option>
+									<option
+									<c:if test='${friends.alarm == "off"}'>selected="selected"</c:if>
+									value="off">off</option>
 								</select>
 							</td>
 							<c:url value="/deleteFriend" var="deleteFriend"/>
-							<td align="center"><a href="${deleteFriend}?friendNo=${friends.friendNo}"><button>친구 삭제</button></a>
+							<td align="center">
+							<a href="${deleteFriend}?friendNo=${friends.friendNo}">
+							<button>친구 삭제</button>
+							<input type="hidden" id="friendNo" value="${friends.friendNo }">
+							</a>
 							</td>
 						</tr>
+			<c:set var="No" value="${friends.friendNo }" scope="request"></c:set>
 			</c:forEach>
 			<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
 			<%-- 		</c:forEach> --%>
@@ -85,21 +91,20 @@ select {
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-
-	<c:url var="/updateAlarm" value="updateAlarm"/>
-	$("option").on("change", function(){
+	<c:url value="/updateAlarm" var="updateAlarm"/>
+	$(document).on("change", "#alarm" ,function(){
 		$.ajax({
 			type : "post",
 			url : "${updateAlarm}",
 			data : {
 				alarm : $("#alarm").val(),
-				friendNo : "${friendNo}"
+				friendNo : $("#friendNo").val()
 			},
 			success : function(res){
 				$("#alarm").val(res);
 			},
-			error : function(xhr, status, error){
-				alert("잘못된 접근 입니다");
+			error:function(xhr, status, error){
+				alert("잘못된 접근입니다");
 			}
 		});
 	});

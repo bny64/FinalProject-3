@@ -45,11 +45,11 @@ public class UserFriendDaoTest {
 //		assertThat(friends.size(), is(1));
 	}
 	
-	//@Test
+	@Test
 	public void updateAlarmTest(){
 		int result;
 		Map<String, Object> friend = new HashMap<>();
-		friend.put("alarm", "off");
+		friend.put("alarm", "on");
 		friend.put("friendNo", 1);
 		result = ufDao.updateAlarm(friend);
 		logger.trace("result : {}", result);
