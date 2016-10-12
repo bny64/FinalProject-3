@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="dto.*, java.util.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE htm>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,6 +45,8 @@ table th {
 select {
 	color: silver;
 }
+[data-item="1"]{
+color:red;}
 </style>
 </head>
 <body>
@@ -64,7 +66,7 @@ select {
 							<td align="center"><label>${friends.userName}</label></td>
 							<td align="right"><label>알람 설정</label></td>
 							<td align="left">
-								<select id="alarm" name="${friends.alarm}" >
+								<select  id="alarm" data-item="${friends.friendNo }" name="${friends.alarm}" >
 									<%-- <option selected="selected" value="">${friends.alarm }</option> --%>
 									<option
 									<c:if test='${friends.alarm == "on"}'>selected="selected"</c:if>
@@ -78,11 +80,10 @@ select {
 							<td align="center">
 							<a href="${deleteFriend}?friendNo=${friends.friendNo}">
 							<button>친구 삭제</button>
-							<input type="hidden" id="friendNo" value="${friends.friendNo }">
+							<input type="hidden" data-item="${friends.friendNo }">
 							</a>
 							</td>
 						</tr>
-			<c:set var="No" value="${friends.friendNo }" scope="request"></c:set>
 			</c:forEach>
 			<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
 			<%-- 		</c:forEach> --%>
@@ -91,22 +92,25 @@ select {
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+
 	<c:url value="/updateAlarm" var="updateAlarm"/>
 	$(document).on("change", "#alarm" ,function(){
-		$.ajax({
+			$.ajax({
 			type : "post",
 			url : "${updateAlarm}",
 			data : {
-				alarm : $("#alarm").val(),
-				friendNo : $("#friendNo").val()
+				alarm : $(this).val(),
+				friendNo : $(this).attr("data-item")
 			},
 			success : function(res){
-				$("#alarm").val(res);
+				$(this).val(res);
 			},
 			error:function(xhr, status, error){
 				alert("잘못된 접근입니다");
 			}
-		});
+		});  
+/* 		console.log($(this).attr("data-item"));
+		console.log($(this).val()); */
 	});
 <%-- 	var friend = ${friends};
 	<c:url value="/deleteFriend" var="deleteFriend"/>
