@@ -48,7 +48,7 @@
 	var loadData = true;
 	var searchMode = false;
 	
-	window.onload = function() { loadAllBoard(); };	
+	window.onload = function() { loadAllCategoryBoard(); };	
 	
 	
 	$(window).scroll(function(){
@@ -57,9 +57,9 @@
 			console.log(index);
 			if(loadData){
 				if(!searchMode){
-					loadAllBoard();
+					loadAllCategoryBoard();
 				}else{
-					search();
+					searchCategoryBoard();
 				}					
 			}else{
 					console.log("데이터가 끝입니다");
@@ -72,14 +72,14 @@
 		console.log("다운");
 		if(e.keyCode == 13){
 			searchMode = true;
-			claer();
-			search();
+			claerCategoryBoard();
+			searchCategoryBoard();
 			}
 	});
 	
 	
 	
-	function search(){
+	function searchCategoryBoard(){
 		<c:url value = "/searchCategoryBoard" var="searchCategoryBoard"/>
 		console.log("로드 데이터");
 		$.ajax({
@@ -126,7 +126,7 @@
 		}
 	
 	
-	function claer(){
+	function claerCategoryBoard(){
 		index = 1;
 		$left = $("#left");
 		$center = $("#center");
@@ -137,7 +137,7 @@
 	}
 				
 				
-	function loadAllBoard(){
+	function loadAllCategoryBoard(){
 		<c:url value = "/categoryBoard" var="categoryBoard"/>
 		console.log("로드 데이터");
 		$.ajax({

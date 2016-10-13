@@ -41,6 +41,8 @@
 	</section>
 	
 </body>
+
+
 <script type="text/javascript">
 
 	var index = 1;
@@ -54,8 +56,8 @@
 		console.log("다운");
 		if(e.keyCode == 13){
 			searchMode = true;
-			clear();
-			search();
+			clearBoard();
+			searchBoard();
 		 }
 	});		 
 	 
@@ -68,7 +70,7 @@
 					if(!searchMode){
 						loadAllBoard();
 					}else{
-						search();
+						searchBoard();
 					}
 					
 				}else{
@@ -128,9 +130,9 @@
 	} 
 
 	// 전체글 보기
-	$("#btnGetAllBoard").on("click", function(){ clear(); loadAllBoard(); loadData=true;}); 
+	$("#btnGetAllBoard").on("click", function(){ clearBoard(); loadAllBoard(); loadData=true;}); 
 	// 내글보기
-	$("#btnGetMyBoard").on("click", function(){ clear(); loadMyBoard(); }); 
+	$("#btnGetMyBoard").on("click", function(){ clearBoard(); loadMyBoard(); }); 
 	
 	 function loadMyBoard(){	
 			<c:url value = "/selectMyBoard" var="selectMyBoard"/>
@@ -185,7 +187,7 @@
 	
 	 
 	 
-	 function search(){
+	 function searchBoard(){
 		 <c:url value = "/searchBoard" var="searchBoard"/>
 				console.log("로드 데이터");
 					$.ajax({
@@ -237,7 +239,7 @@
 	 
 	 
 	 
-		function clear(){
+		function clearBoard(){
 			index = 1;
 			$left = $("#left");
 			$center = $("#center");
@@ -251,8 +253,6 @@
 	 
 
 </script>
-
-
 
 
 
