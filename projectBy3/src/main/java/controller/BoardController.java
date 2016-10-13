@@ -49,12 +49,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/deleteBoard", method=RequestMethod.GET)
-	public String deleteBoard(HttpSession session){
+	public String deleteBoard(HttpSession session, @RequestParam int boardNo){
 		int result;
 		logger.trace("class : BoardController, method : deleteBoard");
-		Board board = (Board) session.getAttribute("myBoard");
-		logger.trace("myBoard : {}", board);
-		result = service.deleteBoardByBoardNo(board.getBoardNo());
+		//Board board = (Board) session.getAttribute("myBoard");
+		//logger.trace("myBoard : {}", board);
+		//result = service.deleteBoardByBoardNo(board.getBoardNo());
+		result = service.deleteBoardByBoardNo(boardNo);
 		logger.trace("삭제 결과 : {}", result);
 		return "mainBoard";
 	}

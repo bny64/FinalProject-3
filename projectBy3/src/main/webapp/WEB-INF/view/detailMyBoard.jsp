@@ -47,14 +47,16 @@ body {
 
 #bottom > a{
 	border-bottom: none;
+	position: relative;
+	top : 13px;
 }
 
 #bottom > a img{
-	margin-right: 20px;
+	margin-right: 100px;
 }
 
 #bottom > button{
-	margin-right: 20px;
+	margin-right: 100px;
 }
 
 table tbody tr {
@@ -112,8 +114,10 @@ table{
 				<!-- 하단 버튼 -->
 			<div id="bottom">
 				<button>수정</button>
+				<!-- 삭제 버튼(이미지 형식) -->
 				<c:url value="/deleteBoard" var="deleteBoard" /> 
-				<a href="${deleteBoard }?=${board.boardNo}"><img src="<%=request.getContextPath()%>/img/button/delete.png"></a>
+				<a href="${deleteBoard }?boardNo=${board.boardNo}"><img src="<%=request.getContextPath()%>/img/button/delete.png"></a>
+				<!-- 닫기 버튼(이미지 형식) -->
 				<c:url value="/returnMainBoard" var="returnMainBoard"></c:url>
 				<a href="${returnMainBoard }"><img src="<%=request.getContextPath()%>/img/button/close.png"></a>
 			</div>

@@ -53,6 +53,10 @@ select {
 	<div id="logo">
 		<label>로고</label>
 		<div id="topBtns">
+			<c:url value="/returnMainBoard" var="returnMainBoard"/>
+			<a href="returnMainBoard">
+			 	<button>메인 메뉴</button>
+			</a>
 			<c:url value="/initSearchFriend" var="initSearchFriend"/>
 			<a href="initSearchFriend">
 				<button>친구 찾기</button>

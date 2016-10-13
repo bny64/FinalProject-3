@@ -54,7 +54,7 @@
 		console.log("다운");
 		if(e.keyCode == 13){
 			searchMode = true;
-			claer();
+			clear();
 			search();
 		 }
 	});		 
@@ -126,8 +126,11 @@
 			});
 
 	} 
-	 
-	 
+
+	// 전체글 보기
+	$("#btnGetAllBoard").on("click", function(){ clear(); loadAllBoard(); loadData=true;}); 
+	// 내글보기
+	$("#btnGetMyBoard").on("click", function(){ clear(); loadMyBoard(); }); 
 	
 	 function loadMyBoard(){	
 			<c:url value = "/selectMyBoard" var="selectMyBoard"/>
@@ -170,7 +173,7 @@
 					});
 					},
 					error:function(request,status,error){
-					    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+					    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
 				});
 
 		}
@@ -234,7 +237,7 @@
 	 
 	 
 	 
-		function claer(){
+		function clear(){
 			index = 1;
 			$left = $("#left");
 			$center = $("#center");

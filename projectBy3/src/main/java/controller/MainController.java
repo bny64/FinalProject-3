@@ -54,8 +54,6 @@ public class MainController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 	}
 	
-	//1. 게시물 불러오기 a.jax 처리
-	//3. 글 검색
 	@RequestMapping(value="getAllBoards", method=RequestMethod.GET)
 	public @ResponseBody List<Board> getAllBoards(Model model){
 		logger.trace("class : MainController, method : getBoards");
@@ -82,7 +80,9 @@ public class MainController {
 	public @ResponseBody List<Board> selectMyBoard(Model model,HttpSession session,@RequestParam Integer index){
 		logger.trace("class : MainController, method : selectMyBoard");
 		int userNo =  (int) session.getAttribute("userNo");
-		List<Board> boards = service.selectMyBoardByPaging(userNo,index);		
+		logger.trace("userNo : {}, index : {}", userNo, index);
+		List<Board> boards = service.selectMyBoardByPaging(userNo,index);
+		logger.trace("boards: {}", boards);
 		//List<Board> boards = service.selectMyBoard(userNo);
 		return boards;
 	}
@@ -90,13 +90,13 @@ public class MainController {
 	
 	@RequestMapping(value="/searchBoard", method=RequestMethod.GET)
 	public @ResponseBody List<Board> searchBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam String searchStr){
-		logger.trace("class : MainController, method : selectMyBoard");		
+		logger.trace("class : MainController, method : searchBoard");		
 		List<Board> boards = service.searchByTitleContent(index, searchStr);		
 		return boards;
 	}
 	@RequestMapping(value="/searchCategoryBoard", method=RequestMethod.GET)
 	public @ResponseBody List<Board> searchCategoryBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam Integer categoryNo,@RequestParam String searchStr){
-		logger.trace("class : MainController, method : selectMyBoard");		
+		logger.trace("class : MainController, method : searchCategoryBoard");		
 		List<Board> boards = service.searchByTitleContentCategory(index,categoryNo,searchStr);		
 		return boards;
 	}

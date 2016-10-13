@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -70,7 +71,8 @@
 			</div>
 			<!-- 하단 버튼 -->
 			<div id="bottom">	
-				<button>닫기</button>
+				<c:url value="/returnMainBoard" var="returnMainBoard"></c:url>
+				<a href="${returnMainBoard }"><img src="<%=request.getContextPath()%>/img/button/close.png"></a>
 			</div>	
 		</div>
 	</div>
