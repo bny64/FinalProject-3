@@ -38,4 +38,11 @@
 		</c:forEach>	
 	</section>
 </body>
+<script>
+	//전체글 보기
+	$("#btnGetAllBoard").on("click", function(){
+		<c:url value="/returnMainBoard" var="returnMainBoard"/>
+		document.location.href="returnMainBoard";
+	});
+</script>
 </html>
