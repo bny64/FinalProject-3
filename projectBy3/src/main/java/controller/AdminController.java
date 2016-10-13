@@ -40,7 +40,10 @@ public class AdminController {
 		return "adminLogin";
 	}
 	
-	
+	@RequestMapping(value="/adminMain")
+	public String admain(){
+		return "adminMain";
+	}
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public String adminLogin(Model model, HttpSession session, @RequestParam String id, @RequestParam String password) {
 		logger.trace("class : LoginController, method : login ////// id : {}, password : {}",id, password);

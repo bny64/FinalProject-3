@@ -42,8 +42,8 @@
 	<div id = "heade">	
 		<div id="headers">		
 			
-			<c:url value="/friendList" var="friendList"/>
-			<a href="#"><button>메인 페이지</button></a>	
+			<c:url value="/adminMain" var="adminMain"/>
+			<a href="${adminMain }"><button>메인 페이지</button></a>	
 			
 			<c:url value="/adminMemberInit" var="adminMemberInit"/>
 			<a href="${adminMemberInit }"><button>회원 관리</button></a>			

@@ -125,8 +125,8 @@ public class UserServiceImpl implements UserService {
 	public List<User> selectAllUserByPaging(int pageNo) {
 		logger.trace("ServiceImpl - sselectAllUserByPaging");
 		Map<String, Object> filter = new HashMap<>();
-		filter.put("from", 50*pageNo-49);
-		filter.put("to", 50*pageNo);
+		filter.put("from", 20*pageNo-19);
+		filter.put("to", 20*pageNo);
 		return uDao.selectAllUserByPaging(filter);
 	}
 	@Override
