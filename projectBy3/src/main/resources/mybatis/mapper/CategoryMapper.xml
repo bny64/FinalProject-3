@@ -7,12 +7,13 @@
 	<select id="selectAllCategory" resultMap="categoryBase">
 		select *
 		from category
+		order by CATEGORY_NO
 	</select>
 	
 	<select id="selectAllCategoryByPaging" resultMap="categoryBase">
 		select * 
 		from (select rownum rnum, sub.*
-				from (select * from category) sub 
+				from (select * from category order by CATEGORY_NO) sub 
 			)
 		<!-- where rnum between #{from} and #{to}-->
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
@@ -21,7 +22,7 @@
 	<select id="searchByCategoryName" resultMap="categoryBase" >
 		select * 
 		from (select rownum rnum, sub.*
-				from (select * from category where category_name like '%'||#{categoryName}||'%') sub 
+				from (select * from category where category_name like '%'||#{categoryName}||'%' order by CATEGORY_NO) sub 
 			)		
 		where rnum &gt;= #{from} and rnum &lt;= #{to}
 		

@@ -12,7 +12,7 @@
 	<select id="selectAllBoardByPaging" resultMap="boardBase">
 		select * 
 		from (select rownum rnum, sub.*
-				from (select * from board) sub 
+				from (select * from board order by WRITED_DATE DESC) sub 
 			)
 		<!-- where rnum between #{from} and #{to}-->
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
@@ -22,16 +22,18 @@
 		select *
 		from board
 		where board_no=#{boardNo}
+		order by WRITED_DATE DESC
 	</select>
 	<select id="selectMyBoard" resultMap="boardBase" parameterType="int">
 		select *
 		from board
 		where user_no=#{userNo}
+		order by WRITED_DATE DESC
 	</select>
 	<select id="selectMyBoardByPaging" resultMap="boardBase">
 		select * 
 		from (select rownum rnum, sub.*
-				from (select * from board where user_no=#{userNo}) sub 
+				from (select * from board where user_no=#{userNo} order by WRITED_DATE DESC) sub 
 			)
 		<!-- where rnum between #{from} and #{to}-->
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
@@ -55,7 +57,7 @@
 	<select id="selectMyCategoryBoardByPaging" resultMap="boardBase">
 		select * 
 		from (select rownum rnum, sub.*
-				from (select * from board where user_no=#{userNo} and category_no = #{categoryNo}) sub 
+				from (select * from board where user_no=#{userNo} and category_no = #{categoryNo} order by WRITED_DATE DESC) sub 
 			)
 		<!-- where rnum between #{from} and #{to}-->
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
@@ -64,7 +66,7 @@
 	<select id="searchByTitleContent" resultMap="boardBase" >
 		select * 
 		from (select rownum rnum, sub.*
-				from (select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%') sub 
+				from (select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%' order by WRITED_DATE DESC) sub 
 			)		
 		where rnum &gt;= #{from} and rnum &lt;= #{to}
 		
@@ -74,7 +76,7 @@
 	<select id="searchByTitleContentCategory" resultMap="boardBase" >
 		select * 
 		from (select rownum rnum, sub.*
-				from (select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%' and category_no = #{categoryNo}) sub 
+				from (select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%' and category_no = #{categoryNo} order by WRITED_DATE DESC) sub 
 			)		
 		where rnum &gt;= #{from} and rnum &lt;= #{to}
 		
