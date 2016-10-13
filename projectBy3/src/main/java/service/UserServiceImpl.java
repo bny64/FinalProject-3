@@ -13,6 +13,7 @@ import dao.UserDao;
 import dto.User;
 import exception.IdDuplicatedException;
 import exception.IdFailException;
+import exception.NickNameNotFoundException;
 import exception.NicknameDuplicatedException;
 import exception.SearchFailException;
 import exception.passFailException;
