@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -23,6 +24,28 @@ public class CategoryDaoImpl implements CategoryDao{
 		logger.trace("CategoryDaoImpl - selectAllCategory 동작");
 		String stmt = BOARD_NS + "selectAllCategory";
 		return template.selectList(stmt);
+	}
+
+	@Override
+	public List<Category> selectAllCategoryByPaging(Map<String, Object> filter) {
+		logger.trace("CategoryDaoImpl - selectAllCategoryByPaging 동작");
+		String stmt = BOARD_NS + "selectAllCategoryByPaging";
+		return template.selectList(stmt,filter);
+
+	}
+
+	@Override
+	public List<Category> searchByCategoryName(Map<String, Object> filter) {
+		logger.trace("CategoryDaoImpl - searchByCategoryName 동작");
+		String stmt = BOARD_NS + "searchByCategoryName";
+		return template.selectList(stmt,filter);
+	}
+
+	@Override
+	public int insertCategory(Category category) {
+		logger.trace("CategoryDaoImpl - insertCategory 동작");
+		String stmt = BOARD_NS + "insertCategory";
+		return template.insert(stmt, category);
 	}
 
 }

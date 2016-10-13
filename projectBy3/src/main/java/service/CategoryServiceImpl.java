@@ -1,6 +1,8 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,35 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<Category> selectAllCategory() {
 		logger.trace("CategoryServiceImpl - selectAllCategory() 동작");
 		return categoryDao.selectAllCategory();
+	}
+
+	@Override
+	public List<Category> selectAllCategoryByPaging(int pageNo) {
+		logger.trace("CategoryServiceImpl - selectAllCategoryByPaging() 동작");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("from", 20*pageNo-19);
+		filter.put("to", 20*pageNo);	
+		
+		return categoryDao.selectAllCategoryByPaging(filter);
+	}
+
+	@Override
+	public List<Category> searchByCategoryName(int pageNo, String searchStr) {
+		logger.trace("CategoryServiceImpl - searchByCategoryName() 동작");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("from", 20*pageNo-19);
+		filter.put("to", 20*pageNo);
+		filter.put("categoryName", searchStr);
+		
+		return categoryDao.searchByCategoryName(filter);
+	}
+
+	@Override
+	public int insertCategory(String categoryName) {
+		logger.trace("CategoryServiceImpl - insertCategory() 동작");
+		Category category = new Category();
+		category.setCategoryName(categoryName);		
+		return categoryDao.insertCategory(category);
 	}
 
 }

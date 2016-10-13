@@ -48,8 +48,8 @@
 			<c:url value="/adminMemberInit" var="adminMemberInit"/>
 			<a href="${adminMemberInit }"><button>회원 관리</button></a>			
 			
-			<c:url value="/mylocation" var="mylocation"/>
-			<a href="${mylocation }"><button>카테고리 관리</button></a>
+			<c:url value="/adminCategory" var="adminCategory"/>
+			<a href="${adminCategory }"><button>카테고리 관리</button></a>
 			
 			<c:url value="/mylocation" var="mylocation"/>
 			<a href="${mylocation }"><button>로그 아웃</button></a>		

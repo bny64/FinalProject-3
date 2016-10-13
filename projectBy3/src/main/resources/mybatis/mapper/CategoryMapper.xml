@@ -9,6 +9,31 @@
 		from category
 	</select>
 	
+	<select id="selectAllCategoryByPaging" resultMap="categoryBase">
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from category) sub 
+			)
+		<!-- where rnum between #{from} and #{to}-->
+		where rnum &gt;= #{from} and rnum &lt;= #{to} 
+	</select>
+	
+	<select id="searchByCategoryName" resultMap="categoryBase" >
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from category where category_name like '%'||#{categoryName}||'%') sub 
+			)		
+		where rnum &gt;= #{from} and rnum &lt;= #{to}
+		
+	</select>
+	
+	<insert id="insertCategory" parameterType="category">
+		insert into category
+		values(category_no_seq.NEXTVAL,#{categoryName})
+	</insert>
+	
+	
+	
 	
 	<resultMap type="category" id="categoryBase">
 		<id column="category_no" property="categoryNo"/>

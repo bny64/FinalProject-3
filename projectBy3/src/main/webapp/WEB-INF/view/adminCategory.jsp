@@ -51,8 +51,8 @@ select {
 		margin-left:auto;
 		width: 750px;		
 	}
-	#str{
-		width : 300px;
+	#str1{
+		width : 550px;
 		display: inline-block;
 	}	
 	#headers{		
@@ -80,8 +80,8 @@ select {
 			<c:url value="/adminMember" var="adminMember"/>
 			<a href="${adminMember }"><button>회원 관리</button></a>			
 			
-			<c:url value="/mylocation" var="mylocation"/>
-			<a href="${mylocation }"><button>카테고리 관리</button></a>
+			<c:url value="/adminCategory" var="adminCategory"/>
+			<a href="${adminCategory }"><button>카테고리 관리</button></a>
 			
 			<c:url value="/mylocation" var="mylocation"/>
 			<a href="${mylocation }"><button>로그 아웃</button></a>		
@@ -101,7 +101,7 @@ select {
 	<div>
 		<table id ="test">
 			<tr>
-				<th align="center">친구 목록</th>
+				<th align="center">카테고리 목록</th>
 			</tr>					
 				
 		</table>
@@ -114,17 +114,20 @@ select {
 	var loadData = true;
 	var searchMode = false;
 
-	window.onload = function() { loadAllMember(); };	
+	window.onload = function() { loadAllCategory(); };	
 	
-	$("#str1").on("keydown",function(e){
-		console.log(e.keyCode);
-		console.log("다운");
-		if(e.keyCode == 13){
-			searchMode = true;
-			claer();
-			search();
-		 }
-	});		 
+	$("#searchBtn").on("click",function(){
+		searchMode = true;
+		claer();
+		search();		
+	});
+	
+	$("#appendBtn").on("click",function(){
+		searchMode = false;
+		claer();		
+		appendCategory();
+		
+	});
 	 
 	 $(window).scroll(function(){
 			if  ($(window).scrollTop() >= $(document).height() - $(window).height()){
@@ -133,7 +136,7 @@ select {
 				console.log(index);
 				if(loadData){
 					if(!searchMode){
-						loadAllMember();
+						loadAllCategory();
 					}else{
 						search();
 					}
@@ -148,12 +151,12 @@ select {
 	
 	
 		
-	function loadAllMember(){	
-		<c:url value = "/adminMember" var="adminMember"/>
+	function loadAllCategory(){	
+		<c:url value = "/adminCategoryLoad" var="adminCategoryLoad"/>
 		console.log("로드 데이터");
 			$.ajax({
 				type : "get",
-				url : "${adminMember}",
+				url : "${adminCategoryLoad}",
 				data : {
 					index : index,					
 				},
@@ -169,10 +172,10 @@ select {
 					$test = $("#test");
 					$(res).each(function(idx,data){											
 						<c:url value="/deleteAdminUser" var="deleteAdminUser"/>								
-					    $newOne = "<tr><td aligin='center'><label>프로필 사진</label></td>" 
-					     			+"<td align='userNo'><label>"+data.userName +"</label></td>"
-					     			+"<td align='userNo'><label>"+data.nickname +"</label></td>"
-					    	 		+"<td align='center'><a href='${deleteAdminUser}?userNo="+data.userNo+"'><button>친구 삭제</button></a></td></tr>";
+					    $newOne = "<tr>" 
+					     			+"<td align='userNo'><label>"+data.categoryNo +"</label></td>"
+					     			+"<td align='userNo'><label>"+data.categoryName +"</label></td>";
+					    	 		
 					   	
 					$test.append($newOne);
 							
@@ -188,11 +191,11 @@ select {
 	} 	 
 	 
 	 function search(){
-		 <c:url value = "/searchMember" var="searchMember"/>
+		 <c:url value = "/searchCategory" var="searchCategory"/>
 				console.log("로드 데이터");
 					$.ajax({
 						type : "get",
-						url : "${searchMember}",
+						url : "${searchCategory}",
 						data : {
 							index : index,
 							searchStr :$("#str1").val() 
@@ -209,11 +212,10 @@ select {
 							$test = $("#test");
 							$(res).each(function(idx,data){											
 								<c:url value="/deleteAdminUser" var="deleteAdminUser"/>								
-							    $newOne = "<tr><td aligin='center'><label>프로필 사진</label></td>" 
-							     			+"<td align='userNo'><label>"+data.userName +"</label></td>"
-							     			+"<td align='userNo'><label>"+data.nickname +"</label></td>"
-							    	 		+"<td align='center'><a href='${deleteAdminUser}?userNo="+data.userNo+"'><button>친구 삭제</button></a></td></tr>";
-							   	
+								$newOne = "<tr>" 
+						     			+"<td align='userNo'><label>"+data.categoryNo +"</label></td>"
+						     			+"<td align='userNo'><label>"+data.categoryName +"</label></td>";
+						     			
 							$test.append($newOne);
 										
 								
@@ -224,6 +226,55 @@ select {
 				});
 
 		}	
+
+	 
+	 
+	 function appendCategory(){
+		 <c:url value = "/insertCategory" var="insertCategory"/>
+				console.log("로드 데이터");
+					$.ajax({
+						type : "get",
+						url : "${insertCategory}",
+						data : {
+							index : index,
+							searchStr :$("#str1").val() 
+						},
+						success:function(res){
+							console.log(res);
+							if(res.length==0){
+								alert("끝");
+								loadData = false;
+							}else{
+								++index;
+							}		
+							
+							$test = $("#test");
+							$(res).each(function(idx,data){											
+								<c:url value="/deleteAdminUser" var="deleteAdminUser"/>								
+							    $newOne = "<tr>" 
+							     			+"<td align='userNo'><label>"+data.categoryNo +"</label></td>"
+							     			+"<td align='userNo'><label>"+data.categoryName +"</label></td>";
+							    	 		
+							   	
+							$test.append($newOne);
+									
+												
+								
+							});
+						},
+						error:function(request,status,error){
+						    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						}
+					});
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 	 
 	 

@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
+import dto.Category;
 import dto.User;
 import dto.UserFriend;
 import service.BoardService;
+import service.CategoryService;
 import service.UserService;
 
 @Controller
@@ -28,6 +30,8 @@ public class AdminController {
 	BoardService boardService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	CategoryService categoryService;
 	
 	
 	@RequestMapping(value="/admin")
@@ -116,12 +120,35 @@ public class AdminController {
 		return users;
 	}
 	
+	@RequestMapping("/adminCategory")
+	public String initCategory(){
+		return "adminCategory";	
+	}
+	
+	@RequestMapping(value="/adminCategoryLoad",method=RequestMethod.GET)
+	public @ResponseBody List<Category> adminCategoryLoad(Model model, HttpSession session,@RequestParam Integer index){
+		
+		logger.trace("index : {}",index);
+		logger.trace("class : FriendController, method : friendList");
+		List<Category> Category = categoryService.selectAllCategoryByPaging(index);
+		return Category;	
+	}
 	
 	
+	@RequestMapping(value="/searchCategory", method=RequestMethod.GET)
+	public @ResponseBody List<Category> searchCategory(@RequestParam Integer index,@RequestParam String searchStr){
+		logger.trace("searchCategory");
+		List<Category> cate = categoryService.searchByCategoryName(index, searchStr);
+		return cate;
+	}
 	
-	
-	
-	
+	@RequestMapping(value="/insertCategory", method=RequestMethod.GET)
+	public @ResponseBody List<Category> insertCategory(@RequestParam Integer index,@RequestParam String searchStr){
+		logger.trace("insertCategory");
+		categoryService.insertCategory(searchStr);
+		List<Category> cate = categoryService.selectAllCategoryByPaging(index);
+		return cate;
+	}
 	
 	
 	
