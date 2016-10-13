@@ -74,7 +74,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		resolver.setMaxUploadSize(1024*1024);
 		return resolver;
 	}
-	
 	/*<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	        <!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
 	        <property name="prefix" value="/WEB-INF/view/"/>

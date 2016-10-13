@@ -61,7 +61,24 @@ public class LoginController {
 			return "index";
 		}
 	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		
+		Object objUserNo = session.getAttribute("userNo");
+		if(objUserNo != null){
+			session.removeAttribute("userNo");			
+		}
+		
+		return "index";
+	}
 
+	// 민국 - 특정 경우에 index 페이지로 보내야 할 경우 사용
+	@RequestMapping(value = "/returnIndex", method = RequestMethod.GET)
+	public String returnIndex(HttpSession session) {
+		return "index";
+	}
+	
 	@RequestMapping(value = "/joinPage", method = RequestMethod.GET)
 	public String joinPage(Model model) {
 		logger.trace("class : LoginController, method : joinPage");
@@ -70,16 +87,16 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/joinPage", method = RequestMethod.POST)
-	public String join(Model model, User user, BindingResult result) {
+	public String join(Model model, User user, BindingResult result, HttpSession session) {
 		logger.trace("class : LoginController, method : join, userInfo : {}", user);
 		
 		if(user != null){
 			service.insertUser(user);
-			return "main";
 		}
-		// 민국 - 유저가 null 일 경우..
 		return "index";
 	}
+	
+	
 	
 	/*@RequestMapping(value = "/searchId", method=RequestMethod.GET)
 	public String searchIdPage(Model model){
@@ -119,5 +136,5 @@ public class LoginController {
 
 		return "searchPw";
 	}*/	
-
+	
 }

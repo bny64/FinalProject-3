@@ -116,5 +116,11 @@ public class BoardServiceTest {
 		logger.trace("은구로 검색 한 board : {} ",board);
 	}
 	
+	@Test
+	public void selectMyBoardByPagingTest(){
+		List<Board> boards = service.selectMyBoardByPaging(23, 1);
+		logger.trace("boards : {}", boards);
+	}
+	
 	
 }

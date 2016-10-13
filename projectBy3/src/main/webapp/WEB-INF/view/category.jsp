@@ -30,7 +30,7 @@
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<section id="content">
-		<h1>사용자가 추가한</h1>
+		<h1>사용자가 추가한 카테고리</h1>
 		
 		<c:url value = "/scategoryBoard" var="scategoryBoard"/>
 		<c:forEach items="${categories}" var="usercategory">

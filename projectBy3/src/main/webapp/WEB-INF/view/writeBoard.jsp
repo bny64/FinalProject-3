@@ -94,6 +94,19 @@ body {
 	display: none;
 }
 
+#bottomBtns > a {
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+#bottomBtns > a > img {
+	top: 12px;
+	position: relative;
+}
+
 </style>
 </head>
 <body>
@@ -128,7 +141,10 @@ body {
 		</div>
 		<div id="bottomBtns">
 			<button>쓰기</button>
-			<button>취소</button>
+			<c:url value="/returnMainBoard" var="returnMainBoard"/>
+			<a href="returnMainBoard">
+			 	<img src="<%= request.getContextPath()%>/img/button/close.png">
+			</a>
 		</div>
 		
 		<div id="hidden">
