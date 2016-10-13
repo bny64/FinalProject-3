@@ -122,12 +122,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> sselectAllUserByPaging(int pageNo) {
+	public List<User> selectAllUserByPaging(int pageNo) {
 		logger.trace("ServiceImpl - sselectAllUserByPaging");
 		Map<String, Object> filter = new HashMap<>();
 		filter.put("from", 50*pageNo-49);
 		filter.put("to", 50*pageNo);
-		return uDao.sselectAllUserByPaging(filter);
+		return uDao.selectAllUserByPaging(filter);
 	}
 	@Override
 	public User searchByNickname(String nickname) {
@@ -138,6 +138,17 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return user;
+	}
+
+	@Override
+	public List<User> searchByNickNameUserNameUsers(int pageNo, String search) {
+		logger.trace("searchByNickNameUserNameUsers");
+		Map<String,Object> filter = new HashMap<>();
+		filter.put("from", 9*pageNo-8);
+		filter.put("to", 9*pageNo);
+		filter.put("nickname", search);
+		filter.put("userName", search);
+		return uDao.searchByNickNameUserNameUsers(filter);
 	}
 	
 }

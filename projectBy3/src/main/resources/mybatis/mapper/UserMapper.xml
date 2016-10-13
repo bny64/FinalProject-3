@@ -52,6 +52,19 @@
 	</select>
 	
 	
+	<select id="searchByNickNameUserNameUsers" resultMap="usersBase" >
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from users where nickname like '%'||#{nickname}||'%' or user_name like '%'||#{userName}||'%') sub 
+			)		
+		where rnum &gt;= #{from} and rnum &lt;= #{to}
+		
+	</select>
+	
+	
+	
+	
+	
 	<resultMap type="user" id="usersBase">
 		<id column="user_no" property="userNo"/>
 		<result column="user_id" property="userId"/>

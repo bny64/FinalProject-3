@@ -71,15 +71,22 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int deleteUser(int userNo) {
-		logger.trace("");
+		logger.trace("UserDaoImpl - deleteUser ");
 		String stmt = NAME_SPACE + "deleteUser";		
 		return template.delete(stmt,userNo);
 	}
 
 	@Override
-	public List<User> sselectAllUserByPaging(Map<String, Object> filter) {
-		logger.trace("sselectAllUserByPaging");
+	public List<User> selectAllUserByPaging(Map<String, Object> filter) {
+		logger.trace("UserDaoImpl - selectAllUserByPaging");
 		String stmt = NAME_SPACE +"sselectAllUserByPaging";
+		return template.selectList(stmt,filter);
+	}
+
+	@Override
+	public List<User> searchByNickNameUserNameUsers(Map<String, Object> filter) {
+		logger.trace("UserDaoImpl - selectAllUserByPaging");
+		String stmt = NAME_SPACE +"searchByNickNameUserNameUsers";
 		return template.selectList(stmt,filter);
 	}
 }

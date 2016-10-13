@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
 import dto.User;
@@ -80,14 +81,18 @@ public class AdminController {
 		return "adminMain";
 	}
 	
-	
+	@RequestMapping("/adminMemberInit")
+	public String initMember(){
+		return "adminMember2";	
+	}
 	
 	@RequestMapping(value="/adminMember")
-	public String friendList(Model model, HttpSession session){
+	public @ResponseBody List<User> friendList(Model model, HttpSession session,@RequestParam Integer index){
+		
+		logger.trace("index : {}",index);
 		logger.trace("class : FriendController, method : friendList");
-		List<User> users = userService.AllUser();
-		model.addAttribute("users",users);
-		return "adminMember";	
+		List<User> users = userService.selectAllUserByPaging(index);		
+		return users;	
 	}
 	
 	
@@ -102,6 +107,14 @@ public class AdminController {
 		return "adminMember";	
 	}
 	
+	
+	
+	@RequestMapping(value="/searchMember", method=RequestMethod.GET)
+	public @ResponseBody List<User> searchMember(@RequestParam Integer index,@RequestParam String searchStr){
+		logger.trace("searchMember");
+		List<User> users = userService.searchByNickNameUserNameUsers(index, searchStr);
+		return users;
+	}
 	
 	
 	
