@@ -117,3 +117,20 @@ add constraint board_no_fk foreign key(board_no) references board(board_no);
 
 alter table user_friend add alarm varchar2(20) check(alarm in('on','off'));
 alter table user_friend modify alarm constraint alarm_nn not null;
+
+
+
+create table promise(
+  promise_id number not null,
+  promise_title varchar2(50) not null,
+  promoter number not null,
+  invitee number not null,
+  promise_date date,
+  promise_latitude number not null,
+  promise_longitude number not null,
+  promise_content varchar2(200),
+  constraint promise_id_pk primary key (promise_id)
+);
+
+create sequence promise_no_seq
+start with 1 increment by 1;
