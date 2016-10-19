@@ -26,5 +26,15 @@ insert into user_friend values(friend_list_no_seq.nextval, 2, 'sleep', 2, 'on');
 insert into user_friend values(friend_list_no_seq.nextval, 3, 'work', 2, 'off');
 insert into user_friend values(friend_list_no_seq.nextval, 1, 'cycle', 2, 'off');
 
+insert into promise
+values(promise_no_seq.NEXTVAL, '밥 먹자11', 1, 2, sysdate, 100.0, 200.0, '빨리빨리111');
 
+insert into promise
+values(promise_no_seq.NEXTVAL, '밥 먹자22', 2, 3, sysdate, 100.0, 200.0, '빨리빨리222');
+
+insert into promise
+values(promise_no_seq.NEXTVAL, '밥 먹자33', 2, 1, sysdate, 100.0, 200.0, '빨리빨리333');
+
+insert into promise
+values(promise_no_seq.NEXTVAL, '밥 먹자44', 3, 1, sysdate, 100.0, 200.0, '빨리빨리444');
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PromiseMapper">
+	
+	<select id="getAllPromise" resultMap="promiseBase">
+		select *
+		from promise
+	</select>
+	
+	<select id="getMyPromiseByPromote" parameterType="int" resultMap="promiseBase">
+		select * 
+		from promise
+		where promoter = #{promoter}
+	</select>
+	
+	<select id="getMyPromiseByInvitee" parameterType="int" resultMap="promiseBase">
+		select * 
+		from promise
+		where invitee = #{invitee}
+	</select>
+	
+	<resultMap type="promise" id="promiseBase">
+		<id column="promise_id" property="promiseId"/>
+		<result column="promise_title" property="promiseTitle"/>
+		<result column="promoter" property="promoter"/>
+		<result column="invitee" property="invitee"/>
+		<result column="promise_date" property="promiseDate"/>
+		<result column="promise_latitude" property="promiseLatitude"/>
+		<result column="promise_longitude" property="promiseLongitude"/>
+		<result column="promise_content" property="promiseContent"/>
+		<result column="promise_status" property="promiseStatus"/>
+	</resultMap>
+
+</mapper>

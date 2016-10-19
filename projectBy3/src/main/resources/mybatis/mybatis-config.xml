@@ -13,7 +13,7 @@
 		<typeAlias type="dto.UserLocation" alias="userLocation" />
 		<typeAlias type="dto.UserCategory" alias="usercategory" />
 		<typeAlias type="dto.UserFriend" alias="userfriend" />
-		
+		<typeAlias type="dto.Promise" alias="promise" />
 	</typeAliases>
 
 	<mappers>
@@ -23,7 +23,7 @@
 		<mapper resource="mybatis/mapper/UserLocationMapper.xml"/>
 		<mapper resource="mybatis/mapper/UserCategoryMapper.xml"/>
 		<mapper resource="mybatis/mapper/UserFriendMapper.xml"/>
-		
+		<mapper resource="mybatis/mapper/PromiseMapper.xml"/>
 	</mappers>
 
 
