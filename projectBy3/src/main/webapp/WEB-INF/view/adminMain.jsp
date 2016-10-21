@@ -51,8 +51,8 @@
 			<c:url value="/adminCategory" var="adminCategory"/>
 			<a href="${adminCategory }"><button>카테고리 관리</button></a>
 			
-			<c:url value="/mylocation" var="mylocation"/>
-			<a href="${mylocation }"><button>로그 아웃</button></a>		
+			<c:url value="/adminLogout" var="adminLogout"/>
+			<a href="${adminLogout }"><button>로그 아웃</button></a>		
 			
 								
 		</div>
@@ -124,7 +124,7 @@
 					},
 					success:function(res){
 						console.log(res);
-						if(res.length==0){
+						if(res.length==0){							
 							loadData = false;
 						}else{
 							++index;

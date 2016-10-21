@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dto.Admin;
 import dto.Board;
 import dto.Category;
 import dto.User;
@@ -48,6 +49,15 @@ public class AdminController {
 	public String adminLogin(Model model, HttpSession session, @RequestParam String id, @RequestParam String password) {
 		logger.trace("class : LoginController, method : login ////// id : {}, password : {}",id, password);
 		
+		Admin admin = new Admin();
+		
+		if(id.equals(admin.getAdminId())&&password.equals(admin.getPassword())){
+			return "adminMain";
+		}else{
+			return "adminLogin";
+		}
+			
+		
 		/*User loginUser = service.loginUser(id, password);		
 		
 		if (loginUser != null) {
@@ -59,7 +69,7 @@ public class AdminController {
 			return "index";
 		}*/
 		
-		return "adminMain";
+		
 	}
 	
 	@RequestMapping(value="/adminBoard", method=RequestMethod.GET)
@@ -153,6 +163,11 @@ public class AdminController {
 		return cate;
 	}
 	
+	@RequestMapping(value="/adminLogout")
+	public String logout(HttpSession session){
+		//session.
+		return "adminLogin";
+	}
 	
 	
 	

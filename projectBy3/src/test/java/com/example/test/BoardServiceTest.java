@@ -62,7 +62,7 @@ public class BoardServiceTest {
 	@Test
 	public void selectAllBoardByPagingTest(){
 		int pageNo = 1;
-		List<Board> boards = service.selectAllBoardByPaging(pageNo);
+		List<Board> boards = service.selectAllBoardByPaging(pageNo,2);
 		logger.trace("boards.size() : {}", boards.size());
 		//assertThat(boards.size(), is(9));
 	}

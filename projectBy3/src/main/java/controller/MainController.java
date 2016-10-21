@@ -62,9 +62,9 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/mainBoard", method=RequestMethod.GET)
-	public @ResponseBody List<Board> getAllBoards2(Model model,@RequestParam Integer index){
+	public @ResponseBody List<Board> getAllBoards2(Model model,HttpSession session,@RequestParam Integer index){
 		logger.trace("class : MainController, method : getAllBoards2");
-		List<Board> boards = service.selectAllBoardByPaging(index);		
+		List<Board> boards = service.selectAllBoardByPaging(index,(int) session.getAttribute("userNo"));		
 		return boards;
 	}
 	
