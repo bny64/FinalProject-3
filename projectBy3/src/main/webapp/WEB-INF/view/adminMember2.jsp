@@ -83,8 +83,8 @@ select {
 			<c:url value="/adminCategory" var="adminCategory"/>
 			<a href="${adminCategory }"><button>카테고리 관리</button></a>
 			
-			<c:url value="/mylocation" var="mylocation"/>
-			<a href="${mylocation }"><button>로그 아웃</button></a>		
+			<c:url value="/adminLogout" var="adminLogout"/>
+			<a href="${adminLogout }"><button>로그 아웃</button></a>		
 			
 								
 		</div>
@@ -170,7 +170,7 @@ select {
 					    $newOne = "<tr><td aligin='center'><label>프로필 사진</label></td>" 
 					     			+"<td align='userNo'><label>"+data.userName +"</label></td>"
 					     			+"<td align='userNo'><label>"+data.nickname +"</label></td>"
-					    	 		+"<td align='center'><a href='${deleteAdminUser}?userNo="+data.userNo+"'><button>친구 삭제</button></a></td></tr>";
+					    	 		+"<td align='center'><a href='${deleteAdminUser}?userNo="+data.userNo+"'><button>회원 삭제</button></a></td></tr>";
 					   	
 					$test.append($newOne);
 							

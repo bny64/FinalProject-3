@@ -12,7 +12,10 @@
 	<select id="selectAllBoardByPaging" resultMap="boardBase">
 		select * 
 		from (select rownum rnum, sub.*
-				from (select * from board order by WRITED_DATE DESC) sub 
+				from (select USER_FRIEND.FRIEND_NO 
+                  From USER_FRIEND 
+                  WHERE USER_FRIEND.USER_NO = #{userNo}
+                  order by WRITED_DATE DESC) sub 
 			)
 		<!-- where rnum between #{from} and #{to}-->
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
