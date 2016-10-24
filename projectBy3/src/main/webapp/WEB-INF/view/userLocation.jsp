@@ -23,6 +23,7 @@
 	height: 200%;
 	clear: both;
 }
+
 </style>
 </head>
 <body>
@@ -31,8 +32,9 @@
 	<section id="content">			    		
 			<div id="map" style="width: 500px; height: 400px;"></div>
 			<br>
-			<input type = "text" placeholder="위치 저장명" id="userLocationName">
+			<input type = "text" placeholder="위치 저장명" id="name">
 			<div>
+				
 				<%-- <c:url value = "/savelocation" var="savelocation"/>
 				<a href="${savelocation}?latitude=${latitude }&longitud=${longitude}"><button>저장</button></a> --%>
 				<button id = "btn2">저장</button>
@@ -40,7 +42,7 @@
 			<br><br>			
 			<div id="locationDiv">
 				<c:forEach items="${locations}" var="loaction">
-					<h3>${loaction.userNo },  ${loaction.latitude },  ${loaction.longitude }</h3>					
+					<h3>${loaction.locationName },  ${loaction.latitude },  ${loaction.longitude }</h3>					
 				</c:forEach>
 			</div>
 	</section>
@@ -108,7 +110,7 @@
 				$locationDiv = $("#locationDiv");
 				$locationDiv.empty();
 				$(res).each(function(idx,data){					
-					$newOne = "<h3>"+ data.userNo +"    "+ data.latitude + "  " + data.longitude+ " <h3>"; 					
+					$newOne = "<h3>"+ data.locationName +"    "+ data.latitude + "  " + data.longitude+ " <h3>"; 					
 					$locationDiv.append($newOne);
 				});
 			},

@@ -35,11 +35,11 @@
 							<sform:form method="post" action="joinPage" modelAttribute="user">
 								<fieldset>
 								<sform:input path="userId" placeholder="ID"/><br>
-								<sform:input path="password"  placeholder="비밀번호" value="1234" /><br>
-								<sform:input path="nickname" placeholder="닉네임" value="hong1234" /><br>
-								<sform:input path="userName" placeholder="이름" value="홍길동" /><br>
-								<sform:input path="tel" placeholder="***-****-****" value="010-0000-0000" /><br>
-								<sform:input path="email" placeholder="이메일" value="hong1234@naver.com" /><br>
+								<sform:input path="password"  placeholder="비밀번호"  /><br>
+								<sform:input path="nickname" placeholder="닉네임"  /><br>
+								<sform:input path="userName" placeholder="이름"  /><br>
+								<sform:input path="tel" placeholder="***-****-****" /><br>
+								<sform:input path="email" placeholder="이메일"  /><br>
 								<sform:input path="birthdate" placeholder="yyyy-MM-dd" value="2016-10-04" /><br>
 								</fieldset>
 								<sform:button>가입 하기</sform:button>

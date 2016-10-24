@@ -58,8 +58,9 @@
 		<div id="list">
 			등록된 위치들
 		</div>
-		<div id="bottomBtns">
-			<a href="#"><button>현위치 저장</button></a>
+		<div id="bottomBtns">			
+			<%-- <a href="${writeBoardLocation}?latitude=<%=latitude%>&longitude=<%=longitude%>"><button>현위치 저장</button></a> --%>
+			<button id="nowLocation">현위치 저장</button>
 			<a href="#"><button>확인</button></a>
 			<a href="#"><button>닫기</button></a>
 		</div>
@@ -77,8 +78,15 @@
 	src="//apis.daum.net/maps/maps3.js?apikey=d0fc516accb46bd8c6bd705b190857d0"></script>
 <script>
 	var x = document.getElementById("demo");
-	var latitude;
+ 	var latitude;
 	var longitude;
+	
+	$("#nowLocation").on("click", function(){		
+		document.location.href="writeBoardLocation?latitude="+latitude+"&longitude="+longitude;
+	});
+	
+	
+	
 	
 	window.onload = function() {
 		getLocation();
