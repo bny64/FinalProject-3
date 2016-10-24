@@ -38,58 +38,6 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
-			
-<<<<<<< HEAD
-			#loginView a > img {
-				top: 14px;
-				position: relative;
-				padding-left: 1%;
-			}
-		</style>
-	</head>
-	<body>
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header">
-						<h2>홈페이지 소개</h2>
-					</header>
-				<!-- Main -->
-					<section id="main">
-						<div id="logo">
-							<span class="avatar"><img src="<%= request.getContextPath() %>/img/avatar.jpg"></span>
-							<h2>로고</h2>
-						</div>
-						<div id="loginView">							
-							<c:url value="/login" var="login"/>
-							<form method="post" action="${login }">
-								<fieldset>
-									<legend>로그인</legend>
-									<input type="text" name="id" placeholder="아이디">								
-									<br>
-									<input type="text" name="password" placeholder="패스워드">									
-									<br>
-								</fieldset>
-								<button>로그인</button>
-								<c:url value="/joinPage" var="joinPage"/>
-								<a href="${joinPage }"><img src="<%=request.getContextPath()%>/img/button/join.png"></a>
-								<c:url value="/searchIdPage" var="searchId"/>
-								<a href="${searchId }"><img src="<%=request.getContextPath()%>/img/button/searchId.png"></a>
-								<c:url value="/searchPassPage" var="searchPass"/>
-								<a href="${searchPass }"><img src="<%=request.getContextPath()%>/img/button/searchPass.png"></a>
-							</form>	
-							
-							<c:url value="/developer" var="developer"/>
-							<a href="developer">개발자 페이지</a>
-						</div>
-					</section>
-				<!-- Footer -->
-					<footer id="footer">
-						<c:url value="/admin" var="admin"/>
-						<p><a href = "${admin}">&copy;</a> Untitled. All rights reserved. Design: <a href="http://templated.co">TEMPLATED</a>. </p>
-					</footer>
-=======
 	#loginView a > img {
 		top: 14px;
 		position: relative;
@@ -109,7 +57,6 @@
 			<div id="logo">
 				<span class="avatar"><img src="<%= request.getContextPath() %>/img/avatar.jpg"></span>
 					<h2>로고</h2>
->>>>>>> branch 'master' of https://github.com/bny64/FinalProject-3.git
 			</div>
 			<div id="loginView">							
 				<c:url value="/login" var="login"/>
@@ -127,6 +74,8 @@
 					<c:url value="/searchPassPage" var="searchPass"/>
 					<a href="${searchPass }"><img src="<%=request.getContextPath()%>/img/button/searchPass.png"></a>
 				</form>	
+				<c:url value="/developer" var="developer"/>
+				<a href="developer">개발자 페이지</a>
 			</div>
 		</section>
 		
