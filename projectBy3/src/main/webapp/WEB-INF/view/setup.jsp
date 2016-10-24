@@ -5,15 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>친구 관리</title>
+<title>설 정</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="<%=request.getContextPath()%>/css/main.css" type="text/css"
-	rel="stylesheet">
+
 <style>
-	body {
-	background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
+#logo {
+	float: left;
+	width: 50%;
+	display: block;
 }
+
+#loginView {
+	float: right;
+	width: 50%;
+	display: block;
+}
+
+#main {
+	height: 200px;
+}	
 </style>
 </head>
 <body>

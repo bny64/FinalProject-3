@@ -12,40 +12,44 @@
 <link href="<%=request.getContextPath()%>/css/main.css" type="text/css"
 	rel="stylesheet">
 <style>
+
 	body {
 	background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
-}
-#logo {
-	margin-top: 10%;
-	margin-left: 7%;
-	margin-bottom: 100px;
-	width: 83%;
-}
+	}
+	
+	#logo {
+		margin-top: 10%;
+		margin-left: 7%;
+		margin-bottom: 100px;
+		width: 83%;
+	}
+	
 
-label {
-	display: inline;
-}
+	label {
+		display: inline;
+	}
 
-#logo > #topBtns {
-	float: right;
-}
+	#logo > #topBtns {
+		float: right;
+	}
 
-table {
-	width: 83%;
-	margin-top: 2%;
-	margin-left: 7%;
-	margin-top: 2%;
-	/* 	border: solid 1px yellow; */
-}
+	table {
+		width: 83%;
+		margin-top: 2%;
+		margin-left: 7%;
+		margin-top: 2%;
+		/* 	border: solid 1px yellow; */
+	}
 
-table th {
-	text-align: center;
-	padding: 0;
-}
+	table th {
+		text-align: center;
+		padding: 0;
+	}
 
-select {
-	color: silver;
-}
+
+	select {
+		color: silver;
+	}
 </style>
 </head>
 <body>

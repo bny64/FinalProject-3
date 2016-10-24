@@ -10,7 +10,8 @@ public interface BoardService {
 	public Board selectBoard(int boardNo);
 	public List<Board> selectMyBoard(int userNo);
 	public List<Board> selectMyBoardByPaging(int userNo,int pageNo);
-	public List<Board> selectAllBoardByPaging(int pageNo,int userNo);
+	public List<Board> selectAllBoardByPaging(int pageNo);
+	public List<Board> selectAllBoardByPagingMyFd(int pageNo,int userNo);
 	public int deleteBoardByBoardNo(int boardNo);
 	public int updateBoard(Board board);
 	public int insertBoard(Board board);

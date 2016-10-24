@@ -60,7 +60,7 @@ public class BoardController {
 		return "mainBoard";
 	}
 	
-	@RequestMapping(value="/writeBoard", method=RequestMethod.GET)
+	@RequestMapping(value="/writeBoard")
 	public String writeBoard(Model model, HttpSession session){
 		logger.trace("class : BoardController, method : writeBoard");
 		
@@ -71,10 +71,24 @@ public class BoardController {
 		logger.trace("userNo : {}", userNo);
 		
 		Board board = new Board(0,"",0,"",null,userNo,0,"",null);
-		model.addAttribute("board", board);
-		
+		model.addAttribute("board", board);		
 		return "writeBoard";
 	}
+	
+	@RequestMapping(value="/writeBoardLocation",method=RequestMethod.GET)
+	public String writeBoardLocation(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude){
+		List<Category> category = ctservice.selectAllCategory();
+		model.addAttribute("category", category);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null);
+		model.addAttribute("board", board);
+		model.addAttribute("latitude",latitude);
+		model.addAttribute("longitude",longitude);
+		return "writeBoard";
+	}
+	
+	
+	
+	
 	
 	@RequestMapping(value="/updateBoard", method=RequestMethod.POST)
 	public String updateBoard(HttpSession session, Board board){
@@ -95,8 +109,7 @@ public class BoardController {
 		return "mainBoard";
 	}
 	
-	
-	private static final String uploadDir = "c:/Users/1-718-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/";	
+	private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
 	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
 	public String writeBoardPost(HttpSession session, Board board, @RequestParam MultipartFile file) throws IllegalStateException, IOException{
 		logger.trace("class : BoardController, method : writeBoardPost");	
