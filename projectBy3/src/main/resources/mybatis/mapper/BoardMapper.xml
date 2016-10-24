@@ -12,10 +12,20 @@
 	<select id="selectAllBoardByPaging" resultMap="boardBase">
 		select * 
 		from (select rownum rnum, sub.*
-				from (select USER_FRIEND.FRIEND_NO 
-                  From USER_FRIEND 
-                  WHERE USER_FRIEND.USER_NO = #{userNo}
+				from (select * from board
                   order by WRITED_DATE DESC) sub 
+			)
+		<!-- where rnum between #{from} and #{to}-->
+		where rnum &gt;= #{from} and rnum &lt;= #{to} 
+	</select>
+	<select id="selectAllBoardByPagingMyFd" resultMap="boardBase">
+		select * 
+		from (select rownum rnum, sub.*
+				from (SELECT * FROM BOARD 
+						where USER_NO in (select USER_FRIEND.FRIEND_NO 
+                  		From USER_FRIEND 
+                  		WHERE USER_FRIEND.USER_NO = #{userNo}) 
+						order by WRITED_DATE DESC) sub 
 			)
 		<!-- where rnum between #{from} and #{to}-->
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 

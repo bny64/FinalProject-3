@@ -169,7 +169,10 @@ select {
 						++index;
 					}		
 					
-					$test = $("#test");
+					
+					
+					
+					$test = $("#test");					
 					$(res).each(function(idx,data){											
 						<c:url value="/deleteAdminUser" var="deleteAdminUser"/>								
 					    $newOne = "<tr>" 

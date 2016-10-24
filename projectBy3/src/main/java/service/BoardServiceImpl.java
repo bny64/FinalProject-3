@@ -52,14 +52,24 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<Board> selectAllBoardByPaging(int pageNo,int userNo) {
+	public List<Board> selectAllBoardByPaging(int pageNo) {
+		// TODO Auto-generated method stub
+		logger.trace("BoardServiceImpl - selectAllBoardByPaging() 동작");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("from", 9*pageNo-8);
+		filter.put("to", 9*pageNo);		
+		return boardDao.selectAllBoardByPaging(filter);
+	}
+	
+	@Override
+	public List<Board> selectAllBoardByPagingMyFd(int pageNo,int userNo) {
 		// TODO Auto-generated method stub
 		logger.trace("BoardServiceImpl - selectAllBoardByPaging() 동작");
 		Map<String, Object> filter = new HashMap<>();
 		filter.put("from", 9*pageNo-8);
 		filter.put("to", 9*pageNo);
 		filter.put("userNo", userNo);
-		return boardDao.selectAllBoardByPaging(filter);
+		return boardDao.selectAllBoardByPagingMyFd(filter);
 	}
 
 	@Override

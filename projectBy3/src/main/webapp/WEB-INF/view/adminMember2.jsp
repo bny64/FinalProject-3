@@ -13,38 +13,39 @@
 <style>
 	body {
 	background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
-}
-#logo {
-	margin-top: 10%;
-	text-align: center;
-	/* border: solid 1px green; */
-}
+	}
+	#logo {
+		margin-top: 10%;
+		text-align: center;
+		/* border: solid 1px green; */
+	}
 
-label {
-	display: inline;
-}
+	label {
+		display: inline;
+	}
 
-#logo>button {
-	margin-left: 70%;
-}
+	#logo>button {
+		margin-left: 70%;
+	}
 
-table {
-	width: 700px;	
-	margin-right:auto;
-	margin-left:auto;
-	margin-top: 2%;
-	/* 	border: solid 1px yellow; */
-}
+	table {
+		width: 700px;	
+		margin-right:auto;
+		margin-left:auto;
+		margin-top: 2%;
+		/* 	border: solid 1px yellow; */
+	}
 
-table th {
-	text-align: center;
-	padding: 0;
-}
+	table th {
+		text-align: center;
+		padding: 0;
+	}
 
-select {
-	color: silver;
-}
-#main {
+	select {
+		color: silver;
+	}
+	
+	#main {
 		height: 200px;
 		display:block;
 		margin-right:auto;

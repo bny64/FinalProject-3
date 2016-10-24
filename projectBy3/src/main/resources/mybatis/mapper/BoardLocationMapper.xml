@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardLocationMapper">
+	
+	<select id="selectBoardLocation" resultMap="boardLocationBase" parameterType="int">
+		select *
+		from BOARD_LOCATION
+		where board_no=#{boardNo}		
+	</select>		
+		
+	
+	<insert id="insertBoardLocation" parameterType="boardLocation">
+		insert into BOARD_LOCATION
+		VALUES(board_location_no_seq.NEXTVAL,#{latitude},#{longitude},#{boardNo})
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	<resultMap type="boardLocation" id="boardLocationBase">
+		<id column="board_location_no" property="boardLocationNo"/>
+		<result column="latitude" property="latitude"/>
+		<result column="longitude" property="longitude"/>
+		<result column="board_no" property="boardNo"/>		
+	</resultMap>
+
+</mapper>

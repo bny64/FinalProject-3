@@ -13,6 +13,7 @@
 	body {
 		background-image: url("<%=request.getContextPath()%>/img/bg.jpg");
 	}
+	
 	#logo {
 		margin-left: 7%;
 		margin-top: 10%;

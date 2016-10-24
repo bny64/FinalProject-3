@@ -140,7 +140,7 @@ body {
 			<a href="${getMyLocation }"><img id="getMyLocation" src="<%=request.getContextPath() %>/img/button/getMyLocation.png"></a> 
 		</div>
 		<div id="bottomBtns">
-			<button>쓰기</button>
+			<button id="writeBtn">쓰기</button>
 			<c:url value="/returnMainBoard" var="returnMainBoard"/>
 			<a href="returnMainBoard">
 			 	<img src="<%= request.getContextPath()%>/img/button/close.png">
@@ -156,6 +156,20 @@ body {
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+	
+	console.log(<%=request.getAttribute("latitude")%>)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* <c:url value="/getMyLocation" var="getMyLocation"/>
 		$("#getMyLocation").on("click", function() {
 			$.ajax({

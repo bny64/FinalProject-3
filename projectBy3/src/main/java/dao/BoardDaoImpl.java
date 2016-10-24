@@ -53,6 +53,12 @@ public class BoardDaoImpl implements BoardDao{
 		String stmt = BOARD_NS + "selectAllBoardByPaging";
 		return template.selectList(stmt, filter);
 	}
+	@Override
+	public List<Board> selectAllBoardByPagingMyFd(Map<String, Object> filter) {
+		logger.trace("BoardDaoImpl - selectAllBoardByPaging 동작");
+		String stmt = BOARD_NS + "selectAllBoardByPagingMyFd";
+		return template.selectList(stmt, filter);
+	}
 
 	@Override
 	public int deleteBoardByBoardNo(int boardNo) {
