@@ -173,8 +173,11 @@ public class MainController {
 		return boards;		
 	}
 	
-	
-	
+	@RequestMapping(value="/developer")
+	public String developer(){
+		return "LocationTest/testMain";
+	}
+		
 	
 	
 }

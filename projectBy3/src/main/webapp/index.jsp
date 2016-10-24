@@ -78,6 +78,9 @@
 								<c:url value="/searchPassPage" var="searchPass"/>
 								<a href="${searchPass }"><img src="<%=request.getContextPath()%>/img/button/searchPass.png"></a>
 							</form>	
+							
+							<c:url value="/developer" var="developer"/>
+							<a href="developer">개발자 페이지</a>
 						</div>
 					</section>
 				<!-- Footer -->
