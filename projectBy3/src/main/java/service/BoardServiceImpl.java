@@ -111,22 +111,24 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<Board> searchByTitleContent(int pageNo, String search) {
+	public List<Board> searchByTitleContent(int pageNo,int userNo, String search) {
 		logger.trace("BoardServiceImpl - selectAllBoardByPaging() 동작");
 		Map<String, Object> filter = new HashMap<>();
 		filter.put("from", 9*pageNo-8);
 		filter.put("to", 9*pageNo);
 		filter.put("title", search);
 		filter.put("content", search);
+		filter.put("userNo", userNo);
 		return boardDao.searchByTitleContent(filter);
 	}
 
 	@Override
-	public List<Board> searchByTitleContentCategory(int pageNo, int categoryNo, String search) {
+	public List<Board> searchByTitleContentCategory(int pageNo, int userNo,int categoryNo, String search) {
 		logger.trace("BoardServiceImpl - searchByTitleContentCategory() 동작");
 		Map<String, Object> filter = new HashMap<>();
 		filter.put("from", 9*pageNo-8);
 		filter.put("to", 9*pageNo);
+		filter.put("userNo", userNo);
 		filter.put("title", search);
 		filter.put("content", search);
 		filter.put("categoryNo", categoryNo);
