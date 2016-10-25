@@ -22,6 +22,15 @@ public class BoardServiceImpl implements BoardService{
 	BoardDao boardDao;
 	
 	@Override
+	public Board selectForBoardNo(int userNo, String title) {
+		logger.trace("BoardServiceImpl - selectForBoardNo() 동작");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("title", title);
+		filter.put("userNo", userNo);
+		return boardDao.selectForBoardNo(filter);
+	}
+	
+	@Override
 	public List<Board> viewAllBoards() {
 		logger.trace("BoardServiceImpl - viewAllBoards() 동작");
 		return boardDao.selectAllBoard();
@@ -123,6 +132,8 @@ public class BoardServiceImpl implements BoardService{
 		filter.put("categoryNo", categoryNo);
 		return boardDao.searchByTitleContentCategory(filter);
 	}
+
+	
 
 	
 

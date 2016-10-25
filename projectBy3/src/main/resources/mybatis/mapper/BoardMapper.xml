@@ -4,6 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardMapper">
 	
+	<select id="selectForBoardNo" resultMap="boardBase">
+		select *
+		from board
+		where user_no =#{userNo} and title=#{title}
+	
+	</select>
+	
+	
 	<select id="selectAllBoard" resultMap="boardBase">
 		select *
 		from board
@@ -34,14 +42,12 @@
 	<select id="selectBoard" resultMap="boardBase" parameterType="int">
 		select *
 		from board
-		where board_no=#{boardNo}
-		order by WRITED_DATE DESC
+		where board_no=#{boardNo}	
 	</select>
 	<select id="selectMyBoard" resultMap="boardBase" parameterType="int">
 		select *
 		from board
-		where user_no=#{userNo}
-		order by WRITED_DATE DESC
+		where user_no=#{userNo}		
 	</select>
 	<select id="selectMyBoardByPaging" resultMap="boardBase">
 		select * 
@@ -58,8 +64,7 @@
 	
 	<update id="updateBoard" parameterType="board">
 		update board set title = #{title}, content =#{content}, category_no = #{categoryNo},image_path = #{imagePath}
-		where board_no=#{boardNo}
-	
+		where board_no=#{boardNo}	
 	</update>
 	
 	<insert id="insertBoard" parameterType="board">
@@ -113,6 +118,7 @@
 		<result column="user_no" property="userNo"/>
 		<result column="category_no" property="categoryNo"/>
 		<result column="image_path" property="imagePath"/>
+		<result column="view_status" property="viewStatus"/>
 	</resultMap>
 
 </mapper>

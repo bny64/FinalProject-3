@@ -134,3 +134,16 @@ create table promise(
 
 create sequence promise_no_seq
 start with 1 increment by 1;
+
+alter table board add view_status varchar(20) check(view_status in('friend','all'));
+update board set VIEW_STATUS='all';
+alter table board modify view_status constraint view_status not null;
+
+create table user_history(
+  user_no number not null,
+  board_no number not null,
+  foreign key(user_no) REFERENCES users(user_no) on DELETE CASCADE,
+  foreign key(board_no) REFERENCES board(board_no) on DELETE CASCADE
+);
+
+

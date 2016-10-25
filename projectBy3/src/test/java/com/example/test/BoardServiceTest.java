@@ -122,5 +122,13 @@ public class BoardServiceTest {
 		logger.trace("boards : {}", boards);
 	}
 	
+	@Test
+	public void selectForBoardNo(){
+		Board b = service.selectForBoardNo(2, "asd");
+		logger.trace("boards : {}", b);
+	}
+	
+	
+	
 	
 }

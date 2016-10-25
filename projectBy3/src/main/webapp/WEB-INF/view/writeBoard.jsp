@@ -151,6 +151,8 @@ body {
 			<sform:input path="boardNo"/>
 			<sform:input path="userNo"/>
 			<sform:input path="imagePath"/>
+			<sform:input path="latitude" />
+			<sform:input path="longitude" />
 		</div>
 	</sform:form>
 </body>

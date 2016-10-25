@@ -6,6 +6,7 @@ import java.util.Map;
 import dto.Board;
 
 public interface BoardService {
+	public Board selectForBoardNo(int userNo,String title);
 	public List<Board> viewAllBoards();
 	public Board selectBoard(int boardNo);
 	public List<Board> selectMyBoard(int userNo);

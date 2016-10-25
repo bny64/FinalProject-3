@@ -23,5 +23,8 @@ public class Board {
 	int categoryNo;
 	String imagePath;
 	MultipartFile file;
+	String viewStatus;
 	/*String file;*/
+	float latitude;
+	float longitude;
 }
