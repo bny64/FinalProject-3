@@ -1,0 +1,353 @@
+/**
+ * 위치 자바스크립트
+ */
+
+var latitude;
+var longitude;
+var map;
+var marker;
+var markers = [];
+
+// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+var infowindow = new daum.maps.InfoWindow({
+	zIndex : 1
+});
+
+// 장소 검색 객체
+var ps;
+
+if (!!navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+} else {
+	alert("이 브라우저는 Geolocation를 지원하지 않습니다");
+}
+
+function successCallback(position) {
+	latitude = position.coords.latitude;
+	longitude = position.coords.longitude;
+
+	document.getElementById("initLocation").innerHTML += "위도 : " + latitude
+			+ ", <br>경도 : " + longitude
+
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+	mapOption = {
+		center : new daum.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+		// draggable: false, // 지도를 생성할때 지도 이동 및 확대/축소를 막으려면 draggable: false
+		// 옵션을 추가하세요
+		level : 5
+	// 지도의 확대 레벨
+	};
+
+	// 지도를 표시할 div와 지도 옵션으로 지도를 생성합니다
+	map = new daum.maps.Map(mapContainer, mapOption);
+
+	// 지도를 클릭한 위치에 표출할 마커입니다
+	marker = new daum.maps.Marker({
+		// 지도 중심좌표에 마커를 생성합니다
+		position : map.getCenter()
+	});
+
+	// 지도에 마커를 표시합니다
+	marker.setMap(map);
+
+	// 마커가 드래그 가능하도록 설정합니다
+	marker.setDraggable(true);
+
+	// 장소 검색 객체를 생성합니다
+	ps = new daum.maps.services.Places(map);
+
+	// 마커에 마우스오버 이벤트를 등록합니다
+	daum.maps.event.addListener(marker, 'mouseover', function() {
+		// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+		infowindow.open(map, marker);
+	});
+
+	// 마커에 마우스아웃 이벤트를 등록합니다
+	daum.maps.event.addListener(marker, 'mouseout', function() {
+		// 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+		infowindow.close();
+	});
+
+	// 지도에 클릭 이벤트를 등록합니다
+	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+	daum.maps.event.addListener(map, 'click',
+			function(mouseEvent) {
+				// 마우스 클릭 이벤트 선택자
+				var selectedClickEvent = document
+						.getElementById("selectedClickEvent").value;
+				console.log("selectedClickEvent : " + selectedClickEvent);
+
+				if (selectedClickEvent == "createMarker") {
+					// 클릭한 위치에 마커를 표시합니다
+					addMarker(mouseEvent.latLng);
+				}
+
+				// 클릭한 위도, 경도 정보를 가져옵니다
+				var latlng = mouseEvent.latLng;
+
+				var message = '위도 : ' + latlng.getLat();
+				message += '<br>경도 : ' + latlng.getLng();
+
+				var resultDiv = document.getElementById('clieckedLocation');
+				resultDiv.innerHTML = message;
+			});
+
+	// 최초 지도 레벨
+	var level = map.getLevel();
+
+	var message = "현재 지도 레벨 : " + level;
+	var resultDiv = document.getElementById('currentLevel');
+	resultDiv.innerHTML = message;
+
+	// 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+	daum.maps.event.addListener(map, 'zoom_changed', function() {
+
+		// 지도의 현재 레벨을 얻어옵니다
+		var level = map.getLevel();
+
+		var message = "현재 지도 레벨 : " + level;
+		var resultDiv = document.getElementById('currentLevel');
+		resultDiv.innerHTML = message;
+
+	});
+
+	// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+	daum.maps.event.addListener(map, 'center_changed', function() {
+
+		// 지도의 레벨을 얻어옵니다
+		var level = map.getLevel();
+
+		// 지도의 중심좌표를 얻어옵니다
+		var latlng = map.getCenter();
+
+		document.getElementById("initLocation").innerHTML = "위도 : "
+				+ latlng.getLat() + " <br>경도 : " + latlng.getLng();
+
+	});
+}
+
+function errorCallback(error) {
+	alert(error.message);
+}
+
+// 마커 하나를 지도위에 표시합니다
+addMarker(new daum.maps.LatLng(33.450701, 126.570667));
+
+// 마커를 생성하고 지도위에 표시하는 함수입니다
+function addMarker(position) {
+
+	// 마커를 생성합니다
+	var marker = new daum.maps.Marker({
+		position : position
+	});
+
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker.setMap(map);
+
+	// 생성된 마커를 배열에 추가합니다
+	markers.push(marker);
+
+	return marker;
+}
+
+// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+function setMarkers(map) {
+	for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(map);
+	}
+}
+
+// "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
+function showMarkers() {
+	setMarkers(map)
+}
+
+// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+function hideMarkers() {
+	setMarkers(null);
+}
+
+function setCenter() {
+	console.log("lat : " + latitude + "lng : " + longitude);
+	// 이동할 위도 경도 위치를 생성합니다
+	var moveLatLon = new daum.maps.LatLng(latitude, longitude);
+
+	// 지도 중심을 이동 시킵니다
+	map.setCenter(moveLatLon);
+}
+
+// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+function placesSearchCB(status, data, pagination) {
+	console.log("placeSearch 시작");
+	if (status === daum.maps.services.Status.OK) {
+		console.log("data.places.length : " + data.places.length);
+		// 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
+		displayPlaces(data.places);
+	} else if (status === daum.maps.services.Status.ZERO_RESULT) {
+		// 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
+
+	} else if (status === daum.maps.services.Status.ERROR) {
+		// 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
+	}
+}
+
+// 지도에 마커를 표출하는 함수입니다
+function displayPlaces(places) {
+	for (var i = 0; i < places.length; i++) {
+
+		// 마커를 생성하고 지도에 표시합니다
+		var marker = addMarker(new daum.maps.LatLng(places[i].latitude,
+				places[i].longitude));
+
+		// 마커와 검색결과 항목을 클릭 했을 때
+		// 장소정보를 표출하도록 클릭 이벤트를 등록합니다
+		(function(marker, place) {
+			daum.maps.event.addListener(marker, 'click', function() {
+				displayPlaceInfo(place);
+			});
+		})(marker, places[i]);
+	}
+}
+
+function removeMarker() {
+	console.log("removeMarker 시작");
+	for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+	}
+	markers = [];
+}
+
+function displayPlaceInfo(place) {
+	// 인포윈도우에 띄울 내용 작성
+	var content = '<div class="placeinfo">' + '   <a class="title" href="'
+			+ place.placeUrl + '" target="_blank" title="' + place.title + '">'
+			+ place.title + '</a>';
+
+	if (place.newAddress) {
+		content += '    <span title="' + place.newAddress + '">'
+				+ place.newAddress + '</span>'
+				+ '  <span class="jibun" title="' + place.address + '">(지번 : '
+				+ place.address + ')</span>';
+	} else {
+		content += '    <span title="' + place.address + '">' + place.address
+				+ '</span>';
+	}
+
+	content += '    <span class="tel">' + place.phone + '</span>' + '</div>'
+			+ '<div class="after"></div>';
+
+	// 인포윈도우에 컨텐츠 장착
+	infowindow.setContent(content);
+	
+	var infowindowPosition = new daum.maps.LatLng(place.latitude, place.longitude);
+	console.log(infowindowPosition);
+	
+	infowindow.setPosition(infowindowPosition);
+	console.log("infowindow position : " + infowindow.getPosition());
+	
+	infowindow.open(map, marker);
+}
+
+function selectCategoryByCode() {
+	console.log("selectCategoryByCode 시작");
+
+	var categoryCode = document.getElementById("categoryCode").value;
+	console.log("categoryCode : " + categoryCode);
+
+	if (categoryCode != null) {
+		removeMarker();
+		console.log(map);
+		switch (categoryCode) {
+		case "MT1":
+			ps.categorySearch('MT1', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "CS2":
+			ps.categorySearch('CS2', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "PS3":
+			ps.categorySearch('PS3', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "SC4":
+			ps.categorySearch('SC4', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "AC5":
+			ps.categorySearch('AC5', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "PK6":
+			ps.categorySearch('PK6', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "OL7":
+			ps.categorySearch('OL7', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "SW8":
+			ps.categorySearch('SW8', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "BK9":
+			ps.categorySearch('BK9', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "CT1":
+			ps.categorySearch('CT1', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "AG2":
+			ps.categorySearch('AG2', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "PO3":
+			ps.categorySearch('PO3', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "AT4":
+			ps.categorySearch('AT4', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "AD5":
+			ps.categorySearch('AD5', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "FD6":
+			ps.categorySearch('FD6', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "CE7":
+			ps.categorySearch('CE7', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "HP8":
+			ps.categorySearch('HP8', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		case "PM9":
+			ps.categorySearch('PM9', placesSearchCB, {
+				useMapBounds : true
+			});
+			break;
+		}
+	}
+}
