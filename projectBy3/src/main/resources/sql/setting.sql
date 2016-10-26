@@ -135,8 +135,8 @@ create table promise(
 create sequence promise_no_seq
 start with 1 increment by 1;
 
-alter table board add view_status varchar(20) check(view_status in('friend','all'));
-update board set VIEW_STATUS='all';
+alter table board add view_status varchar(20) check(view_status in('hidden','visible'));
+update board set VIEW_STATUS='visible';
 alter table board modify view_status constraint view_status not null;
 
 create table user_history(

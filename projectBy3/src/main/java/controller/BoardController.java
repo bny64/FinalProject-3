@@ -25,9 +25,11 @@ import org.springframework.web.multipart.MultipartFile;
 import dto.Board;
 import dto.BoardLocation;
 import dto.Category;
+import dto.UserLocation;
 import service.BoardLoactionService;
 import service.BoardService;
 import service.CategoryService;
+import service.LocationService;
 import service.UserService;
 
 @Controller
@@ -44,6 +46,9 @@ public class BoardController {
 	UserService userService;
 	@Autowired
 	BoardLoactionService boardLocationService;
+	@Autowired
+	LocationService userLocationService;
+	
 	
 	@InitBinder
 	public void setBindingFormat(WebDataBinder binder){
@@ -73,7 +78,7 @@ public class BoardController {
 		int userNo = (int) session.getAttribute("userNo");
 		logger.trace("userNo : {}", userNo);
 		
-		Board board = new Board(0,"",0,"",null,userNo,0,"",null,"all",0,0);
+		Board board = new Board(0,"",0,"",null,userNo,0,"",null,"visible",0,0);
 		model.addAttribute("board", board);		
 		return "writeBoard";
 	}
@@ -82,7 +87,7 @@ public class BoardController {
 	public String writeBoardLocation(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude){
 		List<Category> category = ctservice.selectAllCategory();
 		model.addAttribute("category", category);
-		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"all",latitude,longitude);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"visible",latitude,longitude);
 		model.addAttribute("board", board);
 		//model.addAttribute("latitude",latitude);
 		//model.addAttribute("longitude",longitude);
@@ -130,18 +135,24 @@ public class BoardController {
 		int result = service.insertBoard(board);
 		Board insertBoard = service.selectForBoardNo(board.getUserNo(), board.getTitle());
 		logger.trace("글쓰기 결과 : {}", result);		
-		BoardLocation boardLocation = new BoardLocation();
-		boardLocation.setLatitude(board.getLatitude());
-		boardLocation.setLongitude(board.getLongitude());
-		boardLocation.setBoardNo(insertBoard.getBoardNo());
-		logger.trace("위치:{},{}",board.getLatitude(),board.getLongitude());
-		int resultLocation = boardLocationService.insertBoardLocation(boardLocation);
-		logger.trace("성공 여부: {}",resultLocation);
+		logger.trace("보이는 상황:{}",board.getViewStatus());
+		if(board.getViewStatus().equals("hidden")){
+			BoardLocation boardLocation = new BoardLocation();
+			boardLocation.setLatitude(board.getLatitude());
+			boardLocation.setLongitude(board.getLongitude());
+			boardLocation.setBoardNo(insertBoard.getBoardNo());
+			logger.trace("위치:{},{}",board.getLatitude(),board.getLongitude());
+			int resultLocation = boardLocationService.insertBoardLocation(boardLocation);
+			logger.trace("성공 여부: {}",resultLocation);
+		}		
+		
 		
 		return "mainBoard";
 	}
 	@RequestMapping(value="/getMyLocation", method=RequestMethod.GET)
-	public String getMyLocation(HttpSession session, Board board){
+	public String getMyLocation(Model model,HttpSession session, Board board){
+		List<UserLocation> userLocations = userLocationService.userAllLocation((int)session.getAttribute("userNo"));
+		model.addAttribute("userLocations", userLocations);
 		return "writeLocation";
 	}
 	

@@ -137,7 +137,11 @@ body {
 		<div id="map">
 			<c:url value="/getMyLocation" var="getMyLocation"/>
 			<!-- 민국 - 팝업으로 바꿔야함. -->
-			<a href="${getMyLocation }"><img id="getMyLocation" src="<%=request.getContextPath() %>/img/button/getMyLocation.png"></a> 
+			<a href="${getMyLocation }"><img id="getMyLocation" src="<%=request.getContextPath() %>/img/button/getMyLocation.png"></a>
+			<sform:select path="viewStatus">
+				<sform:option value="hidden">숨김</sform:option>
+				<sform:option value="visible">보임</sform:option>
+			</sform:select> 
 		</div>
 		<div id="bottomBtns">
 			<button id="writeBtn">쓰기</button>
@@ -159,8 +163,8 @@ body {
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	
-	console.log(<%=request.getAttribute("latitude")%>)
-	
+	console.log(<%=request.getAttribute("latitude")%>);
+	console.log(<%=request.getAttribute("longitude")%>);
 	
 	
 	

@@ -36,8 +36,8 @@
                 					From USER_FRIEND 
                 					WHERE USER_FRIEND.USER_NO = #{userNo}
                 					) 
-                					and VIEW_STATUS = 'all') 
-                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'friend' ) 
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ) 
                 			
                 	order by WRITED_DATE DESC					
 					) sub 
@@ -94,7 +94,7 @@
 	
 	<insert id="insertBoard" parameterType="board">
 		insert into BOARD
-		VALUES(board_no_seq.NEXTVAL,#{title},1,#{content},sysdate,#{userNo},#{categoryNo},#{imagePath})
+		VALUES(board_no_seq.NEXTVAL,#{title},1,#{content},sysdate,#{userNo},#{categoryNo},#{imagePath},#{viewStatus})
 	</insert>
 	
 	<!-- <select id="selectMyCategoryBoardByPaging1" resultMap="boardBase">
@@ -116,8 +116,8 @@
                 					From USER_FRIEND 
                 					WHERE USER_FRIEND.USER_NO = #{userNo}
                 					) 
-                					and VIEW_STATUS = 'all') 
-                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'friend' ))
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
                 			and  category_no = #{categoryNo}
                 			
                 	order by WRITED_DATE DESC					
@@ -146,8 +146,8 @@
                 					From USER_FRIEND 
                 					WHERE USER_FRIEND.USER_NO = #{userNo}
                 					) 
-                					and VIEW_STATUS = 'all') 
-                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'friend' ))
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
                 			and (title like '%'||#{title}||'%' or content like '%'||#{content}||'%')
                 			
                 	order by WRITED_DATE DESC					
@@ -179,8 +179,8 @@
                 					From USER_FRIEND 
                 					WHERE USER_FRIEND.USER_NO = #{userNo}
                 					) 
-                					and VIEW_STATUS = 'all') 
-                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'friend' ))
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
                 			and (title like '%'||#{title}||'%' or content like '%'||#{content}||'%')
                 			and category_no = #{categoryNo}
                 	order by WRITED_DATE DESC					

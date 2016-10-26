@@ -56,7 +56,14 @@
 	<section id="content">			    		
 		<div id="map" style="width: 400px; height: 300px;"></div>
 		<div id="list">
-			등록된 위치들
+			<select id="location">
+				<c:forEach items="${userLocations}" var ="userLocation">
+					
+					<option>${userLocation.locationName }
+						
+					
+				</c:forEach>
+			</select>
 		</div>
 		<div id="bottomBtns">			
 			<%-- <a href="${writeBoardLocation}?latitude=<%=latitude%>&longitude=<%=longitude%>"><button>현위치 저장</button></a> --%>
@@ -85,6 +92,9 @@
 		document.location.href="writeBoardLocation?latitude="+latitude+"&longitude="+longitude;
 	});
 	
+	$("#location").on("change",function(){
+		
+	});
 	
 	
 	
