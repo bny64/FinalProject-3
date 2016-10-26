@@ -20,6 +20,14 @@ public class BoardDaoImpl implements BoardDao{
 	@Autowired
 	private SqlSessionTemplate template;
 	
+	
+	@Override
+	public Board selectForBoardNo(Map<String, Object> filter) {
+		logger.trace("BoardDaoImpl - selectForBoardNo 동작");
+		String stmt = BOARD_NS + "selectForBoardNo";
+		return template.selectOne(stmt,filter);
+	}
+	
 	@Override
 	public List<Board> selectAllBoard() {
 		logger.trace("BoardDaoImpl - selectAllBoard 동작");
@@ -80,6 +88,7 @@ public class BoardDaoImpl implements BoardDao{
 		String stmt = BOARD_NS + "insertBoard";
 		return template.insert(stmt, board);
 		
+		
 	}
 
 	@Override
@@ -102,6 +111,8 @@ public class BoardDaoImpl implements BoardDao{
 		String stmt = BOARD_NS + "searchByTitleContentCategory";
 		return template.selectList(stmt, filter);
 	}
+
+	
 
 	
 }

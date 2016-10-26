@@ -22,6 +22,15 @@ public class BoardServiceImpl implements BoardService{
 	BoardDao boardDao;
 	
 	@Override
+	public Board selectForBoardNo(int userNo, String title) {
+		logger.trace("BoardServiceImpl - selectForBoardNo() 동작");
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("title", title);
+		filter.put("userNo", userNo);
+		return boardDao.selectForBoardNo(filter);
+	}
+	
+	@Override
 	public List<Board> viewAllBoards() {
 		logger.trace("BoardServiceImpl - viewAllBoards() 동작");
 		return boardDao.selectAllBoard();
@@ -102,27 +111,31 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<Board> searchByTitleContent(int pageNo, String search) {
+	public List<Board> searchByTitleContent(int pageNo,int userNo, String search) {
 		logger.trace("BoardServiceImpl - selectAllBoardByPaging() 동작");
 		Map<String, Object> filter = new HashMap<>();
 		filter.put("from", 9*pageNo-8);
 		filter.put("to", 9*pageNo);
 		filter.put("title", search);
 		filter.put("content", search);
+		filter.put("userNo", userNo);
 		return boardDao.searchByTitleContent(filter);
 	}
 
 	@Override
-	public List<Board> searchByTitleContentCategory(int pageNo, int categoryNo, String search) {
+	public List<Board> searchByTitleContentCategory(int pageNo, int userNo,int categoryNo, String search) {
 		logger.trace("BoardServiceImpl - searchByTitleContentCategory() 동작");
 		Map<String, Object> filter = new HashMap<>();
 		filter.put("from", 9*pageNo-8);
 		filter.put("to", 9*pageNo);
+		filter.put("userNo", userNo);
 		filter.put("title", search);
 		filter.put("content", search);
 		filter.put("categoryNo", categoryNo);
 		return boardDao.searchByTitleContentCategory(filter);
 	}
+
+	
 
 	
 

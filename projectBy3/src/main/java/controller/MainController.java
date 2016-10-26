@@ -91,13 +91,13 @@ public class MainController {
 	@RequestMapping(value="/searchBoard", method=RequestMethod.GET)
 	public @ResponseBody List<Board> searchBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam String searchStr){
 		logger.trace("class : MainController, method : searchBoard");		
-		List<Board> boards = service.searchByTitleContent(index, searchStr);		
+		List<Board> boards = service.searchByTitleContent(index,(int) session.getAttribute("userNo"), searchStr);		
 		return boards;
 	}
 	@RequestMapping(value="/searchCategoryBoard", method=RequestMethod.GET)
 	public @ResponseBody List<Board> searchCategoryBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam Integer categoryNo,@RequestParam String searchStr){
 		logger.trace("class : MainController, method : searchCategoryBoard");		
-		List<Board> boards = service.searchByTitleContentCategory(index,categoryNo,searchStr);		
+		List<Board> boards = service.searchByTitleContentCategory(index,(int) session.getAttribute("userNo"),categoryNo,searchStr);		
 		return boards;
 	}
 	

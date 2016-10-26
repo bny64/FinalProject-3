@@ -6,6 +6,7 @@ import java.util.Map;
 import dto.Board;
 
 public interface BoardDao {
+	public Board selectForBoardNo(Map<String, Object> filter);
 	public List<Board> selectAllBoard();
 	public Board selectBoard(int boardNo);
 	public List<Board> selectMyBoard(int userNo);

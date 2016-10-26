@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import dto.Board;
+import dto.BoardLocation;
 import dto.Category;
+import service.BoardLoactionService;
 import service.BoardService;
 import service.CategoryService;
 import service.UserService;
@@ -40,7 +42,8 @@ public class BoardController {
 	CategoryService ctservice;
 	@Autowired 
 	UserService userService;
-
+	@Autowired
+	BoardLoactionService boardLocationService;
 	
 	@InitBinder
 	public void setBindingFormat(WebDataBinder binder){
@@ -70,7 +73,7 @@ public class BoardController {
 		int userNo = (int) session.getAttribute("userNo");
 		logger.trace("userNo : {}", userNo);
 		
-		Board board = new Board(0,"",0,"",null,userNo,0,"",null);
+		Board board = new Board(0,"",0,"",null,userNo,0,"",null,"all",0,0);
 		model.addAttribute("board", board);		
 		return "writeBoard";
 	}
@@ -79,10 +82,10 @@ public class BoardController {
 	public String writeBoardLocation(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude){
 		List<Category> category = ctservice.selectAllCategory();
 		model.addAttribute("category", category);
-		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"all",latitude,longitude);
 		model.addAttribute("board", board);
-		model.addAttribute("latitude",latitude);
-		model.addAttribute("longitude",longitude);
+		//model.addAttribute("latitude",latitude);
+		//model.addAttribute("longitude",longitude);
 		return "writeBoard";
 	}
 	
@@ -125,8 +128,15 @@ public class BoardController {
 		board.setWritedDate(new Date());
 		
 		int result = service.insertBoard(board);
-		logger.trace("글쓰기 결과 : {}", result);
-		
+		Board insertBoard = service.selectForBoardNo(board.getUserNo(), board.getTitle());
+		logger.trace("글쓰기 결과 : {}", result);		
+		BoardLocation boardLocation = new BoardLocation();
+		boardLocation.setLatitude(board.getLatitude());
+		boardLocation.setLongitude(board.getLongitude());
+		boardLocation.setBoardNo(insertBoard.getBoardNo());
+		logger.trace("위치:{},{}",board.getLatitude(),board.getLongitude());
+		int resultLocation = boardLocationService.insertBoardLocation(boardLocation);
+		logger.trace("성공 여부: {}",resultLocation);
 		
 		return "mainBoard";
 	}
