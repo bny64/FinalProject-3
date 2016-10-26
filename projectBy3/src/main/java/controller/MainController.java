@@ -137,7 +137,7 @@ public class MainController {
 		return "userLocation";
 	}
 	@RequestMapping(value="/savelocation")
-	public @ResponseBody List<UserLocation> savelocation(HttpSession session,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String userLocationName) throws ParseException{
+	public @ResponseBody UserLocation savelocation(HttpSession session,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String userLocationName) throws ParseException{
 		logger.trace("class : MainController, method : savelocation");
 		logger.trace("userLocationName :{} , latitude : {} , longitude {}",userLocationName,latitude,longitude);
 		UserLocation ul = new UserLocation();
@@ -147,8 +147,22 @@ public class MainController {
 		ul.setLongitude(longitude);
 		ul.setUserNo((int) session.getAttribute("userNo"));
 		location.insertUserLocation(ul);
-		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
+		UserLocation locations = location.selectOneLocation(userLocationName);
 		return locations;
+	}
+	
+	@RequestMapping(value="/deleteLocation", method=RequestMethod.GET)
+	public String deleteLocation(Model model, HttpSession session,@RequestParam int userLocationNo){
+		logger.trace("class : MainController, method : deleteLocation");
+		logger.trace("locationNo: {}", userLocationNo );
+		
+		location.deleteUserLocation(userLocationNo);
+		
+		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
+		model.addAttribute("locations", locations);
+		
+		return "userLocation";
+		
 	}
 	
 	

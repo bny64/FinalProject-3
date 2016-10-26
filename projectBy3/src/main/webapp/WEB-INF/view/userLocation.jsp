@@ -24,6 +24,11 @@
 	clear: both;
 }
 
+table th {
+		text-align: center;
+		padding: 0;
+	}
+
 </style>
 </head>
 <body>
@@ -32,7 +37,7 @@
 	<section id="content">			    		
 			<div id="map" style="width: 500px; height: 400px;"></div>
 			<br>
-			<input type = "text" placeholder="위치 저장명" id="name">
+			<input type = "text" placeholder="위치 저장명" id="userLocationName" name="userLocationName">
 			<div>
 				
 				<%-- <c:url value = "/savelocation" var="savelocation"/>
@@ -41,9 +46,28 @@
 			</div>
 			<br><br>			
 			<div id="locationDiv">
-				<c:forEach items="${locations}" var="loaction">
+				<table id="table">
+					<tr>
+						<th align="center">위치 이름</th>
+						<th align="center">위도</th>
+						<th align="center">경도</th>
+					</tr>
+					<c:forEach items="${locations }" var="location">
+					<tr>
+						<td align="center">${location.locationName }</td>
+						<td align="center">${location.latitude }</td>
+						<td align="center">${location.longitude }</td>
+						<td align="center">
+						<c:url value="/deleteLocation" var="deleteLocation"/>
+						<a href="${deleteLocation }?userLocationNo=${location.userLocationNo}"><button>삭제</button></a>
+						</td>
+					</tr>
+					</c:forEach>
+					
+				</table>
+				<%-- <c:forEach items="${locations}" var="loaction">
 					<h3>${loaction.locationName },  ${loaction.latitude },  ${loaction.longitude }</h3>					
-				</c:forEach>
+				</c:forEach> --%>
 			</div>
 	</section>
 	
@@ -93,7 +117,7 @@
 				staticMapOption);
 
 	}
-	
+	<c:url value="/deleteLocation" var="deleteLocation"/>
 	$("#btn2").on("click",function(){
 		console.log("클릭");
 		<c:url value = "/savelocation" var="savelocation"/>
@@ -107,11 +131,18 @@
 			},
 			success:function(res){
 				console.log("전송");
-				$locationDiv = $("#locationDiv");
-				$locationDiv.empty();
+				//$locationDiv = $("#locationDiv");
+				//$locationDiv.empty();
 				$(res).each(function(idx,data){					
-					$newOne = "<h3>"+ data.locationName +"    "+ data.latitude + "  " + data.longitude+ " <h3>"; 					
-					$locationDiv.append($newOne);
+					$newOne = "<tr><td align='center'>"+data.locationName+"</td>"
+										+"<td align='center'>"+data.latitude+"</td>"
+										+"<td align='center'>"+data.longitude+"</td>"
+										+"<td align='center'><a href="+"${deleteLocation}"+
+										"?userLocationNo="+data.userLocationNo
+												+"><button>삭제</button></a></td></tr>"; 
+					//$newOne = "<h3>"+ data.locationName +"    "+ data.latitude + "  " + data.longitude+ " <h3>"; 					
+					$("tr:first").after($newOne); 
+					$("#userLocationName").val("");
 				});
 			},
 			error:function(request,status,error){
