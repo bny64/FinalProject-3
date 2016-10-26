@@ -30,4 +30,16 @@ public class LocationServiceImpl implements LocationService {
 		return lDao.insertUserLocation(userLocation);
 	}
 
+	@Override
+	public int deleteUserLocation(int userLocationNo) {
+		logger.trace("LocationServiceImpl - deleteUserLocation 동작");
+		return lDao.deleteUserLocation(userLocationNo);
+	}
+
+	@Override
+	public UserLocation selectOneLocation(String locationName) {
+		logger.trace("LocationServiceImpl - selectOneLocation 동작");
+		return lDao.userLocationOne(locationName);
+	}
+
 }

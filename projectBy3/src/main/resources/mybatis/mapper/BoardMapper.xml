@@ -4,6 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardMapper">
 	
+	<select id="selectForBoardNo" resultMap="boardBase">
+		select *
+		from board
+		where user_no =#{userNo} and title=#{title}
+	
+	</select>
+	
+	
 	<select id="selectAllBoard" resultMap="boardBase">
 		select *
 		from board
@@ -18,30 +26,53 @@
 		<!-- where rnum between #{from} and #{to}-->
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
 	</select>
+	
 	<select id="selectAllBoardByPagingMyFd" resultMap="boardBase">
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board 
+						where (user_no in(
+                					select USER_FRIEND.FRIEND_NO 
+                					From USER_FRIEND 
+                					WHERE USER_FRIEND.USER_NO = #{userNo}
+                					) 
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ) 
+                			
+                	order by WRITED_DATE DESC					
+					) sub 
+			)		
+		where rnum &gt;= #{from} and rnum &lt;= #{to} 
+	</select>
+	
+	<!-- <select id="test">
 		select * 
 		from (select rownum rnum, sub.*
 				from (SELECT * FROM BOARD 
 						where USER_NO in (select USER_FRIEND.FRIEND_NO 
-                  		From USER_FRIEND 
-                  		WHERE USER_FRIEND.USER_NO = #{userNo}) 
-						order by WRITED_DATE DESC) sub 
+                  							From USER_FRIEND 
+                  							WHERE USER_FRIEND.USER_NO = #{userNo}) 
+						order by WRITED_DATE DESC
+						
+					
+					) sub 
 			)
-		<!-- where rnum between #{from} and #{to}-->
+		where rnum between #{from} and #{to}
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
-	</select>
+	
+	
+	</select> -->
+	
 	
 	<select id="selectBoard" resultMap="boardBase" parameterType="int">
 		select *
 		from board
-		where board_no=#{boardNo}
-		order by WRITED_DATE DESC
+		where board_no=#{boardNo}	
 	</select>
 	<select id="selectMyBoard" resultMap="boardBase" parameterType="int">
 		select *
 		from board
-		where user_no=#{userNo}
-		order by WRITED_DATE DESC
+		where user_no=#{userNo}		
 	</select>
 	<select id="selectMyBoardByPaging" resultMap="boardBase">
 		select * 
@@ -58,49 +89,107 @@
 	
 	<update id="updateBoard" parameterType="board">
 		update board set title = #{title}, content =#{content}, category_no = #{categoryNo},image_path = #{imagePath}
-		where board_no=#{boardNo}
-	
+		where board_no=#{boardNo}	
 	</update>
 	
 	<insert id="insertBoard" parameterType="board">
 		insert into BOARD
-		VALUES(board_no_seq.NEXTVAL,#{title},1,#{content},sysdate,#{userNo},#{categoryNo},#{imagePath})
+		VALUES(board_no_seq.NEXTVAL,#{title},1,#{content},sysdate,#{userNo},#{categoryNo},#{imagePath},#{viewStatus})
 	</insert>
 	
-	<select id="selectMyCategoryBoardByPaging" resultMap="boardBase">
+	<!-- <select id="selectMyCategoryBoardByPaging1" resultMap="boardBase">
 		select * 
 		from (select rownum rnum, sub.*
 				from (select * from board where user_no=#{userNo} and category_no = #{categoryNo} order by WRITED_DATE DESC) sub 
 			)
-		<!-- where rnum between #{from} and #{to}-->
+		where rnum between #{from} and #{to}
+		where rnum &gt;= #{from} and rnum &lt;= #{to} 
+	</select> -->
+	
+	
+	<select id="selectMyCategoryBoardByPaging" resultMap="boardBase">
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board 
+						where ((user_no in(
+                					select USER_FRIEND.FRIEND_NO 
+                					From USER_FRIEND 
+                					WHERE USER_FRIEND.USER_NO = #{userNo}
+                					) 
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
+                			and  category_no = #{categoryNo}
+                			
+                	order by WRITED_DATE DESC					
+					) sub 
+			)		
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
 	</select>
 	
-	<select id="searchByTitleContent" resultMap="boardBase" >
+	
+	
+	
+	<!-- <select id="searchByTitleContent1" resultMap="boardBase" >
 		select * 
 		from (select rownum rnum, sub.*
 				from (select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%' order by WRITED_DATE DESC) sub 
 			)		
 		where rnum &gt;= #{from} and rnum &lt;= #{to}
 		
+	</select> -->
+	<select id="searchByTitleContent" resultMap="boardBase" >
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board 
+						where ((user_no in(
+                					select USER_FRIEND.FRIEND_NO 
+                					From USER_FRIEND 
+                					WHERE USER_FRIEND.USER_NO = #{userNo}
+                					) 
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
+                			and (title like '%'||#{title}||'%' or content like '%'||#{content}||'%')
+                			
+                	order by WRITED_DATE DESC					
+					) sub 
+			)		
+		where rnum &gt;= #{from} and rnum &lt;= #{to} 
+		
 	</select>
 	
 	
-	<select id="searchByTitleContentCategory" resultMap="boardBase" >
+	
+	
+	
+	
+	<!-- <select id="searchByTitleContentCategory" resultMap="boardBase" >
 		select * 
 		from (select rownum rnum, sub.*
 				from (select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%' and category_no = #{categoryNo} order by WRITED_DATE DESC) sub 
 			)		
 		where rnum &gt;= #{from} and rnum &lt;= #{to}
 		
+	</select> -->
+	<select id="searchByTitleContentCategory" resultMap="boardBase" >
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board 
+						where ((user_no in(
+                					select USER_FRIEND.FRIEND_NO 
+                					From USER_FRIEND 
+                					WHERE USER_FRIEND.USER_NO = #{userNo}
+                					) 
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
+                			and (title like '%'||#{title}||'%' or content like '%'||#{content}||'%')
+                			and category_no = #{categoryNo}
+                	order by WRITED_DATE DESC					
+					) sub 
+			)		
+		where rnum &gt;= #{from} and rnum &lt;= #{to}
+		
 	</select>
 		
-	
-	<select id ="test">
-	select * from board where title like '%'||#{title}||'%' or content like '%'||#{content}||'%'
-	</select>
-	
-	
 	
 	
 	
@@ -113,6 +202,7 @@
 		<result column="user_no" property="userNo"/>
 		<result column="category_no" property="categoryNo"/>
 		<result column="image_path" property="imagePath"/>
+		<result column="view_status" property="viewStatus"/>
 	</resultMap>
 
 </mapper>

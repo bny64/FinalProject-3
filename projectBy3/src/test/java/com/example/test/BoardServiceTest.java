@@ -112,7 +112,7 @@ public class BoardServiceTest {
 	}
 	@Test	
 	public void searchByTitleContent(){
-		List<Board> board = service.searchByTitleContent(1, "은구");
+		List<Board> board = service.searchByTitleContent(1,2, "은구");
 		logger.trace("은구로 검색 한 board : {} ",board);
 	}
 	
@@ -121,6 +121,27 @@ public class BoardServiceTest {
 		List<Board> boards = service.selectMyBoardByPaging(23, 1);
 		logger.trace("boards : {}", boards);
 	}
+	
+	@Test
+	public void selectForBoardNo(){
+		Board b = service.selectForBoardNo(2, "asd");
+		logger.trace("boards : {}", b);
+	}
+	
+	@Test
+	public void selectAllBoardByPagingfdTest(){
+		List<Board> boards = service.selectAllBoardByPagingMyFd(1, 2);
+		logger.trace("boards.size() : {}", boards.size());
+		//assertThat(boards.size(), is(9));
+	}
+	
+	
+	@Test
+	public void selectMyCategoryBoardByPaging(){
+		List<Board> boards = service.selectMyCategoryBoardByPaging(2, 1, 1);
+		logger.trace("보드() : {}", boards);
+	}
+	
 	
 	
 }

@@ -34,4 +34,18 @@ public class LocationDaoImpl implements LocationDao {
 		return template.update(stmt, userLocation);
 	}
 
+	@Override
+	public int deleteUserLocation(int userLocationNo) {
+		logger.trace("LocationDaoImpl - deleteUserLocation 동작");
+		String stmt = LOCATION_NS + "deleteUserLocation";
+		return template.update(stmt, userLocationNo);
+	}
+
+	@Override
+	public UserLocation userLocationOne(String locationName) {
+		logger.trace("LocationDaoImpl - userLocationOne 동작");
+		String stmt = LOCATION_NS + "selectUserLocationOne";
+		return template.selectOne(stmt, locationName);
+	}
+
 }

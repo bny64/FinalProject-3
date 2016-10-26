@@ -9,10 +9,18 @@
 		from user_location
 		where user_no=#{userNo}
 	</select>
+	<select id="selectUserLocationOne" resultMap="userLocationBase" parameterType="String">
+		select *
+		from user_location
+		where location_name=#{locationName}
+	</select>
 	<insert id="insertUserLocation" parameterType="userLocation">
 		insert into user_location
 		values(user_location_no_seq.nextval, #{locationName}, sysdate,#{latitude}, #{longitude}, #{userNo})
 	</insert>
+	<delete id="deleteUserLocation" parameterType="int">
+		delete user_location where user_location_no=#{userLocationNo}	
+	</delete>
 	
 	<resultMap type="userLocation" id="userLocationBase">
 		<id column="user_location_no" property="userLocationNo"/>
