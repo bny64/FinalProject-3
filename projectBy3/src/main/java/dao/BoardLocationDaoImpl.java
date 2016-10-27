@@ -40,4 +40,10 @@ public class BoardLocationDaoImpl implements BoardLoactionDao{
 		return template.selectList(stmt,filter);
 	}
 
+	@Override
+	public List<BoardLocation> selectBoardLocationByUserNo(int userNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
