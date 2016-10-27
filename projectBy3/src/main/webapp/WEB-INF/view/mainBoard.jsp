@@ -110,7 +110,7 @@
 					     		console.log(data.title+"은 낫 널  "+data.imapgePath);
 					     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
 						 		+ "'> <img src='<%=request.getContextPath()%>/img/"+data.imagePath+"' alt='' />"
-					     		+"<h3>" + data.imagePath + "</h3></a>";
+					     		+"<h3>" + data.title + "</h3></a>";
 					     	}else{
 					     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
 						 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
@@ -171,7 +171,7 @@
 						     		console.log(data.title+"은 낫 널  "+data.imapgePath);
 						     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
 							 		+ "'> <img src='<%=request.getContextPath()%>/img/"+data.imagePath+"' alt='' />"
-						     		+"<h3>" + data.imagePath + "</h3></a>";
+						     		+"<h3>" + data.title + "</h3></a>";
 						     	}else{
 						     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
 							 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
