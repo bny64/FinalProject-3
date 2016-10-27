@@ -26,14 +26,12 @@
                                											  where user_no=#{userNo}))
 	</select>
 	
-	<select id="getBoardsBycenterLocation">
-		select board_no
+	<select id="getBoardsBycenterLocation" parameterType="map" resultMap="boardLocationBase">
+		select *
 		from board_location
 		where (latitude between #{centerLat} - #{range} and #{centerLat} + #{range})
-		and (longitude between #{centerLat} - #{range} and #{centerLat} + #{range});
+		and (longitude between #{centerLng} - #{range} and #{centerLng} + #{range})
 	</select>
-	
-	
 	
 	
 	
