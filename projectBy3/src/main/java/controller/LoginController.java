@@ -104,7 +104,9 @@ public class LoginController {
 			if(file.getOriginalFilename().length()!=0){
 				file.transferTo(uploadFile);
 				user.setProfilePath(uploadFile.getName());
+				logger.trace("회원가입 사진 업로드 :{}",uploadFile.getName());
 			}
+			logger.trace("유저:{}",user);
 			service.insertUser(user);
 			
 		}

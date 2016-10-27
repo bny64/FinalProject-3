@@ -140,8 +140,9 @@ public class BoardController {
 			board.setImagePath(uploadFile.getName());
 		}else if(file.getOriginalFilename().length()==0){
 			logger.trace("파이리 없다 :{}",file.getOriginalFilename().length());
-			board.setImagePath(userService.selectUserProfilePathByUserNo(userNo));
-			
+			if(userService.selectUserProfilePathByUserNo(userNo)!=null){
+				board.setImagePath(userService.selectUserProfilePathByUserNo(userNo));
+			}
 		}		
 		
 		logger.trace("원래 파일 명:{}",file.getOriginalFilename());
