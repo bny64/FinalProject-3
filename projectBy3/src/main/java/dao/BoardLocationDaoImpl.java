@@ -42,8 +42,9 @@ public class BoardLocationDaoImpl implements BoardLoactionDao{
 
 	@Override
 	public List<BoardLocation> selectBoardLocationByUserNo(int userNo) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.trace("BoardLocationImpl - selectBoardLocationByUserNo 동작");
+		String stmt = BOARD_NS + "selectBoardLocationByUserId";
+		return template.selectList(stmt, userNo);
 	}
 
 }
