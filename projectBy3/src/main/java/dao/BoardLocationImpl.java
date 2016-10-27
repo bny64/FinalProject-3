@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,5 +31,11 @@ public class BoardLocationImpl implements BoardLoactionDao{
 		String stmt = BOARD_NS + "insertBoardLocation";
 		return template.insert(stmt,boardLocation);
 	}
-
+	
+	@Override
+	public List<BoardLocation> selectBoardLocationByUserNo(int userNo) {
+		logger.trace("BoardLocationImpl - selectBoardLocationByUserNo 동작");
+		String stmt = BOARD_NS + "selectBoardLocationByUserId";
+		return template.selectList(stmt, userNo);
+	}
 }

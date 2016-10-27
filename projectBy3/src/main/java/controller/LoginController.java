@@ -14,15 +14,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.google.gson.Gson;
 
 import dto.User;
 import service.UserService;
@@ -30,9 +35,10 @@ import service.UserService;
 @Controller
 public class LoginController {
 	static Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
 	@Autowired
 	UserService service;
-
+	
 	// 민국 : 필수 입력 사항 설정 --> 해당 항목의 값이 없을 경우 오류 발생
 	@InitBinder
 	public void setEssentialFields(WebDataBinder binder){
@@ -60,6 +66,20 @@ public class LoginController {
 			// 민국 - 로그인이 안됬을 시, 로그인 실패에 해당하는 페이지나 알람을 보여줘야 함.
 			return "index";
 		}
+	}
+	@RequestMapping(value="/androidLogin/{Jlogin:.+}", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Map<String, Object> androidLogin(@PathVariable("Jlogin") String Jlogin){
+		Map<String, Object> result = new HashMap<>();
+		Gson gson = new Gson();
+		Map<String, Object> userInfo = gson.fromJson(Jlogin, Map.class);
+		User loginUser = service.loginUser((String)userInfo.get("userId"), (String)userInfo.get("userPass"));
+		
+		result.put("userId", loginUser.getUserId());
+		result.put("userPass", loginUser.getPassword());
+		result.put("userNo", loginUser.getUserNo());
+
+		return result;
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
