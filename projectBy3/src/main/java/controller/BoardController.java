@@ -87,10 +87,17 @@ public class BoardController {
 	public String writeBoardLocation(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude){
 		List<Category> category = ctservice.selectAllCategory();
 		model.addAttribute("category", category);
-		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"visible",latitude,longitude);
-		model.addAttribute("board", board);
-		//model.addAttribute("latitude",latitude);
-		//model.addAttribute("longitude",longitude);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude);
+		model.addAttribute("board", board);		
+		return "writeBoard";
+	}
+	@RequestMapping(value="/writeBoardLocations",method=RequestMethod.GET)
+	public String writeBoardLocations(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String locationName){
+		List<Category> category = ctservice.selectAllCategory();
+		model.addAttribute("locationName",locationName);
+		model.addAttribute("category", category);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude);
+		model.addAttribute("board", board);		
 		return "writeBoard";
 	}
 	
@@ -127,12 +134,15 @@ public class BoardController {
 		File uploadFile = new File ( uploadDir + userNo +"." +System.currentTimeMillis()+file.getOriginalFilename());
 		file.transferTo(uploadFile);	
 		
-		board.setImagePath(file.getOriginalFilename());
-		
+		board.setImagePath(uploadFile.getName());
+		logger.trace("원래 파일 명:{}",file.getOriginalFilename());
+		logger.trace("변경 후  파일 명:{}",uploadFile.getName());
 		//쓰기 버튼을 누르고 글 작성 시간 추가
 		board.setWritedDate(new Date());
 		
 		int result = service.insertBoard(board);
+		
+		//board location에 위치정보 등록
 		Board insertBoard = service.selectForBoardNo(board.getUserNo(), board.getTitle());
 		logger.trace("글쓰기 결과 : {}", result);		
 		logger.trace("보이는 상황:{}",board.getViewStatus());

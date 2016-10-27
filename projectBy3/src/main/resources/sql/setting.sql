@@ -146,4 +146,4 @@ create table user_history(
   foreign key(board_no) REFERENCES board(board_no) on DELETE CASCADE
 );
 
-
+alter table board MODIFY (image_path varchar2(200));

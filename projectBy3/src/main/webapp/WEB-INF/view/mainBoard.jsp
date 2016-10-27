@@ -105,9 +105,12 @@
 					$right = $("#right");
 					$(res).each(function(idx,data){
 						<c:url value = "/detailBoard" var="detailBoard"/>
-						$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
+						<%-- $newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
 						 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
-					     		+"<h3>" + data.title + "</h3></a>";						
+					     		+"<h3>" + data.title + "</h3></a>"; --%>	
+					     $newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
+						 		+ "'> <img src='<%=request.getContextPath()%>/img/"+data.imagePath+"' alt='' />"
+					     		+"<h3>" + data.imagePath + "</h3></a>";
 			
 						switch(idx%3){
 						case 0:

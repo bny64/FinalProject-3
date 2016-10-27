@@ -105,6 +105,7 @@ body {
 #bottomBtns > a > img {
 	top: 12px;
 	position: relative;
+	
 }
 
 </style>
@@ -135,13 +136,16 @@ body {
 		</div>
 		<br>
 		<div id="map">
+			
+			<sform:select path="viewStatus" id="viewStatus">				
+				<sform:option value="visible">그냥 보이기</sform:option>
+				<sform:option value="hidden" selected="selected">숨기기</sform:option>
+			</sform:select>
+			<br> 
 			<c:url value="/getMyLocation" var="getMyLocation"/>
 			<!-- 민국 - 팝업으로 바꿔야함. -->
-			<a href="${getMyLocation }"><img id="getMyLocation" src="<%=request.getContextPath() %>/img/button/getMyLocation.png"></a>
-			<sform:select path="viewStatus">
-				<sform:option value="hidden">숨김</sform:option>
-				<sform:option value="visible">보임</sform:option>
-			</sform:select> 
+			<a href="${getMyLocation }" id="locationLink"><img id="getMyLocation" src="<%=request.getContextPath() %>/img/button/getMyLocation.png"></a>
+			<h2 id = "locationStr">    ${locationName }</h2>
 		</div>
 		<div id="bottomBtns">
 			<button id="writeBtn">쓰기</button>
@@ -168,7 +172,19 @@ body {
 	
 	
 	
-	
+	$("#viewStatus").on("change",function(){
+		if($("#viewStatus").val()=='visible'){
+			$("#getMyLocation").css("visibility","hidden");
+			$("#locationLink").css("display","none");	
+			$("#locationStr").css("display","none");	
+			
+		}else{
+			$("#getMyLocation").css("visibility","visible");
+			$("#locationLink").css("display","block");
+			$("#locationStr").css("display","block");
+		}
+			
+	});
 	
 	
 	
