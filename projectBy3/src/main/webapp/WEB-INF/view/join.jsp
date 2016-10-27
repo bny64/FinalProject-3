@@ -32,7 +32,7 @@
 				<!-- Main -->
 					<section id="main">
 						<div id="joinForm">
-							<sform:form method="post" action="joinPage" modelAttribute="user">
+							<sform:form method="post" action="joinPage" modelAttribute="user" enctype="multipart/form-data">
 								<fieldset>
 								<sform:input path="userId" placeholder="ID"/><br>
 								<sform:input path="password"  placeholder="비밀번호"  /><br>
@@ -41,6 +41,7 @@
 								<sform:input path="tel" placeholder="***-****-****" /><br>
 								<sform:input path="email" placeholder="이메일"  /><br>
 								<sform:input type="date" path="birthdate" placeholder="yyyy-MM-dd" value="2016-10-04" /><br>
+								<sform:input path="file" type="file"/><br>
 								</fieldset>
 								<sform:button>가입 하기</sform:button>
 							</sform:form>

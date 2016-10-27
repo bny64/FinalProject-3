@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import dto.User;
 import service.UserService;
@@ -82,16 +85,28 @@ public class LoginController {
 	@RequestMapping(value = "/joinPage", method = RequestMethod.GET)
 	public String joinPage(Model model) {
 		logger.trace("class : LoginController, method : joinPage");
-		model.addAttribute("user", new User(1,"","","","","","",new Date()));
+		User user = new User();
+		//model.addAttribute("user", new User(1,"","","","","","",new Date(),""));
+		model.addAttribute("user", user);
 		return "join";
 	}
 	
+	
+	private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
 	@RequestMapping(value = "/joinPage", method = RequestMethod.POST)
-	public String join(Model model, User user, BindingResult result, HttpSession session) {
+	public String join(Model model, User user, BindingResult result, HttpSession session, @RequestParam MultipartFile file) throws IllegalStateException, IOException{
 		logger.trace("class : LoginController, method : join, userInfo : {}", user);
 		
+		
+		
 		if(user != null){
+			File uploadFile = new File ( uploadDir + user.getUserId() +"." +System.currentTimeMillis()+file.getOriginalFilename());
+			if(file.getOriginalFilename().length()!=0){
+				file.transferTo(uploadFile);
+				user.setProfilePath(uploadFile.getName());
+			}
 			service.insertUser(user);
+			
 		}
 		return "index";
 	}

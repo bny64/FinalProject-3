@@ -89,4 +89,11 @@ public class UserDaoImpl implements UserDao {
 		String stmt = NAME_SPACE +"searchByNickNameUserNameUsers";
 		return template.selectList(stmt,filter);
 	}
+
+	@Override
+	public User selectUserProfilePathByUserNo(int userNo) {
+		logger.trace("UserDaoImpl - selectUserProfilePathByUserNo");
+		String stmt = NAME_SPACE +"selectUserProfilePathByUserNo";
+		return template.selectOne(stmt, userNo);
+	}
 }

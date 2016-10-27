@@ -71,7 +71,7 @@ public class UserServiceTest {
 		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
 		Date date = fdm.parse(str);
 			User user = new User(0, "kang", "aabb", "hodong", "kanghodong",
-												"010-000-0000", "abc@def", date);
+												"010-000-0000", "abc@def", date,"",null);
 			int result = service.insertUser(user);
 			assertThat(result, is(1));
 			logger.trace("result : {}", result);
@@ -85,7 +85,7 @@ public class UserServiceTest {
 		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
 		Date date = fdm.parse(str);
 			User user = new User(0, "hong", "aabb", "hodong", "kanghodong",
-												"010-000-0000", "abc@def", date);
+												"010-000-0000", "abc@def", date,"",null);
 			int result = service.insertUser(user);
 			assertThat(result, is(0));
 			logger.trace("result : {}", result);
@@ -99,7 +99,7 @@ public class UserServiceTest {
 		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
 		Date date = fdm.parse(str);
 			User user = new User(0, "kang", "aabb", "hhh", "kanghodong",
-												"010-000-0000", "abc@def", date);
+												"010-000-0000", "abc@def", date,"",null);
 			int result = service.insertUser(user);
 			assertThat(result, is(0));
 			logger.trace("result : {}", result);

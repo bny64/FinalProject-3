@@ -61,7 +61,11 @@
 		
 	</select>
 	
-	
+	<select id="selectUserProfilePathByUserNo" resultMap="usersBase" parameterType="int">
+		select *
+		from users
+		where user_no = #{userNo}
+	</select>
 	
 	
 	
@@ -74,6 +78,7 @@
 		<result column="tel" property="tel"/>
 		<result column="email" property="email"/>
 		<result column="birthdate" property="birthdate"/>
+		<result column="profile_path" property="profilePath"/>
 	</resultMap>
 
 </mapper>

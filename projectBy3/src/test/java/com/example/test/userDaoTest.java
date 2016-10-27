@@ -61,7 +61,7 @@ public class userDaoTest {
 		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
 		Date date = fdm.parse(str);
 			User user = new User(0, "kang", "aabb", "hodong", "kanghodong",
-												"010-000-0000", "abc@def", date);
+												"010-000-0000", "abc@def", date,"",null);
 			int result = uDao.insertUser(user);
 			logger.trace("result : {}", result);
 	}
