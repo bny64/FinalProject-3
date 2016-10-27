@@ -2,7 +2,6 @@ package dao;
 
 import java.util.List;
 
-import dto.BoardLocation;
 import dto.UserLocation;
 
 public interface LocationDao {

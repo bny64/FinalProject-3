@@ -19,10 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import config.ApplicationConfig;
 import dto.User;
-import exception.IdDuplicatedException;
 import exception.IdFailException;
 import exception.NicknameDuplicatedException;
-import exception.passFailException;
 import service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

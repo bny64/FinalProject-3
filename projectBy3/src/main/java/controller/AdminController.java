@@ -18,7 +18,6 @@ import dto.Admin;
 import dto.Board;
 import dto.Category;
 import dto.User;
-import dto.UserFriend;
 import service.BoardService;
 import service.CategoryService;
 import service.UserService;
