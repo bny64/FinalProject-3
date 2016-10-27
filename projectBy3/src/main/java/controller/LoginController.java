@@ -64,7 +64,20 @@ public class LoginController {
 			return "index";
 		}
 	}
-	
+	@RequestMapping(value="/androidLogin/{Jlogin:.+}", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Map<String, Object> androidLogin(@PathVariable("Jlogin") String Jlogin){
+		Map<String, Object> result = new HashMap<>();
+		Gson gson = new Gson();
+		Map<String, Object> userInfo = gson.fromJson(Jlogin, Map.class);
+		User loginUser = service.loginUser((String)userInfo.get("userId"), (String)userInfo.get("userPass"));
+		
+		result.put("userId", loginUser.getUserId());
+		result.put("userPass", loginUser.getPassword());
+		result.put("userNo", loginUser.getUserNo());
+
+		return result;
+	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		

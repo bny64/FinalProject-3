@@ -124,9 +124,14 @@ public class BoardController {
 		return "mainBoard";
 	}
 	
+<<<<<<< HEAD
 	//private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
 	private static final String uploadDir = "E:/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/server/wtpwebapps/projectBy3/WEB-INF/assets/images";
 	@RequestMapping(value="/upload/writeBoard", method=RequestMethod.POST)
+=======
+	private static final String uploadDir = "C:/Users/1-718-8/git/GTest2/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
+	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
+>>>>>>> branch 'master' of https://github.com/bny64/FinalProject-3.git
 	public String writeBoardPost(HttpSession session, Board board, @RequestParam MultipartFile file) throws IllegalStateException, IOException{
 		logger.trace("class : BoardController, method : writeBoardPost");	
 		logger.trace("board : {}", board);

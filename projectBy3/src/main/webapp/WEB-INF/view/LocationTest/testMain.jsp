@@ -44,6 +44,7 @@
 			<button onclick="setCenter()">최초 중심으로 이동시키기</button>
 			<button onclick="removeMarker()">마커 전체 삭제</button>
 		</p>
+		<div id="result"></div>
 	</div>
 	<!-- 민국 : 위치들을 표시할 div -->
 	<div id="location">
@@ -62,6 +63,7 @@
 		<select id="selectedClickEvent">
 			<option value="infoWindow">인포 윈도우</option>
 			<option value="createMarker">마커 생성</option>
+			<option value="createRect">사각형 그리기</option>
 		</select><br><br>
 		카테고리로 장소 검색
 		<select id="categoryCode">

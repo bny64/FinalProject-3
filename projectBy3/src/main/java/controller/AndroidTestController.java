@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,10 +27,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
 
+import dto.BoardLocation;
+import service.BoardLoactionService;
+
 @Controller
 public class AndroidTestController {
 
 	static Logger logger = LoggerFactory.getLogger(AndroidTestController.class);
+	
+	@Autowired
+	BoardLoactionService blservice;
 	
 	@RequestMapping("/android")
 	public void androidTest(){
@@ -52,4 +61,6 @@ public class AndroidTestController {
 		//위도, 경도를 넘겨주고 필요한 내용을 List<Map<String, Object>>에 담아 리턴. *boardNo는 필수
 		return list;
 	}
+	
+	
 }
