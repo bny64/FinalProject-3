@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dao.CategoryDao;
 import dao.UserCategoryDao;
-import dto.Category;
 import dto.UserCategory;
 
 @Service

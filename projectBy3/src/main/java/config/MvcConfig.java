@@ -48,6 +48,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		registry.addResourceHandler("/js/**")
 		.addResourceLocations("/WEB-INF/assets/js/");
 		
+		//registry.addResourceHandler("/upload/**").addResourceLocations("/WEB-INF/assets/images/");
+		
 		/*registry.addResourceHandler("/layout/**")
 		.addResourceLocations("/WEB-INF/layout/");*/
 	}
@@ -71,7 +73,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 	public CommonsMultipartResolver multipartResolver(){
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setDefaultEncoding("utf-8");
-		resolver.setMaxUploadSize(1024*1024);
+		resolver.setMaxUploadSize(1024*1024*1024);
 		return resolver;
 	}
 	/*<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -79,4 +81,16 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 	        <property name="prefix" value="/WEB-INF/view/"/>
 	        <property name="suffix" value=".jsp"/>
 	</bean>*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

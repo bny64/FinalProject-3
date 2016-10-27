@@ -150,5 +150,11 @@ public class UserServiceImpl implements UserService {
 		filter.put("userName", search);
 		return uDao.searchByNickNameUserNameUsers(filter);
 	}
+
+	@Override
+	public String selectUserProfilePathByUserNo(int userNo) {
+		logger.trace("selectUserProfilePathByUserNo");		
+		return uDao.selectUserProfilePathByUserNo(userNo).getProfilePath();
+	}
 	
 }

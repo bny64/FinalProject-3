@@ -87,10 +87,17 @@ public class BoardController {
 	public String writeBoardLocation(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude){
 		List<Category> category = ctservice.selectAllCategory();
 		model.addAttribute("category", category);
-		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"visible",latitude,longitude);
-		model.addAttribute("board", board);
-		//model.addAttribute("latitude",latitude);
-		//model.addAttribute("longitude",longitude);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude);
+		model.addAttribute("board", board);		
+		return "writeBoard";
+	}
+	@RequestMapping(value="/writeBoardLocations",method=RequestMethod.GET)
+	public String writeBoardLocations(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String locationName){
+		List<Category> category = ctservice.selectAllCategory();
+		model.addAttribute("locationName",locationName);
+		model.addAttribute("category", category);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude);
+		model.addAttribute("board", board);		
 		return "writeBoard";
 	}
 	
@@ -117,7 +124,10 @@ public class BoardController {
 		return "mainBoard";
 	}
 	
-	private static final String uploadDir = "C:/Users/1-718-8/git/GTest2/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
+
+	private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
+	//private static final String uploadDir = "E:/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/server/wtpwebapps/projectBy3/WEB-INF/assets/images";
+	
 	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
 	public String writeBoardPost(HttpSession session, Board board, @RequestParam MultipartFile file) throws IllegalStateException, IOException{
 		logger.trace("class : BoardController, method : writeBoardPost");	
@@ -125,14 +135,27 @@ public class BoardController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		File uploadFile = new File ( uploadDir + userNo +"." +System.currentTimeMillis()+file.getOriginalFilename());
-		file.transferTo(uploadFile);	
 		
-		board.setImagePath(file.getOriginalFilename());
 		
+		if(file.getOriginalFilename().length()!=0){
+			logger.trace("파이리 있다 :{}",file.getOriginalFilename().length());
+			file.transferTo(uploadFile);
+			board.setImagePath(uploadFile.getName());
+		}else if(file.getOriginalFilename().length()==0){
+			logger.trace("파이리 없다 :{}",file.getOriginalFilename().length());
+			if(userService.selectUserProfilePathByUserNo(userNo)!=null){
+				board.setImagePath(userService.selectUserProfilePathByUserNo(userNo));
+			}
+		}		
+		
+		logger.trace("원래 파일 명:{}",file.getOriginalFilename());
+		logger.trace("변경 후  파일 명:{}",uploadFile.getName());
 		//쓰기 버튼을 누르고 글 작성 시간 추가
 		board.setWritedDate(new Date());
 		
 		int result = service.insertBoard(board);
+		
+		//board location에 위치정보 등록
 		Board insertBoard = service.selectForBoardNo(board.getUserNo(), board.getTitle());
 		logger.trace("글쓰기 결과 : {}", result);		
 		logger.trace("보이는 상황:{}",board.getViewStatus());

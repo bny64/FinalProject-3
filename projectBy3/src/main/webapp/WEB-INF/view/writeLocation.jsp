@@ -47,28 +47,34 @@
 #bottomBtns > a{
 	margin-right: 100px;
 }
-
+#map{
+	width: 400px;
+	height: 300px;
+}
+#staticMap{
+	width: 400px;
+	height: 300px;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<p id="demo"></p>
 	<section id="content">			    		
-		<div id="map" style="width: 400px; height: 300px;"></div>
+		<div id="map"><div id="staticMap"></div></div>
 		<div id="list">
-			<select id="location">
-				<c:forEach items="${userLocations}" var ="userLocation">
+			
+				<c:forEach items="${userLocations}" var ="userLocation">			
 					
-					<option>${userLocation.locationName }
-						
-					
+					<a onclick="locationaaa('${userLocation.locationName }',${userLocation.latitude },${userLocation.longitude })"><input type="text" readonly="readonly" value="${userLocation.locationName }"> </a>
+				
 				</c:forEach>
-			</select>
+			
 		</div>
 		<div id="bottomBtns">			
 			<%-- <a href="${writeBoardLocation}?latitude=<%=latitude%>&longitude=<%=longitude%>"><button>현위치 저장</button></a> --%>
 			<button id="nowLocation">현위치 저장</button>
-			<a href="#"><button>확인</button></a>
+			<button id="ok">확인</button>
 			<a href="#"><button>닫기</button></a>
 		</div>
 	</section>
@@ -87,15 +93,19 @@
 	var x = document.getElementById("demo");
  	var latitude;
 	var longitude;
+	var locationName;
 	
 	$("#nowLocation").on("click", function(){		
 		document.location.href="writeBoardLocation?latitude="+latitude+"&longitude="+longitude;
 	});
 	
-	$("#location").on("change",function(){
-		
+	$("#location").on("click",function(){
+		console.log($("#location").html());
+		console.log("click");
 	});
-	
+	$("#ok").on("click", function(){		
+		document.location.href="writeBoardLocations?latitude="+latitude+"&longitude="+longitude+"&locationName="+locationName;
+	});
 	
 	
 	window.onload = function() {
@@ -117,7 +127,7 @@
 		var marker = {
 			position : markerPosition
 		};
-		var staticMapContainer = document.getElementById('map'), // 이미지 지도를 표시할 div  
+		var staticMapContainer = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
 		staticMapOption = {
 			center : new daum.maps.LatLng(position.coords.latitude,
 					position.coords.longitude), // 이미지 지도의 중심좌표
@@ -156,6 +166,42 @@
 		});
 	});
 	
+	function locationaaa(stateName,userLatitude,userLongitude){
+		
+		$("#map").empty();
+		$("#map").append("<div id='staticMap'></div>");
+		
+		console.log("클리시 : " +userLatitude+","+userLongitude);
+		
+		locationName= stateName;
+		latitude = userLatitude;
+		longitude = userLongitude;		
+		
+		console.log("저장되는 : " +latitude+","+longitude);
+		
+		console.log("저장된는 이름 : "+stateName);
+		
+		var markers = [
+		       	    
+		       	    {
+		       	        position: new daum.maps.LatLng(userLatitude, userLongitude), 
+		       	        text: stateName // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
+		       	    }
+		       	];
+
+		       	var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
+		       	    staticMapOption = { 
+		       	        center: new daum.maps.LatLng(userLatitude, userLongitude), // 이미지 지도의 중심좌표
+		       	        level: 3, // 이미지 지도의 확대 레벨
+		       	        marker: markers // 이미지 지도에 표시할 마커 
+		       	    };    
+
+		       	// 이미지 지도를 생성합니다
+		       	var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
+		
+		
+		
+	}
 	
 	
 	

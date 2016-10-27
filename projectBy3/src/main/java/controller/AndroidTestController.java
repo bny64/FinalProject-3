@@ -1,18 +1,13 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
 
-import dto.BoardLocation;
 import service.BoardLoactionService;
 
 @Controller
@@ -48,11 +38,14 @@ public class AndroidTestController {
 	public @ResponseBody List<Map<String, Object>> androidTest2(@PathVariable("Jlocation") String Jlocation){
 		logger.trace("Jlocation : {}", Jlocation);
 		Gson gson = new Gson();
+		
 		Map<String, Object> map = gson.fromJson(Jlocation, Map.class);
 		double latitude = (double) map.get("latitude");
 		double longitude = (double)map.get("longitude");
-		logger.trace("location : latitude : {}, longitude : {}", latitude, longitude);
+		int userNo = (int) ((double)map.get("userNo"));
 		
+		logger.trace("location : latitude : {}, longitude : {}, userNo : {}", latitude, longitude, userNo);
+		//이 컨트롤에서 해당 알림에 대한 게시물의 정보를 리턴해줘야 함.
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("boardNo", 2);
