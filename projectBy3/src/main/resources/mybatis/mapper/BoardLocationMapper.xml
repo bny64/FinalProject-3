@@ -16,6 +16,16 @@
 		VALUES(board_location_no_seq.NEXTVAL,#{latitude},#{longitude},#{boardNo})
 	</insert>
 	
+	<select id="selectBoardLocationByUserId" resultMap="boardLocationBase"  parameterType="int">
+		select *
+		from board_location
+		where board_no=all(select board_no
+               							 from board
+              							 where user_no= all( select friend_no
+                               											  from user_friend
+                               											  where user_no=#{userNo}))
+	</select>
+	
 	<select id="getBoardsBycenterLocation">
 		select board_no
 		from board_location
