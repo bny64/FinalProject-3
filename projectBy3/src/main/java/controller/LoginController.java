@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.google.gson.Gson;
 
+import dto.Board;
 import dto.User;
 import service.UserService;
 
@@ -67,9 +69,11 @@ public class LoginController {
 			return "index";
 		}
 	}
+	
+	//login확인 servlet
 	@RequestMapping(value="/androidLogin/{Jlogin:.+}", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Map<String, Object> androidLogin(@PathVariable("Jlogin") String Jlogin){
+	public @ResponseBody Map<String, Object> androidLogin(@PathVariable("Jlogin") String Jlogin, HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		Gson gson = new Gson();
 		Map<String, Object> userInfo = gson.fromJson(Jlogin, Map.class);
@@ -77,9 +81,34 @@ public class LoginController {
 		
 		result.put("userId", loginUser.getUserId());
 		result.put("userPass", loginUser.getPassword());
-		result.put("userNo", loginUser.getUserNo());
+		 result.put("userNo", loginUser.getUserNo());
+		
+		//session.setAttribute("userNo", loginUser.getUserNo());
+		//logger.trace("session : {}", session.getAttribute("userNo"));
 
 		return result;
+	}
+	//login확인 후 session에 userNo를 저장 후 mainBoard로 이동
+	@RequestMapping(value="/androidMainBoard/{JuserNo:.+}", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String androidLoginBoard(@PathVariable("JuserNo") String JuserNo, HttpSession session){
+
+		logger.trace("main page 전");
+		Gson gson = new Gson();
+		Map<String, Object> map = gson.fromJson(JuserNo, Map.class);
+		int userNo = (int)((double)map.get("userNo"));
+		
+		logger.trace("userNo : {}", userNo);
+		
+		if(String.valueOf(userNo) != null){
+			//세션 저장
+			session.setAttribute("userNo",userNo);
+			logger.trace("session 저장");
+			return "mainBoard";
+		}else{
+			logger.trace("session 저장 실패");
+			return "index";
+		}
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

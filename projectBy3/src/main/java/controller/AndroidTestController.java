@@ -48,11 +48,14 @@ public class AndroidTestController {
 	public @ResponseBody List<Map<String, Object>> androidTest2(@PathVariable("Jlocation") String Jlocation){
 		logger.trace("Jlocation : {}", Jlocation);
 		Gson gson = new Gson();
+		
 		Map<String, Object> map = gson.fromJson(Jlocation, Map.class);
 		double latitude = (double) map.get("latitude");
 		double longitude = (double)map.get("longitude");
-		logger.trace("location : latitude : {}, longitude : {}", latitude, longitude);
+		int userNo = (int) ((double)map.get("userNo"));
 		
+		logger.trace("location : latitude : {}, longitude : {}, userNo : {}", latitude, longitude, userNo);
+		//이 컨트롤에서 해당 알림에 대한 게시물의 정보를 리턴해줘야 함.
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("boardNo", 2);
