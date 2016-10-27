@@ -16,7 +16,12 @@
 		VALUES(board_location_no_seq.NEXTVAL,#{latitude},#{longitude},#{boardNo})
 	</insert>
 	
-	
+	<select id="getBoardsBycenterLocation">
+		select board_no
+		from board_location
+		where (latitude between #{centerLat} - #{range} and #{centerLat} + #{range})
+		and (longitude between #{centerLat} - #{range} and #{centerLat} + #{range});
+	</select>
 	
 	
 	

@@ -80,7 +80,7 @@ function successCallback(position) {
 				if (selectedClickEvent == "createMarker") {
 					// 클릭한 위치에 마커를 표시합니다
 					addMarker(mouseEvent.latLng);
-				}
+				} 
 
 				// 클릭한 위도, 경도 정보를 가져옵니다
 				var latlng = mouseEvent.latLng;
@@ -203,7 +203,16 @@ function displayPlaces(places) {
 		// 장소정보를 표출하도록 클릭 이벤트를 등록합니다
 		(function(marker, place) {
 			daum.maps.event.addListener(marker, 'click', function() {
-				displayPlaceInfo(place);
+				// 마우스 클릭 이벤트가 인포 윈도우 일때만 작동
+				var selectedClickEvent = document
+						.getElementById("selectedClickEvent").value;
+				console.log("selectedClickEvent : " + selectedClickEvent);
+
+				if (selectedClickEvent == "infoWindow") {
+					displayPlaceInfo(marker, place);
+				} else if (selectedClickEvent == "createRect") {
+					createRectangle(place.latitude, place.longitude);
+				}
 			});
 		})(marker, places[i]);
 	}
@@ -217,7 +226,7 @@ function removeMarker() {
 	markers = [];
 }
 
-function displayPlaceInfo(place) {
+function displayPlaceInfo(marker, place) {
 	// 인포윈도우에 띄울 내용 작성
 	var content = '<div class="placeinfo">' + '   <a class="title" href="'
 			+ place.placeUrl + '" target="_blank" title="' + place.title + '">'
@@ -238,14 +247,19 @@ function displayPlaceInfo(place) {
 
 	// 인포윈도우에 컨텐츠 장착
 	infowindow.setContent(content);
-	
-	var infowindowPosition = new daum.maps.LatLng(place.latitude, place.longitude);
-	console.log(infowindowPosition);
-	
+
+	var infowindowPosition = new daum.maps.LatLng(place.latitude,
+			place.longitude);
+	console.log("infowindow before position : " + infowindow.getPosition());
+
 	infowindow.setPosition(infowindowPosition);
-	console.log("infowindow position : " + infowindow.getPosition());
-	
+	console.log("infowindow after position : " + infowindow.getPosition());
+
 	infowindow.open(map, marker);
+	setTimeout(function(){
+		infowindow.close();
+	}, 1000);
+	
 }
 
 function selectCategoryByCode() {
@@ -350,4 +364,40 @@ function selectCategoryByCode() {
 			break;
 		}
 	}
+}
+
+function createRectangle(latitude, longitude) {
+	console.log("createRectangle 시작");
+	var rectRange=0.0025; // 중심점에서 정사각형 변 까지의 거리, 0.0025 = 약 250미터
+	
+	var sw = new daum.maps.LatLng(latitude - rectRange, longitude - rectRange); // 사각형 영역의 남서쪽 좌표
+	var ne = new daum.maps.LatLng(parseFloat(latitude) + rectRange, parseFloat(longitude) + rectRange); // 사각형 영역의 북동쪽 좌표
+
+	console.log("sw : " + sw + ", ne : " + ne);
+	// 사각형을 구성하는 영역정보를 생성합니다
+	// 사각형을 생성할 때 영역정보는 LatLngBounds 객체로 넘겨줘야 합니다
+	var rectangleBounds = new daum.maps.LatLngBounds(sw, ne);
+
+	// 지도에 표시할 사각형을 생성합니다
+	var rectangle = new daum.maps.Rectangle({
+		bounds : rectangleBounds, // 그려질 사각형의 영역정보입니다
+		strokeWeight : 4, // 선의 두께입니다
+		strokeColor : '#FF3DE5', // 선의 색깔입니다
+		strokeOpacity : 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		strokeStyle : 'shortdashdot', // 선의 스타일입니다
+		fillColor : '#FF8AEF', // 채우기 색깔입니다
+		fillOpacity : 0.8
+	// 채우기 불투명도 입니다
+	});
+
+	// 지도에 사각형을 표시합니다
+	rectangle.setMap(map);
+	
+	var downCount = 0;
+	// 사각형에 마우스다운 이벤트를 등록합니다
+	daum.maps.event.addListener(rectangle, 'mousedown', function() { 
+	    console.log(event);
+	    var resultDiv = document.getElementById('result');
+	    resultDiv.innerHTML = '사각형에 mousedown 이벤트가 발생했습니다!' + (++downCount);
+	}); 
 }
