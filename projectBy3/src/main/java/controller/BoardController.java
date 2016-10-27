@@ -132,9 +132,16 @@ public class BoardController {
 		int userNo = (int)session.getAttribute("userNo");
 		
 		File uploadFile = new File ( uploadDir + userNo +"." +System.currentTimeMillis()+file.getOriginalFilename());
-		file.transferTo(uploadFile);	
 		
-		board.setImagePath(uploadFile.getName());
+		
+		if(file.getOriginalFilename().length()!=0){
+			logger.trace("파이리 있다 :{}",file.getOriginalFilename().length());
+			file.transferTo(uploadFile);
+			board.setImagePath(uploadFile.getName());
+		}else if(file.getOriginalFilename().length()==0){
+			logger.trace("파이리 없다 :{}",file.getOriginalFilename().length());
+		}		
+		
 		logger.trace("원래 파일 명:{}",file.getOriginalFilename());
 		logger.trace("변경 후  파일 명:{}",uploadFile.getName());
 		//쓰기 버튼을 누르고 글 작성 시간 추가

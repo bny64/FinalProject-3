@@ -40,7 +40,7 @@
 								<sform:input path="userName" placeholder="이름"  /><br>
 								<sform:input path="tel" placeholder="***-****-****" /><br>
 								<sform:input path="email" placeholder="이메일"  /><br>
-								<sform:input path="birthdate" placeholder="yyyy-MM-dd" value="2016-10-04" /><br>
+								<sform:input type="date" path="birthdate" placeholder="yyyy-MM-dd" value="2016-10-04" /><br>
 								</fieldset>
 								<sform:button>가입 하기</sform:button>
 							</sform:form>
