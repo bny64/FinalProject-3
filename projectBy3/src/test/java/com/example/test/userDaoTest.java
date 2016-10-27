@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import config.ApplicationConfig;
 import dao.UserDao;
@@ -61,7 +60,7 @@ public class userDaoTest {
 		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
 		Date date = fdm.parse(str);
 			User user = new User(0, "kang", "aabb", "hodong", "kanghodong",
-												"010-000-0000", "abc@def", date);
+												"010-000-0000", "abc@def", date,"",null);
 			int result = uDao.insertUser(user);
 			logger.trace("result : {}", result);
 	}

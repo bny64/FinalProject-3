@@ -21,8 +21,8 @@
 	
 	
 	<insert id="insertUser" parameterType="user">
-		insert into users(user_no, user_id, password, nickname, user_name, tel, email, birthdate)
-		values(user_no_seq.nextval, #{userId}, #{password},#{nickname},#{userName},#{tel},#{email},#{birthdate})
+		insert into users(user_no, user_id, password, nickname, user_name, tel, email, birthdate,profile_path)
+		values(user_no_seq.nextval, #{userId}, #{password},#{nickname},#{userName},#{tel},#{email},#{birthdate},#{profilePath})
 	</insert>
 	
 	<select id="searchId" parameterType="String" resultMap="usersBase">
@@ -61,7 +61,11 @@
 		
 	</select>
 	
-	
+	<select id="selectUserProfilePathByUserNo" resultMap="usersBase" parameterType="int">
+		select *
+		from users
+		where user_no = #{userNo}
+	</select>
 	
 	
 	
@@ -74,6 +78,7 @@
 		<result column="tel" property="tel"/>
 		<result column="email" property="email"/>
 		<result column="birthdate" property="birthdate"/>
+		<result column="profile_path" property="profilePath"/>
 	</resultMap>
 
 </mapper>

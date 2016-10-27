@@ -1,6 +1,5 @@
 package dao;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -88,5 +87,12 @@ public class UserDaoImpl implements UserDao {
 		logger.trace("UserDaoImpl - selectAllUserByPaging");
 		String stmt = NAME_SPACE +"searchByNickNameUserNameUsers";
 		return template.selectList(stmt,filter);
+	}
+
+	@Override
+	public User selectUserProfilePathByUserNo(int userNo) {
+		logger.trace("UserDaoImpl - selectUserProfilePathByUserNo");
+		String stmt = NAME_SPACE +"selectUserProfilePathByUserNo";
+		return template.selectOne(stmt, userNo);
 	}
 }

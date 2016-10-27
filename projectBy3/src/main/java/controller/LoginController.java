@@ -111,6 +111,7 @@ public class LoginController {
 		}
 	}
 	
+	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		
@@ -131,16 +132,31 @@ public class LoginController {
 	@RequestMapping(value = "/joinPage", method = RequestMethod.GET)
 	public String joinPage(Model model) {
 		logger.trace("class : LoginController, method : joinPage");
-		model.addAttribute("user", new User(1,"","","","","","",new Date()));
+		User user = new User();
+		//model.addAttribute("user", new User(1,"","","","","","",new Date(),""));
+		model.addAttribute("user", user);
 		return "join";
 	}
 	
+	private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
+	//private static final String uploadDir = "E:/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/server/wtpwebapps/projectBy3/WEB-INF/assets/images";
+	
 	@RequestMapping(value = "/joinPage", method = RequestMethod.POST)
-	public String join(Model model, User user, BindingResult result, HttpSession session) {
+	public String join(Model model, User user, BindingResult result, HttpSession session, @RequestParam MultipartFile file) throws IllegalStateException, IOException{
 		logger.trace("class : LoginController, method : join, userInfo : {}", user);
 		
+		
+		
 		if(user != null){
+			File uploadFile = new File ( uploadDir + user.getUserId() +"." +System.currentTimeMillis()+file.getOriginalFilename());
+			if(file.getOriginalFilename().length()!=0){
+				file.transferTo(uploadFile);
+				user.setProfilePath(uploadFile.getName());
+				logger.trace("회원가입 사진 업로드 :{}",uploadFile.getName());
+			}
+			logger.trace("유저:{}",user);
 			service.insertUser(user);
+			
 		}
 		return "index";
 	}

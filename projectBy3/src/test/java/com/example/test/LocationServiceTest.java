@@ -15,17 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import config.ApplicationConfig;
-import dto.User;
 import dto.UserLocation;
-import exception.IdDuplicatedException;
-import exception.IdFailException;
-import exception.NicknameDuplicatedException;
-import exception.passFailException;
 import service.LocationService;
-import service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={ApplicationConfig.class})

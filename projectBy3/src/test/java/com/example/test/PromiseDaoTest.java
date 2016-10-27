@@ -1,10 +1,6 @@
 package com.example.test;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
-
-import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
