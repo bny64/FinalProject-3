@@ -64,7 +64,7 @@ public class LoginController {
 			return "index";
 		}
 	}
-	@RequestMapping(value="/androidLogin/{Jlogin:.+}", method=RequestMethod.POST)
+	/*@RequestMapping(value="/androidLogin/{Jlogin:.+}", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody Map<String, Object> androidLogin(@PathVariable("Jlogin") String Jlogin){
 		Map<String, Object> result = new HashMap<>();
@@ -77,7 +77,7 @@ public class LoginController {
 		result.put("userNo", loginUser.getUserNo());
 
 		return result;
-	}
+	}*/
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		
