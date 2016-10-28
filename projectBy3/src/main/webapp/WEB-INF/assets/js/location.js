@@ -182,6 +182,7 @@ function placesSearchCB(status, data, pagination) {
 	if (status === daum.maps.services.Status.OK) {
 		console.log("data.places.length : " + data.places.length);
 		// 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
+		console.log("data : " + data.places);
 		displayPlaces(data.places);
 	} else if (status === daum.maps.services.Status.ZERO_RESULT) {
 		// 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
@@ -250,16 +251,32 @@ function displayPlaceInfo(marker, place) {
 
 	var infowindowPosition = new daum.maps.LatLng(place.latitude,
 			place.longitude);
-	console.log("infowindow before position : " + infowindow.getPosition());
 
 	infowindow.setPosition(infowindowPosition);
-	console.log("infowindow after position : " + infowindow.getPosition());
 
 	infowindow.open(map, marker);
 	setTimeout(function(){
 		infowindow.close();
 	}, 1000);
 	
+}
+
+function displayBoardInfo(marker, board){
+	// 인포윈도우에 띄울 내용 작성
+	var content = '<div class="boardInfo">' + board.title + '<br> '+ board.content +'</div>';
+
+
+	// 인포윈도우에 컨텐츠 장착
+	infowindow.setContent(content);
+
+	var infowindowPosition = new daum.maps.LatLng(board.latitude,
+			board.longitude);
+	infowindow.setPosition(infowindowPosition);
+
+	infowindow.open(map, marker);
+	setTimeout(function(){
+		infowindow.close();
+	}, 1000);
 }
 
 function selectCategoryByCode() {
@@ -400,4 +417,15 @@ function createRectangle(latitude, longitude) {
 	    var resultDiv = document.getElementById('result');
 	    resultDiv.innerHTML = '사각형에 mousedown 이벤트가 발생했습니다!' + (++downCount);
 	}); 
+}
+
+function moveCenterByValues(){
+	var targetLatitude = document.getElementById("targetLatitude").value;
+	var targetLongitude = document.getElementById("targetLongitude").value;
+	
+	var moveLatLon = new daum.maps.LatLng(targetLatitude, targetLongitude);
+    
+    // 지도 중심을 이동 시킵니다
+    map.setCenter(moveLatLon);
+
 }

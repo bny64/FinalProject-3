@@ -1,20 +1,10 @@
 package controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import dto.Board;
 import service.BoardLoactionService;
 
 //location으로 board들을 관리할 컨트롤러
@@ -22,12 +12,11 @@ import service.BoardLoactionService;
 @Controller
 public class BoardLocationController {
 	static Logger logger = LoggerFactory.getLogger(BoardLocationController.class);
-	
 	@Autowired
 	BoardLoactionService bLService;
 	
-	@RequestMapping(value="/getAroundBoards", method=RequestMethod.GET)
-	public String getAroundBoards(Model model, HttpSession session){
+	/*@RequestMapping(value="/getAroundBoards", method=RequestMethod.GET)
+	public @ResponseBody List<Board> getAroundBoards(Model model, HttpSession session){
 		logger.trace("class : BoardLocationController, method : getAroundBoards");
 		Map<String,Object> filter = new HashMap<>();
 		
@@ -48,6 +37,6 @@ public class BoardLocationController {
 		model.addAttribute("myAroundBoards", myAroundBoards);
 		logger.trace("getAroundBoards 끝");
 		// 임시
-		return "LocationTest/testMain";
-	}
+		return myAroundBoards;
+	}*/
 }

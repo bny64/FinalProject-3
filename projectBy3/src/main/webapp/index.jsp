@@ -63,6 +63,8 @@
 	<!-- Header -->
 		<header id="header">
 			<h2>홈페이지 소개</h2>
+			<c:url value="/developer" var="developer"/>
+			<a href="developer">개발자 페이지</a>
 		</header>
 		<!-- Main -->
 		<section id="main">

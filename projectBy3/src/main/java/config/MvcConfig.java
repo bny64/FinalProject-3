@@ -52,6 +52,9 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		
 		/*registry.addResourceHandler("/layout/**")
 		.addResourceLocations("/WEB-INF/layout/");*/
+		
+		registry.addResourceHandler("/upload/**")
+		.addResourceLocations("/WEB-INF/upload/");
 	}
 	
 	@Bean

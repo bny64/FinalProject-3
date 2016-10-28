@@ -66,8 +66,7 @@
 			<option value="infoWindow">인포 윈도우</option>
 			<option value="createMarker">마커 생성</option>
 			<option value="createRect">사각형 그리기</option>
-		</select><br>
-		<br> 카테고리로 장소 검색 <select id="categoryCode">
+		</select><br> <br> 카테고리로 장소 검색 <select id="categoryCode">
 			<option value="MT1">대형마트</option>
 			<option value="CS2">편의점</option>
 			<option value="PS3">유치원</option>
@@ -88,6 +87,13 @@
 			<option value="PM9">약국</option>
 		</select>
 		<button onclick="selectCategoryByCode();">실행</button>
+		<br><br>
+		<fieldset>
+			<legend>값으로 중심 이동</legend>
+			위도 : <input type="text" id="targetLatitude" value="36.852292770282304"><br> 
+			경도 : <input type="text" id="targetLongitude" value="127.15026868985895">
+			<button onclick="moveCenterByValues()">이동</button>
+		</fieldset>
 	</div>
 </body>
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
@@ -97,12 +103,35 @@
 <script>
 	function viewMyAroundFriendBoard() {
 		<c:url value = "/getAroundBoards" var="getAroundBoards"/>
-		console.log("로드 데이터");
 		$.ajax({
 			type : "get",
 			url : "${getAroundBoards}",
+			data : {
+				"centerLat" : map.getCenter().getLat(),
+				"centerLng" : map.getCenter().getLng()
+			},
 			success : function(res) {
 				console.log(res);
+				
+				if(res.length > 0){
+					$(res).each(function(idx,data){
+						var marker = addMarker(new daum.maps.LatLng(data.latitude,
+								data.longitude));
+						
+						daum.maps.event.addListener(marker, 'click', function() {
+							// 마우스 클릭 이벤트가 인포 윈도우 일때만 작동
+							var selectedClickEvent = document
+									.getElementById("selectedClickEvent").value;
+							console.log("selectedClickEvent : " + selectedClickEvent);
+
+							if (selectedClickEvent == "infoWindow") {
+								displayBoardInfo(marker, data);
+							} else if (selectedClickEvent == "createRect") {
+								createRectangle(data.latitude, data.longitude);
+							}
+						});
+					});
+				}
 			},
 			error : function(request, status, error) {
 				console.log("code:" + request.status + "\n" + "message:"

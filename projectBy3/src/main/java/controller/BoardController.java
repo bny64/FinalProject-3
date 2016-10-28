@@ -124,9 +124,14 @@ public class BoardController {
 		return "mainBoard";
 	}
 	
-
-	private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
-	//private static final String uploadDir = "E:/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/server/wtpwebapps/projectBy3/WEB-INF/assets/images";
+	
+	//은구 위치
+	//private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/";
+	
+	// 민국 위치
+	private static final String uploadDir = "C:/Users/1-718-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/";
+	
+	//private static final String uploadDir = "E:/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/server/wtpwebapps/projectBy3/WEB-INF/assets/images/";
 	
 	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
 	public String writeBoardPost(HttpSession session, Board board, @RequestParam MultipartFile file) throws IllegalStateException, IOException{
@@ -134,15 +139,17 @@ public class BoardController {
 		logger.trace("board : {}", board);
 		int userNo = (int)session.getAttribute("userNo");
 		
+		
+		
 		File uploadFile = new File ( uploadDir + userNo +"." +System.currentTimeMillis()+file.getOriginalFilename());
 		
 		
 		if(file.getOriginalFilename().length()!=0){
-			logger.trace("파이리 있다 :{}",file.getOriginalFilename().length());
+			logger.trace("파일이 있다 :{}",file.getOriginalFilename().length());
 			file.transferTo(uploadFile);
 			board.setImagePath(uploadFile.getName());
 		}else if(file.getOriginalFilename().length()==0){
-			logger.trace("파이리 없다 :{}",file.getOriginalFilename().length());
+			logger.trace("파일이 없다 :{}",file.getOriginalFilename().length());
 			if(userService.selectUserProfilePathByUserNo(userNo)!=null){
 				board.setImagePath(userService.selectUserProfilePathByUserNo(userNo));
 			}

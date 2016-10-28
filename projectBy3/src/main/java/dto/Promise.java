@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Promise {
-	int promiseId;
+	int promiseId; 
 	String promiseTitle;
-	int promoter; // 주최자
-	int invitee; // 초대 받은 사람
+	int promoter; // 주최자 --> userNo
+	int invitee; // 초대 받은 사람 --> userNo
 	Date promiseDate;
 	float promiseLatitude;
 	float promiseLongitude;
