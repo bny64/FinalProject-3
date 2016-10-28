@@ -41,35 +41,14 @@ table th {
 			<input type = "text" placeholder="약속 이름" id="promiseTitle" name="promiseTitle">
 			<input type = "date" id="promiseDate" name="promiseDate">
 			<input type = "time" id="promiseTime" name="promiseTime">
-			<input type = "text" placeholder="약속 이름" id="promiseTitle" name="promiseTitle">
-			<div>
-				
-				<%-- <c:url value = "/savelocation" var="savelocation"/>
-				<a href="${savelocation}?latitude=${latitude }&longitud=${longitude}"><button>저장</button></a> --%>
-				
-			</div>
-			<br><br>			
-			<div id="locationDiv">
-				<table id="table">
-					<tr>
-						<th align="center">친구 이름</th>
-						<th align="center">ㅇㅇ</th>
-						
-					</tr>
-					<%-- <c:forEach items="${locations }" var="location">
-					<tr>
-						<td align="center">${location.locationName }</td>
-						<td align="center">${location.latitude }</td>
-						<td align="center">${location.longitude }</td>
-						<td align="center">
-						<c:url value="/deleteLocation" var="deleteLocation"/>
-						<a href="${deleteLocation }?userLocationNo=${location.userLocationNo}"><button>삭제</button></a>
-						</td>
-					</tr>
-					</c:forEach> --%>
-					
-				</table>
-				<button id = "btn2" >저장</button>				
+			<input type = "text" placeholder="약속 내용" id="promiseTitle" name="promiseTitle">
+			
+			<button id = "btn2" >저장</button>
+			
+			
+			
+			<div id="locationDiv">				
+								
 			</div>
 	</section>
 	
