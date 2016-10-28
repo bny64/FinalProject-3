@@ -102,6 +102,13 @@ public class BoardLoactionServiceImpl implements BoardLoactionService{
 		for(int i = 0 ; i < aroundMyFriend.size(); i++){
 			if("visible".equals(aroundMyFriend.get(i).getViewStatus())){
 				aroundMyFriendBoard.add(aroundMyFriend.get(i));
+				// 민국 - 보여줄 글(Board) DTO에 위치값 삽입
+				for(BoardLocation aroundBoard : aroundBoardNo){
+					if(aroundBoard.getBoardNo() == aroundMyFriendBoard.get(i).getBoardNo()){
+						aroundMyFriendBoard.get(i).setLatitude(aroundBoard.getLatitude());
+						aroundMyFriendBoard.get(i).setLongitude(aroundBoard.getLongitude());
+					}
+				}
 			}
 		}
 		
