@@ -34,7 +34,7 @@ public class BoardLocationDaoImpl implements BoardLoactionDao{
 	}
 
 	@Override
-	public List<Integer> getBoardsBycenterLocation(Map<String, Object> filter) {
+	public List<BoardLocation> getBoardsBycenterLocation(Map<String, Object> filter) {
 		logger.trace("BoardLocationImpl - getBoardsBycenterLocation");
 		String stmt = BOARD_NS + "getBoardsBycenterLocation";
 		return template.selectList(stmt,filter);

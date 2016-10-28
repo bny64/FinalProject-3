@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,21 +20,20 @@
 #location {
 	position: relative;
 	top: -400px;
-	border : 1px solid black;
+	border: 1px solid black;
 	width: 17%;
 	padding: 1%;
 	overflow: hidden;
 }
 
-#event{
+#event {
 	position: absolute;
-	top : 7%;
-	left : 71%;
-	border : 1px solid black;
-	width : 25%;
+	top: 7%;
+	left: 71%;
+	border: 1px solid black;
+	width: 25%;
 	padding: 1%;
 }
-
 </style>
 </head>
 <body>
@@ -43,6 +43,8 @@
 		<p>
 			<button onclick="setCenter()">최초 중심으로 이동시키기</button>
 			<button onclick="removeMarker()">마커 전체 삭제</button>
+			<button onclick="viewMyAroundFriendBoard()">주변 친구 글
+				표시(visible)</button>
 		</p>
 		<div id="result"></div>
 	</div>
@@ -54,19 +56,18 @@
 		<div id="initLocation"></div>
 		<br> 클릭한 위치<br>
 		<div id="clieckedLocation"></div>
-		<br> <div id="currentLevel"> </div>		
+		<br>
+		<div id="currentLevel"></div>
 	</div>
 	<div id="event">
 		이벤트 선택
 		<hr>
-		마우스 클릭 이벤트 : 
-		<select id="selectedClickEvent">
+		마우스 클릭 이벤트 : <select id="selectedClickEvent">
 			<option value="infoWindow">인포 윈도우</option>
 			<option value="createMarker">마커 생성</option>
 			<option value="createRect">사각형 그리기</option>
-		</select><br><br>
-		카테고리로 장소 검색
-		<select id="categoryCode">
+		</select><br>
+		<br> 카테고리로 장소 검색 <select id="categoryCode">
 			<option value="MT1">대형마트</option>
 			<option value="CS2">편의점</option>
 			<option value="PS3">유치원</option>
@@ -91,8 +92,23 @@
 </body>
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script type="text/javascript"
-		src="//apis.daum.net/maps/maps3.js?apikey=eb282da5749f4321d58ffa74971044a3&libraries=services"></script>
+	src="//apis.daum.net/maps/maps3.js?apikey=eb282da5749f4321d58ffa74971044a3&libraries=services"></script>
 <script src="<%=request.getContextPath()%>/js/location.js"></script>
 <script>
+	function viewMyAroundFriendBoard() {
+		<c:url value = "/getAroundBoards" var="getAroundBoards"/>
+		console.log("로드 데이터");
+		$.ajax({
+			type : "get",
+			url : "${getAroundBoards}",
+			success : function(res) {
+				console.log(res);
+			},
+			error : function(request, status, error) {
+				console.log("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}
+		});
+	}
 </script>
 </html>
