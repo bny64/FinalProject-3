@@ -11,7 +11,7 @@
 	}
 	
 	#loginView {		
-		width: 40%;
+		width: 50%;
 		display: block;
 		padding-top: 10px;
 		text-align: right;
@@ -61,6 +61,9 @@
 	</div>
 	<div id="loginView">
 		<div>
+			<c:url value="/promiseBoard" var="promiseBoard"/>
+			<a href="${promiseBoard }"><button>약속</button></a>		
+		
 			<button>전체 알림</button>
 			<c:url value="/setupPage" var="setup"/>
 			<a href="${setup }"><button>설정</button></a>
@@ -92,7 +95,8 @@
 			<a href="${mylocation }"><button>위치저장</button></a>
 			
 			<button id="btnGetAllBoard">전체 글 보기</button>
-							
+			
+			
 		</div>
 	</div>
 </section>
