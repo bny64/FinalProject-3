@@ -18,4 +18,7 @@ public interface PromiseDao {
 	 * @return
 	 */
 	List<Promise> getMyPromiseByInvitee(int userNo);
+	
+	public int insertPromise(Promise promise);
+	public int updatePromise(Promise promise);
 }

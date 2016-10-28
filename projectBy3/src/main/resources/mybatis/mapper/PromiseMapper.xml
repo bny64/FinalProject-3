@@ -24,6 +24,17 @@
 		insert into promise values(promise_no_seq.nextval, #{promiseTitle}, #{promoter}, #{invitee}, 
 													#{promiseDate}, #{promiseLatitude}, #{promiseLongitude}, #{promiseContent}, #{promiseStatus})
 	</insert>
+	<select id="getPromiseByProAndDate" parameterType="Map" resultMap="promiseBase">
+		select *
+		from promise
+		where promoter=#{promoter} and promise_date=#{promiseDate}
+	</select>
+	<update id="updatePromise" parameterType="promise">
+		update promise set promise_title = #{promiseTitle}, promise_date =#{promiseDate},
+								 promise_latitude = #{promiseLatitude}, promise_longitude = #{promiseLongitude},
+								 promise_content = #{promiseContent}, promise_status = #{promiseStatus}
+		where promoter=#{promoter} and promise_date=#{promiseDate}
+	</update>
 	
 	<resultMap type="promise" id="promiseBase">
 		<id column="promise_id" property="promiseId"/>
