@@ -67,6 +67,11 @@
 		where user_no = #{userNo}
 	</select>
 	
+	<select id="searchUserByUserNo" parameterType="int" resultMap="usersBase">
+		select * 
+		from users
+		where user_no = #{userNo}
+	</select>
 	
 	
 	<resultMap type="user" id="usersBase">

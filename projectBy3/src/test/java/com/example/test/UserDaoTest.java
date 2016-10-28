@@ -2,6 +2,7 @@ package com.example.test;
 
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.text.ParseException;
@@ -25,9 +26,9 @@ import dto.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ApplicationConfig.class })
-public class userDaoTest {
+public class UserDaoTest {
 
-	static Logger logger = LoggerFactory.getLogger(userDaoTest.class);
+	static Logger logger = LoggerFactory.getLogger(UserDaoTest.class);
 
 	@Autowired
 	UserDao uDao;
@@ -101,6 +102,14 @@ public class userDaoTest {
 		User users = uDao.searchPw(info);
 		logger.trace("Pw users : {}", users);
 		
+	}
+	
+	@Test
+	public void searchUserByUserNoTest(){
+		int userNo = 2;
+		User user = uDao.searchUserByUserNo(userNo);
+		
+		assertThat(user, is(notNullValue()));
 	}
 	
 
