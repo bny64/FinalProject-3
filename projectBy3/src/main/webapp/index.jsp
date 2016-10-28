@@ -13,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="<%= request.getContextPath() %>/css/main.css" type="text/css" rel="stylesheet">
 <style>
+
 	#logo{
 		float:left;
 		width:50%;
