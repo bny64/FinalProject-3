@@ -1,5 +1,11 @@
 package com.example.test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -38,6 +44,27 @@ public class PromiseDaoTest {
 	public void getMyPromiseByInviteeTest() {
 		List<Promise> allPromise = pDao.getMyPromiseByInvitee(1);
 		logger.trace("size : {}", allPromise.size());
+	}
+	
+	@Test
+	public void insertPromiseTest() throws ParseException{
+		String str = "16-12-01";
+		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
+		Date date = fdm.parse(str);
+		Promise promise = new Promise(1, "은구와 민국의 약속", 2, 1, date, 36, 126, "우리 만날래?", "약속 중" );
+		int result = pDao.insertPromise(promise);
+		logger.trace("promise : {}", result);
+		assertThat(result, is(1));
+	}
+	
+	@Test
+	public void updatePromiseTest() throws ParseException{
+		String str = "16-11-01";
+		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");
+		Date date = fdm.parse(str);
+		Promise promise = new Promise(0, "민국과 은구의 약속", 2, 1, date, 38, 129, "장소 변경 하자", "약속 중");
+		int result = pDao.updatePromise(promise);
+		assertThat(result, is(1));
 	}
 
 }
