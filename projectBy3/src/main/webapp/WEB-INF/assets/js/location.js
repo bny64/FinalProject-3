@@ -79,6 +79,7 @@ function successCallback(position) {
 
 				if (selectedClickEvent == "createMarker") {
 					// 클릭한 위치에 마커를 표시합니다
+					//removeMarker();
 					addMarker(mouseEvent.latLng);
 				} 
 
@@ -143,8 +144,10 @@ function addMarker(position) {
 
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map);
-
+	
 	// 생성된 마커를 배열에 추가합니다
+	
+	
 	markers.push(marker);
 
 	return marker;

@@ -27,6 +27,7 @@
 #map{
 	float:left;
 	width: 20%;
+	height:300px;
 	margin: 10px;
 	margin-bottom: 10%;
 }
@@ -34,8 +35,10 @@
 #list{
 	float:right;
 	width: 40%;
+	height:300px;
 	margin: 10px;
 	margin-bottom: 10%;
+	overflow:auto;
 }
 
 #bottomBtns{
