@@ -129,6 +129,7 @@ create table promise(
   promise_latitude number not null,
   promise_longitude number not null,
   promise_content varchar2(200),
+  promise_status varchar2(20) not null,
   constraint promise_id_pk primary key (promise_id)
 );
 

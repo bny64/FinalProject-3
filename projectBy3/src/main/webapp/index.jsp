@@ -43,6 +43,18 @@
 		position: relative;
 		padding-left: 1%;
 	}
+	@media screen and (max-width: 700px){
+		input{
+			width: 20%;
+			margin-left : 20%;
+			margin-left : 20%;
+		}
+	}
+	@media screen and (max-width: 700px){
+		#loginView{
+			width : 25%;
+		}
+	}
 </style>
 </head>
 <body>

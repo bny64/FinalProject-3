@@ -16,10 +16,14 @@
 	</select>
 	
 	<select id="getMyPromiseByInvitee" parameterType="int" resultMap="promiseBase">
-		select * 
+		select *
 		from promise
 		where invitee = #{invitee}
 	</select>
+	<insert id="insertPromise" parameterType="promise">
+		insert into promise values(promise_no_seq.nextval, #{promiseTitle}, #{promoter}, #{invitee}, 
+													#{promiseDate}, #{promiseLatitude}, #{promiseLongitude}, #{promiseContent}, #{promiseStatus})
+	</insert>
 	
 	<resultMap type="promise" id="promiseBase">
 		<id column="promise_id" property="promiseId"/>
