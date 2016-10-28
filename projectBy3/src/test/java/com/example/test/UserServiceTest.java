@@ -1,6 +1,7 @@
 package com.example.test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.text.ParseException;
@@ -133,6 +134,14 @@ public class UserServiceTest {
 		
 		int str = service.deleteUser(4);
 		logger.trace("deleteUser: {}", str);
+	}
+	
+	@Test
+	public void searchUserByUserNoTest(){
+		int userNo = 2;
+		User user = service.searchUserByUserNo(userNo);
+		
+		assertThat(user, is(notNullValue()));
 	}
 	
 	
