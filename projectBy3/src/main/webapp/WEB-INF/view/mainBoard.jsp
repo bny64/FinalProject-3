@@ -109,7 +109,7 @@
 					     	if(data.imagePath!=null){
 					     		console.log(data.title+"은 낫 널  "+data.imapgePath);
 					     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
-						 		+ "'> <img src='<%=request.getContextPath()%>/img/"+data.imagePath+"' alt='' />"
+						 		+ "'> <img src='<%=request.getContextPath()%>/upload/"+data.imagePath+"' alt='' />"
 					     		+"<h3>" + data.title + "</h3></a>";
 					     	}else{
 					     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
