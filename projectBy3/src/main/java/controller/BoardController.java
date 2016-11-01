@@ -125,7 +125,7 @@ public class BoardController {
 	}
 	
 
-	private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages";
+	private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/";
 	//private static final String uploadDir = "E:/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/server/wtpwebapps/projectBy3/WEB-INF/assets/images";
 	
 	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
