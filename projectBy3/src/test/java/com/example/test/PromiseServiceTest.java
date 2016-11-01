@@ -86,5 +86,20 @@ public class PromiseServiceTest {
 		int result = service.deletePromise(24);
 		assertThat(result, is(1));
 	}
+	
+	
+	@Test
+	public void testStatus(){
+		String str = service.selectStatus(9);
+		logger.trace("str:{}",str);
+	}
+	
+	@Test
+	public void updateStatus(){
+		int result = service.updateStatus(9, "약속 완료");
+		logger.trace("성공 :{}",result);
+	}
+	
+	
 
 }

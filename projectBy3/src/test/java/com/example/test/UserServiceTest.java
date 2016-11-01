@@ -144,5 +144,13 @@ public class UserServiceTest {
 		assertThat(user, is(notNullValue()));
 	}
 	
+	@Test
+	public void selectUserFriends(){
+		int userNo = 108;
+		List<User> users = service.selectUserFriends(userNo);
+		logger.trace("users :{}",users);
+	}
+	
+	
 	
 }

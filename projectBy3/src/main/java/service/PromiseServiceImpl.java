@@ -68,4 +68,20 @@ public class PromiseServiceImpl implements PromiseService {
 		int result = pDao.deletePromise(promiseId);
 		return result;
 	}
+
+	@Override
+	public String selectStatus(int promiseId) {
+		logger.trace("PromiseServiceImpl - selectStatus 동작");
+		Promise p = pDao.selectStatus(promiseId);
+		return p.getPromiseStatus();
+	}
+
+	@Override
+	public int updateStatus(int promiseId, String status) {
+		logger.trace("PromiseServiceImpl - selectStatus 동작");
+		Promise p = new Promise();
+		p.setPromiseId(promiseId);
+		p.setPromiseStatus(status);
+		return pDao.updateStatus(p);
+	}
 }

@@ -27,14 +27,13 @@ insert into user_friend values(friend_list_no_seq.nextval, 3, 'work', 2, 'off');
 insert into user_friend values(friend_list_no_seq.nextval, 1, 'cycle', 2, 'off');
 
 insert into promise
-values(promise_no_seq.NEXTVAL, '밥 먹자11', 1, 2, sysdate, 100.0, 200.0, '빨리빨리111', '약속 완료');
+values(promise_no_seq.NEXTVAL, '서산에서밥먹자', 108, 3, sysdate, 36.804969,126.435979, '빨리빨리111', '약속 완료');
 
 insert into promise
-values(promise_no_seq.NEXTVAL, '밥 먹자22', 2, 3, sysdate, 100.0, 200.0, '빨리빨리222', '약속 중');
+values(promise_no_seq.NEXTVAL, '보령에서밥먹자', 108, 3, sysdate,36.349064, 126.594654, '빨리빨리222', '약속 중');
 
 insert into promise
-values(promise_no_seq.NEXTVAL, '밥 먹자33', 2, 1, sysdate, 100.0, 200.0, '빨리빨리333', '약속 중');
+values(promise_no_seq.NEXTVAL, '전주에서밥먹자', 2, 108, sysdate, 35.846524, 127.134912, '빨리빨리333', '약속 중');
 
 insert into promise
-values(promise_no_seq.NEXTVAL, '밥 먹자44', 3, 1, sysdate, 100.0, 200.0, '빨리빨리444', '약속 완료');
-
+values(promise_no_seq.NEXTVAL, '부산에서밥먹자', 2, 108, sysdate,35.159941,129.049699, '빨리빨리444', '약속 완료');

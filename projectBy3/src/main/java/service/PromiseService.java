@@ -11,4 +11,6 @@ public interface PromiseService {
 	public List<Promise> getMyPromiseByPromote(int userNo);
 	public List<Promise> getMyPromiseByInvitee(int userNo);
 	public int deletePromise(int promiseId);
+	public String selectStatus(int promiseId);
+	public int updateStatus(int promiseId, String status);
 }

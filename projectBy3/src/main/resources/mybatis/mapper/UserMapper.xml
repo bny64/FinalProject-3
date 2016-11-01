@@ -73,6 +73,13 @@
 		where user_no = #{userNo}
 	</select>
 	
+	<select id = "selectUserFriends" parameterType="int" resultMap="usersBase">
+		select user_no,user_name
+		from users
+		where user_no in (select FRIEND_NO from USER_FRIEND where user_no = #{userNo})
+	</select>
+	
+	
 	
 	<resultMap type="user" id="usersBase">
 		<id column="user_no" property="userNo"/>

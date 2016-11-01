@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,13 +39,20 @@ table th {
 	<section id="content">			    		
 			<div id="map" style="width: 500px; height: 400px;"></div>
 			<br>
-			<input type = "text" placeholder="약속 이름" id="promiseTitle" name="promiseTitle">
-			<input type = "date" id="promiseDate" name="promiseDate">
-			<input type = "time" id="promiseTime" name="promiseTime">
-			<input type = "text" placeholder="약속 내용" id="promiseTitle" name="promiseTitle">
 			
-			<button id = "btn2" >저장</button>
-			
+			<sform:form method="post" action="promise" modelAttribute="promise">
+					<fieldset>
+						<sform:input path="promiseLatitude" id="inputLa" placeholder="위도" />
+						<sform:input path="promiseLongitude" id="inputLo" placeholder="경도"/><br>
+						<sform:input path="promiseTitle" placeholder="약속 이름"/><br>
+						<sform:input path="promiseDate"  placeholder="promiseDate"  /><br>
+						<sform:input path="promiseContent" placeholder="약속 내용"  /><br>	
+						<sform:label path="invitee">친구 목록</sform:label>
+						<sform:select path="invitee" multiple="multiple" items="${friends }" itemLabel="userName" itemValue="userNo"/>				
+					</fieldset>
+				<sform:button>가입 하기</sform:button>
+			</sform:form>
+		
 			
 			
 			<div id="locationDiv">				
@@ -140,8 +148,9 @@ function successCallback(position) {
 				
 				latitude = latlng.getLat();
 				longitude = latlng.getLng();
-				console.log("클릭한 위경도"+latitude+","+longitude);
 				
+				$("#inputLa").val(latlng.getLat());
+				$("#inputLo").val(latlng.getLng());
 
 				//var resultDiv = document.getElementById('clieckedLocation');
 				//resultDiv.innerHTML = message;
