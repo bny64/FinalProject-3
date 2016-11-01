@@ -34,6 +34,15 @@
 	width: 25%;
 	padding: 1%;
 }
+.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
+.dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
+.dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
+.number {font-weight:bold;color:#ee6152;}
+.dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+.distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+.distanceInfo .label {display:inline-block;width:50px;}
+.distanceInfo:after {content:none;}
+
 </style>
 </head>
 <body>
@@ -63,6 +72,7 @@
 		이벤트 선택
 		<hr>
 		마우스 클릭 이벤트 : <select id="selectedClickEvent">
+			<option value="calcDistance">목표점 거리 계산</option>
 			<option value="infoWindow">인포 윈도우</option>
 			<option value="createMarker">마커 생성</option>
 			<option value="createRect">사각형 그리기</option>
