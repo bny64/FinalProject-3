@@ -81,7 +81,7 @@ public class AndroidControllerM {
 				Map<String, Object> messages = new HashMap<String, Object>();
 				messages.put("boardNo", board.getBoardNo());
 				messages.put("title", board.getTitle());
-				messages.put("userName", userService.searchUserByUserNo(userNo));
+				messages.put("userName", userService.searchUserByUserNo(userNo).getUserName());
 				androidResponse.add(messages);
 			}
 			logger.trace("androidResponse messages : {}", androidResponse);

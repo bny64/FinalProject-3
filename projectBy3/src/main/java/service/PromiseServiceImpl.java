@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -44,6 +45,27 @@ public class PromiseServiceImpl implements PromiseService {
 		
 		result = pDao.updatePromise(updatePromise);
 		
+		return result;
+	}
+
+	@Override
+	public List<Promise> getMyPromiseByPromote(int userNo) {
+		logger.trace("PromiseServiceImpl - getMyPromiseByPromote 동작");
+		List<Promise> promise = pDao.getMyPromiseByPromote(userNo);
+		return promise;
+	}
+
+	@Override
+	public List<Promise> getMyPromiseByInvitee(int userNo) {
+		logger.trace("PromiseServiceImpl - getMyPromiseByInvitee 동작");
+		List<Promise> promise = pDao.getMyPromiseByInvitee(userNo);
+		return promise;
+	}
+
+	@Override
+	public int deletePromise(int promiseId) {
+		logger.trace("PromiseServiceImpl - deletePromise 동작");
+		int result = pDao.deletePromise(promiseId);
 		return result;
 	}
 }

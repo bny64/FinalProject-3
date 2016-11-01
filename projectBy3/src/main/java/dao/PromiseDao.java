@@ -23,4 +23,5 @@ public interface PromiseDao {
 	public int insertPromise(Promise promise);
 	public Promise getPromiseByProAndDate(Map<String, Object> ProAndDate);
 	public int updatePromise(Promise promise);
+	public int deletePromise(int promiseId);
 }

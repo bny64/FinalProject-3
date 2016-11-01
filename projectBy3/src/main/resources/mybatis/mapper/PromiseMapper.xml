@@ -33,7 +33,11 @@
 		update promise set promise_title = #{promiseTitle}, promise_date =#{promiseDate},
 								 promise_latitude = #{promiseLatitude}, promise_longitude = #{promiseLongitude},
 								 promise_content = #{promiseContent}, promise_status = #{promiseStatus}
+		where promise_id=#{promiseId}
 	</update>
+	<delete id="deletePromise" parameterType="int">
+		delete promise where promise_id=#{promiseId}
+	</delete>
 	
 	<resultMap type="promise" id="promiseBase">
 		<id column="promise_id" property="promiseId"/>
