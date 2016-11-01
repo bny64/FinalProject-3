@@ -3,10 +3,12 @@ package com.example.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,11 +76,17 @@ public class PromiseDaoTest {
 	public void getPromiseByProAndDateTest() throws ParseException{
 		Map<String, Object> map = new HashMap<>();
 		
-		String str = "2016-10-28";
+		String str = "2016-12-01";
 		SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = fdm.parse(str);
 
-		map.put("promoter", 3);
+		Timestamp timestamp = new Timestamp(date.getTime());
+		
+		logger.trace("timestamp : {}", timestamp);
+
+		//Date date = new GregorianCalendar(2016, 11, 01).getTime();
+		
+		map.put("promoter", 2);
 		map.put("promiseDate", date);
 		Promise promise = pDao.getPromiseByProAndDate(map);
 		logger.trace("promisePP : {}", promise);

@@ -63,4 +63,11 @@ public class PromiseDaoImpl implements PromiseDao{
 		return template.update(stmt, promise);
 	}
 
+	@Override
+	public int deletePromise(int promiseId) {
+		logger.trace("PromiseDaoImpl - deletePromise 동작");
+		String stmt = PROMISE_NS + "deletePromise";
+		return template.update(stmt, promiseId);
+	}
+
 }
