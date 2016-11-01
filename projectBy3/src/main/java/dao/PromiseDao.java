@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import dto.Promise;
 
@@ -20,5 +21,6 @@ public interface PromiseDao {
 	List<Promise> getMyPromiseByInvitee(int userNo);
 	
 	public int insertPromise(Promise promise);
+	public Promise getPromiseByProAndDate(Map<String, Object> ProAndDate);
 	public int updatePromise(Promise promise);
 }

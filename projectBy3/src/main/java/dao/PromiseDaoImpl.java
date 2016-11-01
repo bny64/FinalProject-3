@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -48,6 +49,13 @@ public class PromiseDaoImpl implements PromiseDao{
 		return template.update(stmt, promise);
 	}
 
+	@Override
+	public Promise getPromiseByProAndDate(Map<String, Object> ProAndDate) {
+		logger.trace("PromiseDaoImpl - getPromiseByProAndDate 동작");
+		String stmt = PROMISE_NS + "getPromiseByProAndDate";
+		return template.selectOne(stmt, ProAndDate);
+	}
+	
 	@Override
 	public int updatePromise(Promise promise) {
 		logger.trace("PromiseDaoImpl - updatePromise 동작");
