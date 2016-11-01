@@ -73,7 +73,11 @@
 		<div id="map"><div id="staticMap"></div></div>
 		<div id="list">
 			
-				<c:forEach items="${promises }" var ="userpromise">					
+				<c:forEach items="${mypromises }" var ="userpromise">					
+					<a onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })"><input type="text" readonly="readonly" value="${userpromise.promiseTitle }"> </a>
+				</c:forEach>
+				<br>
+				<c:forEach items="${yourpromises }" var ="userpromise">					
 					<a onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })"><input type="text" readonly="readonly" value="${userpromise.promiseTitle }"> </a>
 				</c:forEach>
 			

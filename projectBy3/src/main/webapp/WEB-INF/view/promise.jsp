@@ -42,9 +42,13 @@ table th {
 			
 			<sform:form method="post" action="promise" modelAttribute="promise">
 					<fieldset>
+						<sform:input path="promiseLatitude" id="inputLa" placeholder="위도" />
+						<sform:input path="promiseLongitude" id="inputLo" placeholder="경도"/><br>
 						<sform:input path="promiseTitle" placeholder="약속 이름"/><br>
 						<sform:input path="promiseDate"  placeholder="promiseDate"  /><br>
-						<sform:input path="promiseContent" placeholder="약속 내용"  /><br>						
+						<sform:input path="promiseContent" placeholder="약속 내용"  /><br>	
+						<sform:label path="invitee">친구 목록</sform:label>
+						<sform:select path="invitee" multiple="multiple" items="${friends }" itemLabel="userName" itemValue="userNo"/>				
 					</fieldset>
 				<sform:button>가입 하기</sform:button>
 			</sform:form>
@@ -144,8 +148,9 @@ function successCallback(position) {
 				
 				latitude = latlng.getLat();
 				longitude = latlng.getLng();
-				console.log("클릭한 위경도"+latitude+","+longitude);
 				
+				$("#inputLa").val(latlng.getLat());
+				$("#inputLo").val(latlng.getLng());
 
 				//var resultDiv = document.getElementById('clieckedLocation');
 				//resultDiv.innerHTML = message;

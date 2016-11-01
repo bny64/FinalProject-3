@@ -16,4 +16,5 @@ public interface UserService {
 	public List<User> searchByNickNameUserNameUsers(int pageNo, String search);
 	public String selectUserProfilePathByUserNo(int userNo);
 	public User searchUserByUserNo(int userNo);
+	public List<User> selectUserFriends(int userNo);
 }
