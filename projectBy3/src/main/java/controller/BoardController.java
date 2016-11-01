@@ -78,7 +78,7 @@ public class BoardController {
 		int userNo = (int) session.getAttribute("userNo");
 		logger.trace("userNo : {}", userNo);
 		
-		Board board = new Board(0,"",0,"",null,userNo,0,"",null,"visible",0,0);
+		Board board = new Board(0,"",0,"",null,userNo,0,"",null,"visible",0,0, null, null);
 		model.addAttribute("board", board);		
 		return "writeBoard";
 	}
@@ -87,7 +87,7 @@ public class BoardController {
 	public String writeBoardLocation(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude){
 		List<Category> category = ctservice.selectAllCategory();
 		model.addAttribute("category", category);
-		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude, null, null);
 		model.addAttribute("board", board);		
 		return "writeBoard";
 	}
@@ -96,7 +96,7 @@ public class BoardController {
 		List<Category> category = ctservice.selectAllCategory();
 		model.addAttribute("locationName",locationName);
 		model.addAttribute("category", category);
-		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude);
+		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude, null, null);
 		model.addAttribute("board", board);		
 		return "writeBoard";
 	}

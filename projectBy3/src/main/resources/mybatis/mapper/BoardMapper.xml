@@ -190,7 +190,12 @@
 		
 	</select>
 		
-	
+	<select id="slowBoard" resultMap="slowBoard" parameterType="hashmap">
+		select b.board_no, title, hit, content, writed_date, user_no, category_no, image_path, view_status, target_date
+		from board b join board_location l
+		on b.board_no = l.board_no
+		where writed_date = #{targetDate} and latitude=#{latitude} and longitude=#{longitude}
+	</select>
 	
 	
 	<resultMap type="board" id="boardBase">
@@ -203,6 +208,12 @@
 		<result column="category_no" property="categoryNo"/>
 		<result column="image_path" property="imagePath"/>
 		<result column="view_status" property="viewStatus"/>
+		<result column="target_date" property="targetDate"/>
+	</resultMap>
+	
+	<resultMap type="board" id="slowBoard" extends="boardBase">
+		<collection property="boardLocationsSet" ofType="boardLocation" 
+						  resultMap="BoardLocationMapper.boardLocationBase"></collection>
 	</resultMap>
 
 </mapper>

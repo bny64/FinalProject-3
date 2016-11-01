@@ -4,6 +4,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +39,7 @@ public class BoardDaoTest {
 		assertThat(boards.size(), is(notNullValue()));
 	}
 	
-	@Test
+	//@Test
 	public void selectBoardTest(){
 		Board board = bDao.selectBoard(216);
 		logger.trace("board : {}", board);
@@ -47,7 +50,7 @@ public class BoardDaoTest {
 	public void selectMyBoardTest(){
 		List<Board> boards = bDao.selectMyBoard(2);
 		logger.trace("boards.size : {}", boards.size());
-		assertThat(boards.size(), is(3));
+		assertThat(boards.size(), is(2));
 	}
 	
 	@Test
@@ -61,7 +64,7 @@ public class BoardDaoTest {
 		assertThat(boards.size(), is(2));
 	}
 	
-	@Test
+	//@Test
 	public void deleteBoardByBoardNo(){
 		int result = bDao.deleteBoardByBoardNo(54);
 		Board board = bDao.selectBoard(54);
@@ -71,7 +74,7 @@ public class BoardDaoTest {
 	
 	
 	
-	@Test
+	//@Test
 	public void updateBoard(){	
 		Board board = new Board();
 		board.setBoardNo(1);
@@ -87,7 +90,7 @@ public class BoardDaoTest {
 	
 	
 	
-	@Test	
+	//@Test	
 	public void insertBoard(){
 		
 		Board board = new Board();	
@@ -103,4 +106,19 @@ public class BoardDaoTest {
 		assertThat(result, is(1));
 	}
 	
+	@Test
+	public void slowBoard() throws ParseException{
+		Map<String, Object> slowMessage = new HashMap<>();
+		
+		String str = "1916-10-26";
+		SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = fdm.parse(str);
+		
+		slowMessage.put("targetDate", date);
+		slowMessage.put("latitude", 36.81513);
+		slowMessage.put("longitude", 127.11389);
+		
+		List<Board> list = bDao.slowMessage(slowMessage);
+		logger.trace("list : {}", list);		
+	}
 }

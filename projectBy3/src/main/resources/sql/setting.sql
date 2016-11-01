@@ -149,3 +149,5 @@ create table user_history(
 
 alter table board MODIFY (image_path varchar2(200));
 alter table users add profile_path varchar(200);
+
+alter table board add target_date date;

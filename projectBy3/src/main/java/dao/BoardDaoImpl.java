@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +111,13 @@ public class BoardDaoImpl implements BoardDao{
 		logger.trace("BoardDaoImpl - searchByTitleContentCategory 동작");
 		String stmt = BOARD_NS + "searchByTitleContentCategory";
 		return template.selectList(stmt, filter);
+	}
+
+	@Override
+	public List<Board> slowMessage(Map<String, Object> slowBoard) {
+		logger.trace("BoardDaoImpl - slowMessage 동작");
+		String stmt = BOARD_NS + "slowBoard"; 
+		return template.selectList(stmt, slowBoard);
 	}
 
 	

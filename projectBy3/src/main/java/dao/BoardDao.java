@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,4 +20,5 @@ public interface BoardDao {
 	public List<Board> selectMyCategoryBoardByPaging(Map<String, Object> filter);
 	public List<Board> searchByTitleContent(Map<String,Object> filter);
 	public List<Board> searchByTitleContentCategory(Map<String,Object> filter);
+	public List<Board> slowMessage(Map<String, Object> slowBoard);
 }

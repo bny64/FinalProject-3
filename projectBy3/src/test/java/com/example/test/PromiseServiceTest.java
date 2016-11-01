@@ -33,7 +33,7 @@ public class PromiseServiceTest {
 	@Autowired
 	PromiseService service;
 
-	//@Test
+	@Test
 	public void insertPromiseTest() throws ParseException {
 		String str = "16-12-01";
 		SimpleDateFormat fdm = new SimpleDateFormat("yy-MM-dd");

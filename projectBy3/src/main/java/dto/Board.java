@@ -1,6 +1,7 @@
 package dto;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,4 +28,6 @@ public class Board {
 	/*String file;*/
 	float latitude;
 	float longitude;
+	Date targetDate;
+	private List<BoardLocation> boardLocationsSet;
 }
