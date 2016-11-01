@@ -69,22 +69,25 @@ public class AndroidControllerM {
 		
 		if(boards.isEmpty()){
 			logger.trace("발견 된 글 없음.");
+		
+			return null;
 		} else{
 			logger.trace("글 발견 boards : {}", boards);
+			
+			// 민국 - 밑에부터는 알람에 보여줄 정보를 담음. *메시지에 대해서 상담 필요.
+			//이 컨트롤에서 해당 알림에 대한 게시물의 정보를 리턴해줘야 함.
+			List<Map<String, Object>> androidResponse = new ArrayList<Map<String, Object>>();
+			for(Board board : boards){
+				Map<String, Object> messages = new HashMap<String, Object>();
+				messages.put("boardNo", board.getBoardNo());
+				messages.put("title", board.getTitle());
+				messages.put("userName", userService.searchUserByUserNo(userNo));
+				androidResponse.add(messages);
+			}
+			logger.trace("androidResponse messages : {}", androidResponse);
+			//위도, 경도를 넘겨주고 필요한 내용을 List<Map<String, Object>>에 담아 리턴. *boardNo는 필수
+			return androidResponse;
 		}
-		
-		// 민국 - 밑에부터는 알람에 보여줄 정보를 담음. *메시지에 대해서 상담 필요.
-		//이 컨트롤에서 해당 알림에 대한 게시물의 정보를 리턴해줘야 함.
-		List<Map<String, Object>> androidResponse = new ArrayList<Map<String, Object>>();
-		for(Board board : boards){
-			Map<String, Object> messages = new HashMap<String, Object>();
-			messages.put("boardNo", board.getBoardNo());
-			messages.put("title", board.getTitle());
-			//messages.put("userName", );
-			androidResponse.add(messages);
-		}
-		//위도, 경도를 넘겨주고 필요한 내용을 List<Map<String, Object>>에 담아 리턴. *boardNo는 필수
-		return androidResponse;
 	}
 	
 	@RequestMapping(value="/getAroundBoards", method=RequestMethod.GET)

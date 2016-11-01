@@ -36,9 +36,9 @@ public class BoardDaoTest {
 		assertThat(boards.size(), is(notNullValue()));
 	}
 	
-	//@Test
+	@Test
 	public void selectBoardTest(){
-		Board board = bDao.selectBoard(1);
+		Board board = bDao.selectBoard(216);
 		logger.trace("board : {}", board);
 		assertThat(board.getTitle(), is(notNullValue()));
 	}
