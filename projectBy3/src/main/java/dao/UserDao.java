@@ -17,4 +17,5 @@ public interface UserDao {
 	public List<User> searchByNickNameUserNameUsers(Map<String,Object> filter);
 	public User selectUserProfilePathByUserNo(int userNo);
 	public User searchUserByUserNo(int userNo);
+	public List<User> selectUserFriends(int userNo);
 }

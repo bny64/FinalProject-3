@@ -162,5 +162,11 @@ public class UserServiceImpl implements UserService {
 		logger.trace("UserServiceImpl - selectUserProfilePathByUserNo");
 		return uDao.searchUserByUserNo(userNo);
 	}
+
+	@Override
+	public List<User> selectUserFriends(int userNo) {
+		logger.trace("UserServiceImpl - selectUserFriends");
+		return uDao.selectUserFriends(userNo);
+	}
 	
 }

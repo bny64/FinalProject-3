@@ -126,8 +126,8 @@ create table promise(
   promoter number not null,
   invitee number not null,
   promise_date date,
-  promise_latitude number not null,
-  promise_longitude number not null,
+  promise_latitude float not null,
+  promise_longitude float not null,
   promise_content varchar2(200),
   promise_status varchar2(20) not null,
   constraint promise_id_pk primary key (promise_id)

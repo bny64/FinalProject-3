@@ -70,4 +70,18 @@ public class PromiseDaoImpl implements PromiseDao{
 		return template.update(stmt, promiseId);
 	}
 
+	@Override
+	public Promise selectStatus(int promiseId) {
+		logger.trace("PromiseDaoImpl - selectStatus 동작");
+		String stmt = PROMISE_NS + "selectStatus";
+		return template.selectOne(stmt,promiseId);
+	}
+
+	@Override
+	public int updateStatus(Promise promise) {
+		logger.trace("PromiseDaoImpl - updateStatus 동작");
+		String stmt = PROMISE_NS + "updateStatus";
+		return template.update(stmt, promise);
+	}
+
 }
