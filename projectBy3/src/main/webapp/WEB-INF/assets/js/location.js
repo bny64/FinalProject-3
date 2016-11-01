@@ -5,8 +5,10 @@
 var latitude;
 var longitude;
 var map;
-var marker;
-var markers = [];
+var marker; // 중심 위치의 마커
+var markers = []; // 중심 이외의 마커들
+var clickLine // 마우스로 클릭한 좌표로 그려질 선 객체입니다
+var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
 
 // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new daum.maps.InfoWindow({
@@ -79,9 +81,9 @@ function successCallback(position) {
 
 				if (selectedClickEvent == "createMarker") {
 					// 클릭한 위치에 마커를 표시합니다
-					//removeMarker();
+					// removeMarker();
 					addMarker(mouseEvent.latLng);
-				} 
+				}
 
 				// 클릭한 위도, 경도 정보를 가져옵니다
 				var latlng = mouseEvent.latLng;
@@ -144,10 +146,9 @@ function addMarker(position) {
 
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map);
-	
+
 	// 생성된 마커를 배열에 추가합니다
-	
-	
+
 	markers.push(marker);
 
 	return marker;
@@ -216,7 +217,10 @@ function displayPlaces(places) {
 					displayPlaceInfo(marker, place);
 				} else if (selectedClickEvent == "createRect") {
 					createRectangle(place.latitude, place.longitude);
+				} else if (selectedClickEvent == "calcDistance") {
+					drawLineByTargetLocation(place);
 				}
+
 			});
 		})(marker, places[i]);
 	}
@@ -258,16 +262,16 @@ function displayPlaceInfo(marker, place) {
 	infowindow.setPosition(infowindowPosition);
 
 	infowindow.open(map, marker);
-	setTimeout(function(){
+	setTimeout(function() {
 		infowindow.close();
 	}, 1000);
-	
+
 }
 
-function displayBoardInfo(marker, board){
+function displayBoardInfo(marker, board) {
 	// 인포윈도우에 띄울 내용 작성
-	var content = '<div class="boardInfo">' + board.title + '<br> '+ board.content +'</div>';
-
+	var content = '<div class="boardInfo">' + board.title + '<br> '
+			+ board.content + '</div>';
 
 	// 인포윈도우에 컨텐츠 장착
 	infowindow.setContent(content);
@@ -277,7 +281,7 @@ function displayBoardInfo(marker, board){
 	infowindow.setPosition(infowindowPosition);
 
 	infowindow.open(map, marker);
-	setTimeout(function(){
+	setTimeout(function() {
 		infowindow.close();
 	}, 1000);
 }
@@ -388,10 +392,14 @@ function selectCategoryByCode() {
 
 function createRectangle(latitude, longitude) {
 	console.log("createRectangle 시작");
-	var rectRange=0.0025; // 중심점에서 정사각형 변 까지의 거리, 0.0025 = 약 250미터
-	
-	var sw = new daum.maps.LatLng(latitude - rectRange, longitude - rectRange); // 사각형 영역의 남서쪽 좌표
-	var ne = new daum.maps.LatLng(parseFloat(latitude) + rectRange, parseFloat(longitude) + rectRange); // 사각형 영역의 북동쪽 좌표
+	var rectRange = 0.0025; // 중심점에서 정사각형 변 까지의 거리, 0.0025 = 약 250미터
+
+	var sw = new daum.maps.LatLng(latitude - rectRange, longitude - rectRange); // 사각형
+	// 영역의
+	// 남서쪽
+	// 좌표
+	var ne = new daum.maps.LatLng(parseFloat(latitude) + rectRange,
+			parseFloat(longitude) + rectRange); // 사각형 영역의 북동쪽 좌표
 
 	console.log("sw : " + sw + ", ne : " + ne);
 	// 사각형을 구성하는 영역정보를 생성합니다
@@ -412,23 +420,108 @@ function createRectangle(latitude, longitude) {
 
 	// 지도에 사각형을 표시합니다
 	rectangle.setMap(map);
-	
+
 	var downCount = 0;
 	// 사각형에 마우스다운 이벤트를 등록합니다
-	daum.maps.event.addListener(rectangle, 'mousedown', function() { 
-	    console.log(event);
-	    var resultDiv = document.getElementById('result');
-	    resultDiv.innerHTML = '사각형에 mousedown 이벤트가 발생했습니다!' + (++downCount);
-	}); 
+	daum.maps.event.addListener(rectangle, 'mousedown', function() {
+		console.log(event);
+		var resultDiv = document.getElementById('result');
+		resultDiv.innerHTML = '사각형에 mousedown 이벤트가 발생했습니다!' + (++downCount);
+	});
 }
 
-function moveCenterByValues(){
+function moveCenterByValues() {
 	var targetLatitude = document.getElementById("targetLatitude").value;
 	var targetLongitude = document.getElementById("targetLongitude").value;
-	
-	var moveLatLon = new daum.maps.LatLng(targetLatitude, targetLongitude);
-    
-    // 지도 중심을 이동 시킵니다
-    map.setCenter(moveLatLon);
 
+	var moveLatLon = new daum.maps.LatLng(targetLatitude, targetLongitude);
+
+	// 지도 중심을 이동 시킵니다
+	map.setCenter(moveLatLon);
 }
+
+// 클릭한 좌표 까지 투명선 그리기
+function drawLineByTargetLocation(place) {
+	
+	// 이미 그려진 라인이 있다면 삭제.
+	if(clickLine){
+		deleteClickLine();
+	}
+	
+	// 마우스로 클릭한 위치입니다
+	var clickPosition = new daum.maps.LatLng(place.latitude, place.longitude);
+	// 맵의 중심 마커 좌표
+	var centerMakerPosition = marker.getPosition();
+
+	clickLine = new daum.maps.Polyline({
+		map : map, // 선을 표시할 지도입니다
+		path : [ centerMakerPosition, clickPosition ], // 선을 구성하는 좌표 배열입니다 클릭한
+														// 위치를 넣어줍니다
+		strokeWeight : 3, // 선의 두께입니다
+		strokeColor : '#db4040', // 선의 색깔입니다
+		strokeOpacity : 0, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+		strokeStyle : 'solid' // 선의 스타일입니다
+	});
+
+	var distance = Math.round(clickLine.getLength()),
+		content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
+
+	clickLine.setMap(map);
+	
+	showDistance(content, clickPosition);
+}
+
+// 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
+function deleteClickLine() {
+	if (clickLine) {
+		clickLine.setMap(null);
+		clickLine = null;
+	}
+}
+
+// 그려지고 있는 선의 총거리 정보와
+// 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 삭제하는 함수입니다
+function deleteDistnce() {
+	if (distanceOverlay) {
+		distanceOverlay.setMap(null);
+		distanceOverlay = null;
+	}
+}
+
+//선의 총거리 정보를 표시하기
+function showDistance(content, position) {
+ 
+ if (distanceOverlay) { // 커스텀오버레이가 생성된 상태이면
+     // 커스텀 오버레이의 위치와 표시할 내용을 설정합니다
+     distanceOverlay.setPosition(position);
+     distanceOverlay.setContent(content);
+     
+ } else { // 커스텀 오버레이가 생성되지 않은 상태이면
+     
+     // 커스텀 오버레이를 생성하고 지도에 표시합니다
+     distanceOverlay = new daum.maps.CustomOverlay({
+         map: map, // 커스텀오버레이를 표시할 지도입니다
+         content: content,  // 커스텀오버레이에 표시할 내용입니다
+         position: position, // 커스텀오버레이를 표시할 위치입니다.
+         xAnchor: 0,
+         yAnchor: 0,
+         zIndex: 3  
+     });      
+ }
+}
+/*// 민국 - 개발보류
+function calcDirecion(socLoc, targetLoc){
+	var x1 = socLoc.getLat(),
+		y1 = socLoc.getLng(),
+		x2 = targetLoc.getLat(),
+		y2 = targetLoc.getLng(),
+		m = (y2-y1)/(x2-x1),
+		l = 0.0050,
+		a = m^2+1,
+		b = -2(x1-2*m*x1),
+		c = m^2*x1^2-l^2,
+		tri1x1, tri1y1,
+		tri1x2, tri1y2;
+	
+	tri1x1 = (-b+math.sqrt(b^2-4*a*c))/2*a; 
+}*/
