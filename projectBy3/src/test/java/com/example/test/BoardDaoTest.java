@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -110,15 +111,17 @@ public class BoardDaoTest {
 	public void slowBoard() throws ParseException{
 		Map<String, Object> slowMessage = new HashMap<>();
 		
-		String str = "1916-10-26";
+		String str = "2016-10-26";
 		SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = fdm.parse(str);
+
+		Timestamp timestamp = new Timestamp(date.getTime());
 		
-		slowMessage.put("targetDate", date);
+		slowMessage.put("targetDate", timestamp);
 		slowMessage.put("latitude", 36.81513);
 		slowMessage.put("longitude", 127.11389);
 		
 		List<Board> list = bDao.slowMessage(slowMessage);
-		logger.trace("list : {}", list);		
+		logger.trace("list : {}", list);
 	}
 }

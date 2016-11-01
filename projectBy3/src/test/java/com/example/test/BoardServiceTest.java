@@ -5,7 +5,13 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,7 +66,7 @@ public class BoardServiceTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void deleteBoardByBoardNo(){
 		int result = service.deleteBoardByBoardNo(53);
 		Board board = service.selectBoard(53);
@@ -87,7 +93,7 @@ public class BoardServiceTest {
 	}
 	
 	
-	@Test	
+	//@Test	
 	public void insertBoard(){
 		
 		Board board = new Board();	
@@ -132,6 +138,25 @@ public class BoardServiceTest {
 	public void selectMyCategoryBoardByPaging(){
 		List<Board> boards = service.selectMyCategoryBoardByPaging(2, 1, 1);
 		logger.trace("보드() : {}", boards);
+	}
+	
+	@Test
+	public void slowBoardTest() throws ParseException{
+		Map<String, Object> slowMessage = new HashMap<>();
+		
+		String str = "2016-10-26";
+		SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = fdm.parse(str);
+
+		Timestamp timestamp = new Timestamp(date.getTime());
+		
+		slowMessage.put("targetDate", timestamp);
+		slowMessage.put("latitude", 36.81513);
+		slowMessage.put("longitude", 127.11389);
+		
+		List<Board> boards = service.slowMessage(slowMessage);
+		logger.trace("boardss : {}", boards);
+		assertThat(boards.size(), is(1));
 	}
 	
 	

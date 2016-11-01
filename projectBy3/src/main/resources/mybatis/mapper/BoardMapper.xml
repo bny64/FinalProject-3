@@ -194,7 +194,7 @@
 		select b.board_no, title, hit, content, writed_date, user_no, category_no, image_path, view_status, target_date
 		from board b join board_location l
 		on b.board_no = l.board_no
-		where writed_date = #{targetDate} and latitude=#{latitude} and longitude=#{longitude}
+		where writed_date between #{targetDate} and #{targetDate}+1 and latitude=#{latitude} and longitude=#{longitude}
 	</select>
 	
 	

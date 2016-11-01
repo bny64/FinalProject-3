@@ -135,6 +135,13 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.searchByTitleContentCategory(filter);
 	}
 
+	@Override
+	public List<Board> slowMessage(Map<String, Object> slowBoard) {
+		logger.trace("BoardServiceImpl - slowMessage() 동작");
+		List<Board> list = boardDao.slowMessage(slowBoard);
+		return list;
+	}
+
 	
 
 	
