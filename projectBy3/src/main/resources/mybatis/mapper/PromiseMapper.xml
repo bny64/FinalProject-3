@@ -39,6 +39,17 @@
 		delete promise where promise_id=#{promiseId}
 	</delete>
 	
+	<select id="selectStatus" parameterType="int" resultMap="promiseBase">
+		select *
+		from promise
+		where promise_id=#{promiseId}
+	</select>
+	
+	<update id="updateStatus">
+		update promise set promise_status = #{promiseStatus} where promise_id = #{promiseId}
+	</update>
+	
+	
 	<resultMap type="promise" id="promiseBase">
 		<id column="promise_id" property="promiseId"/>
 		<result column="promise_title" property="promiseTitle"/>

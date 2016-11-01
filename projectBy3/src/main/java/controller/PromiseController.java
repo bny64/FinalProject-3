@@ -1,8 +1,10 @@
 package controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,38 +42,39 @@ public class PromiseController {
 	public String promiseBoard(Model model,HttpSession session){
 		// 사용자 넘버로 자기 자신의 약속과 약속 당한 약속을 model에 저장하고 promiseMainBoard에 넘겨 주면 됩니다.		
 		
-		/*List<Promise> promises = new ArrayList<>();
-		Promise p1=new Promise(1,"서산에서밥먹자11",2,3,new Date(),(float)36.804969,(float)126.435979,"빨리빨리11","약속완료");
-		Promise p2=new Promise(1,"보령에서밥먹자22",2,3,new Date(),(float)36.349064,(float)126.594654,"빨리빨리22","약속완료");
-		Promise p3=new Promise(1,"전주에서밥먹자33",2,3,new Date(),(float)35.846524,(float)127.134912,"빨리빨리33","약속완료");
-		Promise p4=new Promise(1,"부산에서밥먹자44",2,3,new Date(),(float)35.159941,(float)129.049699,"빨리빨리44","약속완료");
-		Promise p5=new Promise(1,"울산에서밥먹자55",2,3,new Date(),(float)35.543078,(float)129.245623,"빨리빨리55","약속완료");
-		Promise p6=new Promise(1,"경주에서밥먹자66",2,3,new Date(),(float)35.817967,(float)129.246108,"빨리빨리66","약속완료");
-		Promise p7=new Promise(1,"목포에서밥먹자77",2,3,new Date(),(float)34.810000,(float)126.394696,"빨리빨리77","약속완료");
-		Promise p8=new Promise(1,"제천에서밥먹자88",2,3,new Date(),(float)37.058866,(float)128.143501,"빨리빨리88","약속완료");
-		Promise p9=new Promise(1,"평창에서밥먹자99",2,3,new Date(),(float)37.556320,(float)128.486615,"빨리빨리99","약속완료");
-		Promise p0=new Promise(1,"속초에서밥먹자00",2,3,new Date(),(float)38.193730,(float)128.544981,"빨리빨리00","약속완료");
+		List<Promise> Inviteepromises = promiseService.getMyPromiseByInvitee((int)session.getAttribute("userNo"));
+		List<Promise> Promotepromises = promiseService.getMyPromiseByPromote((int)session.getAttribute("userNo"));
 		
-		
-		promises.add(p1);
-		promises.add(p2);
-		promises.add(p3);
-		promises.add(p4);
-		promises.add(p5);
-		promises.add(p6);
-		promises.add(p7);
-		promises.add(p8);
-		promises.add(p9);
-		promises.add(p0);*/
-		
-		
-		List<Promise> mypromises = promiseService.getMyPromiseByInvitee((int)session.getAttribute("userNo"));
-		List<Promise> yourpromises = promiseService.getMyPromiseByPromote((int)session.getAttribute("userNo"));
-		
-		model.addAttribute("mypromises", mypromises);
-		model.addAttribute("yourpromises", yourpromises);	
+		model.addAttribute("Inviteepromises", Inviteepromises);
+		model.addAttribute("Promotepromises", Promotepromises);	
 		return "promiseMainBoard";
 	}
+	
+	@RequestMapping(value="/updatepromiseStatus", method=RequestMethod.POST)
+	public @ResponseBody String updatepromiseStatus(@RequestParam String status, @RequestParam int promiseId){
+		
+		int result = promiseService.updateStatus(promiseId, status);
+		logger.trace("성공:{}",result);
+		String str = promiseService.selectStatus(promiseId);
+		logger.trace("str:{}",str);
+		return str;
+	}
+	@RequestMapping(value="/deletePromise", method=RequestMethod.GET)
+	public String deletePromise(HttpSession session, Model model, @RequestParam int promiseId){
+		int result = promiseService.deletePromise(promiseId);
+		logger.trace("삭제 성공:{}",result); 
+		
+		List<Promise> Inviteepromises = promiseService.getMyPromiseByInvitee((int)session.getAttribute("userNo"));
+		List<Promise> Promotepromises = promiseService.getMyPromiseByPromote((int)session.getAttribute("userNo"));
+		
+		model.addAttribute("Inviteepromises", Inviteepromises);
+		model.addAttribute("Promotepromises", Promotepromises);	
+		return "promiseMainBoard";
+	}
+	
+	
+	
+	
 	
 	@RequestMapping(value="/promise", method=RequestMethod.GET)
 	public String promisePage(Model model,HttpSession session){		
@@ -87,11 +90,23 @@ public class PromiseController {
 	}
 	@RequestMapping(value="/promise", method=RequestMethod.POST)
 	public String promise(Model model,HttpSession session,Promise promise){
-		// promise에서 넘겨 오는 값을 저장하면 됩니다.
-		logger.trace("약속 잡기 :{}",promise);
-	
+		promise.setPromoter((int)session.getAttribute("userNo"));
+		promise.setPromiseStatus("약속 중");
+		if(promise.getPromiseDate()==null){
+			promise.setPromiseDate(new Date(0));
+		}
 		
-		return "promise";
+		
+		logger.trace("약속 잡기 :{}",promise);
+		int result = promiseService.insertPromise(promise);
+		logger.trace("약속 접기 성공 :{}",result);	
+		
+		List<Promise> Inviteepromises = promiseService.getMyPromiseByInvitee((int)session.getAttribute("userNo"));
+		List<Promise> Promotepromises = promiseService.getMyPromiseByPromote((int)session.getAttribute("userNo"));
+		
+		model.addAttribute("Inviteepromises", Inviteepromises);
+		model.addAttribute("Promotepromises", Promotepromises);	
+		return "promiseMainBoard";
 	}
 	
 	

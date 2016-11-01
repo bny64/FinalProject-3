@@ -64,7 +64,12 @@
 	width: 400px;
 	height: 300px;
 }
+
+
 </style>
+<script src="http://code.jquery.com/jquery.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
@@ -72,17 +77,34 @@
 	<section id="content">			    		
 		<div id="map"><div id="staticMap"></div></div>
 		<div id="list">
-			
-				<c:forEach items="${mypromises }" var ="userpromise">					
-					<a onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })"><input type="text" readonly="readonly" value="${userpromise.promiseTitle }"> </a>
+				<h3>약속 당한 약속</h3>
+				<c:forEach items="${Inviteepromises }" var ="userpromise">					
+					<a onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })"><input id= "str" type="text" readonly="readonly" value="${userpromise.promiseTitle }"> </a>
+					<select  id="promiseStatusId" data-item="${userpromise.promiseId }" name="${userpromise.promiseStatus}" >
+									
+						<option
+							<c:if test='${userpromise.promiseStatus == "약속 완료"}'>selected="selected"</c:if>
+							value="약속 완료">약속 완료</option>
+						<option
+							<c:if test='${userpromise.promiseStatus == "약속 중"}'>selected="selected"</c:if>
+							value="약속 중">약속 중</option>
+					</select>
+				
 				</c:forEach>
 				<br>
-				<c:forEach items="${yourpromises }" var ="userpromise">					
-					<a onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })"><input type="text" readonly="readonly" value="${userpromise.promiseTitle }"> </a>
+				<h3>내가 약속한 약속</h3>
+				<c:url value="/deletePromise" var="deletePromise"/>
+				<c:forEach items="${Promotepromises }" var ="userpromise">					
+					<a onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })"><input id = "str" type="text" readonly="readonly" value="${userpromise.promiseTitle }"> </a>
+					<a href="${deletePromise}?promiseId=${userpromise.promiseId}">
+								<button>취소</button>					
+					</a>
 				</c:forEach>
 			
 		</div>
-		<div id="bottomBtns">			
+		<div id="bottomBtns">
+			<c:url value="/promise" var="promise"/>
+			<a href="${promise }"><button>약속 하기</button></a>		
 			<button id="ok">확인</button>
 			<a href="#"><button>닫기</button></a>
 		</div>
@@ -101,6 +123,30 @@ var x = document.getElementById("demo");
 var latitude;
 var longitude;
 var promiseName;
+
+
+<c:url value="/updatepromiseStatus" var="updatepromiseStatus"/>
+	$(document).on("change", "#promiseStatusId" ,function(){
+			$.ajax({
+			type : "post",
+			url : "${updatepromiseStatus}",
+			data : {
+				status : $(this).val(),
+				promiseId : $(this).attr("data-item")
+			},
+			success : function(res){
+				$(this).val(res);
+			},
+			error:function(xhr, status, error){
+				alert("잘못된 접근입니다");
+			}
+		});  
+/* 		console.log($(this).attr("data-item"));
+		console.log($(this).val()); */
+	});
+
+
+
 
 
 $("#ok").on("click", function(){		
