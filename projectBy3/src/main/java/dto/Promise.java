@@ -2,6 +2,8 @@ package dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ public class Promise {
 	String promiseTitle;
 	int promoter; // 주최자 --> userNo
 	int invitee; // 초대 받은 사람 --> userNo
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date promiseDate;
 	float promiseLatitude;
 	float promiseLongitude;
