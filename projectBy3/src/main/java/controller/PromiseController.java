@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import dto.Promise;
 import dto.User;
 import dto.UserFriend;
+import service.PromiseService;
 import service.UserFriendService;
 
 
@@ -28,9 +29,13 @@ public class PromiseController {
 	
 	@Autowired
 	UserFriendService userFriendService;
+	@Autowired
+	PromiseService promiseService;
 	
 	@RequestMapping(value="/promiseBoard")
 	public String promise(Model model){
+		// 사용자 넘버로 자기 자신의 약속과 약속 당한 약속을 model에 저장하고 promiseMainBoard에 넘겨 주면 됩니다.		
+		
 		List<Promise> promises = new ArrayList<>();
 		Promise p1=new Promise(1,"서산에서밥먹자11",2,3,new Date(),(float)36.804969,(float)126.435979,"빨리빨리11","약속완료");
 		Promise p2=new Promise(1,"보령에서밥먹자22",2,3,new Date(),(float)36.349064,(float)126.594654,"빨리빨리22","약속완료");
@@ -55,17 +60,35 @@ public class PromiseController {
 		promises.add(p9);
 		promises.add(p0);
 		
+		
 		model.addAttribute("promises", promises);
 		logger.trace("약속 잡기 작동:{}",promises);
 		return "promiseMainBoard";
 	}
 	
-	@RequestMapping(value="/promise")
-	public String promise(Model model,HttpSession session){
-		//List<UserFriend> users = userFriendService.friendList((int) session.getAttribute("userNo"));
-	//	model.addAttribute("users", users);
+	@RequestMapping(value="/promise", method=RequestMethod.GET)
+	public String promisePage(Model model,HttpSession session){		
+		Promise promise = new Promise();
+		List<UserFriend> friends = userFriendService.friendList((int)session.getAttribute("userNo"));
+		
+		model.addAttribute("promise",promise);
+		model.addAttribute("friends",friends);
+		
+		return "promise";
+	}
+	@RequestMapping(value="/promise", method=RequestMethod.POST)
+	public String promise(Model model,HttpSession session,Promise promise){
+		// promise에서 넘겨 오는 값을 저장하면 됩니다.
+		logger.trace("약속 잡기 :{}",promise);
+	
+		
 		return "promise";
 	}
 	
 	
+	
+	@RequestMapping(value="/testPage")
+	public String promise(Model model,HttpSession session){
+		return "LocationTest/testPage";
+	}
 }
