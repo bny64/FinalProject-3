@@ -77,12 +77,9 @@ public class PromiseDaoTest {
 		String str = "2016-10-28";
 		SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = fdm.parse(str);
-		
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		
+
 		map.put("promoter", 3);
-		map.put("promiseDate", cal);
+		map.put("promiseDate", date);
 		Promise promise = pDao.getPromiseByProAndDate(map);
 		logger.trace("promisePP : {}", promise);
 		
