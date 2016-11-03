@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 
 import dto.Board;
 import service.BoardLoactionService;
+import service.BoardService;
 import service.UserService;
 
 @Controller
@@ -36,6 +37,9 @@ public class AndroidControllerM {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	BoardService boardService;
 	
 	@RequestMapping("/android")
 	public void androidTest(){
@@ -114,5 +118,39 @@ public class AndroidControllerM {
 		return myAroundBoards;
 	}
 	
+	@RequestMapping(value="/androidSlowMessage/{Jlocation:.+}", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody List<Map<String, Object>> AndroidSlowMessage(@PathVariable("Jlocation") String Jlocation){
+		
+		Gson gson = new Gson();
+		
+		Map<String, Object> androidInfo = gson.fromJson(Jlocation, Map.class);
+		
+		float latitude = (float)((double) androidInfo.get("latitude"));
+		float longitude = (float)((double)androidInfo.get("longitude"));
+		int userNo = (int) ((double)androidInfo.get("userNo"));
+		
+		Map<String, Object> slowMessage = new HashMap<>();
+		
+		float range = (float) 0.0050;
+		
+		slowMessage.put("latitude", latitude);
+		slowMessage.put("longitude", longitude);
+		slowMessage.put("range", range);
+		
+		List<Board> boards = boardService.slowMessage(slowMessage);
+		
+		List<Map<String, Object>> resultBoards =  new ArrayList<>();
+		
+		for(Board boardss : boards){
+			Map<String, Object> map = new HashMap<>();
+			map.put("title", boardss.getTitle());
+			map.put("userName", userService.searchUserByUserNo(userNo).getUserName());
+			resultBoards.add(map);
+		}
+		logger.trace("slowMesage : {}", slowMessage);
+		
+		return resultBoards;
+	}
 	
 }
