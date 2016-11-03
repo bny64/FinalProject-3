@@ -5,13 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>여러가지 테스트해보자</title>
+<title>나침반</title>
 <style>
+
+#logo {
+	float: left;
+	width: 50%;
+	display: block;
+}
+
+#loginView {
+	float: right;
+	width: 50%;
+	display: block;
+}
+
 #map {
 	height: 350px;
 }
 
-#main {
+#mainCompass {
 	width: 50%;
 	margin-left: 20%;
 	margin-top: 5%;
@@ -34,6 +47,10 @@
 	width: 25%;
 	padding: 1%;
 }
+
+#click{
+	display: none;
+}
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
@@ -46,67 +63,27 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<!-- 지도를 표시할 div 입니다 -->
-	<div id="main">
+	<div id="mainCompass">
 		<div id="map"></div>
 		<p>
-			<button onclick="setCenter()">최초 중심으로 이동시키기</button>
-			<button onclick="removeMarker()">마커 전체 삭제</button>
+			<br>
+			<button onclick="setCenter()">내 위치로</button>
 			<button onclick="viewMyAroundFriendBoard()">주변 친구 글
 				표시(visible)</button>
 		</p>
 		<div id="result"></div>
 	</div>
-	<!-- 민국 : 위치들을 표시할 div -->
-	<div id="location">
-		지도 정보
-		<hr>
-		중심위치<br>
-		<div id="initLocation"></div>
-		<br> 클릭한 위치<br>
-		<div id="clieckedLocation"></div>
-		<div id="clieckedDegree"></div>
-		<br>
-		<div id="currentLevel"></div>
-	</div>
-	<div id="event">
-		이벤트 선택
-		<hr>
+	<div id="click">
 		마우스 클릭 이벤트 : <select id="selectedClickEvent">
-			<option value="exeCompass">나침반 기능 실행</option>
+			<option value="exeCompass" selected>나침반 기능 실행</option>
 			<option value="calcDirecion">목표점 각도 계산</option>
 			<option value="calcDistance">목표점 거리 계산</option>
 			<option value="infoWindow">인포 윈도우</option>
 			<option value="createMarker">마커 생성</option>
 			<option value="createRect">사각형 그리기</option>
-		</select><br> <br> 카테고리로 장소 검색 <select id="categoryCode">
-			<option value="MT1">대형마트</option>
-			<option value="CS2">편의점</option>
-			<option value="PS3">유치원</option>
-			<option value="SC4">학교</option>
-			<option value="AC5">학원</option>
-			<option value="PK6">주차장</option>
-			<option value="OL7">주유소</option>
-			<option value="SW8">지하철역</option>
-			<option value="BK9">은행</option>
-			<option value="CT1">문화시설</option>
-			<option value="AG2">중개업소</option>
-			<option value="PO3">공공기관</option>
-			<option value="AT4">관광명소</option>
-			<option value="AD5">숙박</option>
-			<option value="FD6">음식점</option>
-			<option value="CE7">카페</option>
-			<option value="HP8">병원</option>
-			<option value="PM9">약국</option>
 		</select>
-		<button onclick="selectCategoryByCode();">실행</button>
-		<br><br>
-		<fieldset>
-			<legend>값으로 중심 이동</legend>
-			위도 : <input type="text" id="targetLatitude" value="36.852292770282304"><br> 
-			경도 : <input type="text" id="targetLongitude" value="127.15026868985895">
-			<button onclick="moveCenterByValues()">이동</button>
-		</fieldset>
 	</div>
 </body>
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
@@ -141,7 +118,10 @@
 								displayBoardInfo(marker, data);
 							} else if (selectedClickEvent == "createRect") {
 								createRectangle(data.latitude, data.longitude);
-							}
+							} else if(selectedClickEvent == "exeCompass"){
+								calcDirecion(currentLocation, data);
+								drawLineByTargetLocation(data);
+							} 
 						});
 					});
 				}

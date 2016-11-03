@@ -61,9 +61,10 @@
 	</div>
 	<div id="loginView">
 		<div>
+			<c:url value="/compass" var="compass"/>
+			<a href="${compass }"><button>나침반</button></a>
 			<c:url value="/promiseBoard" var="promiseBoard"/>
 			<a href="${promiseBoard }"><button>약속</button></a>		
-		
 			<button>전체 알림</button>
 			<c:url value="/setupPage" var="setup"/>
 			<a href="${setup }"><button>설정</button></a>
