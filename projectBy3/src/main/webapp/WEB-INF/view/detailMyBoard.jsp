@@ -18,6 +18,7 @@ body {
 #detailWrapper {
 	margin: 100px;
 	padding: 20px;
+	 
 }
 
 #title {
@@ -97,9 +98,14 @@ table{
 					<!-- 위치 -->
 					<div id="location">위치</div>
 					<!-- 댓글 -->
-					<div id="reply">댓글</div>
-					<br> <input type="text" value="댓글 쓰기">
-					<button>댓글 작성</button>
+					<div id="reply">댓글
+						<c:forEach items="${reply }" var="re">
+						${re.replyContets }<br>
+						</c:forEach>
+					</div>
+					
+					<br> <input type="text" value="댓글 쓰기" id="replyInpyt">
+					<a onclick="replyBtn(${board.boardNo})"><img src="<%=request.getContextPath()%>/img/button/delete.png"></a>
 				</div>
 				
 				<!-- attribute 값인데 안보여줘도 될 것들. -->
@@ -122,10 +128,37 @@ table{
 				<a href="${returnMainBoard }"><img src="<%=request.getContextPath()%>/img/button/close.png"></a>
 			</div>
 			</sform:form>
+			
+			
+			<section class="thumbnails">
+				
+				<div id="center">
+					<c:forEach items="${hots }" var="hot">
+						
+						<a data-poptrox="iframe,600x400" href="#"><img alt="광고" src="<%=request.getContextPath()%>/upload/${hot.filePath}" width="200px"><h3>${hot.title }</h3></a>
+						
+						
+					</c:forEach>
+				</div>
+				
+			</section>	
+			
+			
+			
+			
+			
+			
 		</div>
 	</div>
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
+	function replyBtn(boardNo){
+		console.log($("#replyInpyt").val());
+		
+		document.location.href="addReply?boardNo="+boardNo+"&contents="+$("#replyInpyt").val();
+		
+	}
+
 </script>
 </html>
