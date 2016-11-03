@@ -190,6 +190,8 @@ public class MainController {
 		return "LocationTest/testMain";
 	}
 		
-	
-	
+	@RequestMapping(value="/compass")
+	public String compass(){
+		return "compass";
+	}
 }
