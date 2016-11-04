@@ -83,64 +83,27 @@
 <script src="<%=request.getContextPath()%>/js/skel.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/main.js"></script>
 
-<script type="text/javascript">
-	var index = 1;
-	var loadData = true;
-	var searchMode = false;
+<script type="text/javascript">	
 	
-	window.onload = function() { loadAllBoard(); };	
-	
-	$("#str").on("keydown",function(e){
-		console.log(e.keyCode);
-		console.log("다운");
-		if(e.keyCode == 13){
-			searchMode = true;
-			claer();
-			search();
-		 }
-	});
+	window.onload = function() { loadAllBoard(); };		
 	
 	
-	 $(window).scroll(function(){
-			if  ($(window).scrollTop() >= $(document).height() - $(window).height()){
-				console.log("스크롤 감지");
-				
-				console.log(index);
-				if(loadData){
-					if(!searchMode){
-						loadAllBoard();
-					}else{
-						search();
-					}
-					
-				}else{
-					console.log("데이터가 끝입니다");
-				}
-			}
-		});	
+		
 
 		function loadAllBoard(){	
-			<c:url value = "/mainBoard" var="mainBoard"/>
+			<c:url value = "/adminwriteHotBoard" var="adminwriteHotBoard"/>
 			console.log("로드 데이터");
 				$.ajax({
 					type : "get",
-					url : "${mainBoard}",
-					data : {
-						index : index,					
-					},
+					url : "${adminwriteHotBoard}",					
 					success:function(res){
-						console.log(res);
-						if(res.length==0){							
-							loadData = false;
-						}else{
-							++index;
-						}					
+																
 						$left = $("#left");
 						$center = $("#center");
 						$right = $("#right");
 						$(res).each(function(idx,data){
-							<c:url value = "/adminBoard" var="adminBoard"/>
-							$newOne = "<a data-poptrox='iframe,600x400' href='${adminBoard}?boardNo=" + data.boardNo
+							console.log(data);
+							$newOne = "<a data-poptrox='iframe,600x400' href='#" 
 							 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
 						     		+"<h3>" + data.title + "</h3></a>";						
 				

@@ -84,6 +84,12 @@
 			<c:url value="/adminCategory" var="adminCategory"/>
 			<a href="${adminCategory }"><button>카테고리 관리</button></a>
 			
+			<c:url value="/adminHotBoard" var="adminHotBoard"/>
+			<a href="${adminHotBoard }"><button>광고 관리</button></a>
+			
+			<c:url value="/adminwriteHotBoard" var="adminwriteHotBoard"/>
+			<a href="${adminwriteHotBoard }"><button>광고 추가</button></a>
+			
 			<c:url value="/adminLogout" var="adminLogout"/>
 			<a href="${adminLogout }"><button>로그 아웃</button></a>		
 			

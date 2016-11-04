@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,13 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import dto.Admin;
 import dto.Board;
 import dto.Category;
+import dto.HotBoard;
 import dto.User;
 import service.BoardService;
 import service.CategoryService;
+import service.HotBoardService;
 import service.UserService;
 
 @Controller
@@ -32,7 +37,8 @@ public class AdminController {
 	UserService userService;
 	@Autowired
 	CategoryService categoryService;
-	
+	@Autowired
+	HotBoardService hotBoardService;
 	
 	@RequestMapping(value="/admin")
 	public String amdin(){
@@ -167,6 +173,49 @@ public class AdminController {
 		//session.
 		return "adminLogin";
 	}
+	
+	@RequestMapping(value="/adminwriteHotBoard")
+	public String writeHotBoard(Model model, HttpSession session){
+		logger.trace("class : BoardController, method : writeBoard");
+		
+		List<Category> category = categoryService.selectAllCategory();
+		model.addAttribute("category", category);		
+		
+		HotBoard hot = new HotBoard();
+		model.addAttribute("hot", hot);		
+		return "adminWriteHotBoard";
+	}
+	
+	// 민국, 위치
+		//private static final String uploadDir = "C:/Users/1-718-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/";
+		private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/";
+		//private static final String uploadDir = "E:/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/server/wtpwebapps/projectBy3/WEB-INF/assets/images";
+	
+	@RequestMapping(value="/adminwriteHotBoard", method=RequestMethod.POST)
+	public String writeHotBoard(Model model, HttpSession session,HotBoard hotBoard,@RequestParam MultipartFile file)throws IllegalStateException, IOException{
+		logger.trace("class : BoardController, method : writeBoard");
+		File uploadFile = new File ( uploadDir +"." +System.currentTimeMillis()+file.getOriginalFilename());
+		if(file.getOriginalFilename().length()!=0){
+			logger.trace("파이리 있다 :{}",file.getOriginalFilename().length());
+			file.transferTo(uploadFile);
+			hotBoard.setFilePath(uploadFile.getName());
+		}
+		
+		int result = hotBoardService.insertHotBoard(hotBoard);
+		logger.trace("성공:{}",result);
+		
+		return "adminMain";
+	}
+	
+	
+	@RequestMapping(value="/adminHotBoard", method=RequestMethod.GET)
+	public String adminAdBoard(Model model,HttpSession session){
+		
+		List<HotBoard> hot =  hotBoardService.selectAllHotBoard();
+		model.addAttribute("hot", hot);
+		return "adminHotBoard";			
+	}
+
 	
 	
 	

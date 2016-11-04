@@ -151,3 +151,16 @@ alter table board MODIFY (image_path varchar2(200));
 alter table users add profile_path varchar(200);
 
 alter table board add target_date date;
+
+
+create table reply(
+  reply_no number not null,
+  board_no number not null,
+  user_no number not null,
+  reply_contents varchar2(200),
+  reply_date date,
+  constraint reply_no_pk primary key (reply_no)
+);
+
+create sequence reply_no_seq
+start with 1 increment by 1;

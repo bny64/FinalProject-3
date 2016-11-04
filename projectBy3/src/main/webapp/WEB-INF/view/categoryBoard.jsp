@@ -103,9 +103,16 @@
 				$right = $("#right");
 				$(res).each(function(idx,data){
 					<c:url value = "/detailBoard" var="detailBoard"/>
-					$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
-							+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
-							+"<h3>" + data.title + "</h3></a>";						
+						if(data.imagePath!=null){
+				     		console.log(data.title+"은 낫 널  "+data.imapgePath);
+				     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
+					 		+ "'> <img src='<%=request.getContextPath()%>/upload/"+data.imagePath+"' alt='' />"
+				     		+"<h3>" + data.title + "</h3></a>";
+				     	}else{
+				     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
+					 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
+				     		+"<h3>" + data.title + "</h3></a>";	
+				     	}				
 					switch(idx%3){
 						case 0:
 							$left.append($newOne);
@@ -160,9 +167,16 @@
 				$right = $("#right");
 				$(res).each(function(idx,data){
 					<c:url value = "/detailBoard" var="detailBoard"/>
-					$newOne = "<a href='${detailBoard}?boardNo=" + data.boardNo
-						 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
-					    		+"<h3>" + data.title + "</h3></a>";						
+						if(data.imagePath!=null){
+				     		console.log(data.title+"은 낫 널  "+data.imapgePath);
+				     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
+					 		+ "'> <img src='<%=request.getContextPath()%>/upload/"+data.imagePath+"' alt='' />"
+				     		+"<h3>" + data.title + "</h3></a>";
+				     	}else{
+				     		$newOne = "<a data-poptrox='iframe,600x400' href='${detailBoard}?boardNo=" + data.boardNo
+					 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
+				     		+"<h3>" + data.title + "</h3></a>";	
+				     	}						
 					switch(idx%3){
 						case 0:
 							$left.append($newOne);

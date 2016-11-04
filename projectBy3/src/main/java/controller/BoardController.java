@@ -25,11 +25,13 @@ import org.springframework.web.multipart.MultipartFile;
 import dto.Board;
 import dto.BoardLocation;
 import dto.Category;
+import dto.Reply;
 import dto.UserLocation;
 import service.BoardLoactionService;
 import service.BoardService;
 import service.CategoryService;
 import service.LocationService;
+import service.ReplyService;
 import service.UserService;
 
 @Controller
@@ -48,6 +50,8 @@ public class BoardController {
 	BoardLoactionService boardLocationService;
 	@Autowired
 	LocationService userLocationService;
+	@Autowired
+	ReplyService replyService;
 	
 	
 	@InitBinder
@@ -185,6 +189,27 @@ public class BoardController {
 	public String returnMainBoard(HttpSession session, Board board){
 		return "mainBoard";
 	}
+	
+	@RequestMapping(value="/addReply", method=RequestMethod.GET)
+	public String addReply(Model model,HttpSession session,@RequestParam String contents,@RequestParam int boardNo){
+		logger.trace("콘:{},{}",boardNo,contents);
+		Reply re = new Reply(1,boardNo,(int)session.getAttribute("userNo"),contents,null);
+		replyService.insertReply(re);
+		Board board = service.selectBoard(boardNo);
+		List<Reply> res = replyService.selectReplyByBoardNo(boardNo);
+		session.setAttribute("myBoard", board);
+		model.addAttribute("board", board);
+		model.addAttribute("reply", res);
+		return "detailMyBoard";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 

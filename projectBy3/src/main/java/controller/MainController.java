@@ -21,11 +21,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
+import dto.HotBoard;
+import dto.Reply;
 import dto.UserCategory;
 import dto.UserLocation;
 import service.BoardService;
 import service.CategoryService;
+import service.HotBoardService;
 import service.LocationService;
+import service.ReplyService;
 import service.UserCategoryService;
 import service.UserService;
 
@@ -44,6 +48,11 @@ public class MainController {
 	CategoryService category;
 	@Autowired
 	UserCategoryService userCategory;
+	@Autowired
+	ReplyService replyService;
+	@Autowired
+	HotBoardService hotBoardService;
+	
 	
 	// Format 형태로 입력된 문자열을 date로 바꿈
 	@InitBinder
@@ -110,6 +119,12 @@ public class MainController {
 		logger.trace("boardNo : {}",boardNo);		
 		Board board = service.selectBoard(boardNo);
 		int userNo =  (int) session.getAttribute("userNo");
+		List<Reply> re = replyService.selectReplyByBoardNo(boardNo);
+		model.addAttribute("reply", re);
+		
+		List<HotBoard> hots = hotBoardService.selectHotBoardByCategory(board.getCategoryNo());
+		model.addAttribute("hots", hots);
+		
 		logger.trace("boardNo : {}",boardNo);
 		logger.trace("userNo : {}",userNo);
 		logger.trace("Board userNo : {}",board.getUserNo());
@@ -123,6 +138,17 @@ public class MainController {
 			return "detailBoard";
 		}		
 	}
+	@RequestMapping(value="/hotBoards", method=RequestMethod.GET)
+	public @ResponseBody List<HotBoard> hotBoards(Model model,HttpSession session,@RequestParam Integer categoryNo){
+		logger.trace("class : MainController, method : hotBoards");
+		List<HotBoard> hotBoards = hotBoardService.selectHotBoardByCategory(categoryNo);		
+		return hotBoards;
+	}
+	
+	
+	
+	
+	
 	
 	
 	
