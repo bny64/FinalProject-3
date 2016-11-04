@@ -4,9 +4,11 @@
 
 var latitude;
 var longitude;
+var currentLocation; 
 var map;
 var marker; // 중심 위치의 마커
 var markers = []; // 중심 이외의 마커들
+var markerDirs = []; // 마커들의 방향
 var clickLine // 마우스로 클릭한 좌표로 그려질 선 객체입니다
 var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
 
@@ -28,8 +30,9 @@ function successCallback(position) {
 	latitude = position.coords.latitude;
 	longitude = position.coords.longitude;
 
-	document.getElementById("initLocation").innerHTML += "위도 : " + latitude
-			+ ", <br>경도 : " + longitude
+	currentLocation = new daum.maps.LatLng(latitude,longitude);
+	/*document.getElementById("initLocation").innerHTML += "위도 : " + latitude
+			+ ", <br>경도 : " + longitude*/
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	mapOption = {
@@ -83,6 +86,10 @@ function successCallback(position) {
 					// 클릭한 위치에 마커를 표시합니다
 					// removeMarker();
 					addMarker(mouseEvent.latLng);
+				} else if (selectedClickEvent == "calcDirecion") {
+					// calcDirecion(new daum.maps.LatLng(36.815129,
+					// 127.11389389999998), mouseEvent.latLng);
+					calcDirecion(currentLocation, mouseEvent.latLng);
 				}
 
 				// 클릭한 위도, 경도 정보를 가져옵니다
@@ -91,8 +98,8 @@ function successCallback(position) {
 				var message = '위도 : ' + latlng.getLat();
 				message += '<br>경도 : ' + latlng.getLng();
 
-				var resultDiv = document.getElementById('clieckedLocation');
-				resultDiv.innerHTML = message;
+				/*var resultDiv = document.getElementById('clieckedLocation');
+				resultDiv.innerHTML = message;*/
 			});
 
 	// 최초 지도 레벨
@@ -100,7 +107,7 @@ function successCallback(position) {
 
 	var message = "현재 지도 레벨 : " + level;
 	var resultDiv = document.getElementById('currentLevel');
-	resultDiv.innerHTML = message;
+	/*resultDiv.innerHTML = message;*/
 
 	// 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
 	daum.maps.event.addListener(map, 'zoom_changed', function() {
@@ -109,8 +116,8 @@ function successCallback(position) {
 		var level = map.getLevel();
 
 		var message = "현재 지도 레벨 : " + level;
-		var resultDiv = document.getElementById('currentLevel');
-		resultDiv.innerHTML = message;
+		/*var resultDiv = document.getElementById('currentLevel');
+		resultDiv.innerHTML = message;*/
 
 	});
 
@@ -123,8 +130,8 @@ function successCallback(position) {
 		// 지도의 중심좌표를 얻어옵니다
 		var latlng = map.getCenter();
 
-		document.getElementById("initLocation").innerHTML = "위도 : "
-				+ latlng.getLat() + " <br>경도 : " + latlng.getLng();
+		/*document.getElementById("initLocation").innerHTML = "위도 : "
+				+ latlng.getLat() + " <br>경도 : " + latlng.getLng();*/
 
 	});
 }
@@ -219,6 +226,8 @@ function displayPlaces(places) {
 					createRectangle(place.latitude, place.longitude);
 				} else if (selectedClickEvent == "calcDistance") {
 					drawLineByTargetLocation(place);
+				} else if (selectedClickEvent == "exeCompass") {
+					calcDirecion(currentLocation, place);
 				}
 
 			});
@@ -442,12 +451,12 @@ function moveCenterByValues() {
 
 // 클릭한 좌표 까지 투명선 그리기
 function drawLineByTargetLocation(place) {
-	
+
 	// 이미 그려진 라인이 있다면 삭제.
-	if(clickLine){
+	if (clickLine) {
 		deleteClickLine();
 	}
-	
+
 	// 마우스로 클릭한 위치입니다
 	var clickPosition = new daum.maps.LatLng(place.latitude, place.longitude);
 	// 맵의 중심 마커 좌표
@@ -456,18 +465,18 @@ function drawLineByTargetLocation(place) {
 	clickLine = new daum.maps.Polyline({
 		map : map, // 선을 표시할 지도입니다
 		path : [ centerMakerPosition, clickPosition ], // 선을 구성하는 좌표 배열입니다 클릭한
-														// 위치를 넣어줍니다
+		// 위치를 넣어줍니다
 		strokeWeight : 3, // 선의 두께입니다
 		strokeColor : '#db4040', // 선의 색깔입니다
 		strokeOpacity : 0, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
 		strokeStyle : 'solid' // 선의 스타일입니다
 	});
 
-	var distance = Math.round(clickLine.getLength()),
-		content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
+	var distance = Math.round(clickLine.getLength()), content = '<div class="dotOverlay distanceInfo">남은 거리 <span class="number">'
+			+ distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
 
 	clickLine.setMap(map);
-	
+
 	showDistance(content, clickPosition);
 }
 
@@ -488,40 +497,113 @@ function deleteDistnce() {
 	}
 }
 
-//선의 총거리 정보를 표시하기
+// 선의 총거리 정보를 표시하기
 function showDistance(content, position) {
- 
- if (distanceOverlay) { // 커스텀오버레이가 생성된 상태이면
-     // 커스텀 오버레이의 위치와 표시할 내용을 설정합니다
-     distanceOverlay.setPosition(position);
-     distanceOverlay.setContent(content);
-     
- } else { // 커스텀 오버레이가 생성되지 않은 상태이면
-     
-     // 커스텀 오버레이를 생성하고 지도에 표시합니다
-     distanceOverlay = new daum.maps.CustomOverlay({
-         map: map, // 커스텀오버레이를 표시할 지도입니다
-         content: content,  // 커스텀오버레이에 표시할 내용입니다
-         position: position, // 커스텀오버레이를 표시할 위치입니다.
-         xAnchor: 0,
-         yAnchor: 0,
-         zIndex: 3  
-     });      
- }
+
+	if (distanceOverlay) { // 커스텀오버레이가 생성된 상태이면
+		// 커스텀 오버레이의 위치와 표시할 내용을 설정합니다
+		distanceOverlay.setPosition(position);
+		distanceOverlay.setContent(content);
+
+	} else { // 커스텀 오버레이가 생성되지 않은 상태이면
+
+		// 커스텀 오버레이를 생성하고 지도에 표시합니다
+		distanceOverlay = new daum.maps.CustomOverlay({
+			map : map, // 커스텀오버레이를 표시할 지도입니다
+			content : content, // 커스텀오버레이에 표시할 내용입니다
+			position : position, // 커스텀오버레이를 표시할 위치입니다.
+			xAnchor : 0,
+			yAnchor : 0,
+			zIndex : 3
+		});
+	}
 }
-/*// 민국 - 개발보류
-function calcDirecion(socLoc, targetLoc){
-	var x1 = socLoc.getLat(),
-		y1 = socLoc.getLng(),
-		x2 = targetLoc.getLat(),
-		y2 = targetLoc.getLng(),
-		m = (y2-y1)/(x2-x1),
-		l = 0.0050,
-		a = m^2+1,
-		b = -2(x1-2*m*x1),
-		c = m^2*x1^2-l^2,
-		tri1x1, tri1y1,
-		tri1x2, tri1y2;
-	
-	tri1x1 = (-b+math.sqrt(b^2-4*a*c))/2*a; 
-}*/
+
+function calcDirecion(socLoc, place) {
+
+	// 마우스로 클릭한 위치입니다
+	var targetLoc = new daum.maps.LatLng(place.latitude, place.longitude);
+
+	// 기준좌표점과 목표좌표점 사이의 각도
+	var centerDegree = getDegree(socLoc, targetLoc);
+
+	var message = "각도 : " + centerDegree, resultDiv = document
+			.getElementById("clieckedDegree");
+
+	//resultDiv.innerHTML = message;
+
+	// drawCenterX,Y : 그려질 삼각형의 중심좌표(x,y) , distance : 기준 좌표점과의 거리
+	var drawCenterX, drawCenterY, distanceCenter;
+
+	distanceCenter = 0.0005;
+	drawCenterX = Math.sin(centerDegree / 180 * Math.PI) * distanceCenter;
+	drawCenterY = Math.cos(centerDegree / 180 * Math.PI) * distanceCenter;
+
+	drawCenterX += socLoc.getLat();
+	drawCenterY += socLoc.getLng();
+
+	var drawLightX, drawLightY, distanceLight, degreeDistance;
+	degreeDistance = 50;
+
+	distanceLight = Math.sin(degreeDistance / 180 * Math.PI) * distanceCenter;
+
+	drawLightX = Math.sin((centerDegree - degreeDistance) / 180 * Math.PI)
+			* distanceLight;
+	drawLightY = Math.cos((centerDegree - degreeDistance) / 180 * Math.PI)
+			* distanceLight;
+
+	drawLightX += socLoc.getLat();
+	drawLightY += socLoc.getLng();
+
+	var drawLeftX, drawLeftY, distanceLeft;
+
+	distanceLeft = Math.sin(degreeDistance / 180 * Math.PI) * distanceCenter;
+
+	drawLeftX = Math.sin((centerDegree + degreeDistance) / 180 * Math.PI)
+			* distanceLeft;
+	drawLeftY = Math.cos((centerDegree + degreeDistance) / 180 * Math.PI)
+			* distanceLeft;
+
+	drawLeftX += socLoc.getLat();
+	drawLeftY += socLoc.getLng();
+
+	console.log("drawLightX : " + drawLightX + " drawLightY : " + drawLightY);
+	console.log("drawLeftX : " + drawLeftX + " drawLeftY : " + drawLeftY);
+
+	// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+	var linePath = [ new daum.maps.LatLng(drawLeftX, drawLeftY),
+			new daum.maps.LatLng(drawCenterX, drawCenterY),
+			new daum.maps.LatLng(drawLightX, drawLightY) ];
+
+	// 지도에 표시할 선을 생성합니다
+	var polyline = new daum.maps.Polyline({
+		path : linePath, // 선을 구성하는 좌표배열 입니다
+		strokeWeight : 5, // 선의 두께 입니다
+		strokeColor : '#FFAE00', // 선의 색깔입니다
+		strokeOpacity : 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		strokeStyle : 'solid' // 선의 스타일입니다
+	});
+	removeMarkerDir();
+	markerDirs.push(polyline);
+
+	// 지도에 선을 표시합니다
+	polyline.setMap(map);
+
+}
+
+function getDegree(socLoc, targetLoc) {
+	var socX = socLoc.getLat(), socY = socLoc.getLng(), targetX = targetLoc
+			.getLat(), targetY = targetLoc.getLng(), degree;
+
+	degree = Math.atan2(targetX - socX, targetY - socY) * 180 / Math.PI;
+	return degree;
+}
+
+function removeMarkerDir() {
+	if (markerDirs) {
+		for (var i = 0; i < markerDirs.length; i++) {
+			markerDirs[i].setMap(null);
+		}
+		markerDirs = [];
+	}
+}

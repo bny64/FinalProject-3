@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -110,14 +111,11 @@ public class BoardDaoTest {
 	@Test
 	public void slowBoard() throws ParseException{
 		Map<String, Object> slowMessage = new HashMap<>();
-		
-		String str = "2016-10-26";
+		/*
+		String str = "2016-11-03";
 		SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = fdm.parse(str);
-
-		Timestamp timestamp = new Timestamp(date.getTime());
+		Date date = fdm.parse(str);*/
 		
-		slowMessage.put("targetDate", timestamp);
 		slowMessage.put("latitude", 36.81513);
 		slowMessage.put("longitude", 127.11389);
 		

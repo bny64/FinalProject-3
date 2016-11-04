@@ -144,18 +144,18 @@ public class BoardServiceTest {
 	public void slowBoardTest() throws ParseException{
 		Map<String, Object> slowMessage = new HashMap<>();
 		
-		String str = "2016-10-26";
+		/*String str = "2016-10-26";
 		SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = fdm.parse(str);
 
 		Timestamp timestamp = new Timestamp(date.getTime());
 		
-		slowMessage.put("targetDate", timestamp);
+		slowMessage.put("targetDate", timestamp);*/
 		slowMessage.put("latitude", 36.81513);
 		slowMessage.put("longitude", 127.11389);
 		
 		List<Board> boards = service.slowMessage(slowMessage);
-		logger.trace("boardss : {}", boards);
+		logger.trace("slowBoard : {}", boards);
 		assertThat(boards.size(), is(1));
 	}
 	
