@@ -94,7 +94,7 @@
 	
 	<insert id="insertBoard" parameterType="board">
 		insert into BOARD
-		VALUES(board_no_seq.NEXTVAL,#{title},1,#{content},sysdate,#{userNo},#{categoryNo},#{imagePath},#{viewStatus})
+		VALUES(board_no_seq.NEXTVAL,#{title},1,#{content},sysdate,#{userNo},#{categoryNo},#{imagePath},#{viewStatus},#{targetDate})
 	</insert>
 	
 	<!-- <select id="selectMyCategoryBoardByPaging1" resultMap="boardBase">
@@ -194,7 +194,7 @@
 		select b.board_no, title, hit, content, writed_date, user_no, category_no, image_path, view_status, target_date
 		from board b join board_location l
 		on b.board_no = l.board_no
-		where (target_date between sysdate - 1/(24) and sysdate + 1/(24)) 
+		where (target_date between sysdate - 1/(24*60) and sysdate + 1/(24*60)) 
 		and (latitude between #{latitude} - #{range} and #{latitude} + #{range}) 
 		and (longitude between #{longitude} - #{range} and #{longitude} + #{range})
 	</select>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -107,6 +107,12 @@ body {
 	position: relative;
 	
 }
+#date{
+	color : black;
+}
+#targetDate{
+	color : black;
+}
 
 </style>
 </head>
@@ -146,6 +152,9 @@ body {
 			<!-- 민국 - 팝업으로 바꿔야함. -->
 			<a href="${getMyLocation }" id="locationLink"><img id="getMyLocation" src="<%=request.getContextPath() %>/img/button/getMyLocation.png"></a>
 			<h2 id = "locationStr">    ${locationName }</h2>
+		</div>
+		<div>
+			<sform:input type="datetime-local" path="targetDate" id="targetDate"/>
 		</div>
 		<div id="bottomBtns">
 			<button id="writeBtn">쓰기</button>
