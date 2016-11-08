@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -31,7 +32,7 @@
 				<div class="flick-form_grid">
 					<h4>STAY IN TOUCH</h4>
 					<c:url value="/login" var="login" />
-					<form method="post" action="${login }">
+					<sform:form method="post" action="${login }">
 						<input type="text" class="form-control" name="id" value="ID"
 							onfocus="this.value = '';"
 							onblur="if (this.value == '') {this.value = 'ID';}"> <input
@@ -45,7 +46,7 @@
 							<input type="button" value="SearchPW" onclick="searchPwBtn()">
 							<input type="submit" value="LOGIN">
 						</div>
-					</form>
+					</sform:form>
 				</div>
 			</div>
 			<div class="clearfix"></div>

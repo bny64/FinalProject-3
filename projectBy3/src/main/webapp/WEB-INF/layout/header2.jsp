@@ -732,6 +732,10 @@ button{
   font-family: 'Open Sans', sans-serif;
   outline: none;
 }
+button:hover{
+	background:#2096da;
+   color:#fff;
+}
 
 .flick-form_grid input[type="button"]:hover{
    background:#2096da;
