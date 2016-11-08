@@ -55,6 +55,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		
 		registry.addResourceHandler("/upload/**")
 		.addResourceLocations("/WEB-INF/upload/");
+		
+		
 	}
 	
 	@Bean
