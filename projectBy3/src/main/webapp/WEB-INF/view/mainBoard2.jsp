@@ -34,7 +34,6 @@
 </style>
 </head>
 <body>
-	<!-- header -->
 	<jsp:include page="../layout/header2.jsp"></jsp:include>
 	<!-- content -->
 	<div class="content-top">

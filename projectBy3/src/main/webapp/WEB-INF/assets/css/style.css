@@ -112,7 +112,7 @@ ul a:focus {
 .header-top li {
 	margin: 0 0.2em;
 }
-i.setting {
+i.friend {
 	width: 30px;
 	height: 30px;
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -51px -11px ;
@@ -123,7 +123,7 @@ i.setting {
 	-o-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 }
-i.setting:hover {
+i.friend:hover {
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -51px -49px;
 } 
 i.twt{
@@ -154,7 +154,7 @@ i.rs{
 i.rs:hover{
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -205px -49px;
 }
-i.friend{
+i.setting{
 	width: 30px;
 	height: 30px;
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -128px -13px;
@@ -165,10 +165,10 @@ i.friend{
 	-o-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 }
-i.friend:hover{
+i.setting:hover{
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -128px -49px;
 }
-i.logout{
+i.alram{
 	width: 30px;
 	height: 30px;
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -167px -14px;
@@ -179,10 +179,10 @@ i.logout{
 	-o-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 }
-i.logout:hover{
+i.alram:hover{
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -167px -49px;
 }
-i.alram{
+i.logout{
 	width: 30px;
 	height: 30px;
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -92px -12px;
@@ -193,7 +193,7 @@ i.alram{
 	-o-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 }
-i.alram:hover{
+i.logout:hover{
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -92px -49px;
 }
 .ama-bottom {
