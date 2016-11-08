@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -135,7 +136,7 @@ public class BoardController {
 	//private static final String uploadDir = "E:/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/server/wtpwebapps/projectBy3/WEB-INF/assets/images";
 	
 	@RequestMapping(value="/writeBoard", method=RequestMethod.POST)
-	public String writeBoardPost(HttpSession session, Board board, @RequestParam MultipartFile file) throws IllegalStateException, IOException{
+	public String writeBoardPost(HttpSession session, Board board, @RequestParam MultipartFile file) throws IllegalStateException, IOException, ParseException{
 		logger.trace("class : BoardController, method : writeBoardPost");	
 		logger.trace("board : {}", board);
 		int userNo = (int)session.getAttribute("userNo");
@@ -157,12 +158,16 @@ public class BoardController {
 		logger.trace("원래 파일 명:{}",file.getOriginalFilename());
 		logger.trace("변경 후  파일 명:{}",uploadFile.getName());
 		//쓰기 버튼을 누르고 글 작성 시간 추가
-		
+		board.setWritedDate(new Date());
 
-		board.setTargetDate(new Date());
+		if(board.getTargetDate()==null){
+			String date = "0000-00-00";
+			SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
+			Date date2 = fdm.parse(date);
+			board.setTargetDate(date2);
+		}
+		
 		logger.trace("date@ : {}",board.getTargetDate());
-		
-		
 		
 		int result = service.insertBoard(board);
 		
