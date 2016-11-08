@@ -14,12 +14,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
+	
 	addEventListener("load", function() {
 		setTimeout(hideURLbar, 0);
 	}, false);
 	function hideURLbar() {
 		window.scrollTo(0, 1);
 	}
+
 
 
 
@@ -40,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul>
 					<li><a href="#"><i class="logout"> </i></a></li>
 					<li><a href="#"><i class="setting"> </i></a></li>
-					<c:url value="/friendList" var="friendList"/>
+					<c:url value="/friendList" var="friendList" />
 					<li><a href="${friendList}"><i class="friend"> </i></a></li>
 					<li><a href="#"><i class="alram"> </i></a></li>
 					<div class="clearfix"></div>
@@ -50,11 +52,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="menu"> </span>
 				<ul class="cl-effect-15">
 					<li class="active"><a href="index.html">카테고리</a></li>
-										<c:url value="/writeBoard" var="writeBoard"/>
-              		<li><a href="${writeBoard }" data-hover="글쓰기">글쓰기</a></li>
+					<c:url value="/writeBoard" var="writeBoard" />
+					<li><a href="${writeBoard }" data-hover="글쓰기">글쓰기</a></li>
 					<li><a href="404.html" data-hover="내글 보기" id="btnGetMyBoard">내글
 							보기</a></li>
-					<li><a href="contact.html" data-hover="위치저장">위치저장</a></li>
+					<c:url value="/mylocation" var="myLocation"/>
+					<li><a href="${myLocation }" data-hover="위치저장">위치저장</a></li>
 					<li><a href="contact.html" data-hover="전체글보기"
 						id="btnGetAllBoard">전체글보기</a></li>
 				</ul>
@@ -701,45 +704,46 @@ span.icon_text:hover {
 }
 
 .flick-form_grid input[type="button"] {
-  font-size: 1em;
-  font-weight: 300;
- color: #858585;
-  background: rgba(53, 52, 52, 0.58);
-  text-transform: uppercase;
-  padding:0.6em 1em;
-  border:none;
-  transition: all 0.3s ease-out;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  -webkit-apperance: none;
-  font-family: 'Open Sans', sans-serif;
-  outline: none;
-}
-button{
-	 font-size: 1em;
-  font-weight: 300;
- color: #858585;
-  background: rgba(53, 52, 52, 0.58);
-  text-transform: uppercase;
-  padding:0.6em 1em;
-  border:none;
-  transition: all 0.3s ease-out;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  -webkit-apperance: none;
-  font-family: 'Open Sans', sans-serif;
-  outline: none;
+	font-size: 1em;
+	font-weight: 300;
+	color: #858585;
+	background: rgba(53, 52, 52, 0.58);
+	text-transform: uppercase;
+	padding: 0.6em 1em;
+	border: none;
+	transition: all 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	-webkit-apperance: none;
+	font-family: 'Open Sans', sans-serif;
+	outline: none;
 }
 button:hover{
 	background:#2096da;
    color:#fff;
 }
 
-.flick-form_grid input[type="button"]:hover{
-   background:#2096da;
-   color:#fff;
+button {
+	font-size: 1em;
+	font-weight: 300;
+	color: #858585;
+	background: rgba(53, 52, 52, 0.58);
+	text-transform: uppercase;
+	padding: 0.6em 1em;
+	border: none;
+	transition: all 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	-webkit-apperance: none;
+	font-family: 'Open Sans', sans-serif;
+	outline: none;
+}
+
+.flick-form_grid input[type="button"]:hover {
+	background: #2096da;
+	color: #fff;
 }
 
 .smt {

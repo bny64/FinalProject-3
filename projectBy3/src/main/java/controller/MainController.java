@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
+import dto.Category;
 import dto.HotBoard;
 import dto.Reply;
 import dto.UserCategory;
@@ -45,7 +46,7 @@ public class MainController {
 	@Autowired
 	LocationService location;
 	@Autowired
-	CategoryService category;
+	CategoryService categoryService;
 	@Autowired
 	UserCategoryService userCategory;
 	@Autowired
@@ -64,7 +65,8 @@ public class MainController {
 	@RequestMapping(value="getAllBoards", method=RequestMethod.GET)
 	public @ResponseBody List<Board> getAllBoards(Model model){
 		logger.trace("class : MainController, method : getBoards");
-		List<Board> boards = service.viewAllBoards();
+		List<Board> boards = service.viewAllBoards();		
+		
 		return boards;
 	}
 	
@@ -158,7 +160,7 @@ public class MainController {
 				
 		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
 		model.addAttribute("locations", locations);
-		return "userLocation";
+		return "userLocation2";
 	}
 	@RequestMapping(value="/savelocation")
 	public @ResponseBody UserLocation savelocation(HttpSession session,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String userLocationName) throws ParseException{

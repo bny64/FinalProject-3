@@ -3,6 +3,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -93,7 +94,7 @@ public class BoardController {
 		model.addAttribute("category", category);
 		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude, null, null);
 		model.addAttribute("board", board);		
-		return "writeBoard";
+		return "writeBoard2";
 	}
 	@RequestMapping(value="/writeBoardLocations",method=RequestMethod.GET)
 	public String writeBoardLocations(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String locationName){
@@ -102,7 +103,7 @@ public class BoardController {
 		model.addAttribute("category", category);
 		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude, null, null);
 		model.addAttribute("board", board);		
-		return "writeBoard";
+		return "writeBoard2";
 	}
 	
 	
@@ -156,9 +157,12 @@ public class BoardController {
 		logger.trace("원래 파일 명:{}",file.getOriginalFilename());
 		logger.trace("변경 후  파일 명:{}",uploadFile.getName());
 		//쓰기 버튼을 누르고 글 작성 시간 추가
-		board.setWritedDate(new Date());
 		
+
+		board.setTargetDate(new Date());
 		logger.trace("date@ : {}",board.getTargetDate());
+		
+		
 		
 		int result = service.insertBoard(board);
 		

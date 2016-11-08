@@ -39,7 +39,7 @@
                 					and VIEW_STATUS = 'visible') 
                 			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ) 
                 			or user_no =#{userNo}
-                	order by WRITED_DATE DESC					
+                	order by CATEGORY_NO, WRITED_DATE DESC					
 					) sub 
 			)		
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
