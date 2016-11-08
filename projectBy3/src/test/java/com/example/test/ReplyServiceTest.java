@@ -35,7 +35,7 @@ public class ReplyServiceTest {
 	}
 	@Test
 	public void insertTest() {
-		Reply re = new Reply(1,262,122,"서비스 테스트",null);
+		Reply re = new Reply(1,92,1,"제 마음에도 비가 오네요",null);
 		int result = service.insertReply(re);
 		logger.trace("성공여부:{}, re:{}",result,re);
 		

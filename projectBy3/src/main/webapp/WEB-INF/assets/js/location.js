@@ -228,6 +228,7 @@ function displayPlaces(places) {
 					drawLineByTargetLocation(place);
 				} else if (selectedClickEvent == "exeCompass") {
 					calcDirecion(currentLocation, place);
+					drawLineByTargetLocation(place);
 				}
 
 			});
@@ -476,8 +477,10 @@ function drawLineByTargetLocation(place) {
 			+ distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
 
 	clickLine.setMap(map);
+	
+	var socPosition = new daum.maps.LatLng(latitude, longitude);
 
-	showDistance(content, clickPosition);
+	showDistance(content, socPosition);
 }
 
 // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다

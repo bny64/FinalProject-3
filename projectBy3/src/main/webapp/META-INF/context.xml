@@ -14,13 +14,13 @@
 			base="C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/" 
 			webAppMount="/WEB-INF/upload"/> -->
 		<!-- 민국, 경로 -->
-		<!-- <PreResources className="org.apache.catalina.webresources.DirResourceSet"
+		<PreResources className="org.apache.catalina.webresources.DirResourceSet"
 			base="C:/Users/1-718-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/"
-			webAppMount="/WEB-INF/upload" /> -->
+			webAppMount="/WEB-INF/upload" />
 		<!-- 남열 경로 -->
-				<PreResources className="org.apache.catalina.webresources.DirResourceSet"
-					base="C:/Users/1-718-8/git/GTest2/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages"
-					webAppMount="/WEB-INF/upload" />
+		<!-- <PreResources className="org.apache.catalina.webresources.DirResourceSet"
+			base="C:/Users/1-718-8/git/GTest2/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages"
+			webAppMount="/WEB-INF/upload" /> -->
 	</Resources> 
 
 

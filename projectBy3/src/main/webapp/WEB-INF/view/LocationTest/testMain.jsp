@@ -141,7 +141,7 @@
 								displayBoardInfo(marker, data);
 							} else if (selectedClickEvent == "createRect") {
 								createRectangle(data.latitude, data.longitude);
-							}
+							} 
 						});
 					});
 				}

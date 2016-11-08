@@ -34,7 +34,7 @@ public class HotBoardServiceTest {
 	
 	@Test
 	public void insertTest() {
-		HotBoard hot = new HotBoard(1,38,"ㅇㅅㅇ","ㅇㅅㅇ;;","파일",null);
+		HotBoard hot = new HotBoard(1,1,"ㅇㅅㅇ","ㅇㅅㅇ;;","파일",null);
 		int result = service.insertHotBoard(hot);
 		logger.trace("성공:{},핫:{}",result,hot);
 	}
