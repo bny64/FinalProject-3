@@ -20,7 +20,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 
@@ -37,29 +39,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	height: 100%;
 	clear: both;
 }
-#map{
-	margin-top : 15%;
-	margin-left: 0%; width : 80%;
+
+#map {
+	margin-top: 15%;
+	margin-left: 0%;
+	width: 80%;
 	height: 60%;
 	width: 80%;
 }
-table th {
-	text-align: center;
-	padding: 0;
-}
-label{
-	color : white;
-	padding-left : 15%;
+
+label {
+	color: white;
+	padding-left: 15%;
 	margin-right: 7%;
 }
-#btn2{
+
+#btn2 {
 	margin-left: 7%;
 }
-#locationDiv{
-	margin-left: 22%;
+
+#locationDiv {
+	width: 100%;
+	margin-left: 15%;
 }
-th{
-	color : white;
+
+table {
+	width: 60%;
+}
+
+th {
+	color: white;
+}
+
+td {
+	text-align: center;
+	color: #A6A6A6;
+	padding-right: 10%;
+	
 }
 </style>
 </head>
@@ -72,13 +88,10 @@ th{
 			<p id="demo"></p>
 			<section id="content">
 				<div id="map" style="width: 500px; height: 400px;"></div>
-				<br> 
-				<label>위치 저장</label>
-				<input type="text" placeholder="위치 저장명"
-					id="userLocationName" name="userLocationName">
-					<button id="btn2">저장</button>
-				<div>
-				</div>
+				<br> <label>위치 저장</label> <input type="text"
+					placeholder="위치 저장명" id="userLocationName" name="userLocationName">
+				<button id="btn2">저장</button>
+				<div></div>
 				<br> <br>
 				<div id="locationDiv">
 					<table id="table">
