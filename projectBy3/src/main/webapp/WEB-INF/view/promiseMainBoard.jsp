@@ -57,12 +57,17 @@
 	margin-right: 100px;
 }
 #map{
-	width: 400px;
-	height: 300px;
+	width: 60%;
+	height: 30%;
+
 }
 #staticMap{
 	width: 400px;
 	height: 300px;
+
+}
+#list{
+	width: 30%;
 }
 
 
@@ -77,7 +82,7 @@
 	<section id="content">			    		
 		<div id="map"><div id="staticMap"></div></div>
 		<div id="list">
-				<h3>약속 당한 약속</h3>
+				<h3>받은 약속</h3>
 				<c:forEach items="${Inviteepromises }" var ="userpromise">					
 					<a onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })"><input id= "str" type="text" readonly="readonly" value="${userpromise.promiseTitle }"> </a>
 					<select  id="promiseStatusId" data-item="${userpromise.promiseId }" name="${userpromise.promiseStatus}" >
