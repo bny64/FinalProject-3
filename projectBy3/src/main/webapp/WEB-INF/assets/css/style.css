@@ -429,7 +429,7 @@ i.comts {
   width: 13px;
   height: 13px;
   display: inline-block;
-  background: url("../images/comts.png") no-repeat 0px 0px;
+  background: url(<%= request.getContextPath() %>/img/comts.png") no-repeat 0px 0px;
   vertical-align: middle;
   margin-right: 12px;
 }
@@ -579,7 +579,7 @@ i.adm {
   width: 15px;
   height: 15px;
   display: inline-block;
-  background: url("../images/imzs.png") no-repeat -85px 1px;
+  background: url(<%= request.getContextPath() %>/img/imzs.png") no-repeat -85px 1px;
   vertical-align: middle;
   margin-right: 12px;
 }
@@ -587,7 +587,7 @@ i.inter {
   width: 15px;
   height: 15px;
   display: inline-block;
-  background: url("../images/imzs.png") no-repeat -211px 2px;
+  background: url(<%= request.getContextPath() %>/img/imzs.png") no-repeat -211px 2px;
   vertical-align: middle;
   margin-right: 12px;
 }
