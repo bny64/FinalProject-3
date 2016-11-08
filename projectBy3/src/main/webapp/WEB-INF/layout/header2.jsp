@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <link href="<%=request.getContextPath()%>/css/bootstrap.css"
@@ -12,12 +12,16 @@
 	content="Darx Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
+	
+	
 	addEventListener("load", function() {
 		setTimeout(hideURLbar, 0);
 	}, false);
 	function hideURLbar() {
 		window.scrollTo(0, 1);
 	}
+
+
 
 </script>
 <!-- 구글 폰트 -->
@@ -34,11 +38,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-right">
 			<div class="header-top">
 				<ul>
-					<li><a href="#"><i class="alram"> </i></a></li>
-					
-					<li><a href=""><i class="friend"> </i></a></li>
-					<li><a href="#"><i class="setting"> </i></a></li>
 					<li><a href="#"><i class="logout"> </i></a></li>
+					<li><a href="#"><i class="setting"> </i></a></li>
+					<c:url value="/friendList" var="friendList"/>
+					<li><a href="${friendList }"><i class="friend"> </i></a></li>
+					<li><a href="#"><i class="alram"> </i></a></li>
 					<div class="clearfix"></div>
 				</ul>
 			</div>
@@ -46,7 +50,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="menu"> </span>
 				<ul class="cl-effect-15">
 					<li class="active"><a href="index.html">카테고리</a></li>
-					<li><a href="blog.html" data-hover="글쓰기">글쓰기</a></li>
+					<c:url value="/writeBoard" var="writeBoard"/>
+              		<li><a href="${writeBoard }" data-hover="글쓰기">글쓰기</a></li>
 					<li><a href="404.html" data-hover="내글 보기" id="btnGetMyBoard">내글
 							보기</a></li>
 					<li><a href="contact.html" data-hover="위치저장">위치저장</a></li>
@@ -83,12 +88,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <%-- <c:url value="/mylocation" var="mylocation"/>
 			<a href="${mylocation }"> --%>
-			
-			
-			
-			
-			
-<!-- 민국 - style.css 강제추가  -->			
+
+
+
+
+
+<!-- 민국 - style.css 강제추가  -->
 <!-- style.css -->
 <style>
 /*Author: W3layouts
@@ -228,7 +233,7 @@ ul a:hover, ul a:focus {
 	margin: 0 0.2em;
 }
 
-i.setting {
+i.friend {
 	width: 30px;
 	height: 30px;
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
@@ -241,7 +246,7 @@ i.setting {
 	-moz-transition: 0.5s all;
 }
 
-i.setting:hover {
+i.friend:hover {
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
 		no-repeat -51px -49px;
 }
@@ -282,7 +287,7 @@ i.rs:hover {
 		no-repeat -205px -49px;
 }
 
-i.friend {
+i.setting {
 	width: 30px;
 	height: 30px;
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
@@ -295,12 +300,12 @@ i.friend {
 	-moz-transition: 0.5s all;
 }
 
-i.friend:hover {
+i.setting:hover {
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
 		no-repeat -128px -49px;
 }
 
-i.logout {
+i.alram {
 	width: 30px;
 	height: 30px;
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
@@ -313,12 +318,12 @@ i.logout {
 	-moz-transition: 0.5s all;
 }
 
-i.logout:hover {
+i.alram:hover {
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
 		no-repeat -167px -49px;
 }
 
-i.alram {
+i.logout {
 	width: 30px;
 	height: 30px;
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
@@ -331,7 +336,7 @@ i.alram {
 	-moz-transition: 0.5s all;
 }
 
-i.alram:hover {
+i.logout:hover {
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
 		no-repeat -92px -49px;
 }
@@ -693,6 +698,28 @@ span.icon_text:hover {
 .flick-form_grid input[type="submit"]:hover {
 	background: #2096da;
 	color: #fff;
+}
+
+.flick-form_grid input[type="button"] {
+  font-size: 1em;
+  font-weight: 300;
+ color: #858585;
+  background: rgba(53, 52, 52, 0.58);
+  text-transform: uppercase;
+  padding:0.6em 1em;
+  border:none;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -webkit-apperance: none;
+  font-family: 'Open Sans', sans-serif;
+  outline: none;
+}
+
+.flick-form_grid input[type="button"]:hover{
+   background:#2096da;
+   color:#fff;
 }
 
 .smt {
