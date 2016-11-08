@@ -40,8 +40,8 @@
 							onblur="if (this.value == '') {this.value = 'PASSWD';}">
 						<div class="smt">
 
-							<input type="button" value="JOIN" onclick="joinBtn()"> <input
-								type="button" value="SearchID" onclick="searchIdBtn()">
+							<input type="button" value="JOIN" onclick="joinBtn()"> 
+							<input type="button" value="SearchID" onclick="searchIdBtn()">
 							<input type="button" value="SearchPW" onclick="searchPwBtn()">
 							<input type="submit" value="LOGIN">
 						</div>
@@ -61,10 +61,10 @@
 		document.location.href = "joinPage";
 	}
 	function searchIdBtn() {
-		document.location.href = "searchId";
+		document.location.href = "searchIdPage";
 	}
 	function searchPwBtn() {
-		document.location.href = "searchPass";
+		document.location.href = "searchPassPage";
 	}
 </script>
 </html>
