@@ -132,5 +132,13 @@
 			}
 		});
 	}
+	
+	// 민국 - 지속적인 gelocaiton 좌표 가져오기
+	/* if (!!navigator.geolocation) {
+		setInterval(function(){
+			navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+			console.log("getlocation interval process");
+		}, 1000);
+	} */
 </script>
 </html>

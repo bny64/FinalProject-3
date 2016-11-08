@@ -98,10 +98,11 @@ table{
 					<!-- 위치 -->
 					<div id="location">위치</div>
 					<!-- 댓글 -->
-					<div id="reply">댓글
-						<c:forEach items="${reply }" var="re">
-						${re.replyContets }<br>
-						</c:forEach>
+					<div id="reply">
+							댓글<br>
+							<c:forEach items="${reply }" var="re">
+							${re.replyContets }<br>
+							</c:forEach>
 					</div>
 					
 					<br> <input type="text" value="댓글 쓰기" id="replyInpyt">

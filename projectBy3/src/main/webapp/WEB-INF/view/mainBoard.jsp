@@ -36,7 +36,7 @@
 		<section class="thumbnails">		    		
 			<div id="left"></div>		
 			<div id="center"></div>
-			<div id = "right"></div>
+			<div id="right"></div>
 		</section>		
 	</section>
 	
