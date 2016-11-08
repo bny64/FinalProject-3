@@ -719,6 +719,10 @@ span.icon_text:hover {
 	font-family: 'Open Sans', sans-serif;
 	outline: none;
 }
+button:hover{
+	background:#2096da;
+   color:#fff;
+}
 
 button {
 	font-size: 1em;
