@@ -158,6 +158,8 @@ public class BoardController {
 		//쓰기 버튼을 누르고 글 작성 시간 추가
 		board.setWritedDate(new Date());
 		
+		logger.trace("date@ : {}",board.getTargetDate());
+		
 		int result = service.insertBoard(board);
 		
 		//board location에 위치정보 등록
