@@ -51,14 +51,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="head-nav">
 				<span class="menu"> </span>
 				<ul class="cl-effect-15">
-					<li class="active"><a href="index.html">카테고리</a></li>
+					<c:url value="/category" var="category"/>
+					<li class="active"><a href="${category }">카테고리</a></li>
 					<c:url value="/writeBoard" var="writeBoard" />
 					<li><a href="${writeBoard }" data-hover="글쓰기">글쓰기</a></li>
-					<li><a href="404.html" data-hover="내글 보기" id="btnGetMyBoard">내글
+					<li><a data-hover="내글 보기" id="btnGetMyBoard">내글
 							보기</a></li>
 					<c:url value="/mylocation" var="myLocation"/>
 					<li><a href="${myLocation }" data-hover="위치저장">위치저장</a></li>
-					<li><a href="contact.html" data-hover="전체글보기"
+					<li><a data-hover="전체글보기"
 						id="btnGetAllBoard">전체글보기</a></li>
 				</ul>
 			</div>

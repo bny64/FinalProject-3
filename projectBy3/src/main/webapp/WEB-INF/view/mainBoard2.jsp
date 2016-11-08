@@ -58,6 +58,15 @@ var categoring;
 
 window.onload = function() { loadAllBoard(); };
 
+//전체글 보기
+$("#btnGetAllBoard").on("click", function(){ clearBoard(); loadAllBoard(); loadData=true;}); 
+// 내글보기
+$("#btnGetMyBoard").on("click", function(){ clearBoard(); loadMyBoard(); }); 
+
+
+
+
+
 $(window).scroll(function(){
 	if  ($(window).scrollTop() >= $(document).height() - $(window).height()){
 		console.log("스크롤 감지");
@@ -171,13 +180,8 @@ function loadMyBoard(){
 
 function clearBoard(){
 	index = 1;
-	$left = $("#left");
-	$center = $("#center");
-	$right = $("#right");		
-			
-	$left.empty();
-	$center.empty();
-	$right.empty();
+	$mainContents = $("#mainContents");
+	$mainContents.empty();	
 }
 
 
