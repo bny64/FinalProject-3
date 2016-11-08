@@ -75,7 +75,6 @@ td {
 	text-align: center;
 	color: #A6A6A6;
 	padding-right: 10%;
-	
 }
 </style>
 </head>
@@ -94,11 +93,11 @@ td {
 				<div></div>
 				<br> <br>
 				<div id="locationDiv">
-					<table id="table">
+					<table id="table" style="text-align: center;">
 						<tr>
-							<th align="center">위치 이름</th>
-							<th align="center">위도</th>
-							<th align="center">경도</th>
+							<th>위치 이름</th>
+							<th>위도</th>
+							<th>경도</th>
 						</tr>
 						<c:forEach items="${locations }" var="location">
 							<tr>
@@ -111,7 +110,6 @@ td {
 								</td>
 							</tr>
 						</c:forEach>
-
 					</table>
 					<%-- <c:forEach items="${locations}" var="loaction">
 					<h3>${loaction.locationName },  ${loaction.latitude },  ${loaction.longitude }</h3>					
