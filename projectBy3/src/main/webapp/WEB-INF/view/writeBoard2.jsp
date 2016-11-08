@@ -15,13 +15,19 @@
 	content="Darx Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 <link
 	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
 	rel='stylesheet' type='text/css'>
 <script src="js/jquery.min.js"></script>
 <style>
+body {
+	height: 120%;
+}
+
 #head {
 	margin-top: 5%;
 	text-align: center;
@@ -53,7 +59,7 @@ input, textarea {
 }
 
 #title>input {
-	width: 40%;
+	width: 50%;
 }
 
 #category {
@@ -86,17 +92,18 @@ input, textarea {
 }
 
 #insertData>input {
-	position: relative; 
-	top : - 100%;
+	position: relative;
+	top: - 100%;
 }
 
 #map {
 	margin-left: 15%;
 	margin-bottom: 1%;
 }
-#getMyLocation{
+
+#getMyLocation {
 	width: 4.5%;
-	height : 4.5%;
+	height: 4.5%;
 }
 
 #bottomBtns {
@@ -144,14 +151,6 @@ input, textarea {
 #targetDate {
 	color: white;
 }
-
-.content-top {
-	height: 120%;
-}
-
-.container {
-	width: 100%;
-}
 </style>
 </head>
 <body>
@@ -193,8 +192,7 @@ input, textarea {
 					<c:url value="/getMyLocation" var="getMyLocation" />
 					<!-- 민국 - 팝업으로 바꿔야함. -->
 					<a href="${getMyLocation }" id="locationLink"><img
-						id="getMyLocation"
-						src="<%=request.getContextPath()%>/img/gps.jpg"></a>
+						id="getMyLocation" src="<%=request.getContextPath()%>/img/gps.jpg"></a>
 					<h2 id="locationStr">${locationName }</h2>
 				</div>
 				<div id="slowMessage">
