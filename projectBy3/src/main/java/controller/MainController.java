@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
+import dto.Category;
 import dto.HotBoard;
 import dto.Reply;
 import dto.UserCategory;
@@ -45,7 +46,7 @@ public class MainController {
 	@Autowired
 	LocationService location;
 	@Autowired
-	CategoryService category;
+	CategoryService categoryService;
 	@Autowired
 	UserCategoryService userCategory;
 	@Autowired
@@ -64,7 +65,8 @@ public class MainController {
 	@RequestMapping(value="getAllBoards", method=RequestMethod.GET)
 	public @ResponseBody List<Board> getAllBoards(Model model){
 		logger.trace("class : MainController, method : getBoards");
-		List<Board> boards = service.viewAllBoards();
+		List<Board> boards = service.viewAllBoards();		
+		
 		return boards;
 	}
 	
