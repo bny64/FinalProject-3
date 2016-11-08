@@ -84,7 +84,7 @@ public class BoardController {
 		
 		Board board = new Board(0,"",0,"",null,userNo,0,"",null,"visible",0,0, null, null);
 		model.addAttribute("board", board);		
-		return "writeBoard";
+		return "writeBoard2";
 	}
 	
 	@RequestMapping(value="/writeBoardLocation",method=RequestMethod.GET)

@@ -80,6 +80,9 @@ td>img {
 	width: 10%;
 	height: 10%;
 }
+.content-top{
+	height: 80%;
+}
 </style>
 </head>
 <body>
@@ -115,7 +118,7 @@ td>img {
 							<td align="center"><label>프로필 사진</label></td>
 							<td align="center"><label>${friends.userName}</label></td>
 							<td align="center"><label>${friends.nickname}</label></td>
-							<td align="right"><label>알람 설정</label></td>
+							<td align="left"><label>알람 설정</label></td>
 							<td align="left"><select id="alarm"
 								data-item="${friends.friendNo }" name="${friends.alarm}">
 									<%-- <option selected="selected" value="">${friends.alarm }</option> --%>
@@ -140,6 +143,9 @@ td>img {
 			</div>
 		</div>
 	</div>
+	<!-- footer -->
+	<jsp:include page="../layout/footer2.jsp"></jsp:include>
+	<!-- footerr -->
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">

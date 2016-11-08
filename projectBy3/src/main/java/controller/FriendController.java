@@ -40,7 +40,7 @@ public class FriendController {
 		List<UserFriend> friends = service.friendList(userNo);
 		model.addAttribute("friends", friends);
 //		logger.trace("alarm : {}", friends.get(0).getAlarm());
-		return "friendList";
+		return "friendList2";
 	}
 	
 	@RequestMapping(value="/updateAlarm", method=RequestMethod.POST)
