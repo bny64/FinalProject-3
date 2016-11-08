@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <link href="<%=request.getContextPath()%>/css/bootstrap.css"
@@ -34,7 +35,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="header-top">
 				<ul>
 					<li><a href="#"><i class="alram"> </i></a></li>
-					<li><a href="#"><i class="friend"> </i></a></li>
+					
+					<li><a href=""><i class="friend"> </i></a></li>
 					<li><a href="#"><i class="setting"> </i></a></li>
 					<li><a href="#"><i class="logout"> </i></a></li>
 					<div class="clearfix"></div>
