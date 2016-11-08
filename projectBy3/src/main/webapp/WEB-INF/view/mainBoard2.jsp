@@ -9,7 +9,8 @@
 <head>
 <title>메인 화면</title>
 <meta charset="utf-8" />
-
+<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet"
+	type="text/css" media="all" />
 <style>
 #logo {
 	float: left;
@@ -27,14 +28,9 @@
 	height: 200px;
 }
 
-.content-top{
-	background: url(<%= request.getContextPath() %>/img/bac.jpg) no-repeat;
-	background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	-ms-background-size: cover;
-}
+/* aaa */
+
+/* aaa */
 </style>
 </head>
 <body>

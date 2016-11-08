@@ -2,6 +2,7 @@
 <Context>
     <!-- Default set of monitored resources -->
 
+
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
@@ -22,6 +23,7 @@
     				  base="C:/Users/1-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/"
     				  webAppMount="/WEB-INF/upload"/>  -->
     </Resources>
+
 
 
 </Context>
