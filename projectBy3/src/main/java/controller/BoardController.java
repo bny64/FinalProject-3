@@ -183,7 +183,7 @@ public class BoardController {
 	public String getMyLocation(Model model,HttpSession session, Board board){
 		List<UserLocation> userLocations = userLocationService.userAllLocation((int)session.getAttribute("userNo"));
 		model.addAttribute("userLocations", userLocations);
-		return "writeLocation";
+		return "writeLocation2";
 	}
 	
 	

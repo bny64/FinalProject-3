@@ -16,7 +16,9 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 <link
@@ -151,6 +153,23 @@ input, textarea {
 #targetDate {
 	color: white;
 }
+
+input[type="button"] {
+	font-size: 1em;
+	font-weight: 300;
+	color: #858585;
+	background: rgba(53, 52, 52, 0.58);
+	text-transform: uppercase;
+	padding: 0.6em 1em;
+	border: none;
+	transition: all 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	-webkit-apperance: none;
+	font-family: 'Open Sans', sans-serif;
+	outline: none;
+}
 </style>
 </head>
 <body>
@@ -202,10 +221,7 @@ input, textarea {
 				</div>
 				<div id="bottomBtns">
 					<button id="writeBtn">쓰기</button>
-					<c:url value="/returnMainBoard" var="returnMainBoard" />
-					<a href="returnMainBoard"> <img
-						src="<%=request.getContextPath()%>/img/button/close.png">
-					</a>
+					<input type="button" value="닫기" onclick="closeBtn()">
 				</div>
 
 				<div id="hidden">
@@ -244,6 +260,9 @@ input, textarea {
 		}
 
 	});
+	function closeBtn() {
+		document.location.href = "returnMainBoard";
+	}
 
 	/* <c:url value="/getMyLocation" var="getMyLocation"/>
 		$("#getMyLocation").on("click", function() {
