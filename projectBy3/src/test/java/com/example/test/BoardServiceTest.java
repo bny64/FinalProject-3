@@ -153,10 +153,9 @@ public class BoardServiceTest {
 		slowMessage.put("targetDate", timestamp);*/
 		slowMessage.put("latitude", 36.81513);
 		slowMessage.put("longitude", 127.11389);
-		
+		slowMessage.put("range", 0.005);
 		List<Board> boards = service.slowMessage(slowMessage);
 		logger.trace("slowBoard : {}", boards);
-		assertThat(boards.size(), is(1));
 	}
 	
 	

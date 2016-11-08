@@ -16,7 +16,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 </script>
@@ -25,11 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	rel='stylesheet' type='text/css'>
 <script src="js/jquery.min.js"></script>
 <style>
-#logo {
-	float: left;
-	width: 50%;
-	display: block;
-}
+
 
 #loginView {
 	float: right;
@@ -40,47 +38,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 #content {
 	width: 60%;
 	margin-left: 20%;
-	height: 200%;
+	height: 100%;
 	clear: both;
 }
 
-#map {
-	float: left;
-	width: 20%;
-	height: 300px;
-	margin: 10px;
-	margin-bottom: 10%;
-}
-
 #list {
+	margin-top : 10%;
 	float: right;
 	width: 40%;
-	height: 300px;
-	margin: 10px;
-	margin-bottom: 10%;
+	height: 20%;
 	overflow: auto;
+	margin-right: 30%;
 }
 
 #bottomBtns {
 	clear: both;
 	text-align: center;
-	margin-left: 10%;
+	margin-left: -10%;
 }
-
-#bottomBtns>a {
-	margin-right: 100px;
-}
-
-#map {
-margin-left:-10%;
-	width: 80%;
-	height: 80%;
-}
-
 #staticMap {
+	margin-top : 15%;
+	margin-left: 0%; width : 80%;
+	height: 60%;
 	width: 80%;
-	height: 80%;
 }
+label{
+	color : white;
+	margin-top: 10%; 
+	margin-left: 14%;
+}
+button{
+	margin: 5%;
+	}
 </style>
 </head>
 <body>
@@ -94,6 +83,7 @@ margin-left:-10%;
 				<div id="map">
 					<div id="staticMap"></div>
 				</div>
+				<label>저장된 장소</label>
 				<div id="list">
 					<c:forEach items="${userLocations}" var="userLocation">
 						<a

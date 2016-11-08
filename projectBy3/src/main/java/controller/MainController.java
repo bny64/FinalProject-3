@@ -158,7 +158,7 @@ public class MainController {
 				
 		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
 		model.addAttribute("locations", locations);
-		return "userLocation";
+		return "userLocation2";
 	}
 	@RequestMapping(value="/savelocation")
 	public @ResponseBody UserLocation savelocation(HttpSession session,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String userLocationName) throws ParseException{
