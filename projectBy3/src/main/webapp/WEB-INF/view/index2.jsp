@@ -87,7 +87,7 @@ buton{
 						 	
 						 	<input type="button" value="JOIN" onclick="joinBtn()">
 						 	<input type="button" value="SearchID" onclick="searchIdBtn()">
-						 	<input type="submit" value="SearchPW" onclick="searchPwBtn()">
+						 	<input type="button" value="SearchPW" onclick="searchPwBtn()">
 							<input type="submit" value="LOGIN">
 						 </div>
 					</form>
