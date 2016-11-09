@@ -134,10 +134,10 @@ public class MainController {
 		model.addAttribute("board", board);
 		if(userNo == board.getUserNo()){
 			logger.trace("detailMyBoard 콜");
-			return "detailMyBoard";
+			return "detailMyBoard2";
 		}else{
 			logger.trace("detailBoard 콜");
-			return "detailBoard";
+			return "detailBoard2";
 		}		
 	}
 	@RequestMapping(value="/hotBoards", method=RequestMethod.GET)
@@ -187,7 +187,7 @@ public class MainController {
 		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
 		model.addAttribute("locations", locations);
 		
-		return "userLocation";
+		return "userLocation2";
 		
 	}
 	
