@@ -71,7 +71,7 @@ public class BoardController {
 		//result = service.deleteBoardByBoardNo(board.getBoardNo());
 		result = service.deleteBoardByBoardNo(boardNo);
 		logger.trace("삭제 결과 : {}", result);
-		return "mainBoard";
+		return "mainBoard2";
 	}
 	
 	@RequestMapping(value="/writeBoard")
@@ -186,7 +186,7 @@ public class BoardController {
 		}		
 		
 		
-		return "mainBoard";
+		return "mainBoard2";
 	}
 	@RequestMapping(value="/getMyLocation", method=RequestMethod.GET)
 	public String getMyLocation(Model model,HttpSession session, Board board){
@@ -198,7 +198,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/returnMainBoard", method=RequestMethod.GET)
 	public String returnMainBoard(HttpSession session, Board board){
-		return "mainBoard";
+		return "mainBoard2";
 	}
 	
 	@RequestMapping(value="/addReply", method=RequestMethod.GET)

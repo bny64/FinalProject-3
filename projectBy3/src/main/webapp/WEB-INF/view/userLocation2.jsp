@@ -67,14 +67,18 @@ table {
 	width: 60%;
 }
 
-th {
+tr>th {
 	color: white;
+	text-align: center;
 }
 
 td {
 	text-align: center;
 	color: #A6A6A6;
 	padding-right: 10%;
+}
+a>button{
+	border-bottom: 1px solid gray;
 }
 </style>
 </head>
