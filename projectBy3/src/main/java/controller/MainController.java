@@ -134,10 +134,10 @@ public class MainController {
 		model.addAttribute("board", board);
 		if(userNo == board.getUserNo()){
 			logger.trace("detailMyBoard 콜");
-			return "detailMyBoard";
+			return "detailMyBoard2";
 		}else{
 			logger.trace("detailBoard 콜");
-			return "detailBoard";
+			return "detailBoard2";
 		}		
 	}
 	@RequestMapping(value="/hotBoards", method=RequestMethod.GET)
@@ -187,7 +187,7 @@ public class MainController {
 		List<UserLocation> locations=location.userAllLocation((int) session.getAttribute("userNo"));
 		model.addAttribute("locations", locations);
 		
-		return "userLocation";
+		return "userLocation2";
 		
 	}
 	
@@ -197,14 +197,14 @@ public class MainController {
 		logger.trace("class : MainController, method : category");
 		List<UserCategory> categories = userCategory.selectUserCategory((int) session.getAttribute("userNo"));
 		model.addAttribute("categories",categories);		
-		return "category";
+		return "category2";
 	}
 	
 	@RequestMapping(value="/scategoryBoard")
 	public String scategoryBoard(Model model,HttpSession session,@RequestParam Integer categoryNo){
 		logger.trace("class : MainController, method : categoryBoard");
 		model.addAttribute("categoryNo",categoryNo);		
-		return "categoryBoard";		
+		return "categoryBoard2";		
 	}
 	@RequestMapping(value="/categoryBoard")
 	public @ResponseBody List<Board> categoryBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam Integer categoryNo){

@@ -211,7 +211,7 @@ public class BoardController {
 		session.setAttribute("myBoard", board);
 		model.addAttribute("board", board);
 		model.addAttribute("reply", res);
-		return "detailMyBoard";
+		return "detailMyBoard2";
 	}
 	
 	

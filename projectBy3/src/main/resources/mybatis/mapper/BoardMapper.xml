@@ -116,7 +116,7 @@
                 					From USER_FRIEND 
                 					WHERE USER_FRIEND.USER_NO = #{userNo}
                 					) 
-                					and VIEW_STATUS = 'visible') 
+                					or VIEW_STATUS = 'visible') 
                 			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
                 			and  category_no = #{categoryNo}
                 			

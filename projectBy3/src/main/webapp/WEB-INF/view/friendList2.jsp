@@ -5,8 +5,7 @@
 <!DOCTYPE htm>
 <html>
 <head>
-<title>Darx a Fashion Category Flat Bootstrap Responsive Website
-	Template | Home :: w3layouts</title>
+<title>친구 목록</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -17,7 +16,9 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 <link
@@ -80,8 +81,14 @@ td>img {
 	width: 10%;
 	height: 10%;
 }
-.content-top{
+
+.content-top {
 	height: 80%;
+}
+#searchFriend{
+	margin-top : 8%;
+	margin-bottom : -10%;
+	margin-left: 77%;
 }
 </style>
 </head>
@@ -104,8 +111,13 @@ td>img {
 	<!-- header -->
 	<jsp:include page="../layout/header2.jsp"></jsp:include>
 	<!-- header -->
+
 	<div class="content-top">
 		<div class="container">
+			<c:url value="/initSearchFriend" var="initSearchFriend" />
+			<a href="initSearchFriend">
+				<button id="searchFriend" >친구 찾기</button>
+			</a>
 			<div class="friendList">
 				<table>
 					<tr>
