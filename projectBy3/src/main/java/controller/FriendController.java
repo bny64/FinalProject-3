@@ -65,7 +65,7 @@ public class FriendController {
 		int userNo = (int) session.getAttribute("userNo");
 		List<UserFriend> friends = service.friendList(userNo);
 		model.addAttribute("friends", friends);
-		return "friendList";
+		return "friendList2";
 	}
 	
 	@RequestMapping(value="/initSearchFriend", method=RequestMethod.GET)
@@ -75,7 +75,7 @@ public class FriendController {
 		List<User> users =  userService.AllUser();
 		model.addAttribute("users", users);
 		
-		return "searchFriend";
+		return "searchFriend2";
 	}
 	
 	@RequestMapping(value="/searchFriend", method=RequestMethod.POST)
@@ -88,7 +88,7 @@ public class FriendController {
 			model.addAttribute("users", users);
 		}
 		
-		return "searchFriend";
+		return "searchFriend2";
 	}
 	
 	@RequestMapping(value="/insertFriend", method=RequestMethod.GET)
@@ -106,6 +106,6 @@ public class FriendController {
 		List<UserFriend> friends = service.friendList(myUserNo);
 		model.addAttribute("friends", friends);
 		
-		return "friendList";
+		return "friendList2";
 	}
 }
