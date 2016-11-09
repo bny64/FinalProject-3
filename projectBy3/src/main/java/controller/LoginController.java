@@ -137,7 +137,7 @@ public class LoginController {
 		User user = new User();
 		//model.addAttribute("user", new User(1,"","","","","","",new Date(),""));
 		model.addAttribute("user", user);
-		return "join";
+		return "join2";
 	}
 	
 	private static final String uploadDir = "C:/Users/EG-717-8/git/FinalProject-3/projectBy3/src/main/webapp/WEB-INF/assets/images/userImages/";
