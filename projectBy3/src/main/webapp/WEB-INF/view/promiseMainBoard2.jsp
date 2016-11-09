@@ -35,19 +35,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 #map {
 	margin : 0 auto;
-	width: 80%;
-	height: 60%;
 }
 
-#list {
-	width: 40%;
-	height: 30%;
-	margin-left: 25%;
+#contents_bottom {
 	overflow: auto;
 	margin : 0 auto;
 	margin-top: 5%;
 	margin-bottom: 10%;
-	border : solid 1px gray;
 }
 
 #bottomBtns {
@@ -62,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	height: 400px;
 }
 
-#list>h3 {
+#contents_bottom>h3 {
 	margin-bottom: 4%;
 	color: white;
 	font-size: 1.2em;
@@ -85,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div id="map">
 					<div id="staticMap"></div>
 				</div>
-				<div id="list">
+				<div id="contents_bottom">
 					<h3>받은 약속</h3>
 					<c:forEach items="${Inviteepromises }" var="userpromise">
 						<a
@@ -105,6 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					</c:forEach>
 					<br>
+					<br>
 					<h3>내가 약속한 약속</h3>
 					<c:url value="/deletePromise" var="deletePromise" />
 					<c:forEach items="${Promotepromises }" var="userpromise">
@@ -115,6 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a href="${deletePromise}?promiseId=${userpromise.promiseId}">
 							<button>취소</button>
 						</a>
+						<br>
 					</c:forEach>
 
 				</div>

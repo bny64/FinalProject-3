@@ -7,6 +7,7 @@
 <head>
 <title>어라운드 로그인 페이지</title>
 <style>
+
 </style>
 </head>
 <body style="background-color: #1b1b1d;">
@@ -19,16 +20,7 @@
 	<!-- footer -->
 	<div class="footer">
 		<div class="container">
-
-
-			<div class="col-md-4 flick">
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-
+			<div class="col-md-8 flick">
 				<div class="flick-form_grid">
 					<h4>STAY IN TOUCH</h4>
 					<c:url value="/login" var="login" />
@@ -53,7 +45,6 @@
 
 		</div>
 	</div>
-
 	<!-- footer -->
 </body>
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>

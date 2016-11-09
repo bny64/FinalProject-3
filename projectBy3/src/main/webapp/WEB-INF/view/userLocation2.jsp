@@ -21,7 +21,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
 
 
 
@@ -34,18 +40,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.min.js"></script>
 <style>
 #content {
-	width: 60%;
-	margin-left: 20%;
+	width: 80%;
+	margin-left: 15%;
+	margin-top: 10%;
 	height: 100%;
 	clear: both;
 }
 
 #map {
 	margin-top: 15%;
-	margin-left: 0%;
+	margin-left: 10%;
 	width: 80%;
 	height: 60%;
-	width: 80%;
 }
 
 label {
@@ -77,7 +83,8 @@ td {
 	color: #A6A6A6;
 	padding-right: 10%;
 }
-a>button{
+
+a>button {
 	border-bottom: 1px solid gray;
 }
 </style>
