@@ -69,8 +69,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/searchIdPage").setViewName("searchId");
-		registry.addViewController("/searchPassPage").setViewName("searchPass");
+		registry.addViewController("/searchIdPage").setViewName("searchId2");
+		registry.addViewController("/searchPassPage").setViewName("searchPass2");
 		registry.addViewController("/setupPage").setViewName("setup");
 	}
 	
