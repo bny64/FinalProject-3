@@ -6,7 +6,7 @@
 <head>
 <html>
 <head>
-<title>글 쓰기</title>
+<title>위치 저장</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
