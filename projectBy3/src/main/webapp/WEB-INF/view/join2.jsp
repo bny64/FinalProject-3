@@ -47,7 +47,7 @@
 							<sform:input path="file" type="file"/><br>
 							</fieldset>
 							<button type="submit">작성하기</button>
-							<button type="button" onclick="backBtn()">돌아가기</button></a>
+							<button type="button" onclick="backBtn()">돌아가기</button>
 						</sform:form>
 							
 						

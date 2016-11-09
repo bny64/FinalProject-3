@@ -12,31 +12,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
 
-
 </head>
 <body style="background-color: #1b1b1d;">
-	<jsp:include page="../layout/header2.jsp"></jsp:include>		
+	<jsp:include page="../layout/header2.jsp"></jsp:include>
 		<div class="content-top">
 			<br><br><br>
 			<div class="container">
+			
 			<form>
+		
 				<fieldset>
-					<legend><span class="number">1</span>아이디 찾기 정보</legend>
+					<legend><span class="number">1</span>비밀번호 찾기 정보</legend>
+					<label for="id">ID</label>
+					 <input type="text" id="id"><br>
 					<label for="name">이름</label>
 					 <input type="text" id="name"><br>
 					<label for="email">이메일</label>
 					 <input type="text" id="email"><br>
 					<button id="search">찾기</button>
-				</fieldset>								
+				</fieldset>
 				<button type="button" onclick="joinBtn()">회원가입</button>
 				<button type="button" onclick="backBtn()">돌아가기</button>
-			</form>			
-			
+
+			</form>
 			</div>
 		</div>
-		
 	
-
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -47,20 +48,19 @@
 		document.location.href = "joinPage";
 	}
 
-
-
-	<c:url value="/searchId" var="searchId"/>
+	<c:url value="/searchPass" var="searchPass"/>
 	$("#search").on("click", function() {
 		$.ajax({
 			type : "get",
-			url : "${searchId}",
+			url : "${searchPass}",
 			data : {
+				id : $("#id").val(),
 				name : $("#name").val(),
 				email : $("#email").val()
 			},
 			success : function(res) {
 				if (res) {
-					alert("사용자의 ID는 "+res+" 입니다");
+					alert("사용자의 PASSWD 는 "+res+" 입니다");
 				}
 			},
 			error : function(xhr, status, error) {
@@ -69,6 +69,8 @@
 		});
 	});
 </script>
+
+
 
 <style>
 #hidden {
@@ -198,5 +200,4 @@ label.light {
 	}
 }
 </style>
-
 </html>
