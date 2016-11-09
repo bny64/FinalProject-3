@@ -38,6 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 }
 
 #map {
+	margin : 0 auto;
 	width: 80%;
 	height: 60%;
 }
@@ -47,6 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	height: 30%;
 	margin-left: 25%;
 	overflow: auto;
+	margin : 0 auto;
 	margin-top: 5%;
 	margin-bottom: 10%;
 	border : solid 1px gray;
@@ -54,8 +56,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 #bottomBtns {
 	clear: both;
+	margin : 0 auto;
 	text-align: center;
-	margin-left: -10%;
 	margin-bottom: 10%;
 }
 
