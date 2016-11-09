@@ -86,7 +86,7 @@ public class PromiseController {
 		model.addAttribute("promise",promise);
 		model.addAttribute("friends",friends);
 		
-		return "promise";
+		return "promise2";
 	}
 	@RequestMapping(value="/promise", method=RequestMethod.POST)
 	public String promise(Model model,HttpSession session,Promise promise){
