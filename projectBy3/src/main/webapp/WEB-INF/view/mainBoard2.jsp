@@ -11,27 +11,6 @@
 <meta charset="utf-8" />
 <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet"
 	type="text/css" media="all" />
-<style>
-#logo {
-	float: left;
-	width: 50%;
-	display: block;
-}
-
-#loginView {
-	float: right;
-	width: 50%;
-	display: block;
-}
-
-#main {
-	height: 200px;
-}
-
-/* aaa */
-
-/* aaa */
-</style>
 </head>
 <body>
 	<jsp:include page="../layout/header2.jsp"></jsp:include>

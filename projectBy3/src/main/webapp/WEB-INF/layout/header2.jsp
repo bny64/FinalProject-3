@@ -1164,7 +1164,11 @@ span.icon_text a:hover {
 	background: #171718;
 	padding: 2em;
 	border-bottom: 1px solid #2096da;
-	margin: 2em 0;
+	/* margin: 2em 0; */
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+	margin-bottom: 20%;
 }
 
 .searc {
@@ -2017,7 +2021,7 @@ p.conm {
 		padding: 0.2em;
 	}
 	.catagers li a {
-		font-size: 0.9em;
+		font-size: 1.4em;
 	}
 	.popular {
 		padding: 1em;

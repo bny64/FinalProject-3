@@ -15,7 +15,7 @@
 </head>
 <body>
 	<jsp:include page="../layout/header2.jsp"></jsp:include>		
-		<div class="content-top" ">
+		<div class="content-top" >
 			<br><br><br>
 			<div class="container">
 			<form>
