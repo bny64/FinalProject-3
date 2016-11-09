@@ -12,11 +12,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
 
-
 </head>
-<body style="background-color: #1b1b1d;">
+<body>
 	<jsp:include page="../layout/header2.jsp"></jsp:include>		
-		<div class="content-top">
+		<div class="content-top" ">
 			<br><br><br>
 			<div class="container">
 			<form>
@@ -71,6 +70,7 @@
 </script>
 
 <style>
+
 #hidden {
 	display: none;
 }
