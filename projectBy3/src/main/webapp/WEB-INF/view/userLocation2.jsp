@@ -6,7 +6,7 @@
 <head>
 <html>
 <head>
-<title>글 쓰기</title>
+<title>위치 저장</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -67,15 +67,18 @@ table {
 	width: 60%;
 }
 
-th {
+tr>th {
 	color: white;
+	text-align: center;
 }
 
 td {
 	text-align: center;
 	color: #A6A6A6;
 	padding-right: 10%;
-	
+}
+a>button{
+	border-bottom: 1px solid gray;
 }
 </style>
 </head>
@@ -94,11 +97,11 @@ td {
 				<div></div>
 				<br> <br>
 				<div id="locationDiv">
-					<table id="table">
+					<table id="table" style="text-align: center;">
 						<tr>
-							<th align="center">위치 이름</th>
-							<th align="center">위도</th>
-							<th align="center">경도</th>
+							<th>위치 이름</th>
+							<th>위도</th>
+							<th>경도</th>
 						</tr>
 						<c:forEach items="${locations }" var="location">
 							<tr>
@@ -111,7 +114,6 @@ td {
 								</td>
 							</tr>
 						</c:forEach>
-
 					</table>
 					<%-- <c:forEach items="${locations}" var="loaction">
 					<h3>${loaction.locationName },  ${loaction.latitude },  ${loaction.longitude }</h3>					

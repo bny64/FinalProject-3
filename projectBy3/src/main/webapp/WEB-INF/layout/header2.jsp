@@ -61,6 +61,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="${myLocation }" data-hover="위치저장">위치저장</a></li>
 					<li><a data-hover="전체글보기"
 						id="btnGetAllBoard">전체글보기</a></li>
+						<c:url value="/promiseBoard" var="promiseBoard"/>
+						<li><a href="${promiseBoard }">약속 잡기</a></li>
 				</ul>
 			</div>
 		</div>
