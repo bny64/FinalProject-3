@@ -5,8 +5,7 @@
 <!DOCTYPE htm>
 <html>
 <head>
-<title>Darx a Fashion Category Flat Bootstrap Responsive Website
-	Template | Home :: w3layouts</title>
+<title>친구 목록</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
