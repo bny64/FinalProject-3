@@ -197,14 +197,14 @@ public class MainController {
 		logger.trace("class : MainController, method : category");
 		List<UserCategory> categories = userCategory.selectUserCategory((int) session.getAttribute("userNo"));
 		model.addAttribute("categories",categories);		
-		return "category";
+		return "category2";
 	}
 	
 	@RequestMapping(value="/scategoryBoard")
 	public String scategoryBoard(Model model,HttpSession session,@RequestParam Integer categoryNo){
 		logger.trace("class : MainController, method : categoryBoard");
 		model.addAttribute("categoryNo",categoryNo);		
-		return "categoryBoard";		
+		return "categoryBoard2";		
 	}
 	@RequestMapping(value="/categoryBoard")
 	public @ResponseBody List<Board> categoryBoard(Model model,HttpSession session,@RequestParam Integer index,@RequestParam Integer categoryNo){
