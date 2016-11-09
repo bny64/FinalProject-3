@@ -18,7 +18,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+
+
 
 
 
@@ -29,19 +43,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	rel='stylesheet' type='text/css'>
 <script src="js/jquery.min.js"></script>
 <style>
-body{
+body {
 	background-color: #1B1B1D;
-}
-label {
-	display: inline;
 }
 
 table {
 	width: 83%;
-	margin-top: 10%;
+	margin-top: 5%;
 	margin-left: 7%;
 	color: #777777;
 }
+
 table tr {
 	border-bottom: 1px solid gray;
 	padding-bottom: 3%;
@@ -59,32 +71,35 @@ select {
 	color: silver;
 }
 
-#search {
-	margin-left: 7%;
-	width: 83%;
-}
-
-#nickname {
-	width: 50%;
-	float: left;
-	margin-left: 10%;
-	margin-bottom: 50px;
-	margin-right: 20px;
-}
-
-#btnSearch {
-	float: right;
-	width: 10%;
-}
-
 #btnViewAllUsers {
-	float: right;
-	margin-left: 20px;
-	margin-bottom: 50px;
+	margin-left: 75%;
+	margin-top: 1%;
 }
 
 .content-top {
 	height: 80%;
+}
+.container>#search{
+	margin-top: 6%;
+}
+#search>.search2 {
+	background: rgba(92, 85, 85, 0.79);
+	width: 40%;
+	margin-top: 10%;
+	hegiht: 8%;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+
+.search2 input[type="submit"] {
+	background: url('<%=request.getContextPath()%>/img/sprit-1.png')
+		no-repeat 2px 4px rgba(78, 73, 73, 0.99);
+	padding: 10px 18px;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	top: 0px;
+	right: 0px;
 }
 </style>
 </head>
@@ -95,17 +110,20 @@ select {
 	<div class="content-top">
 		<div class="container">
 			<div id="search">
-				<c:url value="/initSearchFriend" var="initSearchFriend" />
+				<div class="search2">
+					<c:url value="/searchFriend" var="searchFriend" />
+					<form action="searchFriend" method="post">
+						<input type="text" id="nickname" name="nickname"
+							value="닉네임을 입력해 주세요" onfocus="this.value = '';"
+							onblur="if (this.value == '') {this.value = '닉네임 입력..';}">
+						<input type="submit" id="btnSearch" value="">
+					</form>
+				</div>
+			</div>
+			<c:url value="/initSearchFriend" var="initSearchFriend" />
 				<a href="initSearchFriend">
 					<button id="btnViewAllUsers">모든 유저 보기</button>
 				</a>
-				<c:url value="/searchFriend" var="searchFriend" />
-				<form action="searchFriend" method="post">
-					<input type="text" id="nickname" name="nickname"
-						placeholder="검색할 닉네임을 입력해주세요.">
-					<button id="btnSearch">검색</button>
-				</form>
-			</div>
 			<table>
 				<tr>
 					<th align="center">유저 목록</th>
