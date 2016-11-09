@@ -104,7 +104,7 @@ public class BoardController {
 		model.addAttribute("category", category);
 		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude, null, null);
 		model.addAttribute("board", board);		
-		return "writeBoard2";
+		return "writeBoard3";
 	}
 	
 	

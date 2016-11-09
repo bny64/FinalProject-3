@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -95,7 +96,6 @@ public class PromiseController {
 		if(promise.getPromiseDate()==null){
 			promise.setPromiseDate(new Date(0));
 		}
-		
 		
 		logger.trace("약속 잡기 :{}",promise);
 		int result = promiseService.insertPromise(promise);

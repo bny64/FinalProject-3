@@ -56,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<tr>
 							<td><label>날짜</label></td>
 							<td><sform:input path="promiseDate"
-									placeholder="promiseDate" /></td>
+									placeholder="ex)2016-11-10 17:23" /></td>
 						</tr>
 						<tr>
 							<td><label>내용</label></td>
