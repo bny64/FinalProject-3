@@ -723,15 +723,16 @@ span.icon_text:hover {
 	outline: none;
 }
 button:hover{
-	background:#2096da;
-   color:#fff;
+	
+	color: #858585;
+	background: rgba(53, 52, 52, 0.58);
 }
 
 button {
 	font-size: 1em;
 	font-weight: 300;
-	color: #858585;
-	background: rgba(53, 52, 52, 0.58);
+	background:#2096da;
+	color:#fff;
 	text-transform: uppercase;
 	padding: 0.6em 1em;
 	border: none;
@@ -742,6 +743,7 @@ button {
 	-webkit-apperance: none;
 	font-family: 'Open Sans', sans-serif;
 	outline: none;
+	margin: 5%;	
 }
 
 .flick-form_grid input[type="button"]:hover {
