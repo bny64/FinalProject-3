@@ -107,7 +107,7 @@ public class LoginController {
 			//세션 저장
 			session.setAttribute("userNo",userNo);
 			logger.trace("session 저장");
-			return "mainBoard";
+			return "mainBoard2";
 		}else{
 			logger.trace("session 저장 실패");
 			return "index";

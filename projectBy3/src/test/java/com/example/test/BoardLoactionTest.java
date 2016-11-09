@@ -75,10 +75,10 @@ public class BoardLoactionTest {
 	@Test
 	public void getBoardsBycenterLocationServiceTest(){
 		Map<String,Object> filter = new HashMap<>();
-		float centerLat = (float) 36.81506854521463;
-		float centerLng = (float) 127.11321711527751;
+		float centerLat = (float)36.81512;
+		float centerLng = (float)127.1142;
 		float range = (float) 0.0050;
-		int userNo = 1;
+		int userNo = 2;
 		
 		filter.put("centerLat", centerLat);
 		filter.put("centerLng", centerLng);
