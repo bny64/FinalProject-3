@@ -164,3 +164,17 @@ create table reply(
 
 create sequence reply_no_seq
 start with 1 increment by 1;
+
+
+
+create table hot_board(
+  hot_board_no number not null,
+  category_no number,
+  title varchar2(30),
+  contents varchar2(200),
+  file_path varchar2(200),
+  CONSTRAINT hot_board_no_pk PRIMARY KEY (hot_board_no)
+);
+create sequence hot_board_no_seq
+start with 1 increment by 1;
+
