@@ -15,7 +15,27 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+
+
+
+
+
 
 </script>
 <link
@@ -23,28 +43,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	rel='stylesheet' type='text/css'>
 <script src="js/jquery.min.js"></script>
 <style>
-#logo {
-	float: left;
-	width: 50%;
-	display: block;
-}
-
-#loginView {
-	float: right;
-	width: 50%;
-	display: block;
-}
-
 #content {
 	width: 40%;
 	margin-left: 30%;
 	height: 200%;
 	clear: both;
+	margin: 0 auto;
 }
 
-table th {
+#map {
+	margin-top: 10%;
+	margin: 0 auto;
+}
+
+form {
+	margin: 0 auto;
+}
+
+label {
+	color: white;
+}
+
+button {
+	margin: 0 auto;
+}
+
+#information {
+	width: 30%;
+	margin: 0 auto;
+	float: center;
+	border: solid 1px red;
+	margin: 0 auto;
+}
+
+td>label {
+	padding-left: 8%;
+	margin-bottom: 3%;
+}
+
+td>input {
 	text-align: center;
-	padding: 0;
+	margin-bottom: 3%;
+}
+button{
+	padding: 0 auto;
+}
+#friendList {
+	margin-top: 17%;
 }
 </style>
 </head>
@@ -55,34 +100,56 @@ table th {
 	<div class="content-top">
 		<div class="container">
 			<p id="demo"></p>
-			<section id="content">
+
 			<div id="map" style="width: 500px; height: 400px;"></div>
 			<br>
-
-			<sform:form method="post" action="promise" modelAttribute="promise">
-				<fieldset>
-					<sform:input path="promiseLatitude" id="inputLa" placeholder="위도" />
-					<sform:input path="promiseLongitude" id="inputLo" placeholder="경도" />
-					<br>
-					<sform:input path="promiseTitle" placeholder="약속 이름" />
-					<br>
-					<sform:input path="promiseDate" placeholder="promiseDate" />
-					<br>
-					<sform:input path="promiseContent" placeholder="약속 내용" />
-					<br>
-					<sform:label path="invitee">친구 목록</sform:label>
-					<sform:select path="invitee" multiple="multiple"
-						items="${friends }" itemLabel="userName" itemValue="userNo" />
-				</fieldset>
-				<sform:button>가입 하기</sform:button>
-			</sform:form>
-
+			<div id="information">
+				<sform:form method="post" action="promise" modelAttribute="promise">
+					<table>
+						<tr>
+							<td><label>위도</label></td>
+							<td><sform:input path="promiseLatitude" id="inputLa"
+									placeholder="위도" /></td>
+						</tr>
+						<tr>
+							<td><label>경도</label></td>
+							<td><sform:input path="promiseLongitude" id="inputLo"
+									placeholder="경도" /></td>
+						</tr>
+						<tr>
+							<td><label>약속 명</label></td>
+							<td><sform:input path="promiseTitle" placeholder="약속 이름" />
+							<td></td>
+						</tr>
+						<tr>
+							<td><label>날짜</label></td>
+							<td><sform:input path="promiseDate"
+									placeholder="promiseDate" /></td>
+						</tr>
+						<tr>
+							<td><label>내용</label></td>
+							<td><sform:input path="promiseContent" placeholder="약속 내용" /></td>
+						</tr>
+						<tr>
+							<td><sform:label path="invitee" id="friendList">친구 목록</sform:label>
+							<td><sform:select path="invitee" multiple=""
+									items="${friends }" itemLabel="userName" itemValue="userNo" /></td>
+						</tr>
+						<tr>
+							<td><sform:button>약속 등록</sform:button>
+							<td><input type="button" value="돌아가기" onclick="closeBtn()">
+						<tr>
+					</table>
+				</sform:form>
+			</div>
 
 
 			<div id="locationDiv"></div>
-			</section>
 		</div>
 	</div>
+	<!-- footer -->
+	<jsp:include page="../layout/footer2.jsp"></jsp:include>
+	<!-- footer -->
 </body>
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script type="text/javascript"
@@ -264,6 +331,9 @@ table th {
 			markers[i].setMap(null);
 		}
 		markers = [];
+	}
+	function closeBtn() {
+		document.location.href = "returnMainBoard";
 	}
 </script>
 </html>

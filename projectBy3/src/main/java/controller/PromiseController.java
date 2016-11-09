@@ -69,7 +69,7 @@ public class PromiseController {
 		
 		model.addAttribute("Inviteepromises", Inviteepromises);
 		model.addAttribute("Promotepromises", Promotepromises);	
-		return "promiseMainBoard";
+		return "promiseMainBoard2";
 	}
 	
 	
@@ -106,7 +106,7 @@ public class PromiseController {
 		
 		model.addAttribute("Inviteepromises", Inviteepromises);
 		model.addAttribute("Promotepromises", Promotepromises);	
-		return "promiseMainBoard";
+		return "promiseMainBoard2";
 	}
 	
 	
