@@ -28,15 +28,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.min.js"></script>
 <style>
 #content {
-	width: 60%;
+	width: 80%;
 	margin-top: 10%;
-	margin-left: 20%;
-	height: 100%;
+	margin : 0 auto;
 	clear: both;
 }
 
-#map {
+#map {	
 	margin: 0 auto;
+	margin-left: 10%;
 }
 
 #contents_bottom {
@@ -63,16 +63,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	color: white;
 	font-size: 1.2em;
 }
+table{
+	margin-botton : 20%;
+	width: 100%;
+}
 
-@media screen and (min-width: 0px) and (max-width:400px) {
+#cancel>button {
+	
+}
+
+@media screen and (min-width: 100px) and (max-width:400px) {
 	#staticMap {
 		margin-top: 15%;
 		margin-left: -25%;
 		width: 330px;
 		height: 200px;
-	}
-	#cancel>button {
-	width : 100%;
 	}
 	table{
 		margin-botton : 20%;
