@@ -76,9 +76,7 @@ select {
 	margin-top: 1%;
 }
 
-.content-top {
-	height: 90%;
-}
+
 .container>#search{
 	margin-top: 6%;
 }
