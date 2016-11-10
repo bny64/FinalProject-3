@@ -140,7 +140,7 @@ i.twt{
 i.twt:hover {
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -11px -49px;
 }
-i.rs{
+i.compass{
 	width: 30px;
 	height: 30px;
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -205px -15px;
@@ -151,7 +151,7 @@ i.rs{
 	-o-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 }
-i.rs:hover{
+i.compass:hover{
 	background: url(<%= request.getContextPath() %>/img/img-sprite2.png)no-repeat -205px -49px;
 }
 i.setting{
