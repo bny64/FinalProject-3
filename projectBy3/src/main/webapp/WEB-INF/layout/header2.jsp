@@ -672,6 +672,18 @@ span.icon_text:hover {
 	border: none;
 	margin-bottom: 1em;
 }
+.flick-form_grid input[type="password"] {
+	display: block;
+	width: 100%;
+	padding: 0.6em 1em;
+	outline: none;
+	font-size: 1em;
+	font-weight: 300;
+	color: #858585;
+	background: rgba(53, 52, 52, 0.58);
+	border: none;
+	margin-bottom: 1em;
+}
 
 .flick-form_grid input[type="submit"] {
 	font-size: 1em;
