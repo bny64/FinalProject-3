@@ -43,7 +43,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	width: 80%;
 	margin-left: 15%;
 	margin-top: 10%;
-	height: 100%;
 	clear: both;
 }
 
@@ -87,6 +86,26 @@ td {
 a>button {
 	border-bottom: 1px solid gray;
 }
+@media screen and (min-width: 0px) and (max-width:400px) {
+	#map{
+		margin-top: 15%;
+		margin-left : -15%;
+		width: 120%;
+		height: 30%;
+	}
+	#content>label{
+		margin-left : 15%; 
+	}
+	#locationDiv{
+		margin : 0 auto;
+		margin-left : -20%;
+		width : 130%;
+	}
+	#locationDiv>table{
+		padding-left : 1%;
+		width : 100%;
+	}
+}
 </style>
 </head>
 <body>
@@ -97,7 +116,7 @@ a>button {
 		<div class="container">
 			<p id="demo"></p>
 			<section id="content">
-				<div id="map" style="width: 500px; height: 400px;"></div>
+				<div id="map"></div>
 				<br> <label>위치 저장</label> <input type="text"
 					placeholder="위치 저장명" id="userLocationName" name="userLocationName">
 				<button id="btn2">저장</button>

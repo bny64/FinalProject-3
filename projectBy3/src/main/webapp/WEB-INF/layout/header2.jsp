@@ -751,6 +751,23 @@ button {
 	background: #2096da;
 	color: #fff;
 }
+input[type="button"]{
+	font-size: 1em;
+	font-weight: 300;
+	background:#2096da;
+	color:#fff;
+	text-transform: uppercase;
+	padding: 0.6em 1em;
+	border: none;
+	transition: all 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	-webkit-apperance: none;
+	font-family: 'Open Sans', sans-serif;
+	outline: none;
+	margin: 5%;	
+}
 
 .smt {
 	text-align: right;

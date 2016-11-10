@@ -39,6 +39,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 #map {
 	margin-top: 10%;
 	margin: 0 auto;
+	width : 500px;
+	height : 400px;
 }
 
 form {
@@ -57,7 +59,6 @@ button {
 	width: 30%;
 	margin: 0 auto;
 	float: center;
-	border: solid 1px red;
 	margin: 0 auto;
 }
 
@@ -75,8 +76,23 @@ button {
 	padding: 0 auto;
 }
 
+
 #friendList {
 	margin-top: 17%;
+}
+@media screen and (min-width: 0px) and (max-width:400px) {
+	#map {
+		margin-top: 15%;
+		width: 330px;
+		height: 200px;
+	}
+	#information{
+		width : 100%;
+	}
+	table{
+		margin : 0 auto;
+	}
+	
 }
 </style>
 </head>
@@ -87,7 +103,7 @@ button {
 	<div class="content-top">
 		<div class="container">
 			<p id="demo"></p>
-			<div id="map" style="width: 500px; height: 400px;"></div>
+			<div id="map"></div>
 			<br>
 			<div id="information">
 				<sform:form method="post" action="promise" modelAttribute="promise">
@@ -122,8 +138,8 @@ button {
 									items="${friends }" itemLabel="userName" itemValue="userNo" /></td>
 						</tr>
 						<tr>
-							<td><sform:button>약속 등록</sform:button>
-							<td><input type="button" value="돌아가기" onclick="closeBtn()">
+							<td colspan="2"><sform:button>약속 등록</sform:button>
+							<td colspan="1"><input id="comeback" type="button" onclick="closeBtn()" value="돌아가기">
 						<tr>
 					</table>
 				</sform:form>
