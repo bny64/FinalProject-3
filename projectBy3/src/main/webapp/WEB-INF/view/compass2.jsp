@@ -63,7 +63,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../layout/header.jsp"></jsp:include>
+	<jsp:include page="../layout/header2.jsp"></jsp:include>
 	<!-- 지도를 표시할 div 입니다 -->
 	<div id="mainCompass">
 		<div id="map"></div>
@@ -92,6 +92,16 @@
 <script src="<%=request.getContextPath()%>/js/location.js"></script>
 <script>
 	function viewMyAroundFriendBoard() {
+		
+		// 민국 - !!!!!!!!!!!! getWatch를 써야됨 - 실시간 감시
+		/* if (!!navigator.geolocation) {
+			 setInterval(function(){
+				navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+			},1000);
+		} else {
+			alert("이 브라우저는 Geolocation를 지원하지 않습니다");
+		} */
+		
 		<c:url value = "/getAroundBoards" var="getAroundBoards"/>
 		$.ajax({
 			type : "get",

@@ -233,6 +233,6 @@ public class MainController {
 		
 	@RequestMapping(value="/compass")
 	public String compass(){
-		return "compass";
+		return "compass2";
 	}
 }
