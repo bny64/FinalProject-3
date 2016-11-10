@@ -84,6 +84,8 @@ public class BoardController {
 		int userNo = (int) session.getAttribute("userNo");
 		logger.trace("userNo : {}", userNo);
 		
+		
+		
 		Board board = new Board(0,"",0,"",null,userNo,0,"",null,"visible",0,0, null, null);
 		model.addAttribute("board", board);		
 		return "writeBoard3";
@@ -191,6 +193,7 @@ public class BoardController {
 	@RequestMapping(value="/getMyLocation", method=RequestMethod.GET)
 	public String getMyLocation(Model model,HttpSession session, Board board){
 		List<UserLocation> userLocations = userLocationService.userAllLocation((int)session.getAttribute("userNo"));
+		logger.trace("위치 누를때 저장된 : {}",board);
 		model.addAttribute("userLocations", userLocations);
 		return "writeLocation2";
 	}
