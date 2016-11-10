@@ -37,9 +37,13 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 	}
 
 	@Override
-	public int deleteUserCategory(int listNo) {
+	public int deleteUserCategory(int userNo,int categoryNo) {
 		logger.trace("UserCategoryServiceImpl - deleteUserCategory() 동작");
-		return userCategoryDao.deleteUserCategory(listNo);
+		
+		UserCategory userCategory = new UserCategory();
+		userCategory.setUserNo(userNo);
+		userCategory.setCategoryNo(categoryNo);		
+		return userCategoryDao.deleteUserCategory(userCategory);
 	}	
 	
 

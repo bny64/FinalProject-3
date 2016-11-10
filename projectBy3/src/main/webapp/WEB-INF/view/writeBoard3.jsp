@@ -44,10 +44,18 @@
 							src="<%=request.getContextPath()%>/img/gps.jpg"></a>
 						<h2 id="locationStr">${locationName }</h2>
 					</fieldset>
+					
+					<fieldset>
+							<legend>
+								<span class="number">2</span>사진 등록
+							</legend>
+						<sform:input path="file" type="file"/><br>
+					</fieldset>
+					
 
 					<fieldset>
 						<legend>
-							<span class="number">2</span>추가 정보
+							<span class="number">3</span>추가 정보
 						</legend>
 						<label>게시물 보임 여부</label>
 						<sform:select path="viewStatus" id="viewStatus">

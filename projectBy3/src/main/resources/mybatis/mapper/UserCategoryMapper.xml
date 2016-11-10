@@ -22,10 +22,9 @@
 		values(category_list_no_seq.NEXTVAL,#{categoryNo},#{userNo})
 	</insert>
 	
-	<delete id="deleteUserCategory">
+	<delete id="deleteUserCategory" parameterType="usercategory">
 		delete USER_CATEGORY
-		where list_no = #{listNo}
-	
+		where USER_NO = #{userNo} and category_no =#{categoryNo}	
 	</delete>
 	
 	

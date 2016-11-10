@@ -40,10 +40,10 @@ public class UserCategoryDaoImpl implements UserCategoryDao{
 	}
 
 	@Override
-	public int deleteUserCategory(int listNo) {
+	public int deleteUserCategory(UserCategory userCategory) {
 		logger.trace("UserCategoryDaoImpl - deleteUserCategory 동작");
 		String stmt = BOARD_NS + "deleteUserCategory";
-		return template.delete(stmt, listNo);
+		return template.delete(stmt, userCategory);
 	}	
 	
 	

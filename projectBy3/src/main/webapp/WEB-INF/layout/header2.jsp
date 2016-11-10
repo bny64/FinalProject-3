@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							보기</a></li>
 					<c:url value="/mylocation" var="myLocation"/>
 					<li><a href="${myLocation }" data-hover="위치저장">위치저장</a></li>
-					<li class="active"><a data-hover="전체글보기"
+					<li><a data-hover="전체글보기"
 						id="btnGetAllBoard">전체글보기</a></li>
 						<c:url value="/promiseBoard" var="promiseBoard"/>
 						<li><a href="${promiseBoard }">약속 잡기</a></li>
@@ -264,7 +264,7 @@ i.twt:hover {
 		no-repeat -11px -49px;
 }
 
-i.rs {
+i.compass {
 	width: 30px;
 	height: 30px;
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
@@ -277,7 +277,7 @@ i.rs {
 	-moz-transition: 0.5s all;
 }
 
-i.rs:hover {
+i.compass:hover {
 	background: url(<%=request.getContextPath()%>/img/img-sprite2.png)
 		no-repeat -205px -49px;
 }
@@ -661,6 +661,18 @@ span.icon_text:hover {
 }
 
 .flick-form_grid input[type="text"] {
+	display: block;
+	width: 100%;
+	padding: 0.6em 1em;
+	outline: none;
+	font-size: 1em;
+	font-weight: 300;
+	color: #858585;
+	background: rgba(53, 52, 52, 0.58);
+	border: none;
+	margin-bottom: 1em;
+}
+.flick-form_grid input[type="password"] {
 	display: block;
 	width: 100%;
 	padding: 0.6em 1em;

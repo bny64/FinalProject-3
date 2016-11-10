@@ -48,4 +48,11 @@ public class CategoryDaoImpl implements CategoryDao{
 		return template.insert(stmt, category);
 	}
 
+	@Override
+	public List<Category> selectAllCategoryByUser(int userNo) {
+		logger.trace("CategoryDaoImpl - selectAllCategoryByUser 동작");
+		String stmt = BOARD_NS + "selectAllCategoryByUser";
+		return template.selectList(stmt,userNo);
+	}
+
 }

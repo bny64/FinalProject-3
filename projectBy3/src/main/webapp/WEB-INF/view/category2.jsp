@@ -10,12 +10,8 @@
 .catagers li a {
 	font-size: 1.4em;
 }
-.content-top{
-	height: 80%;
-}
-.container{
-	height: 80%;
-}
+
+
 body {
 	background-color: #1B1B1D;
 }
@@ -38,9 +34,10 @@ body {
 			<div class="catagers">
 				<h2><span>YOUR</span> CATEGORIES</h2>
 				<c:url value = "/scategoryBoard" var="scategoryBoard"/>
+				<c:url value = "/deleteUserCategory" var="deleteUserCategory"/>
 				<c:forEach items="${categories}" var="usercategory">
 					<ul>
-						<li><a href="${scategoryBoard}?categoryNo=${usercategory.categoryNo}">${usercategory.category.categoryName }</a></li>
+						<li><a href="${scategoryBoard}?categoryNo=${usercategory.categoryNo}">${usercategory.category.categoryName }</a><a style="float: right;font-size: 0.6em; margin-top: 1.25%; margin-right: 2%; " href="${deleteUserCategory}?categoryNo=${usercategory.categoryNo}">삭제</a></li>
 					</ul>
 				</c:forEach>
 			</div>

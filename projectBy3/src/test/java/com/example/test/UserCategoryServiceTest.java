@@ -13,7 +13,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import config.ApplicationConfig;
 import dao.UserCategoryDao;
+import dto.Category;
 import dto.UserCategory;
+import service.CategoryService;
 import service.UserCategoryService;
 
 
@@ -27,6 +29,8 @@ public class UserCategoryServiceTest {
 	
 	@Autowired
 	UserCategoryDao dao;
+	@Autowired
+	CategoryService categoryService;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -45,7 +49,7 @@ public class UserCategoryServiceTest {
 	}
 	@Test
 	public void selectUserCategoryServiceTest(){
-		List<UserCategory> userCategorys = service.selectUserCategory(2);
+		List<UserCategory> userCategorys = service.selectUserCategory(108);
 		logger.trace("selectUserCategoryServiceTest userCategorys : {}", userCategorys);
 	}
 	
@@ -60,10 +64,39 @@ public class UserCategoryServiceTest {
 	}
 	@Test
 	public void deleteUserCategory(){
-		int result = service.deleteUserCategory(4);
+		int result = service.deleteUserCategory(4,108);
 		logger.trace("결과 : {}", result);
 	}
 	
+	@Test
+	public void selectUserCategoryServiceTest2(){
+		List<UserCategory> userCategorys = service.selectUserCategory(108);
+		
+		List<Category> category = categoryService.selectAllCategory();		
+		
+		
+		for(int i = 0 ; i<category.size();i++){				
+			logger.trace("카테고리:{}",category.get(i).getCategoryNo());
+			for(int j = 0; j < userCategorys.size();j++){
+				if(category.get(i).getCategoryNo()==userCategorys.get(j).getCategoryNo()){
+					category.remove(i);
+					logger.trace("제거 :{}",userCategorys.get(j).getCategory().getCategoryName());
+				}
+				
+			}			
+		}
+		
+		
+		
+		for(int i=0 ; i < category.size();i++){
+			logger.trace("중복 제거 카테고리:{}",category.get(i).getCategoryName());
+		}
+		
+		
+		
+		
+		logger.trace("selectUserCategoryServiceTest userCategorys : {}", userCategorys.size());
+	}
 	
 	
 

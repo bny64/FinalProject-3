@@ -9,4 +9,5 @@ public interface CategoryDao {
 	public List<Category> selectAllCategoryByPaging(Map<String, Object> filter);
 	public List<Category> searchByCategoryName(Map<String, Object> filter);
 	public int insertCategory(Category category);
+	public List<Category> selectAllCategoryByUser(int userNo);
 }
