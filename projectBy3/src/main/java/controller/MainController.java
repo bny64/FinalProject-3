@@ -125,11 +125,12 @@ public class MainController {
 		logger.trace("boardNo : {}",boardNo);		
 		Board board = service.selectBoard(boardNo);
 		
-		BoardLocation bLocation = boardLocationService.selectBoard(boardNo);
-		
-		board.setLatitude(bLocation.getLatitude());
-		board.setLongitude(bLocation.getLongitude());
-		
+		if("hidden".equals(board.getViewStatus())){
+			BoardLocation bLocation = boardLocationService.selectBoard(boardNo);
+			
+			board.setLatitude(bLocation.getLatitude());
+			board.setLongitude(bLocation.getLongitude());
+		}
 		logger.trace("board : {}", board);
 		
 		int userNo =  (int) session.getAttribute("userNo");
