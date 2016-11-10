@@ -90,6 +90,9 @@ td>img {
 	margin-bottom : -10%;
 	margin-left: 77%;
 }
+@media screen and (min-width: 0px) and (max-width:400px) {
+	
+}
 </style>
 </head>
 <body>

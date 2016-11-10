@@ -155,49 +155,9 @@ a>button {
 
 
 </body>
-<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/jquery.poptrox.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/skel.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/main.js"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript"
-	src="//apis.daum.net/maps/maps3.js?apikey=d0fc516accb46bd8c6bd705b190857d0"></script>
 <script>
-	var x = document.getElementById("demo");
-	var latitude;
-	var longitude;
-
-	window.onload = function() {
-		getLocation();
-	};
-	function getLocation() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
-		} else {
-			x.innerHTML = "Geolocation is not supported by this browser.";
-		}
-	}
-
-	function showPosition(position) {
-		latitude = position.coords.latitude;
-		longitude = position.coords.longitude;
-		var markerPosition = new daum.maps.LatLng(position.coords.latitude,
-				position.coords.longitude);
-		var marker = {
-			position : markerPosition
-		};
-		var staticMapContainer = document.getElementById('map'), // 이미지 지도를 표시할 div  
-		staticMapOption = {
-			center : new daum.maps.LatLng(position.coords.latitude,
-					position.coords.longitude), // 이미지 지도의 중심좌표
-			level : 3, // 이미지 지도의 확대 레벨
-			marker : marker
-		// 이미지 지도에 표시할 마커 
-		};
-		var staticMap = new daum.maps.StaticMap(staticMapContainer,
-				staticMapOption);
-
-	}
+	
 	<c:url value="/deleteLocation" var="deleteLocation"/>
 	$("#btn2")
 			.on(

@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
+import dto.BoardLocation;
 import dto.Category;
 import dto.HotBoard;
 import dto.Reply;
 import dto.UserCategory;
 import dto.UserLocation;
+import service.BoardLoactionService;
 import service.BoardService;
 import service.CategoryService;
 import service.HotBoardService;
@@ -53,6 +55,8 @@ public class MainController {
 	ReplyService replyService;
 	@Autowired
 	HotBoardService hotBoardService;
+	@Autowired
+	BoardLoactionService boardLocationService;
 	
 	
 	// Format 형태로 입력된 문자열을 date로 바꿈
@@ -120,6 +124,14 @@ public class MainController {
 		logger.trace("class : MainController, method : detailBoard");		
 		logger.trace("boardNo : {}",boardNo);		
 		Board board = service.selectBoard(boardNo);
+		
+		BoardLocation bLocation = boardLocationService.selectBoard(boardNo);
+		
+		board.setLatitude(bLocation.getLatitude());
+		board.setLongitude(bLocation.getLongitude());
+		
+		logger.trace("board : {}", board);
+		
 		int userNo =  (int) session.getAttribute("userNo");
 		List<Reply> re = replyService.selectReplyByBoardNo(boardNo);
 		model.addAttribute("reply", re);
