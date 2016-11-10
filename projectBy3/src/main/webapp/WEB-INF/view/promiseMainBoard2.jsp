@@ -16,8 +16,10 @@
 	content="Darx Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
+	
 		
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 <link
@@ -27,26 +29,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <style>
 #content {
 	width: 60%;
-	margin-top : 10%;
+	margin-top: 10%;
 	margin-left: 20%;
 	height: 100%;
 	clear: both;
 }
 
 #map {
-	margin : 0 auto;
+	margin: 0 auto;
 }
 
 #contents_bottom {
 	overflow: auto;
-	margin : 0 auto;
+	margin: 0 auto;
 	margin-top: 5%;
 	margin-bottom: 10%;
 }
 
 #bottomBtns {
 	clear: both;
-	margin : 0 auto;
+	margin: 0 auto;
 	text-align: center;
 	margin-bottom: 10%;
 }
@@ -60,6 +62,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	margin-bottom: 4%;
 	color: white;
 	font-size: 1.2em;
+}
+
+@media screen and (min-width: 0px) and (max-width:400px) {
+	#staticMap {
+		margin-top: 15%;
+		margin-left: -25%;
+		width: 330px;
+		height: 200px;
+	}
+	#cancel>button {
+	width : 100%;
+	}
+	table{
+		margin-botton : 20%;
+	}
+	
+	td input{
+		width : 80%;
+	}
 }
 </style>
 <script src="http://code.jquery.com/jquery.js"></script>
@@ -98,26 +119,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</select>
 
 					</c:forEach>
-					<br>
-					<br>
+					<br> <br>
 					<h3>내가 약속한 약속</h3>
 					<c:url value="/deletePromise" var="deletePromise" />
 					<c:forEach items="${Promotepromises }" var="userpromise">
-						<a
-							onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })"><input
-							id="str" type="text" readonly="readonly"
-							value="${userpromise.promiseTitle }"> </a>
-						<a href="${deletePromise}?promiseId=${userpromise.promiseId}">
-							<button>취소</button>
-						</a>
-						<br>
+						<table>
+							<tr>
+								<td><a
+									onclick="promiseFunction('${userpromise.promiseTitle }',${userpromise.promiseLatitude },${userpromise.promiseLongitude })">
+										<input id="str" type="text" readonly="readonly"
+										value="${userpromise.promiseTitle }">
+								</a>
+								<td><a id="cancel"
+									href="${deletePromise}?promiseId=${userpromise.promiseId}">
+										<button>취소</button>
+								</a> <br>
+							</tr>
+						</table>
 					</c:forEach>
 
 				</div>
 				<div id="bottomBtns">
 					<c:url value="/promise" var="promise" />
 					<a href="${promise }"><button>약속 하기</button></a>
-					<c:url value="/returnMainBoard" var="returnMainBoard"/>
+					<c:url value="/returnMainBoard" var="returnMainBoard" />
 					<a href="${returnMainBoard }"><button id="ok">확인</button></a>
 				</div>
 			</section>
