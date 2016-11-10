@@ -34,5 +34,11 @@ public class CategoryServiceTest {
 		List<Category> ct = service.selectAllCategory();
 		logger.trace("ct :{}",ct);
 	}
+	
+	@Test
+	public void test2() {
+		List<Category> ct = service.selectAllCategoryByUser(108);
+		logger.trace("ct :{}",ct);
+	}
 
 }

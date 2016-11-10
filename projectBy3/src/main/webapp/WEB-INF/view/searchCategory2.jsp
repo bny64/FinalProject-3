@@ -116,6 +116,7 @@ select {
 							onblur="if (this.value == '') {this.value = '닉네임 입력..';}">
 						<input type="submit" id="btnSearch" value="">
 					</form>
+					
 				</div>
 			</div>
 			<c:url value="/initSearchUserCategory" var="initSearchUserCategory" />

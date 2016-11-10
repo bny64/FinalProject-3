@@ -8,5 +8,5 @@ public interface UserCategoryService {
 	public List<UserCategory> selectAllUserCategory();
 	public List<UserCategory> selectUserCategory(int userNo);
 	public int insertUserCategory(UserCategory userCategory);
-	public int deleteUserCategory(int listNo);
+	public int deleteUserCategory(int userNo,int categoryNo);
 }

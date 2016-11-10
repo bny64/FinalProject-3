@@ -46,9 +46,9 @@ public class CategoryController {
 	
 	@RequestMapping(value="/initSearchUserCategory", method=RequestMethod.GET)
 	public String initSearchFriend(Model model, HttpSession session){
-		logger.trace("class : FriendController, method : initSearchFriend");
+		logger.trace("class : CategoryController, method : initSearchFriend");
 		
-		List<Category> category = categoryService.selectAllCategory();
+		List<Category> category = categoryService.selectAllCategoryByUser((int) session.getAttribute("userNo"));
 		model.addAttribute("category", category);
 		
 		return "searchCategory2";
@@ -56,7 +56,7 @@ public class CategoryController {
 	
 	@RequestMapping(value="/searchCategory", method=RequestMethod.POST)
 	public String searchCategory(Model model, HttpSession session, @RequestParam String categoryName){
-		logger.trace("class : FriendController, method : searchCategory");
+		logger.trace("class : CategoryController, method : searchCategory");
 		
 		if(categoryName != null){
 			
@@ -72,7 +72,7 @@ public class CategoryController {
 	
 	@RequestMapping(value="/insertUserCategory", method=RequestMethod.GET)
 	public String insertUserCategory(HttpSession session, Model model, @RequestParam int userNo){
-		logger.trace("class : FriendController, method : insertUserCategory");
+		logger.trace("class : CategoryController, method : insertUserCategory");
 		
 		// jsp에서 가져온 userNo -> friendNo
 		int categoryNo = userNo;
@@ -91,6 +91,22 @@ public class CategoryController {
 		return "category2";
 	
 	}
+	
+	@RequestMapping(value="/deleteUserCategory", method=RequestMethod.GET)
+	public String deleteUserCategory(HttpSession session, Model model, @RequestParam int categoryNo){
+		logger.trace("class : CategoryController, method : deleteUserCategory");
+		
+		int userNo = (int) session.getAttribute("userNo");
+		
+		userCategoryService.deleteUserCategory(userNo, categoryNo);		
+		
+		List<UserCategory> category = userCategoryService.selectUserCategory(userNo);
+		model.addAttribute("categories", category);
+		return "category2";
+	}
+	
+	
+	
 	
 	
 	

@@ -54,4 +54,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.insertCategory(category);
 	}
 
+	@Override
+	public List<Category> selectAllCategoryByUser(int userNo) {
+		logger.trace("CategoryServiceImpl - selectAllCategoryByUser() 동작");
+		return categoryDao.selectAllCategoryByUser(userNo);
+	}
+
 }
