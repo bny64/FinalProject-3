@@ -53,14 +53,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="menu"> </span>
 				<ul class="cl-effect-15">
 					<c:url value="/category" var="category"/>
-					<li class="active"><a href="${category }">카테고리</a></li>
+					<li><a href="${category }">카테고리</a></li>
 					<c:url value="/writeBoard" var="writeBoard" />
 					<li><a href="${writeBoard }" data-hover="글쓰기">글쓰기</a></li>
 					<li><a data-hover="내글 보기" id="btnGetMyBoard">내글
 							보기</a></li>
 					<c:url value="/mylocation" var="myLocation"/>
 					<li><a href="${myLocation }" data-hover="위치저장">위치저장</a></li>
-					<li><a data-hover="전체글보기"
+					<li class="active"><a data-hover="전체글보기"
 						id="btnGetAllBoard">전체글보기</a></li>
 						<c:url value="/promiseBoard" var="promiseBoard"/>
 						<li><a href="${promiseBoard }">약속 잡기</a></li>
@@ -80,25 +80,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </section>
 
-<%-- <c:url value="/category" var="category"/>
-			<a href="${category }"> --%>
-<!-- <button id = "btnCategory">카 테 고 리</button> -->
-
-<!-- <input id="str"type="text" placeholder="글 검색"> -->
-
-<%-- <c:url value="/friendList" var="friendList"/>
-			<a href="${friendList }"> --%>
-
-<%-- <c:url value="/writeBoard" var="writeBoard"/>
-			<a href="${writeBoard }"> --%>
-
-
-<%-- <c:url value="/mylocation" var="mylocation"/>
-			<a href="${mylocation }"> --%>
-
-
-
-
+<script>
+//전체글 보기
+$("#btnGetAllBoard").on("click", function() {
+	<c:url value="/returnMainBoard" var="returnMainBoard"/>
+	document.location.href = "returnMainBoard";
+});
+</script>
 
 <!-- 민국 - style.css 강제추가  -->
 <!-- style.css -->
