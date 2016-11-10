@@ -17,7 +17,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 
@@ -27,8 +29,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	rel='stylesheet' type='text/css'>
 <script src="js/jquery.min.js"></script>
 <style>
-
-
 #loginView {
 	float: right;
 	width: 50%;
@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 }
 
 #list {
-	margin-top : 10%;
+	margin-top: 10%;
 	float: right;
 	width: 40%;
 	height: 20%;
@@ -56,20 +56,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	text-align: center;
 	margin-left: -10%;
 }
+
 #staticMap {
-	margin-top : 15%;
-	margin-left: 0%; width : 80%;
+	margin-top: 15%;
+	margin-left: 0%;
+	width: 90%;
 	height: 60%;
-	width: 80%;
 }
-label{
-	color : white;
-	margin-top: 10%; 
-	margin-left: 14%;
-}
-button{
-	margin: 5%;
+
+@media screen and (min-width: 0px) and (max-width:400px) {
+	#staticMap {
+		margin-top: 15%;
+		margin-left : -25%;
+		width: 150%;
+		height: 30%;
 	}
+	label{
+		padding-top : 10%;
+		padding-left :30%;
+	}
+	#list{
+		width : 120%;
+		margin-left : 20%;
+		padding-left : 30%;
+		margin : 0 auto;
+		margin-bottom : 20%;
+	}
+	#bottomBtns>button{
+		margin: 0 auto;
+	}
+	
+}
+
+label {
+	color: white;
+	margin-top: 10%;
+	margin-left: 14%;
+	margin: 0 auto;
+}
+
+button {
+	margin: 5%;
+}
 </style>
 </head>
 <body>
@@ -98,7 +126,7 @@ button{
 					<%-- <a href="${writeBoardLocation}?latitude=<%=latitude%>&longitude=<%=longitude%>"><button>현위치 저장</button></a> --%>
 					<button id="nowLocation">현위치 저장</button>
 					<button id="ok">확인</button>
-					<a href="#"><button>닫기</button></a>
+					<button>닫기</button>
 				</div>
 			</section>
 		</div>
