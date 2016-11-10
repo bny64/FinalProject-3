@@ -16,8 +16,14 @@
 .container{
 	height: 80%;
 }
-body{
-	height: 80%;
+body {
+	background-color: #1B1B1D;
+}
+
+#searchFriend{
+	margin-top : 2%;
+	margin-bottom : -15%;
+	margin-left: 77%;
 }
 </style>
 </head>
@@ -26,6 +32,9 @@ body{
 	<div class="content-top" >
 		<br><br><br>
 		<div class="container">
+			<a href="initSearchUserCategory">
+				<button id="searchFriend" >카테고리 찾기</button>
+			</a>
 			<div class="catagers">
 				<h2><span>YOUR</span> CATEGORIES</h2>
 				<c:url value = "/scategoryBoard" var="scategoryBoard"/>
@@ -37,6 +46,7 @@ body{
 			</div>
 		</div>	
 	</div>
+	<jsp:include page="../layout/footer2.jsp"></jsp:include>
 </body>
 <script>
 	//전체글 보기

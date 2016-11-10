@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dto.Category;
 import dto.User;
 import dto.UserFriend;
+import service.CategoryService;
+import service.UserCategoryService;
 import service.UserFriendService;
 import service.UserService;
 
@@ -32,6 +35,14 @@ public class FriendController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	UserCategoryService userCategoryService;
+	
+	@Autowired
+	CategoryService categoryService;
+	
+	
 	
 	@RequestMapping(value="/friendList", method=RequestMethod.GET)
 	public String friendList(Model model, HttpSession session){
@@ -108,4 +119,12 @@ public class FriendController {
 		
 		return "friendList2";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
