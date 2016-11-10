@@ -15,7 +15,18 @@
 		where u.category_no = c.category_no and user_no = #{id}
 	</select>
 	
+		
 	
+	<insert id="insertUserCategory" parameterType="usercategory">
+		insert into USER_CATEGORY
+		values(category_list_no_seq.NEXTVAL,#{categoryNo},#{userNo})
+	</insert>
+	
+	<delete id="deleteUserCategory">
+		delete USER_CATEGORY
+		where list_no = #{listNo}
+	
+	</delete>
 	
 	
 	<resultMap type="usercategory" id="userCategoryBase">

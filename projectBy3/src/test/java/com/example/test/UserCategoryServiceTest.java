@@ -40,7 +40,7 @@ public class UserCategoryServiceTest {
 	
 	@Test
 	public void selectUserCategoryDaoTest(){
-		List<UserCategory> userCategorys = dao.selectUserCategory(2);
+		List<UserCategory> userCategorys = dao.selectUserCategory(108);
 		logger.trace("userCategorys : {}", userCategorys);
 	}
 	@Test
@@ -48,5 +48,23 @@ public class UserCategoryServiceTest {
 		List<UserCategory> userCategorys = service.selectUserCategory(2);
 		logger.trace("selectUserCategoryServiceTest userCategorys : {}", userCategorys);
 	}
+	
+	
+	@Test
+	public void insertUserCategory(){	
+		UserCategory userCategory = new UserCategory();
+		userCategory.setUserNo(108);
+		userCategory.setCategoryNo(1);
+		int result = service.insertUserCategory(userCategory);
+		logger.trace("결과 : {}", result);
+	}
+	@Test
+	public void deleteUserCategory(){
+		int result = service.deleteUserCategory(4);
+		logger.trace("결과 : {}", result);
+	}
+	
+	
+	
 
 }

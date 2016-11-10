@@ -30,6 +30,20 @@ public class UserCategoryDaoImpl implements UserCategoryDao{
 		logger.trace("UserCategoryDaoImpl - selectUserCategory 동작");
 		String stmt = BOARD_NS + "selectUserCategory";
 		return template.selectList(stmt, userNo);
+	}
+
+	@Override
+	public int insertUserCategory(UserCategory userCategory) {
+		logger.trace("UserCategoryDaoImpl - insertUserCategory 동작");
+		String stmt = BOARD_NS + "insertUserCategory";
+		return template.insert(stmt, userCategory);
+	}
+
+	@Override
+	public int deleteUserCategory(int listNo) {
+		logger.trace("UserCategoryDaoImpl - deleteUserCategory 동작");
+		String stmt = BOARD_NS + "deleteUserCategory";
+		return template.delete(stmt, listNo);
 	}	
 	
 	

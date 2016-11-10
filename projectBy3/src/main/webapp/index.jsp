@@ -28,7 +28,7 @@
 						<input type="text" class="form-control" name="id" value="ID"
 							onfocus="this.value = '';"
 							onblur="if (this.value == '') {this.value = 'ID';}"> <input
-							type="text" class="form-control" name="password" value="PASSWD"
+							type="password" class="form-control" name="password" value="PASSWD"
 							onfocus="this.value = '';"
 							onblur="if (this.value == '') {this.value = 'PASSWD';}">
 						<div class="smt">

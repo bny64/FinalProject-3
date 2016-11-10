@@ -91,6 +91,11 @@
 	});
 </script>
 <style>
+#locationStr{
+	position: relative;
+	top : -30px;
+	right: 70px
+}
 #hidden {
 	display: none;
 }
