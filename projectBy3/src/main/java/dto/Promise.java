@@ -17,7 +17,7 @@ public class Promise {
 	String promiseTitle;
 	int promoter; // 주최자 --> userNo
 	int invitee; // 초대 받은 사람 --> userNo
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	Date promiseDate;
 	float promiseLatitude;
 	float promiseLongitude;

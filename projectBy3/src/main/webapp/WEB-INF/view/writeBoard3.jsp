@@ -57,8 +57,8 @@
 						<label>느린우편 서비스:</label> <input type="checkbox" id="isSlowMessage"
 							name="isSlowMessage"> <label class="light"
 							for="isSlowMessage">사용하기</label> <br>
-						<sform:input type="datetime-local" path="targetDate"
-							id="targetDate" />
+						<sform:input path="targetDate"
+							id="targetDate" placeholder="ex)2011-01-22 16:00" />
 					</fieldset>
 					<div id="hidden">
 						<sform:input path="boardNo" />
@@ -175,6 +175,7 @@ button {
 	border: 1px solid #3ac162;
 	border-width: 1px 1px 3px;
 	box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+	margin:0%;
 	margin-bottom: 10px;
 }
 

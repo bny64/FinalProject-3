@@ -95,7 +95,7 @@ public class BoardController {
 		model.addAttribute("category", category);
 		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude, null, null);
 		model.addAttribute("board", board);		
-		return "writeBoard2";
+		return "writeBoard3";
 	}
 	@RequestMapping(value="/writeBoardLocations",method=RequestMethod.GET)
 	public String writeBoardLocations(HttpSession session,Model model,@RequestParam Float latitude,@RequestParam Float longitude,@RequestParam String locationName){
@@ -104,7 +104,7 @@ public class BoardController {
 		model.addAttribute("category", category);
 		Board board = new Board(0,"",0,"",null,(int) session.getAttribute("userNo"),0,"",null,"hidden",latitude,longitude, null, null);
 		model.addAttribute("board", board);		
-		return "writeBoard2";
+		return "writeBoard3";
 	}
 	
 	
@@ -127,7 +127,7 @@ public class BoardController {
 		}
 		int result = service.updateBoard(board); 
 		logger.trace("수정 결과 : {}", result);
-		return "mainBoard";
+		return "mainBoard2";
 	}
 	
 	// 민국, 위치

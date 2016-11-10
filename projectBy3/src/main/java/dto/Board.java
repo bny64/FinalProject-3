@@ -28,7 +28,7 @@ public class Board {
 	/*String file;*/
 	float latitude;
 	float longitude;
-	@DateTimeFormat(pattern="yyyy-MM-dd HH")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	Date targetDate;
 	private List<BoardLocation> boardLocationsSet;
 }

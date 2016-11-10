@@ -97,19 +97,21 @@ public class BoardLoactionServiceImpl implements BoardLoactionService{
 		
 		// 민국 - 내 주변 친구들의 게시물 중에 visible인 게시물
 		List<Board> aroundMyFriendBoard = new ArrayList<>();
+		int hiddenCnt = 0;
 		
 		// 민국 - 내 친구들이 주변에 쓴 글 중에서 visible인 글을 찾음
 		for(int i = 0 ; i < aroundMyFriend.size(); i++){
-			if("visible".equals(aroundMyFriend.get(i).getViewStatus())){
+			if("hidden".equals(aroundMyFriend.get(i).getViewStatus())){
 				aroundMyFriendBoard.add(aroundMyFriend.get(i));
 				// 민국 - 보여줄 글(Board) DTO에 위치값 삽입
 				for(BoardLocation aroundBoard : aroundBoardNo){
-					if(aroundBoard.getBoardNo() == aroundMyFriendBoard.get(i).getBoardNo()){
-						aroundMyFriendBoard.get(i).setLatitude(aroundBoard.getLatitude());
-						aroundMyFriendBoard.get(i).setLongitude(aroundBoard.getLongitude());
+					if(aroundBoard.getBoardNo() == aroundMyFriendBoard.get(hiddenCnt).getBoardNo()){
+						aroundMyFriendBoard.get(hiddenCnt).setLatitude(aroundBoard.getLatitude());
+						aroundMyFriendBoard.get(hiddenCnt).setLongitude(aroundBoard.getLongitude());
 					}
 				}
-			}
+				hiddenCnt++;
+			} 
 		}
 		
 		return aroundMyFriendBoard;

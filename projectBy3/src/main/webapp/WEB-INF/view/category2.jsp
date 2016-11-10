@@ -10,6 +10,15 @@
 .catagers li a {
 	font-size: 1.4em;
 }
+.content-top{
+	height: 80%;
+}
+.container{
+	height: 80%;
+}
+body{
+	height: 80%;
+}
 </style>
 </head>
 <body>
