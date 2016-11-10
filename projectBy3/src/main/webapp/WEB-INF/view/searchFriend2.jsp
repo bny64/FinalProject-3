@@ -82,13 +82,20 @@ select {
 .container>#search{
 	margin-top: 6%;
 }
+
+.searchFriend{
+	float: right;
+	width: 40%;
+}
+
 #search>.search2 {
 	background: rgba(92, 85, 85, 0.79);
-	width: 40%;
+	width: 50%;
 	margin-top: 10%;
 	hegiht: 8%;
-	margin: 0 auto;
 	border: 1px solid black;
+	margin-left: 10%;
+	float: left;
 }
 
 .search2 input[type="submit"] {
@@ -119,11 +126,11 @@ select {
 						<input type="submit" id="btnSearch" value="">
 					</form>
 				</div>
-			</div>
-			<c:url value="/initSearchFriend" var="initSearchFriend" />
-				<a href="initSearchFriend">
+				<c:url value="/initSearchFriend" var="initSearchFriend" />
+				<a class="searchFriend" href="initSearchFriend">
 					<button id="btnViewAllUsers">모든 유저 보기</button>
 				</a>
+			</div>
 			<table>
 				<tr>
 					<th align="center">유저 목록</th>

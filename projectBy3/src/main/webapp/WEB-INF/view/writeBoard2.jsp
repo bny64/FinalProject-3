@@ -17,7 +17,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 </script>
@@ -179,7 +181,7 @@ input[type="button"] {
 	<div class="content-top">
 		<div class="container">
 			<c:url value="/writeBoard" var="writeBoard" />
-			<sform:form method="post" action="writeBoard" modelAttribute="board"
+			<sform:form method="post" action="writeBoard" modelAttribute="board" 
 				id="inputForm" enctype="multipart/form-data">
 				<div id="title">
 					<label>제목</label>
@@ -240,12 +242,9 @@ input[type="button"] {
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	console.log(
-<%=request.getAttribute("latitude")%>
-	);
-	console.log(
-<%=request.getAttribute("longitude")%>
-	);
+
+	console.log(<%=request.getAttribute("latitude")%>);
+	console.log(<%=request.getAttribute("longitude")%>);
 
 	$("#viewStatus").on("change", function() {
 		if ($("#viewStatus").val() == 'visible') {
