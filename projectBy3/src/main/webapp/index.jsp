@@ -12,7 +12,7 @@
 </head>
 <body style="background-color: #1b1b1d;">
 	<!-- header -->
-	<jsp:include page="WEB-INF/layout/header2.jsp"></jsp:include>   
+	<jsp:include page="WEB-INF/layout/headerDoor.jsp"></jsp:include>   
 	<!-- header -->
 	<!-- content -->
 
