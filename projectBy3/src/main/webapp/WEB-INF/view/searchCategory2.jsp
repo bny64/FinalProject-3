@@ -99,6 +99,28 @@ select {
 	top: 0px;
 	right: 0px;
 }
+@media screen and (max-width:389px) {
+	#btn{		
+		font-size: 15%;
+	}
+
+}
+@media screen and (min-width:390px) and (max-width:549px){
+	#btn{		
+		font-size: 35%;
+	}
+}
+@media screen and (min-width:550px) and (max-width:740px){
+	#btn{		
+		font-size: 70%;
+	}
+}
+@media screen and (min-width:741px) {
+	#btn{		
+		font-size: 80%;
+	}
+}
+
 </style>
 </head>
 <body>
@@ -120,19 +142,20 @@ select {
 				</div>
 			</div>
 			<c:url value="/initSearchUserCategory" var="initSearchUserCategory" />
-				<a href="initSearchUserCategory">
-					<button id="btnViewAllUsers">모든 카테고리 보기</button>
-				</a>
+				
 			<table>
 				<tr>					
-					<th align="center">이름</th>					
+					<th align="center">이름</th>	
+					<th><a href="initSearchUserCategory">
+					<button id="btn">모든 카테고리 보기</button>
+				</a></th>				
 				</tr>
 				<c:forEach var="category" items="${category}">
 					<tr>						
 						<td align="center"><label>${category.categoryName}</label></td>						
 						<td align="center"><c:url value="/insertUserCategory"	var="insertUserCategory" /> 
 							<a href="${insertUserCategory}?userNo=${category.categoryNo}">
-								<button>카테고리 추가</button>
+								<button id="btn">카테고리 추가</button>
 							</a>
 						</td>
 					</tr>

@@ -124,10 +124,10 @@ public class MainController {
 		logger.trace("class : MainController, method : detailBoard");		
 		logger.trace("boardNo : {}",boardNo);		
 		Board board = service.selectBoard(boardNo);
+		BoardLocation bLocation = new BoardLocation();		
 		
 		if("hidden".equals(board.getViewStatus())){
-			BoardLocation bLocation = boardLocationService.selectBoard(boardNo);
-			
+			bLocation = boardLocationService.selectBoard(boardNo);			
 			board.setLatitude(bLocation.getLatitude());
 			board.setLongitude(bLocation.getLongitude());
 		}
