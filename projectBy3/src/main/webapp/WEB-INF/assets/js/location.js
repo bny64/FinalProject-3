@@ -229,6 +229,7 @@ function displayPlaces(places) {
 				} else if (selectedClickEvent == "calcDistance") {
 					drawLineByTargetLocation(place);
 				} else if (selectedClickEvent == "exeCompass") {
+					displayPlaceInfo(marker, place);
 					calcDirecion(currentLocation, place);
 					drawLineByTargetLocation(place);
 				}
@@ -276,7 +277,7 @@ function displayPlaceInfo(marker, place) {
 	infowindow.open(map, marker);
 	setTimeout(function() {
 		infowindow.close();
-	}, 1000);
+	}, 2000);
 
 }
 

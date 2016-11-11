@@ -23,7 +23,7 @@
 				<c:url value="/writeBoard" var="writeBoard" />
 				<sform:form method="post" action="writeBoard" modelAttribute="board"
 					id="inputForm" enctype="multipart/form-data">
-
+					
 					<h1>글쓰기</h1>
 
 					<fieldset>
@@ -102,7 +102,7 @@
 #locationStr{
 	position: relative;
 	top : -30px;
-	right: 70px
+	left: 55px
 }
 #hidden {
 	display: none;
