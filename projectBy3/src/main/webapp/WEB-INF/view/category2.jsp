@@ -14,6 +14,7 @@
 
 body {
 	background-color: #1B1B1D;
+	height : 100%;
 }
 
 #searchFriend{
@@ -22,6 +23,13 @@ body {
 	margin-left: 77%;
 	
 }
+<<<<<<< HEAD
+@media screen and (min-width: 0px) and (max-width:400px) {
+	a>button{
+		font-size : 0.7em;
+	}
+}
+=======
 
 @media screen and (max-width:389px) {
 	#searchFriend{		
@@ -54,6 +62,7 @@ body {
 }
 
 
+>>>>>>> branch 'master' of https://github.com/bny64/FinalProject-3.git
 </style>
 </head>
 <body>

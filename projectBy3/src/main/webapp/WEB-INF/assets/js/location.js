@@ -30,6 +30,8 @@ function successCallback(position) {
 	latitude = position.coords.latitude;
 	longitude = position.coords.longitude;
 
+	console.log("latitude : " + latitude + "longitude" + longitude);
+	
 	currentLocation = new daum.maps.LatLng(latitude,longitude);
 	/*document.getElementById("initLocation").innerHTML += "위도 : " + latitude
 			+ ", <br>경도 : " + longitude*/

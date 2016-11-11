@@ -45,7 +45,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<c:url value="/friendList" var="friendList" />
 					<li><a href="${friendList}"><i class="friend"> </i></a></li>
 					<li><a href="#"><i class="alram"> </i></a></li>
-					<li><a href="#"><i class="compass"> </i></a></li>
+					<c:url value="/compass" var="compass" />
+					<li><a href="${compass }"><i class="compass"> </i></a></li>
 					<div class="clearfix"></div>
 				</ul>
 			</div>
