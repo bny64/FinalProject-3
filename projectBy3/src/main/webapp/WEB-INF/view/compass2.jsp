@@ -94,13 +94,13 @@
 	function viewMyAroundFriendBoard() {
 		
 		// 민국 - !!!!!!!!!!!! getWatch를 써야됨 - 실시간 감시
-		/* if (!!navigator.geolocation) {
+		if (!!navigator.geolocation) {
 			 setInterval(function(){
-				navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+				navigator.geolocation.watchPosition(successCallback, errorCallback);
 			},1000);
 		} else {
 			alert("이 브라우저는 Geolocation를 지원하지 않습니다");
-		} */
+		} 
 		
 		<c:url value = "/getAroundBoards" var="getAroundBoards"/>
 		$.ajax({
@@ -142,13 +142,5 @@
 			}
 		});
 	}
-	
-	// 민국 - 지속적인 gelocaiton 좌표 가져오기
-	/* if (!!navigator.geolocation) {
-		setInterval(function(){
-			navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-			console.log("getlocation interval process");
-		}, 1000);
-	} */
 </script>
 </html>
