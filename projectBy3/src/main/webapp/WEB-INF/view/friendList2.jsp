@@ -91,7 +91,22 @@ td>img {
 	margin-left: 77%;
 }
 @media screen and (min-width: 0px) and (max-width:400px) {
-	
+	.friendList{
+		width : 120%;
+		margin-left: -8%;
+	}
+	tr>th{
+		font-size: 0.7em;
+	}
+	tr>td{
+		font-size : 0.7em;
+	}
+	a>button{
+		font-size : 0.7em;
+	}
+	.friendList>table{
+		margin-top : 20%;
+	}
 }
 </style>
 </head>
@@ -160,7 +175,7 @@ td>img {
 	</div>
 	<!-- footer -->
 	<jsp:include page="../layout/footer2.jsp"></jsp:include>
-	<!-- footerr -->
+	<!-- footer -->
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">

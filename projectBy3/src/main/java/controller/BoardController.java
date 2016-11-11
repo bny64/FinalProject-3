@@ -213,7 +213,20 @@ public class BoardController {
 		session.setAttribute("myBoard", board);
 		model.addAttribute("board", board);
 		model.addAttribute("reply", res);
-		return "detailMyBoard2";
+		BoardLocation bLocation = new BoardLocation();
+		if("hidden".equals(board.getViewStatus())){
+			bLocation = boardLocationService.selectBoard(boardNo);			
+			board.setLatitude(bLocation.getLatitude());
+			board.setLongitude(bLocation.getLongitude());
+		}
+		
+		if((int) session.getAttribute("userNo") == board.getUserNo()){
+			logger.trace("detailMyBoard 콜");
+			return "detailMyBoard2";
+		}else{
+			logger.trace("detailBoard 콜");
+			return "detailBoard2";
+		}
 	}
 
 }

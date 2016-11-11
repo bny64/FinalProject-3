@@ -15,7 +15,9 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 <link
@@ -37,6 +39,7 @@ body {
 #bottom button {
 	margin-right: 30px;
 }
+
 table {
 	margin-top: 10%;
 }
@@ -44,9 +47,9 @@ table {
 #writeBoard {
 	margin-top: 10%;
 	margin: 0 auto;
-	width: 40%;
 	height: 120%;
 }
+
 </style>
 </head>
 <body>
@@ -58,21 +61,46 @@ table {
 			<div id="writeBoard">
 				<!-- 제목 -->
 				<form>
-				<label>제목</label> <input type="text" id="title" name="title"
-					readonly="readonly" value="${board.title }">
-				<!-- 왼쪽 메뉴 -->
-				<label>작성 날짜</label> <input type="text" id="writedDate"
-					name="writedDate" readonly="readonly" value="${board.writedDate }"><br>
-				<label>내용</label>
-				<textarea rows="10" cols="35">${board.content }</textarea>
-				<!-- 위치 -->
-				<label>위치</label>
-				<!-- 댓글 -->
-				<label>댓글</label> <input type="text" value="댓글 쓰기">
-				<button>댓글 작성</button>
-				<!-- 하단 버튼 -->
+					<label>제목</label> <input type="text" id="title" name="title"
+						readonly="readonly" value="${board.title }">
+					<!-- 왼쪽 메뉴 -->
+					<label>작성 날짜</label> <input type="text" id="writedDate"
+						name="writedDate" readonly="readonly" value="${board.writedDate }"><br>
+					<div id="staticImg">
+						<img src="<%=request.getContextPath()%>/upload/${board.imagePath}"
+							width="100%">
+					</div>
+					<br>
+					<br> <label>내용</label>
+					<textarea rows="10" cols="35" readonly="readonly">${board.content }</textarea>
+					<!-- 위치 -->
+					<label id="loca">위치</label>
+
+
+
+					<div id="staticMap"></div>
+					<br>
+					<br>
+
+					<div id="reply">
+						<label>댓글</label>
+						<c:forEach items="${replyUsers }" var="re">
+								${re }<br>
+						</c:forEach>
+					</div>
+
+					<input type="text" value="댓글 쓰기" id="replyInpyt">
+					<button type="button" onclick="replyBtn(${board.boardNo})">댓글
+						작성</button>
+					<!-- 하단 버튼 -->
 					<c:url value="/returnMainBoard" var="returnMainBoard"></c:url>
 					<a href="${returnMainBoard }"><input type="button" value="돌아가기"></a>
+					<c:forEach items="${hots }" var="hot">
+						<img alt="광고"
+							src="<%=request.getContextPath()%>/upload/${hot.filePath}"
+							width="100%">
+						<h3>${hot.title }</h3>
+					</c:forEach>
 				</form>
 			</div>
 		</div>
@@ -81,9 +109,65 @@ table {
 	<jsp:include page="../layout/footer2.jsp"></jsp:include>
 	<!-- footer -->
 </body>
+<script type="text/javascript"
+	src="//apis.daum.net/maps/maps3.js?apikey=d0fc516accb46bd8c6bd705b190857d0"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
-<script type="">
+<script>
+var bno = ${board.boardNo }
+
+
+
+function replyBtn(boardNo) {
+	console.log($("#replyInpyt").val());
 	
+	document.location.href = "addReply?boardNo=" + boardNo + "&contents="
+			+ $("#replyInpyt").val();
+
+}
+window.onload = function() { promiseFunction2();imageNull();};
+function imageNull(){
+	imgPath="${board.imagePath}";
+	if(imgPath==null){
+		$staticImg = $("#staticImg");
+		$staticImg.remove();	
+	}
+}
+
+function promiseFunction2(){	
+	
+	promiseName= "${board.title}";
+	latitude = ${board.latitude};
+	longitude = ${board.longitude};	
+	viewStatus = "${board.viewStatus}";
+	console.log(viewStatus+", sadfasdfa");
+	
+	
+	var markers = [
+	               {
+	                   position: new daum.maps.LatLng(latitude, longitude)
+	               },
+	               {
+	                   position: new daum.maps.LatLng(latitude, longitude), 
+	                   text: promiseName // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
+	               }
+	           ];
+
+	           var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
+	               staticMapOption = { 
+	                   center: new daum.maps.LatLng(latitude, longitude), // 이미지 지도의 중심좌표
+	                   level: 3, // 이미지 지도의 확대 레벨
+	                   marker: markers // 이미지 지도에 표시할 마커 
+	               };    
+
+	           // 이미지 지도를 생성합니다
+	           var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
+	if(viewStatus == "visible"){
+		$mainContents = $("#staticMap");loca
+		$loca = $("#loca");
+		$mainContents.remove();	
+		$loca.remove();	
+	}
+}
 </script>
 <style>
 #locationStr {
@@ -218,6 +302,49 @@ label.light {
 @media screen and (min-width: 480px) {
 	form {
 		max-width: 480px;
+	}
+}
+
+#staticMap {
+	width: 100%;
+	height: 200px;
+}
+
+/
+*
+ 
+@media screen and (max-width:389px) {
+	#staticMap {
+		width: 180px;
+		height: 120px;
+	}
+}
+
+@media screen and (min-width:390px) and (max-width:549px) {
+	#staticMap {
+		width: 200px;
+		height: 130px;
+	}
+}
+
+@media screen and (min-width:550px) and (max-width:654px) {
+	#staticMap {
+		width: 280px;
+		height: 180px;
+	}
+}
+
+@media screen and (min-width:650px) and (max-width:959px) {
+	#staticMap {
+		width: 300px;
+		height: 220px;
+	}
+}
+
+@media screen and (min-width:960px) {
+	#staticMap {
+		width: 400px;
+		height: 280px;
 	}
 }
 </style>

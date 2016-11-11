@@ -14,28 +14,8 @@
 	content="Darx Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
-
-
-
-
-
-
-
-
 
 </script>
 <link
@@ -108,6 +88,25 @@ select {
 	top: 0px;
 	right: 0px;
 }
+@media screen and (min-width: 0px) and (max-width:400px) {
+	tr>th{
+		font-size : 0.7em;
+	}
+	tr>td{
+		font-size : 0.7em;
+	}
+	.search2>form{
+		width : 100%;
+	}
+	#search{
+		height : 20%;
+	}
+	#btnViewAllUsers{
+		font-size : 0.7em;
+		width : 20%;
+		margin-top : -25%; 
+	}
+}
 </style>
 </head>
 <body>
@@ -121,16 +120,15 @@ select {
 					<c:url value="/searchFriend" var="searchFriend" />
 					<form action="searchFriend" method="post">
 						<input type="text" id="nickname" name="nickname"
-							value="닉네임을 입력해 주세요" onfocus="this.value = '';"
-							onblur="if (this.value == '') {this.value = '닉네임 입력..';}">
+							placeholder="닉네임 입력" >
 						<input type="submit" id="btnSearch" value="">
 					</form>
 				</div>
-				<c:url value="/initSearchFriend" var="initSearchFriend" />
-				<a class="searchFriend" href="initSearchFriend">
+			</div>
+			<c:url value="/initSearchFriend" var="initSearchFriend" />
+				<a href="initSearchFriend">
 					<button id="btnViewAllUsers">모든 유저 보기</button>
 				</a>
-			</div>
 			<table>
 				<tr>
 					<th align="center">유저 목록</th>
