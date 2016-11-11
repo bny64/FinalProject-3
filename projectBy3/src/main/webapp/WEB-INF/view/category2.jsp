@@ -21,12 +21,48 @@ body {
 	margin-top : 2%;
 	margin-bottom : -15%;
 	margin-left: 77%;
+	
 }
+<<<<<<< HEAD
 @media screen and (min-width: 0px) and (max-width:400px) {
 	a>button{
 		font-size : 0.7em;
 	}
 }
+=======
+
+@media screen and (max-width:389px) {
+	#searchFriend{		
+		margin-left: 50%;	
+	}
+
+}
+@media screen and (min-width:390px) and (max-width:549px){
+	#searchFriend{
+		margin-left: 56%;
+	
+	}
+}
+@media screen and (min-width:550px) and (max-width:654px){
+	#searchFriend{
+		margin-left: 65%;
+	
+	}
+}
+@media screen and (min-width:650px) and (max-width:959px){
+	#searchFriend{
+		margin-left: 70%;
+	
+	}
+}
+@media screen and (min-width:960px) {
+	#searchFriend{
+		margin-left: 77%;	
+	}
+}
+
+
+>>>>>>> branch 'master' of https://github.com/bny64/FinalProject-3.git
 </style>
 </head>
 <body>

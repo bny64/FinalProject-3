@@ -121,7 +121,7 @@ button {
 							<sform:input path="hit" />
 							<sform:input path="userNo" />
 							<sform:input path="categoryNo" />
-							<sform:input path="imagePath" />
+							<sform:input path="imagePath" />							
 						</div>
 						<div id="bottom">
 							<sform:button>수정</sform:button>
@@ -155,11 +155,6 @@ button {
 	<jsp:include page="../layout/footer2.jsp"></jsp:include>
 	<!-- footer -->
 </body>
-<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/jquery.poptrox.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/skel.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/main.js"></script>
-<script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=d0fc516accb46bd8c6bd705b190857d0"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
@@ -171,41 +166,37 @@ button {
 				+ $("#replyInpyt").val();
 
 	}
+	window.onload = function() { promiseFunction(); };
 	
-	var x = document.getElementById("demo");
-	var latitude;
-	var longitude;
-
-	window.onload = function() {
-		getLocation();
-	};
-	function getLocation() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
-		} else {
-			x.innerHTML = "Geolocation is not supported by this browser.";
-		}
-	}
 	
-	function showPosition(position) {
-		latitude = position.coords.latitude;
-		longitude = position.coords.longitude;
-		var markerPosition = new daum.maps.LatLng(position.coords.latitude,
-				position.coords.longitude);
-		var marker = {
-			position : markerPosition
-		};
-		var staticMapContainer = document.getElementById('map'), // 이미지 지도를 표시할 div  
-		staticMapOption = {
-			center : new daum.maps.LatLng(position.coords.latitude,
-					position.coords.longitude), // 이미지 지도의 중심좌표
-			level : 3, // 이미지 지도의 확대 레벨
-			marker : marker
-		// 이미지 지도에 표시할 마커 
-		};
-		var staticMap = new daum.maps.StaticMap(staticMapContainer,
-				staticMapOption);
+	function promiseFunction(){		
+	
+		
+	
+		
+		promiseName= ${board.title};
+		latitude = ${board.latitude};
+		longitude = ${board.longitude};	
+		
+		console.log("저장되는 : " +latitude+","+longitude);		
+		
+		var markers = [
+		       	    
+		       	    {
+		       	        position: new daum.maps.LatLng(latitude, longitude), 
+		       	        text: promiseName // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
+		       	    }
+		       	];
 
+		       	var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div  
+		       	    staticMapOption = { 
+		       	        center: new daum.maps.LatLng(latitude, longitude), // 이미지 지도의 중심좌표
+		       	        level: 3, // 이미지 지도의 확대 레벨
+		       	        marker: markers // 이미지 지도에 표시할 마커 
+		       	    };    
+
+		       	// 이미지 지도를 생성합니다
+		       	var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 	}
 
 </script>

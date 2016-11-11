@@ -14,8 +14,28 @@
 	content="Darx Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+
+
+
+
+
 
 </script>
 <link
@@ -79,20 +99,28 @@ select {
 	top: 0px;
 	right: 0px;
 }
-@media screen and (min-width: 0px) and (max-width:400px) {
-	a>button{
-		font-size : 0.7em;
+@media screen and (max-width:389px) {
+	#btn{		
+		font-size: 15%;
 	}
-	.container>table{
-		margin-left : 15%;
-	}
-	.search{
-		
-	}
-	.search2{
-		border : 1px yellow solid;
+
+}
+@media screen and (min-width:390px) and (max-width:549px){
+	#btn{		
+		font-size: 35%;
 	}
 }
+@media screen and (min-width:550px) and (max-width:740px){
+	#btn{		
+		font-size: 70%;
+	}
+}
+@media screen and (min-width:741px) {
+	#btn{		
+		font-size: 80%;
+	}
+}
+
 </style>
 </head>
 <body>
@@ -106,26 +134,28 @@ select {
 					<c:url value="/searchCategory" var="searchCategory" />
 					<form action="searchCategory" method="post">
 						<input type="text" id="categoryName" name="categoryName"
-							value="닉네임 입력">
+							value="닉네임을 입력해 주세요" onfocus="this.value = '';"
+							onblur="if (this.value == '') {this.value = '닉네임 입력..';}">
 						<input type="submit" id="btnSearch" value="">
 					</form>
 					
 				</div>
 			</div>
 			<c:url value="/initSearchUserCategory" var="initSearchUserCategory" />
-				<a href="initSearchUserCategory">
-					<button id="btnViewAllUsers">모든 카테고리 보기</button>
-				</a>
+				
 			<table>
 				<tr>					
-					<th align="center">이름</th>					
+					<th align="center">이름</th>	
+					<th><a href="initSearchUserCategory">
+					<button id="btn">모든 카테고리 보기</button>
+				</a></th>				
 				</tr>
 				<c:forEach var="category" items="${category}">
 					<tr>						
 						<td align="center"><label>${category.categoryName}</label></td>						
 						<td align="center"><c:url value="/insertUserCategory"	var="insertUserCategory" /> 
 							<a href="${insertUserCategory}?userNo=${category.categoryNo}">
-								<button>카테고리 추가</button>
+								<button id="btn">카테고리 추가</button>
 							</a>
 						</td>
 					</tr>
