@@ -2,6 +2,7 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import dto.Board;
 import dto.BoardLocation;
-import dto.Category;
 import dto.HotBoard;
 import dto.Reply;
+import dto.User;
 import dto.UserCategory;
 import dto.UserLocation;
 import service.BoardLoactionService;
@@ -134,8 +135,17 @@ public class MainController {
 		logger.trace("board : {}", board);
 		
 		int userNo =  (int) session.getAttribute("userNo");
-		List<Reply> re = replyService.selectReplyByBoardNo(boardNo);
-		model.addAttribute("reply", re);
+		List<Reply> re = replyService.selectReplyByBoardNo(boardNo);		
+		
+		List<String> replyUsers = new ArrayList<>();
+				
+		for(int i = 0 ; i < re.size(); i++){
+			User userTemp = userservice.searchUserByUserNo(re.get(i).getUserNo()); 
+			replyUsers.add(userTemp.getNickname()+" : "+re.get(i).getReplyContets());
+		}
+		logger.trace("replyUsers : {}", replyUsers);		
+		model.addAttribute("replyUsers", replyUsers);	
+		
 		
 		List<HotBoard> hots = hotBoardService.selectHotBoardByCategory(board.getCategoryNo());
 		model.addAttribute("hots", hots);
