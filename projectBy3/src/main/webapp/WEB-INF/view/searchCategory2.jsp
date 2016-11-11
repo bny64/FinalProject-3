@@ -14,28 +14,8 @@
 	content="Darx Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
-
-
-
-
-
-
-
-
 
 </script>
 <link
@@ -99,6 +79,20 @@ select {
 	top: 0px;
 	right: 0px;
 }
+@media screen and (min-width: 0px) and (max-width:400px) {
+	a>button{
+		font-size : 0.7em;
+	}
+	.container>table{
+		margin-left : 15%;
+	}
+	.search{
+		
+	}
+	.search2{
+		border : 1px yellow solid;
+	}
+}
 </style>
 </head>
 <body>
@@ -112,8 +106,7 @@ select {
 					<c:url value="/searchCategory" var="searchCategory" />
 					<form action="searchCategory" method="post">
 						<input type="text" id="categoryName" name="categoryName"
-							value="닉네임을 입력해 주세요" onfocus="this.value = '';"
-							onblur="if (this.value == '') {this.value = '닉네임 입력..';}">
+							value="닉네임 입력">
 						<input type="submit" id="btnSearch" value="">
 					</form>
 					

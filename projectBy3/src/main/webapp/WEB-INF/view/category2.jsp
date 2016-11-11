@@ -14,12 +14,18 @@
 
 body {
 	background-color: #1B1B1D;
+	height : 100%;
 }
 
 #searchFriend{
 	margin-top : 2%;
 	margin-bottom : -15%;
 	margin-left: 77%;
+}
+@media screen and (min-width: 0px) and (max-width:400px) {
+	a>button{
+		font-size : 0.7em;
+	}
 }
 </style>
 </head>
