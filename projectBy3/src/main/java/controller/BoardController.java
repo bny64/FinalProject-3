@@ -37,7 +37,7 @@ import service.ReplyService;
 import service.UserService;
 
 @Controller
-@SessionAttributes({ "MyBoard","board" })
+@SessionAttributes({ "MyBoard" })
 public class BoardController {
 
 	static Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -85,6 +85,7 @@ public class BoardController {
 
 		Board board = new Board(0, "", 0, "", null, userNo, 0, "", null, "visible", 0, 0, null, null);
 		session.setAttribute("board", board);
+		model.addAttribute("board", board);
 		return "writeBoard3";
 	}
 

@@ -13,7 +13,7 @@
 					<li><a href="${writeBoard }">WriteBoard</a></li>
 					<li><a href="blog.html">MyBoard</a></li>
 					<c:url value="/mylocation" var="myLocation"/>
-					<li><a href="${myLocation }">saveLocation</a></li>
+					<li><a href="${myLocation }">SaveLocation</a></li>
 					<li><a id="btnGetAllBoard">AllBoard</a></li>
 					<c:url value="/promiseBoard" var="promiseBoard"/>
 					<li><a href="${promiseBoard }">Promise</a></li>
