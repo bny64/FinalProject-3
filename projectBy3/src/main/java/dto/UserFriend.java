@@ -18,4 +18,5 @@ public class UserFriend {
 	String userName;
 	String nickname;
 	private Set<UserFriend> usersSet; 
+	String profilePath;
 }

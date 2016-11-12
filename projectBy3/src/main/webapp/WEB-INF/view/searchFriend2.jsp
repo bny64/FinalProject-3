@@ -77,7 +77,9 @@ select {
 	margin-left: 10%;
 	float: left;
 }
-
+td>img {
+	height: 10%; // 이걸 고쳐!
+}
 .search2 input[type="submit"] {
 	background: url('<%=request.getContextPath()%>/img/sprit-1.png')
 		no-repeat 2px 4px rgba(78, 73, 73, 0.99);
@@ -137,7 +139,9 @@ select {
 				</tr>
 				<c:forEach var="users" items="${users}">
 					<tr>
-						<td align="center"><label>프로필 사진</label></td>
+						<td align="center">
+								<img src="<%=request.getContextPath()%>/upload/${users.profilePath}" >
+						</td>
 						<td align="center"><label>${users.userName}</label></td>
 						<td align="center"><label>${users.nickname}</label></td>
 						<td align="center"><c:url value="/insertFriend"

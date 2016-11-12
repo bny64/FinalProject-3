@@ -72,8 +72,7 @@ button {
 }
 
 td>img {
-	width: 30%;
-	height: 30%;
+	height: 10%; // 이걸 고쳐!
 }
 
 .delete {
@@ -107,6 +106,9 @@ td>img {
 	.friendList>table{
 		margin-top : 20%;
 	}
+}
+#pathImg{
+	height: 30%;
 }
 </style>
 </head>
@@ -145,7 +147,10 @@ td>img {
 					</tr>
 					<c:forEach var="friends" items="${friends}">
 						<tr>
-							<td align="center"><label>프로필 사진</label></td>
+							<!-- <td align="center"><label>프로필 사진</label></td> -->
+							<td align="center">
+								<img src="<%=request.getContextPath()%>/upload/${friends.profilePath}" >
+							</td>
 							<td align="center"><label>${friends.userName}</label></td>
 							<td align="center"><label>${friends.nickname}</label></td>
 							<td align="left"><label>알람 설정</label></td>

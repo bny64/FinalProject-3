@@ -61,7 +61,7 @@ public class UserFriendDaoTest {
 	
 	@Test
 	public void insertFriendTest(){
-		UserFriend userFriend = new UserFriend(0,3,"unknown",1,"on","","",null);
+		UserFriend userFriend = new UserFriend(0,3,"unknown",1,"on","","",null,"");
 		int result = ufDao.insertFriend(userFriend);
 		logger.trace("result : {}", result);
 		assertThat(result, is(1));
