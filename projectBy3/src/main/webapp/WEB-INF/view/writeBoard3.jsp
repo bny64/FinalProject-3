@@ -23,7 +23,7 @@
 				<c:url value="/writeBoard" var="writeBoard" />
 				<sform:form method="post" action="writeBoard" modelAttribute="board"
 					id="inputForm" enctype="multipart/form-data">
-					
+
 					<h1>글쓰기</h1>
 
 					<fieldset>
@@ -37,21 +37,16 @@
 						<sform:label path="categoryNo">카테고리:</sform:label>
 						<sform:select path="categoryNo" multiple="" items="${category }"
 							itemLabel="categoryName" itemValue="categoryNo" />
-						<label>위치: </label>
-						<c:url value="/getMyLocation" var="getMyLocation" />
-						<a href="${getMyLocation }" id="locationLink"><img
-							id="getMyLocation"
-							src="<%=request.getContextPath()%>/img/gps.jpg"></a>
-						<h2 id="locationStr">${locationName }</h2>
 					</fieldset>
-					
+
 					<fieldset>
-							<legend>
-								<span class="number">2</span>사진 등록
-							</legend>
-						<sform:input path="file" type="file"/><br>
+						<legend>
+							<span class="number">2</span>사진 등록
+						</legend>
+						<sform:input path="file" type="file" />
+						<br>
 					</fieldset>
-					
+
 
 					<fieldset>
 						<legend>
@@ -59,14 +54,22 @@
 						</legend>
 						<label>게시물 보임 여부</label>
 						<sform:select path="viewStatus" id="viewStatus">
-							<sform:option value="visible">그냥 보이기</sform:option>
-							<sform:option value="hidden" selected="selected">숨기기</sform:option>
+							<sform:option value="visible" selected="selected">그냥 보이기</sform:option>
+							<sform:option value="hidden">숨기기</sform:option>
 						</sform:select>
-						<label>느린우편 서비스:</label> <input type="checkbox" id="isSlowMessage"
-							name="isSlowMessage"> <label class="light"
-							for="isSlowMessage">사용하기</label> <br>
-						<sform:input path="targetDate"
-							id="targetDate" placeholder="ex)2011-01-22 16:00" />
+						<div id="isViewStatus">
+							<label>위치: </label>
+							<c:url value="/getMyLocation" var="getMyLocation" />
+							<a href="${getMyLocation }" id="locationLink"><img
+								id="getMyLocation"
+								src="<%=request.getContextPath()%>/img/gps.jpg"></a>
+							<h2 id="locationStr">${locationName }</h2>
+							<label>느린우편 서비스:</label> <input type="checkbox"
+								id="isSlowMessage" name="isSlowMessage"> <label
+								class="light" for="isSlowMessage">사용하기</label> <br>
+							<sform:input path="targetDate" id="targetDate"
+								placeholder="ex)2011-01-22 16:00" />
+						</div>
 					</fieldset>
 					<div id="hidden">
 						<sform:input path="boardNo" />
@@ -97,13 +100,26 @@
 		}
 
 	});
+	
+	$("#viewStatus").change(function(){
+		if ($("#viewStatus").val() == "visible") {
+			$("#isViewStatus").css("display","none");
+		} else {
+			$("#isViewStatus").css("display","block");				
+		}
+	});
 </script>
 <style>
-#locationStr{
+#isViewStatus{
+	display: none;
+}
+
+#locationStr {
 	position: relative;
-	top : -30px;
+	top: -30px;
 	left: 55px
 }
+
 #hidden {
 	display: none;
 }
@@ -188,7 +204,7 @@ button {
 	border: 1px solid #3ac162;
 	border-width: 1px 1px 3px;
 	box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
-	margin:0%;
+	margin: 0%;
 	margin-bottom: 10px;
 }
 

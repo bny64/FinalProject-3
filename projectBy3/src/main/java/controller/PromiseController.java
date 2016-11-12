@@ -54,11 +54,20 @@ public class PromiseController {
 	@RequestMapping(value="/updatepromiseStatus", method=RequestMethod.POST)
 	public @ResponseBody String updatepromiseStatus(@RequestParam String status, @RequestParam int promiseId){
 		
-		int result = promiseService.updateStatus(promiseId, status);
-		logger.trace("성공:{}",result);
-		String str = promiseService.selectStatus(promiseId);
-		logger.trace("str:{}",str);
-		return str;
+		if("거절".equals(status)){
+			logger.trace("status : {}", status);
+			int result = promiseService.deletePromise(promiseId);
+			logger.trace("거절 후 삭제 성공:{}",result);
+			
+			return "delete";
+		} else {
+			int result = promiseService.updateStatus(promiseId, status);
+			logger.trace("성공:{}",result);
+			
+			String str = promiseService.selectStatus(promiseId);
+			logger.trace("str:{}",str);
+			return str;
+		}
 	}
 	@RequestMapping(value="/deletePromise", method=RequestMethod.GET)
 	public String deletePromise(HttpSession session, Model model, @RequestParam int promiseId){

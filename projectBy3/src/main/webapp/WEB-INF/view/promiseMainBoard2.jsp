@@ -17,8 +17,10 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
 		
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 </script>
@@ -30,11 +32,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 #content {
 	width: 80%;
 	margin-top: 10%;
-	margin : 0 auto;
+	margin: 0 auto;
 	clear: both;
 }
 
-#map {	
+#map {
 	margin: 0 auto;
 	margin-left: 10%;
 }
@@ -63,8 +65,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	color: white;
 	font-size: 1.2em;
 }
-table{
-	margin-botton : 20%;
+
+table {
+	margin-botton: 20%;
 	width: 100%;
 }
 
@@ -79,12 +82,11 @@ table{
 		width: 330px;
 		height: 200px;
 	}
-	table{
-		margin-botton : 20%;
+	table {
+		margin-botton: 20%;
 	}
-	
-	td input{
-		width : 80%;
+	td input {
+		width: 80%;
 	}
 }
 </style>
@@ -116,11 +118,14 @@ table{
 							name="${userpromise.promiseStatus}">
 
 							<option
-								<c:if test='${userpromise.promiseStatus == "약속 완료"}'>selected="selected"</c:if>
-								value="약속 완료">약속 완료</option>
+								<c:if test='${userpromise.promiseStatus == "보류"}'>selected="selected"</c:if>
+								value="보류">보류</option>
 							<option
-								<c:if test='${userpromise.promiseStatus == "약속 중"}'>selected="selected"</c:if>
-								value="약속 중">약속 중</option>
+								<c:if test='${userpromise.promiseStatus == "거절"}'>selected="selected"</c:if>
+								value="거절">거절</option>
+							<option
+								<c:if test='${userpromise.promiseStatus == "수락"}'>selected="selected"</c:if>
+								value="수락">수락</option>
 						</select>
 
 					</c:forEach>
@@ -157,11 +162,6 @@ table{
 	<jsp:include page="../layout/footer2.jsp"></jsp:include>
 	<!-- footer -->
 </body>
-<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/jquery.poptrox.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/skel.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/main.js"></script>
-<script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=d0fc516accb46bd8c6bd705b190857d0"></script>
 <script type="text/javascript">
@@ -181,7 +181,11 @@ var promiseName;
 				promiseId : $(this).attr("data-item")
 			},
 			success : function(res){
-				$(this).val(res);
+				if(res == "delete"){
+					location.reload();
+				} else {
+					$(this).val(res);	
+				}
 			},
 			error:function(xhr, status, error){
 				alert("잘못된 접근입니다");
@@ -190,9 +194,6 @@ var promiseName;
 /* 		console.log($(this).attr("data-item"));
 		console.log($(this).val()); */
 	});
-
-
-
 
 
 $("#ok").on("click", function(){		
