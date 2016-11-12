@@ -12,6 +12,9 @@
 <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet"
 	type="text/css" media="all" />
 </head>
+<style>
+	
+</style>
 <body>
 	<jsp:include page="../layout/header2.jsp"></jsp:include>
 	<!-- content -->

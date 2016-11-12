@@ -82,7 +82,7 @@ td>img {
 }
 
 .content-top {
-	height: 80%;
+	height: 75%;
 }
 #searchFriend{
 	margin-top : 8%;

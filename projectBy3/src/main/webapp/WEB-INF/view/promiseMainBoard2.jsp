@@ -89,6 +89,10 @@ table {
 		width: 80%;
 	}
 }
+
+.content-top{
+	height: 610px;
+}
 </style>
 <script src="http://code.jquery.com/jquery.js"></script>
 <link

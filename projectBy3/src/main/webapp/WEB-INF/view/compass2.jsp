@@ -45,7 +45,7 @@
 }
 
 .content-top {
-	height: 10%;
+	height: 610px;
 }
 
 .dot {
