@@ -65,7 +65,7 @@ public class UserFriendServiceImpl implements UserFriendService {
 		logger.trace("serachResult : {}", searchResult);
 		
 		if("Friend Not Found".equals(searchResult)){
-			UserFriend userFriend = new UserFriend(0,friendNo,"friend",userNo,"on","","",null);
+			UserFriend userFriend = new UserFriend(0,friendNo,"friend",userNo,"on","","",null,"");
 			return ufDao.insertFriend(userFriend);
 		} else {
 			throw new FriendNotFoundException();			

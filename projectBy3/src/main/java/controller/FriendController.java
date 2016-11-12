@@ -49,6 +49,11 @@ public class FriendController {
 		logger.trace("class : FriendController, method : friendList");
 		int userNo = (int) session.getAttribute("userNo");
 		List<UserFriend> friends = service.friendList(userNo);
+		for(int i = 0 ; i < friends.size() ; i++){
+			friends.get(i).setProfilePath(userService.selectUserProfilePathByUserNo(friends.get(i).getFriendNo()));	
+		}
+		
+		
 		model.addAttribute("friends", friends);
 //		logger.trace("alarm : {}", friends.get(0).getAlarm());
 		return "friendList2";

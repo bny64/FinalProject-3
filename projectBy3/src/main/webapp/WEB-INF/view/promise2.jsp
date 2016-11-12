@@ -53,6 +53,7 @@ label {
 
 button {
 	margin: 0 auto;
+	font-size: 0.7em;
 }
 
 #information {
@@ -72,10 +73,9 @@ td>input {
 	margin-bottom: 3%;
 }
 
-button {
-	padding: 0 auto;
+#btnRegister{
+	width: 100%;
 }
-
 
 #friendList {
 	margin-top: 17%;
@@ -138,8 +138,9 @@ button {
 									items="${friends }" itemLabel="userName" itemValue="userNo" /></td>
 						</tr>
 						<tr>
-							<td colspan="2"><sform:button>약속 등록</sform:button>
-							<td colspan="1"><input id="comeback" type="button" onclick="closeBtn()" value="돌아가기">
+							<td colspan="1"><sform:button id="btnRegister">약속 등록</sform:button>
+							<!-- <td colspan="1"><input id="comeback" type="button" onclick="closeBtn()" value="돌아가기"> -->
+							<td colspan="1"><button type="button" onclick="backBtn()">취소</button>
 						<tr>
 					</table>
 				</sform:form>
@@ -160,6 +161,14 @@ button {
 	var map;
 	var marker;
 	var markers = [];
+	
+	
+	function backBtn() {
+		document.location.href = "promiseBoard";
+	}
+	
+	
+	
 
 	var infowindow = new daum.maps.InfoWindow({
 		zIndex : 1
