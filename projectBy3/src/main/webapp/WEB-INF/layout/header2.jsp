@@ -2375,7 +2375,7 @@ p.conm {
 	}
 }
 /*-- responsive-mediaquries --*/
-@media ( max-width :480px) {
+/* @media ( max-width :480px) {
 	.header-top {
 		position: relative;
 		top: 2em;
@@ -2525,10 +2525,10 @@ p.conm {
 	.details-top h4 {
 		font-size: 1.3em;
 	}
-}
+} */
 /*-- responsive-mediaquries --*/
-@media ( max-width :320px) {
-	.hedaer-top {
+@media ( max-width :480px) {
+	.header-top {
 		position: relative;
 		top: 1em;
 	}
@@ -2539,7 +2539,7 @@ p.conm {
 	.head-nav span.menu {
 		top: 23px;
 		right: 20px;
-	}
+	} 
 	.amaze {
 		width: 50%;
 		float: left;
@@ -2578,7 +2578,7 @@ p.conm {
 		margin-top: 0;
 	}
 	.head-nav ul {
-		top: 4.7em;
+		top: 8.6em;
 	}
 	.slid-data {
 		bottom: 128px;

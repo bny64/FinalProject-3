@@ -78,7 +78,7 @@ select {
 	float: left;
 }
 td>img {
-	height: 10%; // 이걸 고쳐!
+	height: 10%;
 }
 .search2 input[type="submit"] {
 	background: url('<%=request.getContextPath()%>/img/sprit-1.png')
