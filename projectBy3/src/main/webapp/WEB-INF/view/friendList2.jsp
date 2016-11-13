@@ -72,7 +72,9 @@ button {
 }
 
 td>img {
-	height: 10%; // 이걸 고쳐!
+	height: 75px;
+	width: 75px;
+	padding: 2px;
 }
 
 .delete {

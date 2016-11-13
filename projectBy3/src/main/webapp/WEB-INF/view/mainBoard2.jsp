@@ -80,7 +80,7 @@ function loadAllBoard(){
 			success:function(res){
 				console.log(res);
 				if(res.length==0){
-					alert("끝");
+					console.log("끝");
 					loadData = false;
 				}else{
 					++index;
@@ -109,7 +109,7 @@ function loadAllBoard(){
 			});
 			},
 			error:function(request,status,error){
-			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+			    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
 		});
 
 }
@@ -126,7 +126,7 @@ function loadMyBoard(){
 			success:function(res){
 				console.log(res);
 				if(res.length==0){
-					alert("끝");
+					console.log("끝");
 					loadData = false;
 				}else{
 					++index;

@@ -120,6 +120,11 @@ public class FriendController {
 		
 		// friendList로 보내기 위한 초기값.
 		List<UserFriend> friends = service.friendList(myUserNo);
+		
+		for(int i = 0 ; i < friends.size() ; i++){
+			friends.get(i).setProfilePath(userService.selectUserProfilePathByUserNo(friends.get(i).getFriendNo()));	
+		}
+		
 		model.addAttribute("friends", friends);
 		
 		return "friendList2";
