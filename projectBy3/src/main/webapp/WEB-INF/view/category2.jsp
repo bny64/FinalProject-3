@@ -8,7 +8,7 @@
 <title>사용자 카테고리</title>
 <style>
 .catagers li a {
-	font-size: 1.4em;
+	font-size: 1.2em;
 }
 
 
@@ -25,7 +25,7 @@ body {
 }
 @media screen and (min-width: 0px) and (max-width:400px) {
 	a>button{
-		font-size : 0.7em;
+		font-size : 0.6em;
 	}
 }
 
