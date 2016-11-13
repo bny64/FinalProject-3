@@ -93,6 +93,8 @@ td>img {
 	.friendList{
 		width : 120%;
 		margin-left: -8%;
+		overflow: auto;
+		height: 70%;
 	}
 	tr>th{
 		font-size: 0.7em;

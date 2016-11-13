@@ -15,7 +15,7 @@
 			rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<jsp:include page="../layout/header2.jsp"></jsp:include>
+		<jsp:include page="../layout/headerDoor.jsp"></jsp:include>
 			<div class="content-top">
 				<div class="container">
 					<br><br>

@@ -40,7 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header-right">
 			<div class="header-top">
 				<ul>
-					<li><a href="#"><i class="logout"> </i></a></li>
+					<c:url value="/logout" var="logout" />
+					<li><a href="logout"><i class="logout"> </i></a></li>
 					<li><a href="#"><i class="setting"> </i></a></li>
 					<c:url value="/friendList" var="friendList" />
 					<li><a href="${friendList}"><i class="friend"> </i></a></li>

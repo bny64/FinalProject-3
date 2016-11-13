@@ -109,6 +109,11 @@ td>img {
 		margin-top : -25%; 
 	}
 }
+#tableScroll{
+	overflow: auto;
+	width: 100%;
+	height: 70%;
+}
 </style>
 </head>
 <body>
@@ -131,7 +136,8 @@ td>img {
 				<a href="initSearchFriend">
 					<button id="btnViewAllUsers">모든 유저 보기</button>
 				</a>
-			<table>
+			<div id="tableScroll">
+				<table>
 				<tr>
 					<th align="center">유저 목록</th>
 					<th align="center">이름</th>
@@ -152,6 +158,7 @@ td>img {
 					</tr>
 				</c:forEach>
 			</table>
+			</div>
 		</div>
 	</div>
 	<!-- footer -->
