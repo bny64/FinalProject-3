@@ -109,4 +109,18 @@ public class UserDaoImpl implements UserDao {
 		String stmt = NAME_SPACE +"selectUserFriends";
 		return template.selectList(stmt,userNo);
 	}
+
+	@Override
+	public List<User> selectNotFriends(int userNo) {
+		logger.trace("UserDaoImpl - selectNotFriends");
+		String stmt = NAME_SPACE +"selectNotFriends";
+		return template.selectList(stmt,userNo);
+	}
+
+	@Override
+	public List<User> selectIfYouKnow(int userNo) {
+		logger.trace("UserDaoImpl - selectIfYouKnow");
+		String stmt = NAME_SPACE +"selectIfYouKnow";
+		return template.selectList(stmt,userNo);
+	}
 }

@@ -168,5 +168,17 @@ public class UserServiceImpl implements UserService {
 		logger.trace("UserServiceImpl - selectUserFriends");
 		return uDao.selectUserFriends(userNo);
 	}
+
+	@Override
+	public List<User> selectNotFriends(int userNo) {
+		logger.trace("UserServiceImpl - selectUserFriends");
+		return uDao.selectNotFriends(userNo);
+	}
+
+	@Override
+	public List<User> selectIfYouKnow(int userNo) {
+		logger.trace("UserServiceImpl - selectIfYouKnow");
+		return uDao.selectIfYouKnow(userNo);
+	}
 	
 }

@@ -18,4 +18,6 @@ public interface UserDao {
 	public User selectUserProfilePathByUserNo(int userNo);
 	public User searchUserByUserNo(int userNo);
 	public List<User> selectUserFriends(int userNo);
+	public List<User> selectNotFriends(int userNo);
+	public List<User> selectIfYouKnow(int userNo);
 }

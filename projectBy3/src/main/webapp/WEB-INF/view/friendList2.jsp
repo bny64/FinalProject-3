@@ -180,6 +180,36 @@ td>img {
 					<%-- 		</c:forEach> --%>
 				</table>
 			</div>
+			
+			<!-- 은구가 추가한 코드 -->
+			
+			<div class="friendList">
+				<table>
+					<tr>
+						<th align="center" colspan="3">알수도 있는 친구</th>
+					</tr>
+					<c:forEach var="ifYouKnow" items="${ifYouKnows}">
+						<tr>
+							<!-- <td align="center"><label>프로필 사진</label></td> -->
+							<td align="center">
+								<img src="<%=request.getContextPath()%>/upload/${ifYouKnow.profilePath}" >
+							</td>
+							<td align="center"><label>${ifYouKnow.userName}</label></td>
+							<td align="center"><label>${ifYouKnow.nickname}</label></td>
+							<td align="center"><c:url value="/insertFriend"
+								var="insertFriend" /> <a
+								href="${insertFriend}?userNo=${ifYouKnow.userNo}">
+								<button>친구 추가</button>
+							</a></td>
+							
+						</tr>
+					</c:forEach>
+					<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
+					<%-- 		</c:forEach> --%>
+				</table>
+			</div>
+			
+			<!-- 1                                                    1 -->
 		</div>
 	</div>
 	<!-- footer -->

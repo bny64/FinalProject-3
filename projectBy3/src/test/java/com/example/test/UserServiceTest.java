@@ -149,6 +149,14 @@ public class UserServiceTest {
 		int userNo = 108;
 		List<User> users = service.selectUserFriends(userNo);
 		logger.trace("users :{}",users);
+		
+	}
+	@Test
+	public void selectIfYouKnow(){
+		int userNo = 162;
+		List<User> users = service.selectIfYouKnow(userNo);
+		logger.trace("users :{}",users);
+		
 	}
 	
 	

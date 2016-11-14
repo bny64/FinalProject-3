@@ -53,7 +53,8 @@ public class FriendController {
 			friends.get(i).setProfilePath(userService.selectUserProfilePathByUserNo(friends.get(i).getFriendNo()));	
 		}
 		
-		
+		List<User> ifYouKnows = userService.selectIfYouKnow(userNo);	
+		model.addAttribute("ifYouKnows", ifYouKnows);
 		model.addAttribute("friends", friends);
 //		logger.trace("alarm : {}", friends.get(0).getAlarm());
 		return "friendList2";
@@ -80,6 +81,12 @@ public class FriendController {
 		service.deleteFriend(friendNo);
 		int userNo = (int) session.getAttribute("userNo");
 		List<UserFriend> friends = service.friendList(userNo);
+		for(int i = 0 ; i < friends.size() ; i++){
+			friends.get(i).setProfilePath(userService.selectUserProfilePathByUserNo(friends.get(i).getFriendNo()));	
+		}
+		
+		List<User> ifYouKnows = userService.selectIfYouKnow(userNo);	
+		model.addAttribute("ifYouKnows", ifYouKnows);
 		model.addAttribute("friends", friends);
 		return "friendList2";
 	}
@@ -87,8 +94,8 @@ public class FriendController {
 	@RequestMapping(value="/initSearchFriend", method=RequestMethod.GET)
 	public String initSearchFriend(Model model, HttpSession session){
 		logger.trace("class : FriendController, method : initSearchFriend");
-		
-		List<User> users =  userService.AllUser();
+		int userNo = (int) session.getAttribute("userNo");
+		List<User> users =  userService.selectNotFriends(userNo);
 		model.addAttribute("users", users);
 		
 		return "searchFriend2";
@@ -124,7 +131,8 @@ public class FriendController {
 		for(int i = 0 ; i < friends.size() ; i++){
 			friends.get(i).setProfilePath(userService.selectUserProfilePathByUserNo(friends.get(i).getFriendNo()));	
 		}
-		
+		List<User> ifYouKnows = userService.selectIfYouKnow(myUserNo);	
+		model.addAttribute("ifYouKnows", ifYouKnows);
 		model.addAttribute("friends", friends);
 		
 		return "friendList2";

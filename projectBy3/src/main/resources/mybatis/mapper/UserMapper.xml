@@ -19,6 +19,28 @@
 		from users
 	</select>
 	
+	<select id="selectNotFriends" resultMap="usersBase" parameterType="int">	
+	select * 
+	from users 
+	where (USER_NO not in(select USER_FRIEND.FRIEND_NO 
+						from USER_FRIEND 
+						where USER_NO = #{userNo}))and user_no !=#{userNo}
+	
+	</select>
+	<select id="selectIfYouKnow" resultMap="usersBase" parameterType="int">
+		select * 
+		from (select * 
+				from users 
+				where user_no in(select USER_FRIEND.USER_NO 
+									from USER_FRIEND 
+									where FRIEND_NO =#{userNo}))
+		where user_no not in (select FRIEND_NO 
+								from USER_FRIEND 
+								where USER_NO=#{userNo})
+	</select>
+	
+	
+	
 	
 	<insert id="insertUser" parameterType="user">
 		insert into users(user_no, user_id, password, nickname, user_name, tel, email, birthdate,profile_path)

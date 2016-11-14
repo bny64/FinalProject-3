@@ -60,6 +60,9 @@ body {
 .content-top {
 	height: 610px;
 }
+.catagers li a {
+		font-size: 1.4em;
+}
 </style>
 </head>
 <body>
@@ -80,8 +83,7 @@ body {
 					<c:forEach items="${categories}" var="usercategory">
 						<li><a
 							href="${scategoryBoard}?categoryNo=${usercategory.categoryNo}">${usercategory.category.categoryName }</a>
-							<a
-							style="float: right; font-size: 0.5em; margin-top: 1%; margin-right: 2%;"
+							<a	style="float: right; font-size: 0.4em; margin-right: 2%; height: 65% "
 							href="${deleteUserCategory}?categoryNo=${usercategory.categoryNo}">삭제</a>
 						</li>
 					</c:forEach>

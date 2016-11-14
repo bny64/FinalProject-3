@@ -2612,7 +2612,7 @@ p.conm {
 		font-size: 0.875em;
 	}
 	.catagers li a {
-		font-size: 0.875em;
+		font-size: 1.4em;
 	}
 	.sin-lef h3 {
 		font-size: 1em;
