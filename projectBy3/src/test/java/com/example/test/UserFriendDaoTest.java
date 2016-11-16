@@ -42,15 +42,16 @@ public class UserFriendDaoTest {
 		int result;
 		Map<String, Object> friend = new HashMap<>();
 		friend.put("alarm", "on");
-		friend.put("friendNo", 1);
+		friend.put("friendNo", 162);
+		friend.put("userNo", 163);
 		result = ufDao.updateAlarm(friend);
 		logger.trace("result : {}", result);
 	}
-	@Test
+	/*@Test
 	public void selectAlarmTest(){
 		String alarm = ufDao.selectAlarm(1);
 		logger.trace("result : {}", alarm);
-	}
+	}*/
 	
 	@Test
 	@Transactional

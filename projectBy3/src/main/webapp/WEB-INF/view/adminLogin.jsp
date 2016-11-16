@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>관리자 로그인 페이지</title>
 <link href="<%= request.getContextPath() %>/css/main.css" type="text/css" rel="stylesheet">
+
 <style type="text/css">
 	body {
 		background-image: url("<%=request.getContextPath()%>/img/bg.jpg");

@@ -48,7 +48,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/adminMain")
 	public String admain(){
-		return "adminMain";
+		return "adminMain2";
 	}
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public String adminLogin(Model model, HttpSession session, @RequestParam String id, @RequestParam String password) {
@@ -57,7 +57,7 @@ public class AdminController {
 		Admin admin = new Admin();
 		
 		if(id.equals(admin.getAdminId())&&password.equals(admin.getPassword())){
-			return "adminMain";
+			return "adminMain2";
 		}else{
 			return "adminLogin";
 		}
@@ -95,12 +95,12 @@ public class AdminController {
 		logger.trace("class : BoardController, method : deleteBoard");	
 		result = boardService.deleteBoardByBoardNo(boardNo);
 		logger.trace("삭제 결과 : {}", result);
-		return "adminMain";
+		return "adminMain2";
 	}
 	
 	@RequestMapping(value="/returnAdminMainBoard", method=RequestMethod.GET)
 	public String returnAdminMainBoard(){		
-		return "adminMain";
+		return "adminMain2";
 	}
 	
 	@RequestMapping("/adminMemberInit")
@@ -204,16 +204,26 @@ public class AdminController {
 		int result = hotBoardService.insertHotBoard(hotBoard);
 		logger.trace("성공:{}",result);
 		
-		return "adminMain";
+		return "adminMain2";
 	}
 	
 	
 	@RequestMapping(value="/adminHotBoard", method=RequestMethod.GET)
 	public String adminAdBoard(Model model,HttpSession session){
+		logger.trace("class : AdminController, method : adminAdBoard");
 		
-		List<HotBoard> hot =  hotBoardService.selectAllHotBoard();
-		model.addAttribute("hot", hot);
 		return "adminHotBoard";			
+	}
+	
+	@RequestMapping(value="/getAllHotBoard", method=RequestMethod.GET)
+	public @ResponseBody List<HotBoard> getAllHotBoard(Model model,HttpSession session){
+		logger.trace("class : AdminController, method : getAllHotBoard");
+		List<HotBoard> hot =  hotBoardService.selectAllHotBoard();
+		
+		logger.trace("hotBoard : {}", hot);
+		
+		//model.addAttribute("hot", hot);
+		return hot;			
 	}
 
 	

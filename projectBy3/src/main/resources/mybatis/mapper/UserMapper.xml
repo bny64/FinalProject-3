@@ -9,7 +9,7 @@
 		where user_id=#{userId}
 	</select>
 	<select id="selectUserByNickname" resultMap="usersBase" parameterType="String">
-		select user_no, user_id, password, nickname, user_name, tel, email, birthdate
+		select user_no, user_id, password, nickname, user_name, tel, email, birthdate, profile_path
 		from users
 		where nickname=#{nickname}
 	</select>

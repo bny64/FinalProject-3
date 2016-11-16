@@ -91,11 +91,11 @@
 		
 
 		function loadAllBoard(){	
-			<c:url value = "/adminwriteHotBoard" var="adminwriteHotBoard"/>
+			<c:url value = "/getAllHotBoard" var="getAllHotBoard"/>
 			console.log("로드 데이터");
 				$.ajax({
 					type : "get",
-					url : "${adminwriteHotBoard}",					
+					url : "${getAllHotBoard}",					
 					success:function(res){
 																
 						$left = $("#left");
@@ -104,7 +104,7 @@
 						$(res).each(function(idx,data){
 							console.log(data);
 							$newOne = "<a data-poptrox='iframe,600x400' href='#" 
-							 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
+							 		+ "'> <img src='<%=request.getContextPath()%>/upload/"+data.filePath+"' alt='' />"
 						     		+"<h3>" + data.title + "</h3></a>";						
 				
 							switch(idx%3){

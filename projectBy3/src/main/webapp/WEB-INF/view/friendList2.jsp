@@ -164,6 +164,7 @@ td>img {
 							<th align="center">친구 목록</th>
 							<th align="center">이름</th>
 							<th align="center">닉네임</th>
+							<th align="center">알림 설정</th>
 						</tr>
 						<c:forEach var="friends" items="${friends}">
 							<tr>
@@ -173,7 +174,7 @@ td>img {
 								</td>
 								<td align="center"><label>${friends.userName}</label></td>
 								<td align="center"><label>${friends.nickname}</label></td>
-								<td align="left"><label>알람 설정</label></td>
+								
 								<td align="left"><select id="alarm"
 									data-item="${friends.friendNo }" name="${friends.alarm}">
 										<%-- <option selected="selected" value="">${friends.alarm }</option> --%>

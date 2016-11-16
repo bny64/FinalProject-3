@@ -1,5 +1,6 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,9 +39,12 @@ public class UserFriendServiceImpl implements UserFriendService {
 	}
 
 	@Override
-	public String selectAlarm(int friendNo) {
+	public String selectAlarm(int friendNo, int userNo) {
 		logger.trace("UserFriendServiceImpl - selectAlarm() 동작");
-		return ufDao.selectAlarm(friendNo);
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("userNo", userNo);
+		filter.put("friendNo", friendNo);
+		return ufDao.selectAlarm(filter);
 	}
 
 	@Override

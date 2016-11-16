@@ -11,13 +11,13 @@
 		where f.user_no=#{userNo}
 	</select>
 	<update id="updateAlarm" parameterType="hashmap">
-		update user_friend set alarm=#{alarm} where friend_no=#{friendNo}
+		update user_friend set alarm=#{alarm} where friend_no=#{friendNo} and user_no=#{userNo}
 	</update>
 	
-	<select id="selectAlarm" parameterType="int" resultType="String">
+	<select id="selectAlarm" parameterType="map" resultType="String">
 		select alarm
 		from user_friend
-		where friend_no=#{friendNo}
+		where friend_no=#{friendNo} and user_no=#{userNo}
 	</select>
 	
 	<delete id="deleteFriend" parameterType="int">

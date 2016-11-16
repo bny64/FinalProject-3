@@ -36,10 +36,10 @@ public class UserFriendDaoImpl implements UserFriendDao {
 	}
 
 	@Override
-	public String selectAlarm(int friendNo) {
+	public String selectAlarm(Map<String, Object> filter) {
 		logger.trace("UserFriendDaoImpl - selectAlarm 동작");
 		String stmt = USERFRIEND_NS + "selectAlarm";
-		return template.selectOne(stmt, friendNo);
+		return template.selectOne(stmt, filter);
 	}
 
 	@Override
@@ -55,5 +55,6 @@ public class UserFriendDaoImpl implements UserFriendDao {
 		String stmt = USERFRIEND_NS + "insertFriend";
 		return template.insert(stmt, userFriend);
 	}
+
 
 }

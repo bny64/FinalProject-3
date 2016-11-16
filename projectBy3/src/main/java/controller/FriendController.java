@@ -54,6 +54,7 @@ public class FriendController {
 		}
 		
 		List<User> ifYouKnows = userService.selectIfYouKnow(userNo);	
+		logger.trace("fuking : {} ", friends);
 		model.addAttribute("ifYouKnows", ifYouKnows);
 		model.addAttribute("friends", friends);
 //		logger.trace("alarm : {}", friends.get(0).getAlarm());
@@ -61,18 +62,17 @@ public class FriendController {
 	}
 	
 	@RequestMapping(value="/updateAlarm", method=RequestMethod.POST)
-	public @ResponseBody String updateAlarm(@RequestParam String alarm, 
+	public @ResponseBody String updateAlarm(HttpSession session, @RequestParam String alarm, 
 																		  @RequestParam int friendNo){
 		int result;
 		logger.trace("class : FriendController, method : updateAlarm");
-		logger.trace("alarm : {}",service.selectAlarm(friendNo));
 		logger.trace("friendNo : {}", friendNo);
 		Map<String, Object> friend = new HashMap<>();
 		friend.put("alarm", alarm);
 		friend.put("friendNo", friendNo);
+		friend.put("userNo", (int) session.getAttribute("userNo"));
 		result = service.updateAlarm(friend);
-		logger.trace("alarm : {}", service.selectAlarm(friendNo));
-		return service.selectAlarm(friendNo);
+		return service.selectAlarm(friendNo,(int) session.getAttribute("userNo"));
 	}
 	
 	@RequestMapping(value="/deleteFriend", method=RequestMethod.GET)
