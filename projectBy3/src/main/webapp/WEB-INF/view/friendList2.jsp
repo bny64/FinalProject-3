@@ -102,13 +102,7 @@ td>img {
 .friendListTop {
 	overflow: auto;
 	width: 100%;
-	height: 50%;
-}
-
-.friendListBottom {
-	overflow: auto;
-	width: 100%;
-	height: 40%;
+	height: 80%;
 }
 
 .friendListNav {
@@ -201,8 +195,6 @@ td>img {
 						<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
 						<%-- 		</c:forEach> --%>
 					</table>
-				</div>
-				<div class="friendList">
 					<table>
 						<tr>
 							<th align="center" colspan="3">알수도 있는 친구</th>
