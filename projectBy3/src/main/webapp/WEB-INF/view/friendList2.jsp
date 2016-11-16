@@ -17,7 +17,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
 
 
 </script>
@@ -84,34 +90,47 @@ td>img {
 }
 
 .content-top {
-	height: 75%;
+	height: 100%;
 }
-#searchFriend{
-	margin-top : 8%;
-	margin-bottom : -10%;
+
+#searchFriend {
+	margin-top: 8%;
+	margin-bottom: -10%;
 	margin-left: 77%;
 }
+
+.friendListTop {
+	overflow: auto;
+	width: 100%;
+	height: 50%;
+}
+
+.friendListBottom {
+	overflow: auto;
+	width: 100%;
+	height: 40%;
+}
+
+.friendListNav {
+	height: 12%;
+}
+
 @media screen and (min-width: 0px) and (max-width:400px) {
-	.friendList{
-		width : 120%;
-		margin-left: -8%;
-		overflow: auto;
-		height: 70%;
-	}
-	tr>th{
+	tr>th {
 		font-size: 0.7em;
 	}
-	tr>td{
-		font-size : 0.7em;
+	tr>td {
+		font-size: 0.7em;
 	}
-	a>button{
-		font-size : 0.7em;
+	a>button {
+		font-size: 0.7em;
 	}
-	.friendList>table{
-		margin-top : 20%;
+	.friendList>table {
+		margin-top: 20%;
 	}
 }
-#pathImg{
+
+#pathImg {
 	height: 30%;
 }
 </style>
@@ -138,78 +157,77 @@ td>img {
 
 	<div class="content-top">
 		<div class="container">
-			<c:url value="/initSearchFriend" var="initSearchFriend" />
-			<a href="initSearchFriend">
-				<button id="searchFriend" >친구 찾기</button>
-			</a>
 			<div class="friendList">
-				<table>
-					<tr>
-						<th align="center">친구 목록</th>
-						<th align="center">이름</th>
-						<th align="center">닉네임</th>
-					</tr>
-					<c:forEach var="friends" items="${friends}">
+				<div class="friendListNav">
+					<c:url value="/initSearchFriend" var="initSearchFriend" />
+					<a href="initSearchFriend">
+						<button id="searchFriend">친구 찾기</button>
+					</a>
+				</div>
+				<div class="friendListTop">
+					<table>
 						<tr>
-							<!-- <td align="center"><label>프로필 사진</label></td> -->
-							<td align="center">
-								<img src="<%=request.getContextPath()%>/upload/${friends.profilePath}" >
-							</td>
-							<td align="center"><label>${friends.userName}</label></td>
-							<td align="center"><label>${friends.nickname}</label></td>
-							<td align="left"><label>알람 설정</label></td>
-							<td align="left"><select id="alarm"
-								data-item="${friends.friendNo }" name="${friends.alarm}">
-									<%-- <option selected="selected" value="">${friends.alarm }</option> --%>
-									<option
-										<c:if test='${friends.alarm == "on"}'>selected="selected"</c:if>
-										value="on">on</option>
-									<option
-										<c:if test='${friends.alarm == "off"}'>selected="selected"</c:if>
-										value="off">off</option>
-							</select></td>
-							<c:url value="/deleteFriend" var="deleteFriend" />
-							<td align="center"><a
-								href="${deleteFriend}?friendNo=${friends.friendNo}">
-									<button>친구 삭제</button> <input type="hidden"
-									data-item="${friends.friendNo }">
-							</a></td>
+							<th align="center">친구 목록</th>
+							<th align="center">이름</th>
+							<th align="center">닉네임</th>
 						</tr>
-					</c:forEach>
-					<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
-					<%-- 		</c:forEach> --%>
-				</table>
-			</div>
-			
-			<!-- 은구가 추가한 코드 -->
-			
-			<div class="friendList">
-				<table>
-					<tr>
-						<th align="center" colspan="3">알수도 있는 친구</th>
-					</tr>
-					<c:forEach var="ifYouKnow" items="${ifYouKnows}">
+						<c:forEach var="friends" items="${friends}">
+							<tr>
+								<!-- <td align="center"><label>프로필 사진</label></td> -->
+								<td align="center"><img
+									src="<%=request.getContextPath()%>/upload/${friends.profilePath}">
+								</td>
+								<td align="center"><label>${friends.userName}</label></td>
+								<td align="center"><label>${friends.nickname}</label></td>
+								<td align="left"><label>알람 설정</label></td>
+								<td align="left"><select id="alarm"
+									data-item="${friends.friendNo }" name="${friends.alarm}">
+										<%-- <option selected="selected" value="">${friends.alarm }</option> --%>
+										<option
+											<c:if test='${friends.alarm == "on"}'>selected="selected"</c:if>
+											value="on">on</option>
+										<option
+											<c:if test='${friends.alarm == "off"}'>selected="selected"</c:if>
+											value="off">off</option>
+								</select></td>
+								<c:url value="/deleteFriend" var="deleteFriend" />
+								<td align="center"><a
+									href="${deleteFriend}?friendNo=${friends.friendNo}">
+										<button>친구 삭제</button> <input type="hidden"
+										data-item="${friends.friendNo }">
+								</a></td>
+							</tr>
+						</c:forEach>
+						<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
+						<%-- 		</c:forEach> --%>
+					</table>
+				</div>
+				<div class="friendList">
+					<table>
 						<tr>
-							<!-- <td align="center"><label>프로필 사진</label></td> -->
-							<td align="center">
-								<img src="<%=request.getContextPath()%>/upload/${ifYouKnow.profilePath}" >
-							</td>
-							<td align="center"><label>${ifYouKnow.userName}</label></td>
-							<td align="center"><label>${ifYouKnow.nickname}</label></td>
-							<td align="center"><c:url value="/insertFriend"
-								var="insertFriend" /> <a
-								href="${insertFriend}?userNo=${ifYouKnow.userNo}">
-								<button>친구 추가</button>
-							</a></td>
-							
+							<th align="center" colspan="3">알수도 있는 친구</th>
 						</tr>
-					</c:forEach>
-					<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
-					<%-- 		</c:forEach> --%>
-				</table>
+						<c:forEach var="ifYouKnow" items="${ifYouKnows}">
+							<tr>
+								<!-- <td align="center"><label>프로필 사진</label></td> -->
+								<td align="center"><img
+									src="<%=request.getContextPath()%>/upload/${ifYouKnow.profilePath}">
+								</td>
+								<td align="center"><label>${ifYouKnow.userName}</label></td>
+								<td align="center"><label>${ifYouKnow.nickname}</label></td>
+								<td align="center"><c:url value="/insertFriend"
+										var="insertFriend" /> <a
+									href="${insertFriend}?userNo=${ifYouKnow.userNo}">
+										<button>친구 추가</button>
+								</a></td>
+
+							</tr>
+						</c:forEach>
+						<!-- 친구 삭제 할 때는 친구 번호도 items에 담겨 오기 때문에 친구 번호로 삭제 -->
+						<%-- 		</c:forEach> --%>
+					</table>
+				</div>
 			</div>
-			
-			<!-- 1                                                    1 -->
 		</div>
 	</div>
 	<!-- footer -->
