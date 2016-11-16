@@ -116,8 +116,8 @@
                 					From USER_FRIEND 
                 					WHERE USER_FRIEND.USER_NO = #{userNo}
                 					) 
-                					or VIEW_STATUS = 'visible') 
-                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY where board_no in(select BOARD_NO from board where VIEW_STATUS = 'hidden'))))
                 			and  category_no = #{categoryNo}
                 			
                 	order by WRITED_DATE DESC					
@@ -125,6 +125,24 @@
 			)		
 		where rnum &gt;= #{from} and rnum &lt;= #{to} 
 	</select>
+	<!-- <select id="selectMyCategoryBoardByPaging" resultMap="boardBase">
+		select * 
+		from (select rownum rnum, sub.*
+				from (select * from board 
+						where ((user_no in(
+                					select USER_FRIEND.FRIEND_NO 
+                					From USER_FRIEND 
+                					WHERE USER_FRIEND.USER_NO = #{userNo}
+                					) 
+                					and VIEW_STATUS = 'visible') 
+                			or(board_no in (select BOARD_NO from USER_HISTORY) and VIEW_STATUS = 'hidden' ))
+                			and  category_no = #{categoryNo}
+                			
+                	order by WRITED_DATE DESC					
+					) sub 
+			)		
+		where rnum &gt;= #{from} and rnum &lt;= #{to} 
+	</select> -->
 	
 	
 	
