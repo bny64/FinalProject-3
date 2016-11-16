@@ -102,6 +102,8 @@ public class BoardController {
 		logger.trace("board : {}", board);
 		int userNo = (int) session.getAttribute("userNo");
 
+		logger.trace("date@ : {}", board.getTargetDate());
+		
 		File uploadFile = new File(uploadDir + userNo + "." + System.currentTimeMillis() + file.getOriginalFilename());
 
 		if (file.getOriginalFilename().length() != 0) {
@@ -121,13 +123,8 @@ public class BoardController {
 		board.setWritedDate(new Date());
 
 		if (board.getTargetDate() == null) {
-			String date = "0000-00-00";
-			SimpleDateFormat fdm = new SimpleDateFormat("yyyy-MM-dd");
-			Date date2 = fdm.parse(date);
-			board.setTargetDate(date2);
+			board.setTargetDate(new Date(0));
 		}
-
-		logger.trace("date@ : {}", board.getTargetDate());
 
 		int result = service.insertBoard(board);
 
