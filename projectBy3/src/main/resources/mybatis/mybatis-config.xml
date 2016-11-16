@@ -17,6 +17,7 @@
 		<typeAlias type="dto.Promise" alias="promise" />
 		<typeAlias type="dto.Reply" alias="reply" />
 		<typeAlias type="dto.HotBoard" alias="hotBoard" />
+		<typeAlias type="dto.UserHistory" alias="userHistory" />
 	</typeAliases>
 
 	<mappers>
@@ -30,6 +31,8 @@
 		<mapper resource="mybatis/mapper/PromiseMapper.xml"/>
 		<mapper resource="mybatis/mapper/ReplyMapper.xml"/>
 		<mapper resource="mybatis/mapper/HotBoardMapper.xml"/>
+		<mapper resource="mybatis/mapper/UserHistoryMapper.xml"/>
+		
 	</mappers>
 
 

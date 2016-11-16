@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import dto.Board;
 import service.BoardLoactionService;
 import service.BoardService;
+import service.UserHistoryService;
 import service.UserService;
 
 @Controller
@@ -40,6 +41,10 @@ public class AndroidControllerM {
 	
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	UserHistoryService userHistoryService;
+	
 	
 	@RequestMapping("/android")
 	public void androidTest(){
@@ -85,9 +90,16 @@ public class AndroidControllerM {
 				Map<String, Object> messages = new HashMap<String, Object>();
 				messages.put("boardNo", board.getBoardNo());
 				messages.put("title", board.getTitle());
-				messages.put("userName", userService.searchUserByUserNo(userNo).getUserName());
+				messages.put("userName", userService.searchUserByUserNo(board.getUserNo()).getUserName());
 				androidResponse.add(messages);
+				//userHistoryService.insertUserHistory(userNo, board.getBoardNo());
 			}
+			
+			///////////////////////////////
+			
+			
+			
+			
 			logger.trace("androidResponse messages : {}", androidResponse);
 			//위도, 경도를 넘겨주고 필요한 내용을 List<Map<String, Object>>에 담아 리턴. *boardNo는 필수
 			return androidResponse;
@@ -103,8 +115,8 @@ public class AndroidControllerM {
 		//float centerLng = (float) 127.11321711527751;
 		float range = (float) 0.0050;
 		// 민국 - 세션이 아직 없어서 주석
-		//int userNo = (int) session.getAttribute("userNo");
-		int userNo = 1;
+		int userNo = (int) session.getAttribute("userNo");
+		//int userNo = 1;
 		
 		filter.put("centerLat", centerLat);
 		filter.put("centerLng", centerLng);

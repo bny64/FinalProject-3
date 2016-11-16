@@ -22,6 +22,7 @@ import config.ApplicationConfig;
 import dto.User;
 import exception.IdFailException;
 import exception.NicknameDuplicatedException;
+import service.UserHistoryService;
 import service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,6 +33,8 @@ public class UserServiceTest {
 	
 	@Autowired
 	UserService service;
+	@Autowired
+	UserHistoryService ss;
 	
 	//@Test
 	public void loginServiceTest(){
@@ -156,6 +159,13 @@ public class UserServiceTest {
 		int userNo = 162;
 		List<User> users = service.selectIfYouKnow(userNo);
 		logger.trace("users :{}",users);
+		
+	}
+	@Test
+	public void isnt(){
+		int userNo = 162;
+		int i = ss.insertUserHistory(userNo, 381);
+		logger.trace("성공 :{}",i);
 		
 	}
 	

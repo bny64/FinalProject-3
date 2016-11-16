@@ -54,8 +54,8 @@
 						</legend>
 						<label>게시물 보임 여부</label>
 						<sform:select path="viewStatus" id="viewStatus">
-							<sform:option value="visible" selected="selected">그냥 보이기</sform:option>
-							<sform:option value="hidden">숨기기</sform:option>
+							<sform:option value="visible">그냥 보이기</sform:option>
+							<sform:option value="hidden" selected="selected">숨기기</sform:option>
 						</sform:select>
 						<div id="isViewStatus">
 							<label>위치: </label>
@@ -111,7 +111,7 @@
 </script>
 <style>
 #isViewStatus{
-	display: none;
+	display: block;
 }
 
 #locationStr {

@@ -18,7 +18,7 @@ public class Board {
 	String title;
 	int hit;
 	String content;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	Date writedDate;
 	int userNo;
 	int categoryNo;

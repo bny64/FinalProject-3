@@ -141,7 +141,7 @@
 						$(res).each(function(idx,data){
 							<c:url value = "/adminBoard" var="adminBoard"/>
 							$newOne = "<a data-poptrox='iframe,600x400' href='${adminBoard}?boardNo=" + data.boardNo
-							 		+ "'> <img src='<%=request.getContextPath()%>/img/thumbs/06.jpg' alt='' />"
+							 		+ "'> <img src='<%=request.getContextPath()%>/upload/"+data.imagePath+"' alt='' />"
 						     		+"<h3>" + data.title + "</h3></a>";						
 				
 							switch(idx%3){
