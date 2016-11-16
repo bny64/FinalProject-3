@@ -13,7 +13,7 @@ public class UserHistoryDaoImpl implements UserHistoryDao {
 	private SqlSessionTemplate template;
 	@Override
 	public int insertUserHistory(UserHistory userHistory) {
-		String stmt = NAME_SPACE + "selectAllUser";
+		String stmt = NAME_SPACE + "insertUserHistory";
 		return template.insert(stmt,userHistory);
 	}
 

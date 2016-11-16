@@ -92,7 +92,7 @@ public class AndroidControllerM {
 				messages.put("title", board.getTitle());
 				messages.put("userName", userService.searchUserByUserNo(board.getUserNo()).getUserName());
 				androidResponse.add(messages);
-				//userHistoryService.insertUserHistory(userNo, board.getBoardNo());
+				userHistoryService.insertUserHistory(userNo, board.getBoardNo());
 			}
 			
 			///////////////////////////////

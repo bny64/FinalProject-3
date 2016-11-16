@@ -99,7 +99,7 @@ table {
 						<img alt="광고"
 							src="<%=request.getContextPath()%>/upload/${hot.filePath}"
 							width="100%">
-						<h3>${hot.title }</h3>
+						
 					</c:forEach>
 				</form>
 			</div>

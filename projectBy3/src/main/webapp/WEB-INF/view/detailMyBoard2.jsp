@@ -191,7 +191,7 @@ button {
 						</div>
 						<c:forEach items="${hots }" var="hot">
 							<img alt="광고" src="<%=request.getContextPath()%>/upload/${hot.filePath}" width="100%">
-							<h3>${hot.title }</h3>
+							
 						</c:forEach>
 				</sform:form>
 
